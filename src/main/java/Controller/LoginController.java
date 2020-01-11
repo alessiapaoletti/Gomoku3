@@ -5,6 +5,7 @@ import Model.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Alert;
@@ -12,6 +13,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
@@ -32,44 +34,49 @@ public class LoginController {
 
     @FXML private javafx.scene.control.TextField players;
 
-    @FXML
-    private ChoiceBox choice;
+    @FXML private ChoiceBox choice;
 
-    @FXML
-    private ChoiceBox choicecol1;
+    @FXML private ChoiceBox choicecol;
 
-    @FXML
-    private ChoiceBox choicecol2;
+    //@FXML
+    //private ChoiceBox choicecol1;
 
-    @FXML
-    private ChoiceBox choiceOpening;
+    //@FXML
+    //private ChangeListener choicecol2;
 
-    @FXML
-    private void initialize(){
+    @FXML private ChoiceBox choiceOpening;
+
+    public LoginController() {
+    }
+
+    @FXML private void initialize(){
 
         choice.setItems(methods);
-        choicecol1.setItems(colors);
-        choicecol2.setItems(colors);
+        choicecol.setItems(colors);
+        //choicecol1.setItems(colors);
+        //choicecol2.getItems(colors);
         choiceOpening.setItems(openings);
 
     }
-
-
 
     @FXML
     public void startGame() throws IOException {
 
         System.out.println("start game!");
         boolean isMyComboBoxEmpty = choice.getSelectionModel().isEmpty();
-        boolean isMyCol1Empty = choicecol1.getSelectionModel().isEmpty();
-        boolean isMyCol2Empty = choicecol2.getSelectionModel().isEmpty();
+        boolean isMyColEmpty = choicecol.getSelectionModel().isEmpty();
+        //boolean isMyCol1Empty = choicecol1.getSelectionModel().isEmpty();
+        //boolean isMyCol2Empty = choicecol2.getSelectionModel().isEmpty();
         boolean isOpeningEmpty = choiceOpening.getSelectionModel().isEmpty();
 
-        if (!isMyComboBoxEmpty && !isMyCol1Empty && !isMyCol2Empty){
+        //if (!isMyComboBoxEmpty && !isMyCol1Empty && !isMyCol2Empty){
+        if (!isMyComboBoxEmpty && !isMyColEmpty){
             if (!(playerf.getText().equals("")) && !(players.getText().equals(""))) {
-                if(choicecol1.getSelectionModel().getSelectedItem().toString()!=choicecol2.getSelectionModel().getSelectedItem().toString()) {
-                    Player p1 = new Player(playerf.getText(), choicecol1.getSelectionModel().getSelectedItem().toString());
-                    Player p2 = new Player(players.getText(), choicecol2.getSelectionModel().getSelectedItem().toString());
+                //if(choicecol1.getSelectionModel().getSelectedItem().toString()!=choicecol2.getSelectionModel().getSelectedItem().toString()) {
+                Player p1 = new Player(playerf.getText(), choicecol.getSelectionModel().getSelectedItem().toString());
+                Player p2= new Player(players.getText(), colors.get(2-((Integer) choicecol.getSelectionModel().getSelectedIndex()+1)));
+                    //Player p1 = new Player(playerf.getText(), choicecol1.getSelectionModel().getSelectedItem().toString());
+                    //Player p2 = new Player(players.getText(), choicecol2.getSelectionModel().getSelectedItem().toString());
                     String opening_meth;
                     if(!isOpeningEmpty){ opening_meth=choiceOpening.getSelectionModel().getSelectedItem().toString();}
                     else {opening_meth="Standard";}
@@ -92,14 +99,14 @@ public class LoginController {
 //                    mainStage.setTitle("Gomoku Board");
 //                    mainStage.setScene(new Scene(root, 500, 450));
 //                    mainStage.show();
-                }
-                else{
+                //}
+                /**else{
                     Alert alertColors = new Alert(Alert.AlertType.ERROR);
                     alertColors.setTitle("ERROR - Colors");
                     alertColors.setHeaderText(null);
                     alertColors.setContentText("Choose different colors");
                     alertColors.showAndWait();
-                }
+                 }**/
             }
             else {
                 Alert alertNames = new Alert(Alert.AlertType.ERROR);
