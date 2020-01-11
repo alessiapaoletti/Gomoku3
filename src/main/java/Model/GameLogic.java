@@ -126,15 +126,16 @@ class GameLogic {
     }
 
     private void RemoveMove(int x,  int y){
-            Piece m=new Piece(this.current_player);
-            m.setX(x);
-            m.setY(y);
-            if(this.current_player==this.game.getP1().getColor().get()){
-                if(this.game.getP1().CheckinMoves(m)) this.game.getP1().removePosition(this.game.getP1().getPositions().size()-1);
-            }
-            else{
-                if(this.game.getP2().CheckinMoves(m)) this.game.getP2().removePosition(this.game.getP2().getPositions().size()-1);
-            }
+        Piece m=new Piece(this.current_player);
+        m.setX(x);
+        m.setY(y);
+        if(this.current_player==this.game.getP1().getColor().get()){
+            if(this.game.getP1().CheckinMoves(m)) this.game.getP1().removePosition(this.game.getP1().getPositions().size()-1);
+        }
+        else{
+            if(this.game.getP2().CheckinMoves(m)) this.game.getP2().removePosition(this.game.getP2().getPositions().size()-1);
+        }
+        this.myBoard.pieces[x][y].setPiece(Board.EMPTY_SPACE);
     };
 
     // private method for swapping the players

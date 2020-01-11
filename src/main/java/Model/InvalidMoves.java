@@ -23,6 +23,11 @@ public class InvalidMoves {
         player2.getPositions().forEach(i -> this.stones_player2.add(new Pair<>(i.getX(),i.getY())));
     };
 
+    private void Clear(){
+        this.stones_player1.clear();
+        this.stones_player2.clear();
+    };
+
     public Player GetBlack(){
         if(player1.getColor().get()==1) return player1;
         else return player2;
@@ -50,6 +55,7 @@ public class InvalidMoves {
                 Collections.sort(aux);
                 break;
         }
+        System.out.println(aux);
        for(int i=aux.size()-1;i>0;i--){
             if(i!=0) a+=(aux.get(i)-aux.get(i-1));
         }
@@ -59,9 +65,9 @@ public class InvalidMoves {
 
     };
 
-    private boolean Check_opponent(List<Integer> x,Integer y,Player p1,String mode){
-        Piece piedx=new Piece(3);
-        Piece piesx=new Piece(3);
+    private void Check_opponent(List<Integer> x,Integer y,Player p1,String mode){
+        Piece piedx=new Piece(p1.getColor().get());
+        Piece piesx=new Piece(p1.getColor().get());
         switch (mode) {
             case "row":
                 piedx.setX(x.get(0) - 1);
@@ -77,14 +83,17 @@ public class InvalidMoves {
                 break;
         }
 
-        if(p1.CheckinMoves(piedx) || p1.CheckinMoves(piesx)) return true;
-        else return false;
+        if(p1.CheckinMoves(piedx) || p1.CheckinMoves(piesx)){ System.out.println("ok");}
+        else {
+            this.Clear();
+            throw new Error("Open rows!");
+        }
+
     };
 
     private void Error_throw(List<Integer> aux,Integer e,Player p,String m,int c,List<Pair<Integer,Integer>> pp){
         if (this.Sequential(aux, e, m, c,pp)) {
-            if (!this.Check_opponent(aux, e, p, m))
-                throw new Error("Open rows!");
+            this.Check_opponent(aux, e, p, m);
         }
     };
 
@@ -116,6 +125,7 @@ public class InvalidMoves {
             List<Integer> check = new ArrayList<>((count.keySet()));
             check.forEach(i->Error_throw(aux,i,p1,"col",c,pp));
         }
+
     };
 
     public void three_and_three(int c){
