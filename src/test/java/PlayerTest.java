@@ -11,7 +11,6 @@ import static org.junit.Assert.assertEquals;
 
 public class PlayerTest {
 
-
     /*  *  Test constructor,getname(),getColor(),SetColor()  */
     @Test
     public void createNewPlayer(){

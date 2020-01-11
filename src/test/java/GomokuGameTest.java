@@ -15,4 +15,9 @@ public class GomokuGameTest {
         GomokuGame targetGomoku=GomokuFactory.getGame("Omok").orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
         assertEquals(targetGomoku.GetName(),"Omok");
     }
+    @Test
+    public void InitPlayer(){
+
+
+    }
 }
