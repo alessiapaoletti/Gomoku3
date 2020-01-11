@@ -12,36 +12,25 @@ import javafx.scene.transform.Translate;
 
 public class Board extends Pane {
 
-    // private fields that make the Go board work
     private GameLogic gameLogic;
+    private Rectangle background; //rectangle for the background of the board
+    private Line[] horizontal; //array for horizontal lines
+    private Line[] vertical; //array for vertical lines
+    private Translate[] horizontal_t; //array holding translate obj for the horizontal grid lines
+    private Translate[] vertical_t; //array holding translate obj for the vertical grid lines
+    Piece[][] pieces; // matrix for the internal representation of the board and the pieces that are in place
 
-    // rectangle that makes the background of the board
-    private Rectangle background;
-
-    // arrays for the lines that makeup the horizontal and vertical grid lines
-    private Line[] horizontal;
-    private Line[] vertical;
-
-    // arrays holding translate objects for the horizontal and vertical grid lines
-    private Translate[] horizontal_t;
-    private Translate[] vertical_t;
-
-    // arrays for the internal representation of the board and the pieces that are
-    // in place
-    Piece[][] pieces; //in this way the access is package-private
-
-    // the width and height of a cell in the board
     /* needed when resizing the board */
     private double cell_width;
     private double cell_height;
 
-    // Offset to center the board in the window
+    /* offset to center the board in the window */
     private double start_x;
     private double start_y;
 
-    //size of the grid
+    /* size of the grid */
     private int line_number;
-    int board_size; //package-private access
+    int board_size;
 
     private static int APPLICATION_BORDER = 50; //border between the grid and the window
     private static Color BACKGROUND_COLOR = Color.PINK;
@@ -52,14 +41,14 @@ public class Board extends Pane {
     private static double PIECE_SIZE = 0.70; //piece dimension
 
     static int EMPTY_SPACE = 0;
-    static int WHITE_PLAYER = 2;
     static int BLACK_PLAYER = 1;
+    static int WHITE_PLAYER = 2;
 
     static int APPLICATION_WIDTH = 600;
     static int APPLICATION_HEIGHT = 600;
 
-    public static int N;
-    /* Constructor  */
+    public static int N; //to store the N of the gamelogic
+
     public Board(int inputSize,GomokuGame game) {
         this.line_number = inputSize;
         this.board_size = this.line_number + 1;
@@ -73,7 +62,7 @@ public class Board extends Pane {
         this.initialiseRender();
 
         this.gameLogic = new GameLogic(this,game);
-        this.N=this.gameLogic.N;
+        N = GameLogic.N;
     }
 
     public int InitialMove(){

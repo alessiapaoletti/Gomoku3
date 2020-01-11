@@ -6,7 +6,7 @@ public abstract class GomokuGame {
     private static int gridSize;
     private static int nBet = 0;
     private String op_name;
-    Opening op; //package-private
+    Opening op;
     public abstract void initGame();
     public abstract void setRules();
 

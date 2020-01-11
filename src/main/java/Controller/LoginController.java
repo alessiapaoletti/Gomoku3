@@ -1,6 +1,4 @@
 package Controller;
-
-
 import Model.*;
 
 import javafx.collections.FXCollections;
@@ -13,7 +11,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
@@ -21,12 +18,12 @@ public class LoginController {
 
     private  GomokuGame targetGomoku;
 
-    ActionListener listener1;
-    ActionListener listener2;
+//    ActionListener listener1;
+//    ActionListener listener2;
 
-    ObservableList<String> methods= FXCollections.observableArrayList("Standard","Renju","Omok");
-    ObservableList<String> openings= FXCollections.observableArrayList("Standard","Pro","LongPro","Swap","Swap2");
-    ObservableList<String> colors= FXCollections.observableArrayList("Black","White");
+    private ObservableList<String> methods= FXCollections.observableArrayList("Standard","Renju","Omok");
+    private ObservableList<String> openings= FXCollections.observableArrayList("Standard","Pro","LongPro","Swap","Swap2");
+    private ObservableList<String> colors= FXCollections.observableArrayList("Black","White");
 
     @FXML private javafx.scene.control.Button eBottim;
 
@@ -100,13 +97,14 @@ public class LoginController {
 //                    mainStage.setScene(new Scene(root, 500, 450));
 //                    mainStage.show();
                 //}
-                /**else{
+
+                /*  *else{
                     Alert alertColors = new Alert(Alert.AlertType.ERROR);
                     alertColors.setTitle("ERROR - Colors");
                     alertColors.setHeaderText(null);
                     alertColors.setContentText("Choose different colors");
                     alertColors.showAndWait();
-                 }**/
+                 }* */
             }
             else {
                 Alert alertNames = new Alert(Alert.AlertType.ERROR);
@@ -118,9 +116,6 @@ public class LoginController {
         }else{
             System.out.println("Please select the type of Gomoku");
         }
-
-
-
     }
 
     @FXML
@@ -130,8 +125,7 @@ public class LoginController {
         stage.close();
     }
 
-
-    public void startGameUsingFactory(Player p1, Player p2, String game,String m){
+    private void startGameUsingFactory(Player p1, Player p2, String game,String m){
         this.targetGomoku = GomokuFactory.getGame(game).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
         this.targetGomoku.setPlayers(p1, p2);
 
