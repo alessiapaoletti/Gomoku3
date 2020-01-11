@@ -65,8 +65,11 @@ public class Player {
 
 
     public boolean CheckinMoves(Piece m){
-        if(position.contains(m)) return true;
-        else return false;
+        boolean b=false;
+        for(Piece i : this.getPositions()) {
+            if (i.getY()==m.getY() && i.getX()==m.getX()) b=true;
+        }
+        return b;
     }
 
     public boolean CheckAllMoves(Player p){
