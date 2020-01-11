@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -56,7 +57,7 @@ public class LoginController {
         //choicecol1.setItems(colors);
         //choicecol2.getItems(colors);
         choiceOpening.setItems(openings);
-
+        choicecol.setTooltip(new Tooltip("The unselected color will be assigned to the second player"));
     }
 
     @FXML
