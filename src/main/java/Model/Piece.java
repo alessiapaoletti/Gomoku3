@@ -40,10 +40,8 @@ public class Piece extends Group {
     }
 
     //method that will allow to remove the piece
-    public void removePiece(final int type) {
-        this.player = type;
-        if (this.player==Board.BLACK_PLAYER)
-            this.piece.setFill(Color.TRANSPARENT);
+    public void removePiece() {
+        this.piece.setFill(Color.TRANSPARENT);
 
     }
 

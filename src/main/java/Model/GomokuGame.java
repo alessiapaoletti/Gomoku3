@@ -8,6 +8,7 @@ public abstract class GomokuGame {
     private static int gridSize;
     private String op_name;
     protected Opening op;
+    protected InvalidMoves inv;
     public abstract void initGame();
     public abstract void setRules();
 
