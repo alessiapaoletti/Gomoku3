@@ -49,7 +49,8 @@ class GameLogic {
     // public method that will try to unplace a piece in the given x (col ),y (row )coordinate
     public void UnplacePiece(final int x, final int y) {
         this.swapPlayers();
-        this.myBoard.pieces[x][y].removePiece(this.current_player);
+        this.myBoard.pieces[x][y].removePiece();
+        this.RemoveMove(x,y);
     }
 
     //utility function to call specific game's opening rule.
@@ -57,44 +58,41 @@ class GameLogic {
         this.game.OpeningRules(c);
     }
 
-    public void OpeningRules(){
-        Alert alertColors = new Alert(Alert.AlertType.INFORMATION);
-        alertColors.setHeaderText(null);
-        if(this.game.getOp().equals("Standard")){
-            alertColors.setTitle("Standard Opening - Rules");
-            alertColors.setContentText("Black player starts and insert 1 stones followed by white player. Stones can be placed anywhere.");
-        }
-        if(this.game.getOp().equals("Pro")){
-            alertColors.setHeight(250);
-            alertColors.setWidth(150);
-            alertColors.setTitle("Pro Opening - Rules");
-            alertColors.setContentText("Black player starts in the centre, followed by white player. Black player can place the second " +
-                    "stone out of a 5x5 square from the centre.");
-        }
-        if(this.game.getOp().equals("LongPro")){
-            alertColors.setHeight(250);
-            alertColors.setWidth(150);
-            alertColors.setTitle("PLongro Opening - Rules");
-            alertColors.setContentText("Black player starts in the centre, followed by white player. Black player can place the second " +
-                    "stone out of a 7x7 square from the centre.");
-        }
-        if(this.game.getOp().equals("Swap")){
-            alertColors.setTitle("Swap Opening - Rules");
-            alertColors.setHeight(250);
-            alertColors.setWidth(150);
-            alertColors.setContentText("Black player places 3 stones: 2 black and 1 white.White player can decide to swap color " +
-                    "or stay white.");
-        }
-        if(this.game.getOp().equals("Swap2")){
-            alertColors.setTitle("Swap2 Opening - Rules");
-            alertColors.setHeight(250);
-            alertColors.setWidth(150);
-            alertColors.setContentText("Black player places 3 stones: 2 black and 1 white. White player can decide to swap color " +
-                    "stay white,or place other 2 stones(1 black and 1 white) and let the black player decide the wanted color.");
-        }
+    public void Rules(){
+        this.game.setRules();
+    }
 
-        alertColors.showAndWait();
-    };
+    public void OpeningRules(){
+            Alert alertColors = new Alert(Alert.AlertType.INFORMATION);
+            alertColors.setHeaderText(null);
+            switch (this.game.getOp()) {
+                case "Standard":
+                    alertColors.setTitle("Standard Opening - Rules");
+                    alertColors.setContentText("Black player starts and insert 1 stones followed by white player. Stones can be placed anywhere.");
+                    break;
+                case "Pro":
+                    alertColors.setTitle("Pro Opening - Rules");
+                    alertColors.setContentText("Black player starts in the centre, followed by white player.Black player can place the second " +
+                            "stone out of a 5x5 square from the centre.");
+                    break;
+                case "LongPro":
+                    alertColors.setTitle("PLongro Opening - Rules");
+                    alertColors.setContentText("Black player starts in the centre, followed by white player.Black player can place the second " +
+                            "stone out of a 7x7 square from the centre.");
+                    break;
+                case "Swap":
+                    alertColors.setTitle("Swap Opening - Rules");
+                    alertColors.setContentText("Black player places 3 stones: 2 black and 1 white.White player can decide to swap color " +
+                            "or stay white.");
+                    break;
+                case "Swap2":
+                    alertColors.setTitle("Swap2 Opening - Rules");
+                    alertColors.setContentText("Black player places 3 stones: 2 black and 1 white.White player can decide to swap color " +
+                            "stay white,or place other 2 stones(1 black and 1 white) and let the black player decide the wanted color.");
+                    break;
+            }
+            alertColors.showAndWait();
+        };
 
     private void checkPiece(final int x, final int y, final int player) {
         if (!this.validCoords(x, y))
@@ -126,6 +124,18 @@ class GameLogic {
             this.game.getP2().addPosition(m);
         }
     }
+
+    private void RemoveMove(int x,  int y){
+            Piece m=new Piece(this.current_player);
+            m.setX(x);
+            m.setY(y);
+            if(this.current_player==this.game.getP1().getColor().get()){
+                if(this.game.getP1().CheckinMoves(m)) this.game.getP1().removeposition(this.game.getP1().getPositions().size()-1);
+            }
+            else{
+                if(this.game.getP2().CheckinMoves(m)) this.game.getP2().removeposition(this.game.getP2().getPositions().size()-1);
+            }
+    };
 
     // private method for swapping the players
     private void swapPlayers() {

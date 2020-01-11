@@ -22,10 +22,11 @@ public class BoardController extends Control {
 
             if(clicks_count== Board.N || clicks_count== Board.N +2) {
                 clicks_count=this.myBoard.getOpgame(event.getX(), event.getY(),clicks_count);
+                this.myBoard.getIngame(event.getX(), event.getY());
             }
 
             //Here the game goes on
-            else this.myBoard.placePiece(event.getX(), event.getY());
+            else this.myBoard.getIngame(event.getX(), event.getY());
         });
 
         this.setOnKeyPressed((event) -> {

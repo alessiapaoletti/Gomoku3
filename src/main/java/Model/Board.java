@@ -97,6 +97,21 @@ public class Board extends Pane {
         return c-i;
     }
 
+    public void getIngame(final double x, final double y){
+        this.placePiece(x,y);
+        try {
+            this.gameLogic.Rules();
+        }
+        catch (Error e){
+            Alert alertColors = new Alert(Alert.AlertType.ERROR);
+            alertColors.setTitle("ERROR -Invalid Move");
+            alertColors.setHeaderText(null);
+            alertColors.setContentText(e.toString());
+            alertColors.showAndWait();
+            this.UnplacePiece(x,y);   //tolgo  l'ultima pedina inserita
+        }
+    };
+
     public void reset() { this.gameLogic.resetGame(); }
 
     // overridden version of the resize method to give the board the correct size

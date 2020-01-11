@@ -1,12 +1,14 @@
 package Model;
 
+
 public abstract class GomokuGame {
-    private static Player p1;
+    private static   Player p1;
     private static Player p2;
-    private static int gridSize;
     private static int nBet = 0;
+    private static int gridSize;
     private String op_name;
-    Opening op;
+    protected Opening op;
+    protected InvalidMoves inv;
     public abstract void initGame();
     public abstract void setRules();
 
@@ -17,23 +19,22 @@ public abstract class GomokuGame {
         this.p2 = p2;
     }
 
-    void OpeningRules(int c){ //package-private access
+    public void OpeningRules(int c){
 
         op.calling(c);
-    }
+    };
 
     public void setOp (String s){
         this.op_name = s;
     }
 
     public void setSize (int size){
-        gridSize = size;
+        this.gridSize = size;
     }
 
     public String GetName(){return "";}
 
-    static int getnBet(){ //package-private access
-
+    public static int getnBet(){
         return nBet;
     }
 
@@ -45,10 +46,10 @@ public abstract class GomokuGame {
         return p2;
     }
 
-    static int getGridDim() { return gridSize;  }
+    public static int getGridDim() { return gridSize;  }
 
-    String getOp(){ return this.op_name;}
+    public String getOp(){ return this.op_name;}
 
-    int getN(){return this.op.getNumMoves();}
+    public int getN(){return this.op.getNummoves();}
 
 }
