@@ -64,23 +64,31 @@ class GameLogic {
             alertColors.setContentText("Black player starts and insert 1 stones followed by white player. Stones can be placed anywhere.");
         }
         if(this.game.getOp().equals("Pro")){
+            alertColors.setHeight(250);
+            alertColors.setWidth(150);
             alertColors.setTitle("Pro Opening - Rules");
-            alertColors.setContentText("Black player starts in the centre, followed by white player.Black player can place the second " +
+            alertColors.setContentText("Black player starts in the centre, followed by white player. Black player can place the second " +
                     "stone out of a 5x5 square from the centre.");
         }
         if(this.game.getOp().equals("LongPro")){
+            alertColors.setHeight(250);
+            alertColors.setWidth(150);
             alertColors.setTitle("PLongro Opening - Rules");
-            alertColors.setContentText("Black player starts in the centre, followed by white player.Black player can place the second " +
+            alertColors.setContentText("Black player starts in the centre, followed by white player. Black player can place the second " +
                     "stone out of a 7x7 square from the centre.");
         }
         if(this.game.getOp().equals("Swap")){
             alertColors.setTitle("Swap Opening - Rules");
+            alertColors.setHeight(250);
+            alertColors.setWidth(150);
             alertColors.setContentText("Black player places 3 stones: 2 black and 1 white.White player can decide to swap color " +
                     "or stay white.");
         }
         if(this.game.getOp().equals("Swap2")){
             alertColors.setTitle("Swap2 Opening - Rules");
-            alertColors.setContentText("Black player places 3 stones: 2 black and 1 white.White player can decide to swap color " +
+            alertColors.setHeight(250);
+            alertColors.setWidth(150);
+            alertColors.setContentText("Black player places 3 stones: 2 black and 1 white. White player can decide to swap color " +
                     "stay white,or place other 2 stones(1 black and 1 white) and let the black player decide the wanted color.");
         }
 
