@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public class GomokuFactory {
 
-    static Map<String, GomokuGame> gomokuMap = new HashMap<>();
+    private static Map<String, GomokuGame> gomokuMap = new HashMap<>();
 
     static {
         gomokuMap.put("Standard", new GomokuStd());

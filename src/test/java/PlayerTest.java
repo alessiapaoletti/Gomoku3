@@ -28,9 +28,9 @@ public class PlayerTest {
         Piece pie=new Piece(2);
         pie.setX(1);
         pie.setY(2);
-        p.addposition(pie);
+        p.addPosition(pie);
         assertEquals(p.getPositions().get(0),pie);
-        p.removeposition(0);
+        p.removePosition(0);
         assertEquals(p.getPositions().size(),0);
     };
 
@@ -41,11 +41,11 @@ public class PlayerTest {
         Piece pie=new Piece(2);
         pie.setX(1);
         pie.setY(2);
-        p.addposition(pie);
+        p.addPosition(pie);
         Piece pie1=new Piece(2);
         pie1.setX(4);
         pie1.setY(2);
-        assertEquals(p.CheckinMoves(pie1),false);
+        assertEquals(p.checkInMoves(pie1),false);
 
     }
 
@@ -56,13 +56,13 @@ public class PlayerTest {
         Piece pie=new Piece(2);
         pie.setX(1);
         pie.setY(2);
-        p.addposition(pie);
+        p.addPosition(pie);
         Player p1=new Player("mario","black");
         Piece pie1=new Piece(2);
         pie1.setX(4);
         pie1.setY(2);
-        p1.addposition(pie1);
-        assertEquals(p.CheckAllMoves(p1),true);
+        p1.addPosition(pie1);
+        assertEquals(p.checkAllMoves(p1),true);
 
     }
 

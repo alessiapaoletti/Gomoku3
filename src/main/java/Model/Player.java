@@ -18,12 +18,12 @@ public class Player {
         else {this.color=new AtomicInteger(2);}
     }
 
-    public void addposition(Piece m){
+    public void addPosition(Piece m){
         position.add(m);
 
     }
 
-    public void removeposition(int i){
+    public void removePosition(int i){
         position.remove(position.get(i));
     }
 
@@ -36,7 +36,7 @@ public class Player {
     }
 
     public String getNameColor(){
-        if (this.color.equals(1)) return "Black";
+        if (this.color.get() == 1 ) return "Black";
         else return "White";
     }
 

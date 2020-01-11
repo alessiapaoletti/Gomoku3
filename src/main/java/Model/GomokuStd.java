@@ -3,7 +3,7 @@ package Model;
 public class GomokuStd extends GomokuGame {
 
 
-    public GomokuStd(){}
+    GomokuStd(){} //package-private access
 
 
     @Override
@@ -18,7 +18,7 @@ public class GomokuStd extends GomokuGame {
     @Override
     public void setRules(){
 
-    };
+    }
 
     @Override
     public String GetName(){return "Standard";}

@@ -7,8 +7,8 @@ public abstract class GomokuGame {
     private static int nBet = 0;
     private static int gridSize;
     private String op_name;
-    protected Opening op;
-    protected InvalidMoves inv;
+    Opening op;
+    InvalidMoves inv;
     public abstract void initGame();
     public abstract void setRules();
 
@@ -19,22 +19,22 @@ public abstract class GomokuGame {
         this.p2 = p2;
     }
 
-    public void OpeningRules(int c){
+    void OpeningRules(int c){
 
         op.calling(c);
-    };
+    }
 
     public void setOp (String s){
         this.op_name = s;
     }
 
     public void setSize (int size){
-        this.gridSize = size;
+        gridSize = size;
     }
 
     public String GetName(){return "";}
 
-    public static int getnBet(){
+    static int getnBet(){
         return nBet;
     }
 
@@ -46,10 +46,10 @@ public abstract class GomokuGame {
         return p2;
     }
 
-    public static int getGridDim() { return gridSize;  }
+    static int getGridDim() { return gridSize;  }
 
-    public String getOp(){ return this.op_name;}
+    String getOp(){ return this.op_name;}
 
-    public int getN(){return this.op.getNummoves();}
+    int getN(){return this.op.getNummoves();}
 
 }

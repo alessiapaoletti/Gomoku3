@@ -13,27 +13,25 @@ import java.net.URL;
 
 public class GomokuBoard {
 
-    private final BoardController controller;
     private final StackPane sp_mainlayout;
     static private final int gridSize  = GomokuGame.getGridDim();
     static private  String nameg;
 
     public GomokuBoard(Stage mainStage,GomokuGame n) throws IOException {
-        this.controller = new BoardController(gridSize,n);
+        BoardController controller = new BoardController(gridSize, n);
         this.sp_mainlayout = new StackPane();
-        this.sp_mainlayout.getChildren().add(this.controller);
-        this.nameg=n.GetName();
+        this.sp_mainlayout.getChildren().add(controller);
+        nameg=n.GetName();
         this.start(mainStage);
     }
 
-    public void start(Stage primaryStage) throws IOException {
+    private void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("GOMOKU version: "+nameg);
         primaryStage.setScene(new Scene(this.sp_mainlayout, Board.APPLICATION_WIDTH, Board.APPLICATION_HEIGHT));
         primaryStage.show();
 
         URL myFxmlURL = ClassLoader.getSystemResource("boardView.fxml");
         Parent anotherRoot = FXMLLoader.load(myFxmlURL);
-        //Parent anotherRoot = FXMLLoader.load(getClass().getResource("boardView.fxml"));
         Scene anotherScene = new Scene(anotherRoot);
         Stage anotherStage = new Stage();
         anotherStage.setTitle("Score");
