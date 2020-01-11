@@ -130,10 +130,10 @@ class GameLogic {
             m.setX(x);
             m.setY(y);
             if(this.current_player==this.game.getP1().getColor().get()){
-                if(this.game.getP1().CheckinMoves(m)) this.game.getP1().removeposition(this.game.getP1().getPositions().size()-1);
+                if(this.game.getP1().CheckinMoves(m)) this.game.getP1().removePosition(this.game.getP1().getPositions().size()-1);
             }
             else{
-                if(this.game.getP2().CheckinMoves(m)) this.game.getP2().removeposition(this.game.getP2().getPositions().size()-1);
+                if(this.game.getP2().CheckinMoves(m)) this.game.getP2().removePosition(this.game.getP2().getPositions().size()-1);
             }
     };
 

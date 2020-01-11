@@ -11,15 +11,11 @@ import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class LoginController {
 
     private  GomokuGame targetGomoku;
-
-//    ActionListener listener1;
-//    ActionListener listener2;
 
     private ObservableList<String> methods= FXCollections.observableArrayList("Standard","Renju","Omok");
     private ObservableList<String> openings= FXCollections.observableArrayList("Standard","Pro","LongPro","Swap","Swap2");
