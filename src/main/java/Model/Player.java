@@ -8,22 +8,19 @@ public class Player {
     private final String name;
     private int score = 0;
     private AtomicInteger color;
-    private List<Piece> position=new ArrayList<Piece>();
+    private List<Piece> position=new ArrayList<>();
     //The idea is to set the position for each player and initialize
     // it with the opening rules.
 
     public Player(String name,String color){
         this.name = name;
-        if(color=="Black") {this.color=new AtomicInteger(1);}
+        if(color.equals("Black")) {this.color=new AtomicInteger(1);}
         else {this.color=new AtomicInteger(2);}
     }
 
-    public void addposition(Piece m){
-        position.add(m);
+    public void addPosition(Piece m){ position.add(m); }
 
-    }
-
-    public void removeposition(int i){
+    public void removePosition(int i){
         position.remove(position.get(i));
     }
 
@@ -36,7 +33,7 @@ public class Player {
     }
 
     public String getNameColor(){
-        if (this.color.equals(1)) return "Black";
+        if (this.color.get() == 1) return "Black";
         else return "White";
     }
 
@@ -48,11 +45,9 @@ public class Player {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
+    public void setScore(int score) { this.score = score; }
 
-    public void PrintPositions(){
+    void PrintPositions(){
         System.out.println("movements for player "+this.name+":");
         for(Piece model : position) {
             System.out.println(model.getX()+" "+model.getY());
@@ -63,16 +58,11 @@ public class Player {
         return position;
     }
 
+    public boolean checkInMoves(Piece m){ return position.contains(m); }
 
-    public boolean CheckinMoves(Piece m){
-        if(position.contains(m)) return true;
-        else return false;
-    }
-
-    public boolean CheckAllMoves(Player p){
-        List<Piece> intersection = new ArrayList<Piece>(this.position);
+    public boolean checkAllMoves(Player p){
+        List<Piece> intersection = new ArrayList<>(this.position);
         intersection.retainAll(p.getPositions());
-        if(intersection.isEmpty()) return true;
-        else return false;
+        return intersection.isEmpty();
     }
 }

@@ -58,10 +58,12 @@ public class ScoreController implements Initializable {
     }
 
     public void resetGame() {
+        /* to do */
         System.out.println("reset the game (same board)");
     }
 
     public void newGame(){
+        /* to do */
         System.out.println("new game with different players (new board starting from the login window) ");
     }
 

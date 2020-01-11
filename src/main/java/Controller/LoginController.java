@@ -12,19 +12,18 @@ import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class LoginController {
 
     private  GomokuGame targetGomoku;
 
-    ActionListener listener1;
-    ActionListener listener2;
+//    ActionListener listener1;
+//    ActionListener listener2;
 
-    ObservableList<String> methods= FXCollections.observableArrayList("Standard","Renju","Omok");
-    ObservableList<String> openings= FXCollections.observableArrayList("Standard","Pro","LongPro","Swap","Swap2");
-    ObservableList<String> colors= FXCollections.observableArrayList("Black","White");
+    private ObservableList<String> methods= FXCollections.observableArrayList("Standard","Renju","Omok");
+    private ObservableList<String> openings= FXCollections.observableArrayList("Standard","Pro","LongPro","Swap","Swap2");
+    private ObservableList<String> colors= FXCollections.observableArrayList("Black","White");
 
     @FXML private javafx.scene.control.Button eBottim;
 
@@ -67,7 +66,7 @@ public class LoginController {
 
         if (!isMyComboBoxEmpty && !isMyCol1Empty && !isMyCol2Empty){
             if (!(playerf.getText().equals("")) && !(players.getText().equals(""))) {
-                if(choicecol1.getSelectionModel().getSelectedItem().toString()!=choicecol2.getSelectionModel().getSelectedItem().toString()) {
+                if(!choicecol1.getSelectionModel().getSelectedItem().toString().equals(choicecol2.getSelectionModel().getSelectedItem().toString())) {
                     Player p1 = new Player(playerf.getText(), choicecol1.getSelectionModel().getSelectedItem().toString());
                     Player p2 = new Player(players.getText(), choicecol2.getSelectionModel().getSelectedItem().toString());
                     String opening_meth;
@@ -124,7 +123,7 @@ public class LoginController {
     }
 
 
-    public void startGameUsingFactory(Player p1, Player p2, String game,String m){
+    private void startGameUsingFactory(Player p1, Player p2, String game,String m){
         this.targetGomoku = GomokuFactory.getGame(game).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
         this.targetGomoku.setPlayers(p1, p2);
 

@@ -30,8 +30,8 @@ public class Piece extends Group {
     }
 
 
-    // method that will set the piece type
-    public void setPiece(final int type) {
+    // method that will set the piece type , package-private access
+    void setPiece(final int type) {
         this.player = type;
         if (this.player == Board.EMPTY_SPACE )
             this.piece.setFill(Color.TRANSPARENT);
@@ -40,7 +40,7 @@ public class Piece extends Group {
     }
 
     //method that will allow to remove the piece
-    public void removePiece(final int type) {
+    void removePiece(final int type) {
         this.player = type;
         if (this.player==Board.BLACK_PLAYER)
             this.piece.setFill(Color.TRANSPARENT);
@@ -48,7 +48,7 @@ public class Piece extends Group {
     }
 
     // returns the type of this piece
-    public int getPiece() {
+    int getPiece() {
         return (this.player);
     }
 
@@ -60,11 +60,11 @@ public class Piece extends Group {
         this.y = y;
     }
 
-    public int getX() {
+    int getX() {
         return (this.x);
     }
 
-    public int getY() {
+    int getY() {
         return (this.y);
     }
 }

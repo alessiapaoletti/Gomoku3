@@ -1,7 +1,6 @@
 package Model;
 
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
@@ -29,7 +28,7 @@ public class Board extends Pane {
 
     // arrays for the internal representation of the board and the pieces that are
     // in place
-    public Piece[][] pieces;
+    Piece[][] pieces; //in this way the access is package-private
 
     // the width and height of a cell in the board
     /* needed when resizing the board */
@@ -42,24 +41,22 @@ public class Board extends Pane {
 
     //size of the grid
     private int line_number;
-    public int board_size;
+    int board_size; //package-private access
 
+    private static int APPLICATION_BORDER = 50; //border between the grid and the window
+    private static Color BACKGROUND_COLOR = Color.PINK;
 
+    static RadialGradient WHITE_COLOR = new RadialGradient(0.5, 0.5, 0, 0, 1.5, true, CycleMethod.REFLECT, new Stop(0, Color.WHITE), new Stop(1, Color.GREY));
+    static RadialGradient BLACK_COLOR = new RadialGradient(0.5, 0.5, 0, 0, 1.5, true, CycleMethod.REFLECT, new Stop(0, Color.DARKSLATEGREY), new Stop(1, Color.BLACK));
 
-    public static int APPLICATION_BORDER = 50; //border between the grid and the window
-    public static Color BACKGROUND_COLOR = Color.PINK;
+    private static double PIECE_SIZE = 0.70; //piece dimension
 
-    public static RadialGradient WHITE_COLOR = new RadialGradient(0.5, 0.5, 0, 0, 1.5, true, CycleMethod.REFLECT, new Stop(0, Color.WHITE), new Stop(1, Color.GREY));
-    public static RadialGradient BLACK_COLOR = new RadialGradient(0.5, 0.5, 0, 0, 1.5, true, CycleMethod.REFLECT, new Stop(0, Color.DARKSLATEGREY), new Stop(1, Color.BLACK));
+    static int EMPTY_SPACE = 0;
+    static int WHITE_PLAYER = 2;
+    static int BLACK_PLAYER = 1;
 
-    public static double PIECE_SIZE = 0.70; //piece dimension
-
-    public static int EMPTY_SPACE = 0;
-    public static int WHITE_PLAYER = 2;
-    public static int BLACK_PLAYER = 1;
-
-    public static int APPLICATION_WIDTH = 600;
-    public static int APPLICATION_HEIGHT = 600;
+    static int APPLICATION_WIDTH = 600;
+    static int APPLICATION_HEIGHT = 600;
 
     public static int N;
     /* Constructor  */
@@ -148,7 +145,7 @@ public class Board extends Pane {
         this.gameLogic.placePiece(cellX, cellY);
     }
 
-    public void UnplacePiece(final double x, final double y) {
+    private void UnplacePiece(final double x, final double y) {
         int cellX = (int)((x - this.start_x + (this.cell_width / 2.0)) / this.cell_width);
         int cellY = (int)((y - this.start_y + (this.cell_height / 2.0)) / this.cell_height);
         //System.out.println(cellX);

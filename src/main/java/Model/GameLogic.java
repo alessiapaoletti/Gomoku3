@@ -120,10 +120,10 @@ class GameLogic {
         m.setX(x);
         m.setY(y);
         if(this.current_player==this.game.getP1().getColor().get()){
-            this.game.getP1().addposition(m);
+            this.game.getP1().addPosition(m);
         }
         else{
-            this.game.getP2().addposition(m);
+            this.game.getP2().addPosition(m);
         }
     }
 
