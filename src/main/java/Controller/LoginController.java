@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class LoginController {
 
@@ -56,7 +57,7 @@ public class LoginController {
 
 
     @FXML
-    public void startGame(){
+    public void startGame() throws IOException {
 
         System.out.println("start game!");
         boolean isMyComboBoxEmpty = choice.getSelectionModel().isEmpty();

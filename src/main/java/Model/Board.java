@@ -46,20 +46,20 @@ public class Board extends Pane {
 
 
 
-    public static int APPLICATION_BORDER = 50; //bordo tra griglia e finestra
-    public static Color BACKGROUND_COLOR = Color.BLANCHEDALMOND;
+    public static int APPLICATION_BORDER = 50; //border between the grid and the window
+    public static Color BACKGROUND_COLOR = Color.PINK;
 
     public static RadialGradient WHITE_COLOR = new RadialGradient(0.5, 0.5, 0, 0, 1.5, true, CycleMethod.REFLECT, new Stop(0, Color.WHITE), new Stop(1, Color.GREY));
     public static RadialGradient BLACK_COLOR = new RadialGradient(0.5, 0.5, 0, 0, 1.5, true, CycleMethod.REFLECT, new Stop(0, Color.DARKSLATEGREY), new Stop(1, Color.BLACK));
 
-    public static double PIECE_SIZE = 0.70; //dimensione della pedina
+    public static double PIECE_SIZE = 0.70; //piece dimension
 
     public static int EMPTY_SPACE = 0;
     public static int WHITE_PLAYER = 2;
     public static int BLACK_PLAYER = 1;
 
-    public static int APPLICATION_WIDTH = 500;
-    public static int APPLICATION_HEIGHT = 500;
+    public static int APPLICATION_WIDTH = 600;
+    public static int APPLICATION_HEIGHT = 600;
 
     public static int N;
     /* Constructor  */

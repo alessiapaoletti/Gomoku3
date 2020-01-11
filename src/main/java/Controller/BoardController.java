@@ -57,16 +57,8 @@ package Controller;
 import Model.Board;
 import Model.ControlSkin;
 import Model.GomokuGame;
-import Model.Move;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Control;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 
 public class BoardController extends Control {
@@ -74,7 +66,7 @@ public class BoardController extends Control {
     Board myBoard;
     private int clicks_count = 0; //clicks count added in order to set the opening moves check.
     public BoardController(int gridSize,GomokuGame game ) {
-        this.setSkin(new ControlSkin(this)); // se non si mette si lamenta --> capire bene a cosa serve?
+        this.setSkin(new ControlSkin(this));
         this.myBoard = new Board(gridSize,game);
         this.getChildren().add(this.myBoard);
 
@@ -97,7 +89,8 @@ public class BoardController extends Control {
     }
 
 
-    //quando si aumentano le dimensioni della finestra trascindando
+    /* Function to resize the width and the height of the window when dragging the mouse
+    */
     @Override
     public void resize(double width, double height) {
         super.resize(width, height);

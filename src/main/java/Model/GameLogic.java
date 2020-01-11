@@ -6,6 +6,7 @@ import java.util.List;
 
 class GameLogic {
     private Board myBoard;
+
     //players of the board
     private int current_player;
     private int opposing_player;

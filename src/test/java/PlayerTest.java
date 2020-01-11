@@ -1,12 +1,8 @@
-//package test;
 import Model.Player;
 import Model.Piece;
 import org.junit.Test;
 
-//import org.junit.jupiter.api.Test;
-
 import static org.junit.Assert.assertEquals;
-//import static org.junit.jupiter.api.Assertions.*;
 
 /*
 * Test class for the player class implementation.
@@ -16,25 +12,20 @@ import static org.junit.Assert.assertEquals;
 public class PlayerTest {
 
 
+    /*  *  Test constructor,getname(),getColor(),SetColor()  */
     @Test
-
-    /*
-    *  Test constructor,getname(),getColor(),SetColor()
-    */
-    public void Create_new_Player(){
-        Player p=new Player("giulia","white");
-        assertEquals(p.getName(),"giulia");
+    public void createNewPlayer(){
+        Player p=new Player("mario","white");
+        assertEquals(p.getName(),"mario");
         assertEquals(p.getColor().intValue(),2);
         p.SetColor(1);
         assertEquals(p.getColor().intValue(),1);
     };
 
+    /* *  Test constructor,addposition(),getPositions(),removeposition() */
     @Test
-        /*
-         *  Test constructor,addposition(),getPositions(),removeposition()
-         */
-    public void Fill_moves(){
-        Player p=new Player("giulia","white");
+    public void fillMoves(){
+        Player p=new Player("mario","white");
         Piece pie=new Piece(2);
         pie.setX(1);
         pie.setY(2);
@@ -44,12 +35,10 @@ public class PlayerTest {
         assertEquals(p.getPositions().size(),0);
     };
 
+    /* *  Test constructor,CheckinMoves() */
     @Test
-        /*
-         *  Test constructor,CheckinMoves()
-         */
-    public void Check_Inmoves(){
-        Player p=new Player("giulia","white");
+    public void checkInmoves(){
+        Player p=new Player("mario","white");
         Piece pie=new Piece(2);
         pie.setX(1);
         pie.setY(2);
@@ -61,17 +50,15 @@ public class PlayerTest {
 
     }
 
+    /* *  Test constructor,CheckAllMoves()  */
     @Test
-        /*
-         *  Test constructor,CheckAllMoves()
-         */
-    public void Check_Allmoves(){
-        Player p=new Player("giulia","white");
+    public void checkAllmoves(){
+        Player p=new Player("mario","white");
         Piece pie=new Piece(2);
         pie.setX(1);
         pie.setY(2);
         p.addposition(pie);
-        Player p1=new Player("giulia","black");
+        Player p1=new Player("mario","black");
         Piece pie1=new Piece(2);
         pie1.setX(4);
         pie1.setY(2);

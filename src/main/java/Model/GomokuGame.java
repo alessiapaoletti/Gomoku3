@@ -2,8 +2,8 @@ package Model;
 
 
 public abstract class GomokuGame {
-    private  Player p1;
-    private  Player p2;
+    private static   Player p1;
+    private static Player p2;
     private static int nBet = 0;
     private static int gridSize;
     private String op_name;
@@ -37,11 +37,11 @@ public abstract class GomokuGame {
         return nBet;
     }
 
-    public  Player getP1() {
+    public static Player getP1() {
         return p1;
     }
 
-    public  Player getP2() {
+    public static Player getP2() {
         return p2;
     }
 

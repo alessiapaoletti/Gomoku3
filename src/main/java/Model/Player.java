@@ -1,9 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Player {
@@ -35,6 +33,11 @@ public class Player {
 
     public AtomicInteger getColor() {
         return this.color;
+    }
+
+    public String getNameColor(){
+        if (this.color.equals(1)) return "Black";
+        else return "White";
     }
 
     public void SetColor(int i) {
