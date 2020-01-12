@@ -1,6 +1,7 @@
 package Controller;
 
 
+import Model.Board;
 import Model.GomokuBoard;
 import Model.GomokuGame;
 import javafx.fxml.FXML;
@@ -21,7 +22,6 @@ import java.util.ResourceBundle;
 public class ScoreController implements Initializable {
 
     private final AnchorPane rootPane ;
-
     @FXML private javafx.scene.control.Label p1Board;
     @FXML private javafx.scene.control.Label p2Board;
     @FXML private javafx.scene.control.Label c1Board;
@@ -32,10 +32,11 @@ public class ScoreController implements Initializable {
     @FXML private javafx.scene.control.Label openV;
     @FXML private javafx.scene.control.Button exitB;
 
-
-
     public ScoreController() {
+
         rootPane = new AnchorPane();
+
+
     }
 
     public AnchorPane getRootPane() {

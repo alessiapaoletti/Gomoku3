@@ -49,7 +49,7 @@ public class Board extends Pane {
 
     public static int N; //to store the N of the gamelogic
 
-    public Board(int inputSize,GomokuGame game) {
+    public Board(int inputSize, GomokuGame game) {
         this.line_number = inputSize;
         this.board_size = this.line_number + 1;
         this.pieces = new Piece[this.board_size][this.board_size];
