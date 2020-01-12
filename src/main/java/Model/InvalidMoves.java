@@ -19,12 +19,12 @@ public class InvalidMoves {
         this.player1=p1;
         this.player2=p2;
         this.Update();
-    };
+    }
 
     private void Update(){
         player1.getPositions().forEach(i -> this.stones_player1.add(new Pair<>(i.getX(),i.getY())));
         player2.getPositions().forEach(i -> this.stones_player2.add(new Pair<>(i.getX(),i.getY())));
-    };
+    }
 
     private void Clear(){
         this.stones_player1.clear();

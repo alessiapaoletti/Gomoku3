@@ -8,7 +8,7 @@ import javafx.scene.input.KeyCode;
 
 public class BoardController extends Control {
 
-    private Board myBoard;
+    public static Board myBoard;
     private int clicks_count; //clicks count added in order to set the opening moves check.
 
     public BoardController(int gridSize,GomokuGame game ) {
@@ -30,9 +30,6 @@ public class BoardController extends Control {
             else this.myBoard.getIngame(event.getX(), event.getY());
         });
 
-        this.setOnKeyPressed((event) -> {
-            if (event.getCode() == KeyCode.SPACE) this.myBoard.reset();
-        });
     }
 
 

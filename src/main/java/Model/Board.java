@@ -110,9 +110,7 @@ public class Board extends Pane {
             alertColors.showAndWait();
             this.UnplacePiece(x,y);   //tolgo  l'ultima pedina inserita
         }
-    };
-
-    public void reset() { this.gameLogic.resetGame(); }
+    }
 
     // overridden version of the resize method to give the board the correct size
     @Override

@@ -42,7 +42,6 @@ public class Piece extends Group {
     //method that will allow to remove the piece
     void removePiece() {
         this.piece.setFill(Color.TRANSPARENT);
-
     }
 
     // returns the type of this piece

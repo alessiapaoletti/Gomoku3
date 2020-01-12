@@ -30,7 +30,7 @@ public class GomokuBoard {
         primaryStage.setScene(new Scene(this.sp_mainlayout, Board.APPLICATION_WIDTH, Board.APPLICATION_HEIGHT));
         primaryStage.show();
 
-        URL myFxmlURL = ClassLoader.getSystemResource("boardView.fxml");
+        URL myFxmlURL = ClassLoader.getSystemResource("ScoreView.fxml");
         Parent anotherRoot = FXMLLoader.load(myFxmlURL);
         Scene anotherScene = new Scene(anotherRoot);
         Stage anotherStage = new Stage();

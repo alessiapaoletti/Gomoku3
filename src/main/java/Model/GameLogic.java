@@ -12,7 +12,7 @@ public class GameLogic {
 
     private GomokuGame game;
     public String gameName;
-    public String OpeningName;
+    String OpeningName;
    //list of all the pieces
     private List<Piece> pieceChunk;
 
@@ -20,7 +20,6 @@ public class GameLogic {
 
     public GameLogic(Board board,GomokuGame g) {
         this.myBoard = board;
-        this.resetGame();
         this.game=g;
         this.game.initGame();
         this.N=this.game.getN();
@@ -63,6 +62,8 @@ public class GameLogic {
 
     public void OpeningRules(){
             Alert alertColors = new Alert(Alert.AlertType.INFORMATION);
+//            alertColors.setWidth(150);
+//            alertColors.setHeight(250);
             alertColors.setHeaderText(null);
             switch (this.game.getOp()) {
                 case "Standard":
@@ -70,24 +71,27 @@ public class GameLogic {
                     alertColors.setContentText("Black player starts and insert 1 stones followed by white player. Stones can be placed anywhere.");
                     break;
                 case "Pro":
+                    alertColors.setHeight(200);
                     alertColors.setTitle("Pro Opening - Rules");
-                    alertColors.setContentText("Black player starts in the centre, followed by white player.Black player can place the second " +
+                    alertColors.setContentText("Black player starts in the centre, followed by white player. Black player can place the second " +
                             "stone out of a 5x5 square from the centre.");
                     break;
                 case "LongPro":
+                    alertColors.setHeight(200);
                     alertColors.setTitle("PLongro Opening - Rules");
-                    alertColors.setContentText("Black player starts in the centre, followed by white player.Black player can place the second " +
+                    alertColors.setContentText("Black player starts in the centre, followed by white player. Black player can place the second " +
                             "stone out of a 7x7 square from the centre.");
                     break;
                 case "Swap":
                     alertColors.setTitle("Swap Opening - Rules");
-                    alertColors.setContentText("Black player places 3 stones: 2 black and 1 white.White player can decide to swap color " +
+                    alertColors.setContentText("Black player places 3 stones: 2 black and 1 white. White player can decide to swap color " +
                             "or stay white.");
                     break;
                 case "Swap2":
+                    alertColors.setHeight(200);
                     alertColors.setTitle("Swap2 Opening - Rules");
-                    alertColors.setContentText("Black player places 3 stones: 2 black and 1 white.White player can decide to swap color " +
-                            "stay white,or place other 2 stones(1 black and 1 white) and let the black player decide the wanted color.");
+                    alertColors.setContentText("Black player places 3 stones: 2 black and 1 white. White player can decide to swap color " +
+                            "stay white, or place other 2 stones (1 black and 1 white) and let the black player decide the wanted color.");
                     break;
             }
             alertColors.showAndWait();
@@ -167,13 +171,6 @@ public class GameLogic {
             return (true);
         }
         return (false);
-    }
-
-    // public method for resetting the game
-    public void resetGame() {
-        this.resetRenders();
-        this.current_player=Board.BLACK_PLAYER;
-        this.opposing_player=Board.WHITE_PLAYER;
     }
 
     // private method that will reset the renders
