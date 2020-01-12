@@ -1,10 +1,9 @@
 package Model;
 
 import javafx.scene.control.Alert;
-
 import java.util.List;
 
-class GameLogic {
+public class GameLogic {
     private Board myBoard;
 
     //players of the board
