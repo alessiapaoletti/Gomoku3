@@ -14,7 +14,10 @@ public class GomokuRenju extends GomokuGame{
 
     @Override
     public void setRules() {
-            inv.three_and_three(1);
+        inv.three_and_three(1);
+        inv.three_and_three(2);
+        inv.four_and_four(1);
+        inv.four_and_four(2);
     }
     @Override
     public String GetName(){return "Renju";}
