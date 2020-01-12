@@ -210,6 +210,7 @@ public class InvalidMoves {
         else {
             Check_or(this.GetWhite(),this.GetBlack(),3,this.stones_player2);
             Check_vert(this.GetWhite(),this.GetBlack(),3,this.stones_player2);
+            Check_diag(this.GetWhite(),this.GetBlack(),3,this.stones_player2);
         }
 
     };
@@ -223,6 +224,7 @@ public class InvalidMoves {
         else {
             Check_or(this.GetWhite(),this.GetBlack(),4,this.stones_player2);
             Check_vert(this.GetWhite(),this.GetBlack(),4,this.stones_player2);
+            Check_diag(this.GetWhite(),this.GetBlack(),4,this.stones_player2);
         }
     };
 }
