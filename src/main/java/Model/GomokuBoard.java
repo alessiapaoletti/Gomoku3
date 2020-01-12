@@ -44,5 +44,4 @@ public class GomokuBoard {
     public static String getNameg(){
         return nameg;
     }
-
 }
