@@ -31,6 +31,7 @@ public class ScoreController implements Initializable {
     @FXML private javafx.scene.control.Label gameV;
     @FXML private javafx.scene.control.Label openV;
     @FXML private javafx.scene.control.Button exitB;
+    @FXML private javafx.scene.control.Button undomoveB;
 
     public ScoreController() {
 
@@ -56,6 +57,12 @@ public class ScoreController implements Initializable {
 
         gameV.setText(String.valueOf(GomokuBoard.getNameg()));
         //openV.setText(String.valueOf(GomokuGame.getOp()));
+    }
+
+    @FXML
+    public void undomove(){
+        /* to do*/
+        System.out.println("undo last moves");
     }
 
     public void resetGame() {

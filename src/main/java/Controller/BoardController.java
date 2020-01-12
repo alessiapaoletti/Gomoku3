@@ -10,6 +10,7 @@ public class BoardController extends Control {
 
     private Board myBoard;
     private int clicks_count; //clicks count added in order to set the opening moves check.
+
     public BoardController(int gridSize,GomokuGame game ) {
         this.setSkin(new ControlSkin(this));
         this.myBoard = new Board(gridSize,game);
