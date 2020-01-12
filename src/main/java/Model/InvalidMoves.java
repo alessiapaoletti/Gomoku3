@@ -39,7 +39,9 @@ public class InvalidMoves {
     }
 
     private Boolean Sequential(List <Integer> aux, Integer s, String mode, int c,List<Pair<Integer,Integer>> p) {
-        int a=0;
+        List<Integer> a=new ArrayList<>();
+        List<Integer> sub_a=new ArrayList<>();
+        for(int i=0;i<c-1;i++){sub_a.add(1);};
         List <Pair<Integer,Integer>> aux1;
         switch (mode) {
             case "row":
@@ -57,11 +59,11 @@ public class InvalidMoves {
         }
         System.out.println(aux);
        for(int i=aux.size()-1;i>0;i--){
-            if(i!=0) a+=(aux.get(i)-aux.get(i-1));
+           if(i!=0) a.add(aux.get(i)-aux.get(i-1));
         }
-
-            if (a == c - 1) return true;
-            else return false;
+        int index=Collections.indexOfSubList(a , sub_a);
+        if (index != - 1) return true;
+        else return false;
 
     };
 
@@ -104,10 +106,11 @@ public class InvalidMoves {
         p.getPositions().forEach(i -> unique.add(i.getY()));
         Map<Integer, Long>  count = unique.stream()
                     .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
-                    .entrySet().stream().filter(x -> x.getValue() == c)
+                    .entrySet().stream().filter(x -> x.getValue() >= c)
                     .collect(Collectors.toMap(x -> x.getKey(), x -> x.getValue()));
         if (!count.keySet().isEmpty()) {
             List<Integer> check = new ArrayList<>((count.keySet()));
+            System.out.println(check);
             check.forEach(i->Error_throw(aux,i,p1,"row",c,pp));
         }
     };
@@ -119,7 +122,7 @@ public class InvalidMoves {
         p.getPositions().forEach(i -> unique.add(i.getX()));
         Map<Integer, Long> count = unique.stream()
                 .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
-                .entrySet().stream().filter(x -> x.getValue() == c)
+                .entrySet().stream().filter(x -> x.getValue() >= c)
                 .collect(Collectors.toMap(x -> x.getKey(), x -> x.getValue()));
         if(!count.keySet().isEmpty()){
             List<Integer> check = new ArrayList<>((count.keySet()));
