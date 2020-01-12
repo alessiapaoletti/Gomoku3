@@ -23,21 +23,10 @@ public class LoginController {
     private ObservableList<String> colors= FXCollections.observableArrayList("Black","White");
 
     @FXML private javafx.scene.control.Button eBottim;
-
     @FXML private javafx.scene.control.TextField playerf;
-
     @FXML private javafx.scene.control.TextField players;
-
     @FXML private ChoiceBox choice;
-
     @FXML private ChoiceBox choicecol;
-
-    //@FXML
-    //private ChoiceBox choicecol1;
-
-    //@FXML
-    //private ChangeListener choicecol2;
-
     @FXML private ChoiceBox choiceOpening;
 
     public LoginController() {
@@ -47,8 +36,6 @@ public class LoginController {
 
         choice.setItems(methods);
         choicecol.setItems(colors);
-        //choicecol1.setItems(colors);
-        //choicecol2.getItems(colors);
         choiceOpening.setItems(openings);
         choicecol.setTooltip(new Tooltip("The unselected color will be assigned to the second player"));
     }
@@ -59,20 +46,15 @@ public class LoginController {
         System.out.println("start game!");
         boolean isMyComboBoxEmpty = choice.getSelectionModel().isEmpty();
         boolean isMyColEmpty = choicecol.getSelectionModel().isEmpty();
-        //boolean isMyCol1Empty = choicecol1.getSelectionModel().isEmpty();
-        //boolean isMyCol2Empty = choicecol2.getSelectionModel().isEmpty();
         boolean isOpeningEmpty = choiceOpening.getSelectionModel().isEmpty();
 
-        //if (!isMyComboBoxEmpty && !isMyCol1Empty && !isMyCol2Empty){
         if (!isMyComboBoxEmpty && !isMyColEmpty){
             if (!(playerf.getText().equals("")) && !(players.getText().equals(""))) {
-                //if(choicecol1.getSelectionModel().getSelectedItem().toString()!=choicecol2.getSelectionModel().getSelectedItem().toString()) {
                 Player p1 = new Player(playerf.getText(), choicecol.getSelectionModel().getSelectedItem().toString());
-                Player p2= new Player(players.getText(), colors.get(2-((Integer) choicecol.getSelectionModel().getSelectedIndex()+1)));
-                    //Player p1 = new Player(playerf.getText(), choicecol1.getSelectionModel().getSelectedItem().toString());
-                    //Player p2 = new Player(players.getText(), choicecol2.getSelectionModel().getSelectedItem().toString());
-                    String opening_meth;
-                    if(!isOpeningEmpty){ opening_meth=choiceOpening.getSelectionModel().getSelectedItem().toString();}
+                Player p2= new Player(players.getText(), colors.get(1-(Integer) choicecol.getSelectionModel().getSelectedIndex()));
+                String opening_meth;
+
+                if(!isOpeningEmpty){ opening_meth=choiceOpening.getSelectionModel().getSelectedItem().toString();}
                     else {opening_meth="Standard";}
                     startGameUsingFactory(p1, p2, choice.getSelectionModel().getSelectedItem().toString(),opening_meth);
                     Stage stage = (Stage) eBottim.getScene().getWindow();
@@ -126,8 +108,8 @@ public class LoginController {
         this.targetGomoku = GomokuFactory.getGame(game).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
         this.targetGomoku.setPlayers(p1, p2);
 
-        int gridSize = 15; //default size
-        if (game.equals("Omok")) gridSize = 19; //different size for the Omok version
+        int gridSize = 14; //default size
+        if (game.equals("Omok")) gridSize = 18; //different size for the Omok version
         this.targetGomoku.setSize(gridSize);
 
         this.targetGomoku.setOp(m);
