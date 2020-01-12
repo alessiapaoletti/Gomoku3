@@ -23,6 +23,11 @@ public class InvalidMoves {
         player2.getPositions().forEach(i -> this.stones_player2.add(new Pair<>(i.getX(),i.getY())));
     };
 
+    private void Clear(){
+        this.stones_player1.clear();
+        this.stones_player2.clear();
+    };
+
     public Player GetBlack(){
         if(player1.getColor().get()==1) return player1;
         else return player2;
@@ -34,7 +39,9 @@ public class InvalidMoves {
     }
 
     private Boolean Sequential(List <Integer> aux, Integer s, String mode, int c,List<Pair<Integer,Integer>> p) {
-        int a=0;
+        List<Integer> a=new ArrayList<>();
+        List<Integer> sub_a=new ArrayList<>();
+        for(int i=0;i<c-1;i++){sub_a.add(1);};
         List <Pair<Integer,Integer>> aux1;
         switch (mode) {
             case "row":
@@ -50,18 +57,19 @@ public class InvalidMoves {
                 Collections.sort(aux);
                 break;
         }
+        System.out.println(aux);
        for(int i=aux.size()-1;i>0;i--){
-            if(i!=0) a+=(aux.get(i)-aux.get(i-1));
+           if(i!=0) a.add(aux.get(i)-aux.get(i-1));
         }
-
-            if (a == c - 1) return true;
-            else return false;
+        int index=Collections.indexOfSubList(a , sub_a);
+        if (index != - 1) return true;
+        else return false;
 
     };
 
-    private boolean Check_opponent(List<Integer> x,Integer y,Player p1,String mode){
-        Piece piedx=new Piece(3);
-        Piece piesx=new Piece(3);
+    private void Check_opponent(List<Integer> x,Integer y,Player p1,String mode){
+        Piece piedx=new Piece(p1.getColor().get());
+        Piece piesx=new Piece(p1.getColor().get());
         switch (mode) {
             case "row":
                 piedx.setX(x.get(0) - 1);
@@ -77,14 +85,17 @@ public class InvalidMoves {
                 break;
         }
 
-        if(p1.CheckinMoves(piedx) || p1.CheckinMoves(piesx)) return true;
-        else return false;
+        if(p1.CheckinMoves(piedx) || p1.CheckinMoves(piesx)){ System.out.println("ok");}
+        else {
+            this.Clear();
+            throw new Error("Open rows!");
+        }
+
     };
 
     private void Error_throw(List<Integer> aux,Integer e,Player p,String m,int c,List<Pair<Integer,Integer>> pp){
         if (this.Sequential(aux, e, m, c,pp)) {
-            if (!this.Check_opponent(aux, e, p, m))
-                throw new Error("Open rows!");
+            this.Check_opponent(aux, e, p, m);
         }
     };
 
@@ -95,10 +106,11 @@ public class InvalidMoves {
         p.getPositions().forEach(i -> unique.add(i.getY()));
         Map<Integer, Long>  count = unique.stream()
                     .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
-                    .entrySet().stream().filter(x -> x.getValue() == c)
+                    .entrySet().stream().filter(x -> x.getValue() >= c)
                     .collect(Collectors.toMap(x -> x.getKey(), x -> x.getValue()));
         if (!count.keySet().isEmpty()) {
             List<Integer> check = new ArrayList<>((count.keySet()));
+            System.out.println(check);
             check.forEach(i->Error_throw(aux,i,p1,"row",c,pp));
         }
     };
@@ -110,12 +122,13 @@ public class InvalidMoves {
         p.getPositions().forEach(i -> unique.add(i.getX()));
         Map<Integer, Long> count = unique.stream()
                 .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
-                .entrySet().stream().filter(x -> x.getValue() == c)
+                .entrySet().stream().filter(x -> x.getValue() >= c)
                 .collect(Collectors.toMap(x -> x.getKey(), x -> x.getValue()));
         if(!count.keySet().isEmpty()){
             List<Integer> check = new ArrayList<>((count.keySet()));
             check.forEach(i->Error_throw(aux,i,p1,"col",c,pp));
         }
+
     };
 
     public void three_and_three(int c){
