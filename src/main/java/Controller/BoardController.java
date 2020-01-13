@@ -3,7 +3,12 @@ package Controller;
 import Model.Board;
 import Model.ControlSkin;
 import Model.GomokuGame;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Control;
+import javafx.stage.Stage;
+
+import java.util.Optional;
 
 public class BoardController extends Control {
 
@@ -29,6 +34,25 @@ public class BoardController extends Control {
             //Here the game goes on
             else this.myBoard.getIngame(event.getX(), event.getY());
         });
+
+    }
+
+
+    public static void gameOver(String message){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Game over");
+        alert.setHeaderText(message);
+
+        ButtonType buttonTypeOK = new ButtonType("OK");
+        alert.getButtonTypes().setAll( buttonTypeOK);
+
+        Stage stage = (Stage) myBoard.getScene().getWindow();
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeOK){
+            stage.close();
+        }
+
 
     }
 

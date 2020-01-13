@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.BoardController;
 import javafx.scene.control.Alert;
 import java.util.List;
 
@@ -11,6 +12,7 @@ public class GameLogic {
     private int opposing_player;
 
     private GomokuGame game;
+    private Closing closing;
     public String gameName;
     String OpeningName;
    //list of all the pieces
@@ -27,6 +29,7 @@ public class GameLogic {
         this.OpeningName=this.game.getOp();
         this.current_player = Board.BLACK_PLAYER;
         this.opposing_player = Board.WHITE_PLAYER;
+        this.closing = new Closing(this.myBoard,this.gameName);
     }
 
 
@@ -41,6 +44,20 @@ public class GameLogic {
 
         this.myBoard.pieces[x][y].setPiece(this.current_player);
         this.InsertMove(x,y);
+
+        if(this.closing.checkWinner(x,y) == true){
+            String winner_name;
+            if(this.current_player==this.game.getP1().getColor().get()){
+                winner_name  = this.game.getP1().getName();
+            }
+            else winner_name  = this.game.getP2().getName();
+
+            BoardController.gameOver("The winner is " + winner_name );
+        }
+
+        if(this.closing.fullBoard() == true)
+            BoardController.gameOver("The board is full: game ended with no winner");
+
         this.swapPlayers(); //cambia il colore
         this.Print();
     }
