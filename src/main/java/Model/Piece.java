@@ -64,4 +64,6 @@ public class Piece extends Group {
     int getY() {
         return (this.y);
     }
+
+    int getPlayer() {return this.player;}
 }
