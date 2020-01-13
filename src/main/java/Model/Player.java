@@ -14,7 +14,7 @@ public class Player {
 
     public Player(String name,String color){
         this.name = name;
-        if(color=="Black") {this.color=new AtomicInteger(1);}
+        if(color=="Black") { this.color=new AtomicInteger(1);}
         else {this.color=new AtomicInteger(2);}
     }
 
@@ -62,7 +62,6 @@ public class Player {
     public List<Piece> getPositions(){
         return position;
     }
-
 
     public boolean CheckinMoves(Piece m){
         boolean b=false;

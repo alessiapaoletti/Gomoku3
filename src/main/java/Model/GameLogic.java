@@ -25,6 +25,8 @@ public class GameLogic {
         this.N=this.game.getN();
         this.gameName=this.game.GetName();
         this.OpeningName=this.game.getOp();
+        this.current_player = Board.BLACK_PLAYER;
+        this.opposing_player = Board.WHITE_PLAYER;
     }
 
 

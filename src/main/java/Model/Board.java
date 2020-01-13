@@ -40,9 +40,9 @@ public class Board extends Pane {
 
     private static double PIECE_SIZE = 0.70; //piece dimension
 
-    static int EMPTY_SPACE = 0;
-    static int BLACK_PLAYER = 1;
-    static int WHITE_PLAYER = 2;
+    public static int EMPTY_SPACE = 0;
+    public static int BLACK_PLAYER = 1;
+    public static int WHITE_PLAYER = 2;
 
     static int APPLICATION_WIDTH = 600;
     static int APPLICATION_HEIGHT = 600;

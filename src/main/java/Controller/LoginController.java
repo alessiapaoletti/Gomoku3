@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class LoginController {
 
-    private  GomokuGame targetGomoku;
+    private GomokuGame targetGomoku;
     private ObservableList<String> methods= FXCollections.observableArrayList("Standard","Renju","Omok");
     private ObservableList<String> openings= FXCollections.observableArrayList("Standard","Pro","LongPro","Swap","Swap2");
 
