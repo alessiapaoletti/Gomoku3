@@ -91,10 +91,10 @@ public class InvalidMoves {
             pair4.setX(i.getKey());
             pair4.setY(i.getValue()-(c-1));
             if(p.CheckinMoves(pair1) && p.CheckinMoves(pair2)) {
-                this.Check_opponent(i.getKey(),pair2.getX(),i.getValue()-1,pair2.getY()+1,p1);
+                this.Check_opponent(i.getKey(),pair2.getX(),i.getValue()-1,pair2.getY()+1,p1,p);
             }
             if(p.CheckinMoves(pair3) && p.CheckinMoves(pair4)) {
-                this.Check_opponent(i.getKey(),pair4.getX(),i.getValue()+1,pair4.getY()-1,p1);
+                this.Check_opponent(i.getKey(),pair4.getX(),i.getValue()+1,pair4.getY()-1,p1,p);
             }
     }
 
@@ -115,10 +115,10 @@ public class InvalidMoves {
             pair4.setX(i.getKey()+(c-1));
             pair4.setY(i.getValue());
             if(p.CheckinMoves(pair1) && p.CheckinMoves(pair2)) {
-                this.Check_opponent(i.getKey()-1,pair2.getX()+1,i.getValue(),pair2.getY(),p1);
+                this.Check_opponent(i.getKey()-1,pair2.getX()+1,i.getValue(),pair2.getY(),p1,p);
             }
             if(p.CheckinMoves(pair3) && p.CheckinMoves(pair4)) {
-                this.Check_opponent(i.getKey()-1,pair4.getX()+1,i.getValue(),pair4.getY(),p1);
+                this.Check_opponent(i.getKey()-1,pair4.getX()+1,i.getValue(),pair4.getY(),p1,p);
             }
         }
 
@@ -139,16 +139,16 @@ public class InvalidMoves {
            pair4.setX(i.getKey()+(c-1));
            pair4.setY(i.getValue()-(c-1));
            if(p.CheckinMoves(pair1) && p.CheckinMoves(pair2)) {
-               this.Check_opponent(i.getKey()-1,pair2.getX()+1,i.getValue()-1,pair2.getY()+1,p1);
+               this.Check_opponent(i.getKey()-1,pair2.getX()+1,i.getValue()-1,pair2.getY()+1,p1,p);
            }
            if(p.CheckinMoves(pair3) && p.CheckinMoves(pair4)) {
-               this.Check_opponent(i.getKey()-1,pair4.getX()+1,i.getValue()+1,pair4.getY()-1,p1);
+               this.Check_opponent(i.getKey()-1,pair4.getX()+1,i.getValue()+1,pair4.getY()-1,p1,p);
            }
        }
 
     };
 
-    private void Check_opponent(Integer x,Integer x1,Integer y,Integer y1,Player p1){
+    private void Check_opponent(Integer x,Integer x1,Integer y,Integer y1,Player p1,Player p){
         Piece piedx=new Piece(p1.getColor().get());
         Piece piesx=new Piece(p1.getColor().get());
         piedx.setX(x);
@@ -156,12 +156,17 @@ public class InvalidMoves {
         piesx.setX(x1);
         piesx.setY(y1);
 
-
-        if(p1.CheckinMoves(piedx) || p1.CheckinMoves(piesx)){ System.out.println("ok");}
-        else {
-            throw new Error("Open rows!");
+        System.out.println(x);
+        System.out.println(y);
+        System.out.println(x1);
+        System.out.println(y1);
+        if(!p.CheckinMoves(piedx) && !p.CheckinMoves(piesx)) {
+            if (p1.CheckinMoves(piedx) || p1.CheckinMoves(piesx)) {
+                System.out.println("ok");
+            } else {
+                throw new Error("Open rows!");
+            }
         }
-
     };
 /*
     private void Error_throw(List<Integer> aux,Integer e,Player p,String m,int c,List<Pair<Integer,Integer>> pp){
