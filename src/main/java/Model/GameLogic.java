@@ -136,6 +136,7 @@ class GameLogic {
             if(this.game.getP2().CheckinMoves(m)) this.game.getP2().removePosition(this.game.getP2().getPositions().size()-1);
         }
         this.myBoard.pieces[x][y].setPiece(Board.EMPTY_SPACE);
+        //this.myBoard.pieces[x][y].removePiece();
     };
 
     // private method for swapping the players
