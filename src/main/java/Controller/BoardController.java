@@ -27,7 +27,7 @@ public class BoardController extends Control {
             // Here appends the opening moves controll
 
             if(clicks_count== this.myBoard.N || clicks_count== this.myBoard.N +2) {
-                clicks_count=this.myBoard.getOpgame(event.getX(), event.getY(),clicks_count);
+                this.myBoard.getOpgame(event.getX(), event.getY(),clicks_count);
                 this.myBoard.getIngame(event.getX(), event.getY());
             }
 

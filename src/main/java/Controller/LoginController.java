@@ -17,7 +17,7 @@ public class LoginController {
 
     private GomokuGame targetGomoku;
     private ObservableList<String> methods= FXCollections.observableArrayList("Standard","Renju","Omok");
-    private ObservableList<String> openings= FXCollections.observableArrayList("Standard","Pro","LongPro","Swap","Swap2");
+    private ObservableList<String> openings= FXCollections.observableArrayList("Standard","Swap","Swap2");
 
     @FXML private javafx.scene.control.Button eBottim;
     @FXML private javafx.scene.control.TextField player1;
