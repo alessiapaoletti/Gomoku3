@@ -6,7 +6,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Player {
     private final String name;
-    private int score = 0;
     private AtomicInteger color;
     private List<Piece> position=new ArrayList<Piece>();
     //The idea is to set the position for each player and initialize
@@ -44,14 +43,6 @@ public class Player {
         this.color.set(i);
     }
 
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
     public void PrintPositions(){
         System.out.println("movements for player "+this.name+":");
         for(Piece model : position) {
@@ -76,5 +67,8 @@ public class Player {
         intersection.retainAll(p.getPositions());
         if(intersection.isEmpty()) return true;
         else return false;
+    }
+
+    public void addposition(Piece pie) {
     }
 }
