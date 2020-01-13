@@ -29,12 +29,6 @@ public class Opening {
             case "Standard":
                 if(c==2) this.OpenStd();
                 break;
-            case "Pro":
-                if(c==3) this.Pro();
-                break;
-            case "LongPro":
-                if(c==3) this.LongPro();
-                break;
             case "Swap":
                 if(c==3) this.Swap();
                 break;
@@ -75,22 +69,6 @@ public class Opening {
         if(player1.getColor().get()==2) return player1;
         else return player2;
     }
-
-    private void utilityPro(int c){
-        int x0=GetBlack().getPositions().get(0).getX();
-        int y0=GetBlack().getPositions().get(0).getY();
-        int x=GetBlack().getPositions().get(1).getX();
-        int y=GetBlack().getPositions().get(1).getY();
-        if(x>x0-c && x<x0+c && y>y0-c && y<y0+c) {
-            GetBlack().removePosition(1);
-            throw new Error("place black stone out of a "+ c+"x"+c+" square from the center");
-        }
-        CheckError();
-    }
-
-    private void Pro(){ this.utilityPro(5);  }
-
-    private void LongPro(){ this.utilityPro(7);  }
 
 
     private void utilitySwap(){

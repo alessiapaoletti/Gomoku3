@@ -77,25 +77,10 @@ public class Board extends Pane {
     }
 
     // function that allows the opening functions to work on the board.
-    public int getOpgame(final double x, final double y,int c){
+    public void getOpgame(final double x, final double y,int c){
         this.placePiece(x,y);
-        int i=0;
-
-        try {
-            this.gameLogic.Opening(c);
-        }
-        catch (Error e){
-            Alert alertColors = new Alert(Alert.AlertType.ERROR);
-            alertColors.setTitle("ERROR - Opening");
-            alertColors.setHeaderText(null);
-            alertColors.setContentText(e.toString());
-            alertColors.showAndWait();
-            i=1;
-            this.UnplacePiece(x,y);
-        }
-
-        return c-i;
-    }
+        this.gameLogic.Opening(c);
+    };
 
     public void getIngame(final double x, final double y){
         this.placePiece(x,y);
