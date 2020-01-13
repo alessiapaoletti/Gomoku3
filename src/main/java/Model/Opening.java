@@ -94,17 +94,23 @@ public class Opening {
 
 
     private void utilitySwap(){
+        if(player1.equals(this.GetBlack())){
         player1.addPosition(player2.getPositions().get(0));
         player2.addPosition(player1.getPositions().get(0));
         player2.addPosition(player1.getPositions().get(1));
         player1.removePosition(1);
         player1.removePosition(0);
         player2.removePosition(0);
-        if(player1.equals(this.GetBlack())){
-            player1.SetColor(2);
-            player2.SetColor(1);
+        player1.SetColor(2);
+        player2.SetColor(1);
         }
         else {
+            player2.addPosition(player1.getPositions().get(0));
+            player1.addPosition(player2.getPositions().get(0));
+            player1.addPosition(player2.getPositions().get(1));
+            player2.removePosition(1);
+            player2.removePosition(0);
+            player1.removePosition(0);
             player2.SetColor(2);
             player1.SetColor(1);
         }
@@ -152,6 +158,7 @@ public class Opening {
     }
 
     public void utilitySwap2(){
+        if(player1.equals(this.GetBlack())){
         player1.addPosition(player2.getPositions().get(0));
         player1.addPosition(player2.getPositions().get(1));
         player2.addPosition(player1.getPositions().get(0));
@@ -162,11 +169,20 @@ public class Opening {
         player1.removePosition(0);
         player2.removePosition(1);
         player2.removePosition(0);
-        if(player1.equals(this.GetBlack())){
-            player1.SetColor(2);
-            player2.SetColor(1);
+        player1.SetColor(2);
+        player2.SetColor(1);
         }
         else {
+            player2.addPosition(player1.getPositions().get(0));
+            player2.addPosition(player1.getPositions().get(1));
+            player1.addPosition(player2.getPositions().get(0));
+            player1.addPosition(player2.getPositions().get(1));
+            player1.addPosition(player2.getPositions().get(2));
+            player2.removePosition(2);
+            player2.removePosition(1);
+            player2.removePosition(0);
+            player1.removePosition(1);
+            player1.removePosition(0);
             player2.SetColor(2);
             player1.SetColor(1);
         }
@@ -176,7 +192,7 @@ public class Opening {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Black player you want to Swap ?", ButtonType.YES, ButtonType.NO);
         alert.showAndWait();
          if ("Sì".equals(alert.getResult().getText())) {
-             this.utilitySwap();
+             this.utilitySwap2();
          }
         CheckError();
     }
