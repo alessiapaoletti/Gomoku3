@@ -4,14 +4,14 @@ import Model.Board;
 import Model.ControlSkin;
 import Model.GomokuGame;
 import javafx.scene.control.Control;
-import javafx.scene.input.KeyCode;
 
 public class BoardController extends Control {
 
     public static Board myBoard;
-    private int clicks_count; //clicks count added in order to set the opening moves check.
+    private int clicks_count = 0; //clicks count added in order to set the opening moves check.
 
     public BoardController(int gridSize,GomokuGame game ) {
+        this.myBoard = new Board(gridSize, game);
         this.setSkin(new ControlSkin(this));
         this.myBoard = new Board(gridSize,game);
         this.getChildren().add(this.myBoard);
@@ -21,7 +21,7 @@ public class BoardController extends Control {
             clicks_count++;
             // Here appends the opening moves controll
 
-            if(clicks_count== Board.N || clicks_count== Board.N +2) {
+            if(clicks_count== this.myBoard.N || clicks_count== this.myBoard.N +2) {
                 clicks_count=this.myBoard.getOpgame(event.getX(), event.getY(),clicks_count);
                 this.myBoard.getIngame(event.getX(), event.getY());
             }
