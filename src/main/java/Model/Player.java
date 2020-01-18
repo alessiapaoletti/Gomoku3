@@ -67,4 +67,7 @@ public class Player {
         intersection.retainAll(p.getPositions());
         return intersection.isEmpty();
     }
+
+    public void addposition(Piece pie) {
+    }
 }
