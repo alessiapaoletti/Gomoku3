@@ -1,22 +1,21 @@
 package Controller;
 import Model.*;
 
+import View.Alert;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import javafx.fxml.FXML;
 
-import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
 public class LoginController {
 
     private GomokuGame targetGomoku;
-    private ObservableList<String> methods= FXCollections.observableArrayList("Standard","Renju","Omok");
+    private ObservableList<String> methods= FXCollections.observableArrayList("Standard","Free","Omok");
     private ObservableList<String> openings= FXCollections.observableArrayList("Standard","Swap","Swap2");
 
     @FXML private javafx.scene.control.Button eBottim;
@@ -25,8 +24,7 @@ public class LoginController {
     @FXML private ChoiceBox choice;
     @FXML private ChoiceBox choiceOpening;
 
-    public LoginController() {
-    }
+    public LoginController() { }
 
     @FXML private void initialize(){
         choice.setItems(methods);
@@ -47,17 +45,19 @@ public class LoginController {
             Stage stage = (Stage) eBottim.getScene().getWindow();
             stage.close();
 
-            Stage mainStage = new Stage(StageStyle.DECORATED);
-            GomokuBoard myBoard = new GomokuBoard(mainStage,targetGomoku);
+            //Stage mainStage = new Stage(StageStyle.DECORATED);
+            //BoardController myBoard = new BoardController(GomokuGame.getGridDim());
+            //myBoard.initBoardController();
             //myBoard.start(mainStage); //decidere se chiamare lo start method qui o nel constructor di GomokuBoard
+
+            GamePlay gamePlay = new GamePlay(this.targetGomoku, targetGomoku.getGridDim());
+            gamePlay.start();
+
+
         } else {
-            Alert alertNames = new Alert(Alert.AlertType.ERROR);
-            alertNames.setTitle("ERROR - Missing values");
-            alertNames.setHeaderText(null);
-            alertNames.setContentText("Insert the name of both players");
-            alertNames.showAndWait();
+            Alert.loginAlert();
         }
-}
+    }
 
     @FXML
     public void close(){
@@ -72,10 +72,9 @@ public class LoginController {
 
         int gridSize = 14; //default size
         if (game.equals("Omok")) gridSize = 18; //different size for the Omok version
-        this.targetGomoku.setSize(gridSize);
+        this.targetGomoku.setGridSize(gridSize);
 
-        this.targetGomoku.setOp(m);
-        //return targetGomoku.initGame();
+        this.targetGomoku.setOpeningRulesName(m);
 
     }
 

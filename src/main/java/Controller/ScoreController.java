@@ -1,16 +1,16 @@
 package Controller;
 
-
-import Model.GomokuBoard;
+import Model.GamePlay;
 import Model.GomokuGame;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 
@@ -20,13 +20,13 @@ public class ScoreController implements Initializable {
     @FXML private javafx.scene.control.Label p2Board;
     @FXML private javafx.scene.control.Label c1Board;
     @FXML private javafx.scene.control.Label c2Board;
-    @FXML private javafx.scene.control.Label s1Board;
-    @FXML private javafx.scene.control.Label s2Board;
     @FXML private javafx.scene.control.Label gameV;
     @FXML private javafx.scene.control.Label openV;
     @FXML private javafx.scene.control.Button exitB;
 
-    public ScoreController() { }
+    GamePlay gamePlay;
+
+    public ScoreController() {}
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -36,32 +36,15 @@ public class ScoreController implements Initializable {
         c1Board.setText(GomokuGame.getP1().getNameColor());
         c2Board.setText(GomokuGame.getP2().getNameColor());
 
-        s1Board.setText(String.valueOf(GomokuGame.getP1().getScore()));
-        s2Board.setText(String.valueOf(GomokuGame.getP2().getScore()));
-
-        gameV.setText(String.valueOf(GomokuBoard.getNameg()));
-        openV.setText(String.valueOf(GomokuGame.getOp()));
+        gameV.setText(gamePlay.game.gameName);
+        openV.setText(String.valueOf(GomokuGame.getOpeningRulesName()));
     }
 
     public void newGame() throws IOException {
         close();
         Main.startLogin(new Stage());
+        //GomokuGame.currentPlayer = BoardLogic.BLACK_PLAYER;
         System.out.println("new game with different players (new board starting from the login window) ");
-    }
-
-    public void saveScore() throws FileNotFoundException {
-        String filename = "score.txt";
-        File f = new File(filename);
-
-        PrintWriter out;
-        if ( f.exists() && !f.isDirectory() ) out = new PrintWriter(new FileOutputStream(new File(filename), true));
-        else out = new PrintWriter(filename);
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        out.append(dtf.format(now) + "\n");
-        out.append("Player 1: " + GomokuGame.getP1().getName() + " " + GomokuGame.getP1().getNameColor() + " " + GomokuGame.getP1().getScore() + "\n");
-        out.append("Player 2: " + GomokuGame.getP2().getName() + " " + GomokuGame.getP2().getNameColor() + " " + GomokuGame.getP2().getScore() + "\n\n");
-        out.close();
     }
 
     @FXML
@@ -69,8 +52,30 @@ public class ScoreController implements Initializable {
         Stage stage = (Stage) exitB.getScene().getWindow();
         stage.close();
 
-        Stage stageBoard = (Stage) BoardController.myBoard.getScene().getWindow();
+        Stage stageBoard = (Stage) BoardController.boardView.getScene().getWindow();
         stageBoard.close();
+    }
+
+
+    public void swapLabels(){
+        System.out.println("Swapping");
+        c1Board.setText("White");
+        c2Board.setText("Black");
+    }
+
+    public ScoreController start() throws IOException {
+        URL myFxmlURL = ClassLoader.getSystemResource("ScoreView.fxml");;
+        FXMLLoader loader = new FXMLLoader(myFxmlURL);
+        Parent anotherRoot = loader.load();
+
+        Scene anotherScene = new Scene(anotherRoot);
+        Stage anotherStage = new Stage();
+        anotherStage.setTitle("Score");
+        anotherStage.setX(135);
+        anotherStage.setY(65);
+        anotherStage.setScene(anotherScene);
+        anotherStage.show();
+        return loader.getController();
     }
 
 }

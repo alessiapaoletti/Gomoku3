@@ -4,18 +4,21 @@ public class GomokuOm extends GomokuGame {
 
     @Override
     public void initGame() {
+        currentPlayer = BoardLogic.BLACK_PLAYER;
+
         System.out.println("Mode Omok");
-        System.out.println("Players:" + getP1().getName() + " and " + getP2().getName() + " initial bets = " + getnBet() + " grDim= " + getGridDim());
-        System.out.println("Opening Rules:" + getOp());
-        op=new Opening(getP1(),getP2(),getOp());
-        inv=new InvalidMoves(getP1(),getP2());
+        //System.out.println("Players:" + getP1().getName() + " and " + getP2().getName() + " initial bets = " + getnBet() + " grDim= " + getGridDim());
+        System.out.println("Opening Rules:" + getOpeningRulesName());
+        openingRules =new Opening(getP1(),getP2(), getOpeningRulesName());
+        invalidMoves =new InvalidMoves(getP1(),getP2());
     }
 
     @Override
-    public void setRules() {
-        inv.three_and_three(1);
-        inv.three_and_three(2);
+    public void setInvalidMoves() {
+        invalidMoves.threeAndThree();
+        //inv.three_and_three(2);
     }
+
     @Override
-    public String GetName(){return "Omok";}
+    public String getGameName(){return "Omok";}
 }

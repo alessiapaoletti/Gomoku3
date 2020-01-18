@@ -1,5 +1,6 @@
 package Model;
 
+import View.BoardView;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
@@ -33,10 +34,10 @@ public class Piece extends Group {
     // method that will set the piece type
     void setPiece(final int type) {
         this.player = type;
-        if (this.player == Board.EMPTY_SPACE )
+        if (this.player == BoardLogic.EMPTY_SPACE )
             this.piece.setFill(Color.TRANSPARENT);
         else
-            this.piece.setFill(this.player == Board.WHITE_PLAYER ? Board.WHITE_COLOR : Board.BLACK_COLOR);
+            this.piece.setFill(this.player == BoardLogic.WHITE_PLAYER ? BoardView.WHITE_COLOR : BoardView.BLACK_COLOR);
     }
 
     //method that will allow to remove the piece

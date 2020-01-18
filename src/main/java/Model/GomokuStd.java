@@ -2,24 +2,22 @@ package Model;
 
 public class GomokuStd extends GomokuGame {
 
-
-    GomokuStd(){} //package-private access
-
+    GomokuStd(){}
 
     @Override
     public void initGame() {
+        currentPlayer = BoardLogic.BLACK_PLAYER;
+
         System.out.println("Mode standard");
-        System.out.println("Players:" + getP1().getName() + " and " + getP2().getName() + " initial bets = " + getnBet() + " grDim= " + getGridDim());
-        System.out.println("Opening Rules:" + getOp());
-        op=new Opening(getP1(),getP2(),getOp());
+        //System.out.println("Players:" + getP1().getName() + " and " + getP2().getName() + " initial bets = " + getnBet() + " grDim= " + getGridDim());
+        System.out.println("Opening Rules:" + getOpeningRulesName());
+        openingRules =new Opening(getP1(),getP2(), getOpeningRulesName());
 
     }
 
     @Override
-    public void setRules(){
-
-    }
+    public void setInvalidMoves(){}
 
     @Override
-    public String GetName(){return "Standard";}
+    public String getGameName(){return "Standard";}
 }

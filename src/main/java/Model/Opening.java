@@ -1,8 +1,6 @@
 package Model;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-
+import View.Alert;
 
 public class Opening {
     private Player player1;
@@ -48,14 +46,9 @@ public class Opening {
         }
     }
 
-    public void CheckinError(Player p, Piece m){
-        if(!p.CheckinMoves(m)){
-            throw new Error(p.getName()+" place stones in different places");
-        }
-    }
-/*
-    Black can place anywhere, white secondly can place anywhere but on black spot.
- */
+    /*
+        Black can place anywhere, white secondly can place anywhere but on black spot.
+     */
     private void OpenStd(){
         CheckError();
     }
@@ -73,14 +66,14 @@ public class Opening {
 
     private void utilitySwap(){
         if(player1.equals(this.GetBlack())){
-        player1.addPosition(player2.getPositions().get(0));
-        player2.addPosition(player1.getPositions().get(0));
-        player2.addPosition(player1.getPositions().get(1));
-        player1.removePosition(1);
-        player1.removePosition(0);
-        player2.removePosition(0);
-        player1.SetColor(2);
-        player2.SetColor(1);
+            player1.addPosition(player2.getPositions().get(0));
+            player2.addPosition(player1.getPositions().get(0));
+            player2.addPosition(player1.getPositions().get(1));
+            player1.removePosition(1);
+            player1.removePosition(0);
+            player2.removePosition(0);
+            player1.SetColor(2);
+            player2.SetColor(1);
         }
         else {
             player2.addPosition(player1.getPositions().get(0));
@@ -95,60 +88,43 @@ public class Opening {
     }
 
     private void Swap(){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to Swap ?", ButtonType.YES, ButtonType.NO);
-        alert.showAndWait();
-        if ("Sì".equals(alert.getResult().getText())) {
+        if ("YES".equals(Alert.swapAlert())){
+            GamePlay.scoreController.swapLabels();
             this.utilitySwap();
         }
         CheckError();
     }
 
-    private Boolean Swap2(){
-        //Boolean over;
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to Swap ?", ButtonType.YES, ButtonType.NO);
-        alert.showAndWait();
-        switch (alert.getResult().getText()){
-            case "Sì":
-                this.utilitySwap();
+    private Boolean Swap2() {
+        if ("YES".equals(Alert.swapAlert())){
+            GamePlay.scoreController.swapLabels();
+            this.utilitySwap();
+            CheckError();
+        } else {
+            if ("YES".equals(Alert.swap2Alert()))
                 CheckError();
-                break;
-            case "No":
-                alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to stay white?", ButtonType.YES, ButtonType.NO);
-                alert.showAndWait();
-                switch (alert.getResult().getText()){
-                    case "Sì":
-                        CheckError();
-                        break;
-                    case "No":
-                        Alert alertColors = new Alert(Alert.AlertType.INFORMATION);
-                        alertColors.setTitle("Swap2 - Opening");
-                        alertColors.setHeaderText(null);
-                        alertColors.setContentText("white player insert 2 more stones (1 black and 1 white)");
-                        alertColors.showAndWait();
-                        //over=Boolean.FALSE;
-                        //return over;
-                        return false;
-                }
+            else{
+                Alert.swap2Alert2();
+                return false;
+            }
         }
-        //over=Boolean.TRUE;
-        //return over;
         return true;
     }
 
     public void utilitySwap2(){
         if(player1.equals(this.GetBlack())){
-        player1.addPosition(player2.getPositions().get(0));
-        player1.addPosition(player2.getPositions().get(1));
-        player2.addPosition(player1.getPositions().get(0));
-        player2.addPosition(player1.getPositions().get(1));
-        player2.addPosition(player1.getPositions().get(2));
-        player1.removePosition(2);
-        player1.removePosition(1);
-        player1.removePosition(0);
-        player2.removePosition(1);
-        player2.removePosition(0);
-        player1.SetColor(2);
-        player2.SetColor(1);
+            player1.addPosition(player2.getPositions().get(0));
+            player1.addPosition(player2.getPositions().get(1));
+            player2.addPosition(player1.getPositions().get(0));
+            player2.addPosition(player1.getPositions().get(1));
+            player2.addPosition(player1.getPositions().get(2));
+            player1.removePosition(2);
+            player1.removePosition(1);
+            player1.removePosition(0);
+            player2.removePosition(1);
+            player2.removePosition(0);
+            player1.SetColor(2);
+            player2.SetColor(1);
         }
         else {
             player2.addPosition(player1.getPositions().get(0));
@@ -166,12 +142,10 @@ public class Opening {
         }
     }
 
-     private void Swap2_1(){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Black player you want to Swap ?", ButtonType.YES, ButtonType.NO);
-        alert.showAndWait();
-         if ("Sì".equals(alert.getResult().getText())) {
-             this.utilitySwap2();
-         }
+    private void Swap2_1(){
+        if ("YES".equals(Alert.swap2_1Alert())) {
+            this.utilitySwap2();
+        }
         CheckError();
     }
 }

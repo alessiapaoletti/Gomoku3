@@ -6,15 +6,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Player {
     private final String name;
-    private int score = 0;
     private AtomicInteger color;
-    private List<Piece> position=new ArrayList<Piece>();
+    private List<Piece> position=new ArrayList<>();
     //The idea is to set the position for each player and initialize
     // it with the opening rules.
 
     public Player(String name,String color){
         this.name = name;
-        if(color=="Black") { this.color=new AtomicInteger(1);}
+        if(color.equals("Black")) { this.color=new AtomicInteger(1);}
         else {this.color=new AtomicInteger(2);}
     }
 
@@ -44,14 +43,6 @@ public class Player {
         this.color.set(i);
     }
 
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
     public void PrintPositions(){
         System.out.println("movements for player "+this.name+":");
         for(Piece model : position) {
@@ -63,7 +54,7 @@ public class Player {
         return position;
     }
 
-    public boolean CheckinMoves(Piece m){
+    public boolean checkMoves(Piece m){
         boolean b=false;
         for(Piece i : this.getPositions()) {
             if (i.getY()==m.getY() && i.getX()==m.getX()) b=true;
@@ -72,9 +63,8 @@ public class Player {
     }
 
     public boolean CheckAllMoves(Player p){
-        List<Piece> intersection = new ArrayList<Piece>(this.position);
+        List<Piece> intersection = new ArrayList<>(this.position);
         intersection.retainAll(p.getPositions());
-        if(intersection.isEmpty()) return true;
-        else return false;
+        return intersection.isEmpty();
     }
 }

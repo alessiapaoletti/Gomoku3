@@ -1,13 +1,12 @@
 package Model;
 
+import Controller.BoardController;
 import javafx.util.Pair;
 import java.util.HashMap;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class Closing {
-
-    Board board;
     String gameType;
     private HashMap<Pair<String, Integer>, String> map;
 
@@ -18,18 +17,19 @@ public class Closing {
 
         this.map.put(new Pair<>("Standard", 1), "no overlines");
         this.map.put(new Pair<>("Standard", 2), "no overlines");
-        this.map.put(new Pair<>("Renju", 1), "no overlines");
-        this.map.put(new Pair<>("Renju", 2), "overlines");
+        this.map.put(new Pair<>("Free", 1), "overlines");
+        this.map.put(new Pair<>("Free", 2), "overlines");
         this.map.put(new Pair<>("Omok", 1), "overlines");
         this.map.put(new Pair<>("Omok", 2), "overlines");
 
     }
 
 
-    public Closing(Board b,  String type){
-        this.board = b;
+    public Closing(BoardLogic b, String type){
+        BoardController.boardLogic = b;
         this.gameType = type;
         this.initMap();
+        System.out.println(gameType + " in closing");
     }
 
     /*
@@ -37,7 +37,7 @@ public class Closing {
     **/
     public boolean fullBoard(){
 
-        Stream<Piece> stream = Arrays.stream(this.board.pieces).flatMap(Arrays::stream);
+        Stream<Piece> stream = Arrays.stream(BoardController.boardLogic.getPiecesMatrix()).flatMap(Arrays::stream);
         boolean anyZero = stream.map(x -> x.getPlayer()).anyMatch(x -> x.equals(0));
         return !anyZero;
 
@@ -50,13 +50,13 @@ public class Closing {
 
     public boolean checkWinner(int x, int y) {
 
-        int player = this.board.pieces[x][y].getPlayer();
+        int player = BoardController.boardLogic.getPiecesMatrix()[x][y].getPlayer();
 
         Pair<String, Integer> p = new Pair<>(this.gameType, player);
 
         boolean result = false;
 
-        if(this.map.get(p) == "no overlines")
+        if(this.map.get(p).equals("no overlines"))
             result = exactlyFive(x,y, player);
         else
             result = fiveOrMore(x,y,player);
@@ -104,20 +104,20 @@ public class Closing {
         }
         else {
             yIncrement = -1;
-            diagX = Math.max(0, x+y - this.board.board_size + 1);
-            diagY= Math.min(this.board.board_size-1, x+y);
+            diagX = Math.max(0, x+y - BoardController.boardLogic.boardSize + 1);
+            diagY= Math.min(BoardController.boardLogic.boardSize-1, x+y);
         }
 
         int count = 0;
 
-        while (diagX < this.board.board_size & diagY >= 0 & diagY < this.board.board_size) {
-            if (this.board.pieces[diagX][diagY].getPlayer() == player)
+        while (diagX < BoardController.boardLogic.boardSize & diagY >= 0 & diagY < BoardController.boardLogic.boardSize) {
+            if (BoardController.boardLogic.getPiecesMatrix()[diagX][diagY].getPlayer() == player)
                 count++;
             else
                 count = 0;
 
             if (count == 5)
-                if(this.board.pieces[diagX+1][diagY+ yIncrement].getPlayer() == player)
+                if(BoardController.boardLogic.getPiecesMatrix()[diagX+1][diagY+ yIncrement].getPlayer() == player)
                     return false|overlinesAllowed;
                 else
                     return true;
@@ -139,13 +139,13 @@ public class Closing {
 
         int count = 0;
 
-        for(int i = 0; i< this.board.board_size; i++){
-            if(this.board.pieces[i][y].getPlayer() == player)
+        for(int i = 0; i< BoardController.boardLogic.boardSize; i++){
+            if(BoardController.boardLogic.getPiecesMatrix()[i][y].getPlayer() == player)
                 count++;
             else
                 count = 0;
             if(count == 5)
-                if(this.board.pieces[i+1][y].getPlayer() == player)
+                if(BoardController.boardLogic.getPiecesMatrix()[i+1][y].getPlayer() == player)
                     return false|overlinesAllowed;
                 else
                     return true;
@@ -164,13 +164,13 @@ public class Closing {
 
         int count = 0;
 
-        for(int i = 0; i< this.board.board_size; i++){
-            if(this.board.pieces[x][i].getPlayer() == player)
+        for(int i = 0; i< BoardController.boardLogic.boardSize; i++){
+            if(BoardController.boardLogic.getPiecesMatrix()[x][i].getPlayer() == player)
                 count++;
             else
                 count = 0;
             if(count == 5)
-                if(this.board.pieces[x][i+1].getPlayer() == player)
+                if(BoardController.boardLogic.getPiecesMatrix()[x][i+1].getPlayer() == player)
                     return false|overlinesAllowed;
                 else
                     return true;
