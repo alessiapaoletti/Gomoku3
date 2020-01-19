@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-
 public class GomokuFactory {
 
     private static Map<String, GomokuGame> gomokuMap = new HashMap<>();

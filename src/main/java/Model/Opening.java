@@ -2,6 +2,9 @@ package Model;
 
 import View.Alert;
 
+import java.util.HashMap;
+import java.util.function.Consumer;
+
 public class Opening {
     private Player player1;
     private Player player2;
@@ -9,7 +12,7 @@ public class Opening {
     private int numMoves=0;
     private Boolean over;
 
-    public Opening(Player p1, Player p2,String m){
+    public Opening(Player p1, Player p2, String m){
         this.player1=p1;
         this.player2=p2;
         this.method=m;
@@ -18,12 +21,22 @@ public class Opening {
         else this.numMoves=3;
     }
 
-    int getNummoves(){return this.numMoves;}
+    int getNummoves(){ return this.numMoves; }
 
-// factory!
+    private HashMap<String, Consumer<Integer>> openingMap = new HashMap<>();
 
-    void calling(int c){
-        switch (this.method){
+    {
+        openingMap.put("Standard", (c) -> { if(c == 2) OpenStd(); });
+        openingMap.put("Swap", (c) -> { if(c == 3) Swap(); });
+        openingMap.put("Swap2", this::whichSwap2 );
+    }
+
+    public Consumer<Integer> getOpening(String opening) { return openingMap.get(opening); }
+
+    void callOpening(int c){
+        getOpening(this.method).accept(c);
+
+        /*switch (this.method){
             case "Standard":
                 if(c==2) this.OpenStd();
                 break;
@@ -34,7 +47,12 @@ public class Opening {
                 if(c!=5) this.over=this.Swap2();
                 else if(c==5 && !this.over) this.Swap2_1();
                 break;
-        }
+        }*/
+    }
+
+    private void whichSwap2(int c){
+        if (c != 5) this.over = this.Swap2();
+        else if (!this.over) this.Swap2_1();
     }
 
     private void CheckError(){
@@ -46,9 +64,6 @@ public class Opening {
         }
     }
 
-    /*
-        Black can place anywhere, white secondly can place anywhere but on black spot.
-     */
     private void OpenStd(){
         CheckError();
     }
@@ -58,11 +73,10 @@ public class Opening {
         else return player2;
     }
 
-    public Player GetWhite(){
+    /*public Player GetWhite(){
         if(player1.getColor().get()==2) return player1;
         else return player2;
-    }
-
+    }*/
 
     private void utilitySwap(){
         if(player1.equals(this.GetBlack())){
@@ -111,7 +125,7 @@ public class Opening {
         return true;
     }
 
-    public void utilitySwap2(){
+    private void utilitySwap2(){
         if(player1.equals(this.GetBlack())){
             player1.addPosition(player2.getPositions().get(0));
             player1.addPosition(player2.getPositions().get(1));

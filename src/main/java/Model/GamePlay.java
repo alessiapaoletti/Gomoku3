@@ -8,9 +8,10 @@ import java.io.IOException;
 import static Model.GomokuGame.openingName;
 
 public class GamePlay {
+    public static GomokuGame game;
     public BoardController boardController;
     public static ScoreController scoreController;
-    public static GomokuGame game;
+
 
     public GamePlay(GomokuGame game, int gridSize){
         this.boardController = new BoardController(gridSize, InitialMove());

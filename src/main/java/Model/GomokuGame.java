@@ -31,7 +31,7 @@ public abstract class GomokuGame {
         GomokuGame.p2 = p2;
     }
 
-    public static void callOpeningRules(int clicksCount){ openingRules.calling(clicksCount); }
+    public static void callOpeningRules(int clicksCount){ openingRules.callOpening(clicksCount); }
 
     public void setOpeningRulesName(String name){ openingName = name; }
 
