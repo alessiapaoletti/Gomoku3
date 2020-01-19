@@ -67,44 +67,38 @@ public class Opening {
     private void OpenStd(){
         CheckError();
     }
-
+/*
     private Player GetBlack(){
         if(player1.getColor().get()==1) return player1;
         else return player2;
     }
 
-    /*public Player GetWhite(){
+    public Player GetWhite(){
         if(player1.getColor().get()==2) return player1;
         else return player2;
     }*/
 
-    private void utilitySwap(){
-        if(player1.equals(this.GetBlack())){
-            player1.addPosition(player2.getPositions().get(0));
-            player2.addPosition(player1.getPositions().get(0));
-            player2.addPosition(player1.getPositions().get(1));
-            player1.removePosition(1);
-            player1.removePosition(0);
-            player2.removePosition(0);
-            player1.SetColor(2);
-            player2.SetColor(1);
+    private void utilitySwap(String S) {
+        player1.addPosition(player2.getPositions().get(0));
+        if (S.equals("Swap2")) player1.addPosition(player2.getPositions().get(1));
+        player2.addPosition(player1.getPositions().get(0));
+        player2.addPosition(player1.getPositions().get(1));
+        if (S.equals("Swap2")) {
+            player2.addPosition(player1.getPositions().get(2));
+            player1.removePosition(2);
         }
-        else {
-            player2.addPosition(player1.getPositions().get(0));
-            player1.addPosition(player2.getPositions().get(0));
-            player1.addPosition(player2.getPositions().get(1));
-            player2.removePosition(1);
-            player2.removePosition(0);
-            player1.removePosition(0);
-            player2.SetColor(2);
-            player1.SetColor(1);
-        }
+        player1.removePosition(1);
+        player1.removePosition(0);
+        if (S.equals("Swap2")) player2.removePosition(1);
+        player2.removePosition(0);
+        player1.SetColor(2);
+        player2.SetColor(1);
     }
 
     private void Swap(){
         if ("YES".equals(Alert.swapAlert())){
             GamePlay.scoreController.swapLabels();
-            this.utilitySwap();
+            this.utilitySwap("swap");
         }
         CheckError();
     }
@@ -112,7 +106,7 @@ public class Opening {
     private Boolean Swap2() {
         if ("YES".equals(Alert.swapAlert())){
             GamePlay.scoreController.swapLabels();
-            this.utilitySwap();
+            this.utilitySwap("swap");
             CheckError();
         } else {
             if ("YES".equals(Alert.swap2Alert()))
@@ -124,7 +118,7 @@ public class Opening {
         }
         return true;
     }
-
+/*
     private void utilitySwap2(){
         if(player1.equals(this.GetBlack())){
             player1.addPosition(player2.getPositions().get(0));
@@ -155,10 +149,10 @@ public class Opening {
             player1.SetColor(1);
         }
     }
-
+*/
     private void Swap2_1(){
         if ("YES".equals(Alert.swap2_1Alert())) {
-            this.utilitySwap2();
+            this.utilitySwap("Swap2");
         }
         CheckError();
     }
