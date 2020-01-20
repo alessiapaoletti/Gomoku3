@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.BoardController;
 import View.Alert;
 
 import java.util.HashMap;
@@ -21,12 +22,12 @@ public class Opening {
         else this.numMoves=3;
     }
 
-    int getNummoves(){ return this.numMoves; }
+    int getNumMoves(){ return this.numMoves; }
 
     private HashMap<String, Consumer<Integer>> openingMap = new HashMap<>();
 
     {
-        openingMap.put("Standard", (c) -> { if(c == 2) OpenStd(); });
+        openingMap.put("Standard", (c) -> { if(c == 2) CheckError(); });
         openingMap.put("Swap", (c) -> { if(c == 3) Swap(); });
         openingMap.put("Swap2", this::whichSwap2 );
     }
@@ -36,18 +37,6 @@ public class Opening {
     void callOpening(int c){
         getOpening(this.method).accept(c);
 
-        /*switch (this.method){
-            case "Standard":
-                if(c==2) this.OpenStd();
-                break;
-            case "Swap":
-                if(c==3) this.Swap();
-                break;
-            case "Swap2":
-                if(c!=5) this.over=this.Swap2();
-                else if(c==5 && !this.over) this.Swap2_1();
-                break;
-        }*/
     }
 
     private void whichSwap2(int c){
@@ -64,19 +53,9 @@ public class Opening {
         }
     }
 
-    private void OpenStd(){
-        CheckError();
-    }
-/*
-    private Player GetBlack(){
-        if(player1.getColor().get()==1) return player1;
-        else return player2;
-    }
-
-    public Player GetWhite(){
-        if(player1.getColor().get()==2) return player1;
-        else return player2;
-    }*/
+//    private void OpenStd(){
+//        CheckError();
+//    }
 
     private void utilitySwap(String S) {
         player1.addPosition(player2.getPositions().get(0));
@@ -97,7 +76,7 @@ public class Opening {
 
     private void Swap(){
         if ("YES".equals(Alert.swapAlert())){
-            GamePlay.scoreController.swapLabels();
+            BoardController.scoreController.swapLabels();
             this.utilitySwap("swap");
         }
         CheckError();
@@ -105,7 +84,7 @@ public class Opening {
 
     private Boolean Swap2() {
         if ("YES".equals(Alert.swapAlert())){
-            GamePlay.scoreController.swapLabels();
+            BoardController.scoreController.swapLabels();
             this.utilitySwap("swap");
             CheckError();
         } else {
@@ -118,38 +97,7 @@ public class Opening {
         }
         return true;
     }
-/*
-    private void utilitySwap2(){
-        if(player1.equals(this.GetBlack())){
-            player1.addPosition(player2.getPositions().get(0));
-            player1.addPosition(player2.getPositions().get(1));
-            player2.addPosition(player1.getPositions().get(0));
-            player2.addPosition(player1.getPositions().get(1));
-            player2.addPosition(player1.getPositions().get(2));
-            player1.removePosition(2);
-            player1.removePosition(1);
-            player1.removePosition(0);
-            player2.removePosition(1);
-            player2.removePosition(0);
-            player1.SetColor(2);
-            player2.SetColor(1);
-        }
-        else {
-            player2.addPosition(player1.getPositions().get(0));
-            player2.addPosition(player1.getPositions().get(1));
-            player1.addPosition(player2.getPositions().get(0));
-            player1.addPosition(player2.getPositions().get(1));
-            player1.addPosition(player2.getPositions().get(2));
-            player2.removePosition(2);
-            player2.removePosition(1);
-            player2.removePosition(0);
-            player1.removePosition(1);
-            player1.removePosition(0);
-            player2.SetColor(2);
-            player1.SetColor(1);
-        }
-    }
-*/
+
     private void Swap2_1(){
         if ("YES".equals(Alert.swap2_1Alert())) {
             this.utilitySwap("Swap2");

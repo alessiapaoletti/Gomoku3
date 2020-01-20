@@ -1,8 +1,6 @@
 package Model.Directions;
 
-import Model.Directions.Directions;
 import javafx.util.Pair;
-
 import java.util.Set;
 
 public class Diagonal1 extends Directions {

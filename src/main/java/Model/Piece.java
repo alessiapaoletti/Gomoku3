@@ -1,70 +1,21 @@
 package Model;
 
-import View.BoardView;
-import javafx.scene.Group;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Ellipse;
 
-public class Piece extends Group {
+public class Piece  {
 
-    private int player;		// the player that this piece belongs to
-    private Ellipse piece;	// ellipse representing the player's piece
-    private int x;          // x position
-    private int y;          // y position
+    private int nPlayer;
 
-    public Piece(int player) {
-        this.player = player;
-        this.piece = new Ellipse();
-        this.getChildren().add(this.piece);
-        this.setPiece(this.player);
+    public Piece(int p){
+        this.nPlayer = p;
     }
 
-    // overridden version of the resize method to give the piece the correct size
-    @Override
-    public void resize(double width, double height) {
-        super.resize(width, height);
+    public int getPlayer(){
+        return this.nPlayer;
+    }
 
-        this.piece.setCenterX(width / 2.0);
-        this.piece.setCenterY(height / 2.0);
-        this.piece.setRadiusX(width / 2.0);
-        this.piece.setRadiusY(height / 2.0);
+    public void setPlayer(int p){
+        this.nPlayer = p;
     }
 
 
-    // method that will set the piece type
-    void setPiece(final int type) {
-        this.player = type;
-        if (this.player == BoardLogic.EMPTY_SPACE )
-            this.piece.setFill(Color.TRANSPARENT);
-        else
-            this.piece.setFill(this.player == BoardLogic.WHITE_PLAYER ? BoardView.WHITE_COLOR : BoardView.BLACK_COLOR);
-    }
-
-    //method that will allow to remove the piece
-    void removePiece() {
-        this.piece.setFill(Color.TRANSPARENT);
-    }
-
-    // returns the type of this piece
-    int getPiece() {
-        return (this.player);
-    }
-
-    public void setX(final int x) {
-        this.x = x;
-    }
-
-    public void setY(final int y) {
-        this.y = y;
-    }
-
-    int getX() {
-        return (this.x);
-    }
-
-    int getY() {
-        return (this.y);
-    }
-
-    int getPlayer() {return this.player;}
 }

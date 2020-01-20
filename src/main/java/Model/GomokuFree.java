@@ -4,7 +4,6 @@ public class GomokuFree extends GomokuGame{
 
     @Override
     public void initGame() {
-        currentPlayer = BoardLogic.BLACK_PLAYER;
 
         System.out.println("Mode Free");
         //System.out.println("Players:" + getP1().getName() + " and " + getP2().getName() + " initial bets = " + getnBet() + " grDim= " + getGridDim());
@@ -18,5 +17,5 @@ public class GomokuFree extends GomokuGame{
     public void setInvalidMoves() {}
 
     @Override
-    public String getGameName(){return "Free";}
+    public String getGameName(){return "Freestyle";}
 }

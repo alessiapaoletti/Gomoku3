@@ -31,18 +31,20 @@ public abstract class Directions {
 
     boolean isBlack(int x, int y){
         Player blackPlayer = GomokuGame.GetBlack();
-        Piece newPiece=new Piece(blackPlayer.getColor().get());
-        newPiece.setX(x);
-        newPiece.setY(y);
-        return blackPlayer.checkMoves(newPiece);
+        Pair<Integer, Integer> newPiece = new Pair<>(x,y);
+//        Piece newPiece=new Piece(blackPlayer.getColor().get());
+//        newPiece.setX(x);
+//        newPiece.setY(y);
+        return blackPlayer.checkMove(newPiece);
     }
 
     boolean isWhite(int x, int y){
         Player whitePlayer = GomokuGame.GetWhite();
-        Piece newPiece=new Piece(whitePlayer.getColor().get());
-        newPiece.setX(x);
-        newPiece.setY(y);
-        return whitePlayer.checkMoves(newPiece);
+        Pair<Integer, Integer> newPiece = new Pair<>(x,y);
+//        Piece newPiece=new Piece(whitePlayer.getColor().get());
+//        newPiece.setX(x);
+//        newPiece.setY(y);
+        return whitePlayer.checkMove(newPiece);
     }
 
     boolean isEmpty(int x, int y){

@@ -1,73 +1,77 @@
 package Model;
 
+import javafx.util.Pair;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Player {
-    private final String name;
+    private String name;
     private AtomicInteger color;
-    private List<Piece> position=new ArrayList<>();
-    //The idea is to set the position for each player and initialize
-    // it with the opening rules.
+    private List<Pair<Integer, Integer>> positionsList = new ArrayList<>();
+
 
     public Player(String name,String color){
         this.name = name;
-        if(color.equals("Black")) { this.color=new AtomicInteger(1);}
-        else {this.color=new AtomicInteger(2);}
+        if(color.equals("Black")) { this.color = new AtomicInteger(1);}
+        else {this.color = new AtomicInteger(2);}
     }
 
-    public void addPosition(Piece m){
-        position.add(m);
 
+    public void addPosition(Pair<Integer, Integer> position){
+        positionsList.add(position);
     }
 
     public void removePosition(int i){
-        position.remove(position.get(i));
+        positionsList.remove(positionsList.get(i));
     }
 
     public String getName() {
         return name;
     }
 
-    public AtomicInteger getColor() {
-        return this.color;
+    public int getColor() {
+        return this.color.get();
     }
 
-    public String getNameColor(){
+    public String getColorName(){
         if (this.color.get() == 1 ) return "Black";
         else return "White";
     }
+
+//    public void setName(String name){
+//        this.name = name;
+//    }
 
     public void SetColor(int i) {
         this.color.set(i);
     }
 
-    public void PrintPositions(){
+    void PrintPositions(){
         System.out.println("movements for player "+this.name+":");
-        for(Piece model : position) {
-            System.out.println(model.getX()+" "+model.getY());
+        for(Pair pair : positionsList) {
+            System.out.println(pair.getKey() +" "+ pair.getValue());
         }
     }
 
-    public List<Piece> getPositions(){
-        return position;
+    public List<Pair<Integer, Integer>> getPositions(){
+        return positionsList;
     }
 
-    public boolean checkMoves(Piece m){
+    public boolean checkMove(Pair pair){
+
         boolean b=false;
-        for(Piece i : this.getPositions()) {
-            if (i.getY()==m.getY() && i.getX()==m.getX()) b=true;
+        for(Pair p : this.getPositions()) {
+            if (p.getKey()== pair.getKey() && p.getValue()==pair.getValue()) b=true;
         }
         return b;
     }
 
     public boolean CheckAllMoves(Player p){
-        List<Piece> intersection = new ArrayList<>(this.position);
+        List<Pair<Integer, Integer>> intersection = new ArrayList<Pair<Integer, Integer>>(this.positionsList);
         intersection.retainAll(p.getPositions());
         return intersection.isEmpty();
     }
 
-    public void addposition(Piece pie) {
-    }
 }

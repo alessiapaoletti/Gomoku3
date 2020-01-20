@@ -9,13 +9,14 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
 public class LoginController {
 
     private GomokuGame targetGomoku;
-    private ObservableList<String> methods= FXCollections.observableArrayList("Standard","Free","Omok");
+    private ObservableList<String> methods= FXCollections.observableArrayList("Standard","Omok", "Freestyle");
     private ObservableList<String> openings= FXCollections.observableArrayList("Standard","Swap","Swap2");
 
     @FXML private javafx.scene.control.Button eBottim;
@@ -24,7 +25,7 @@ public class LoginController {
     @FXML private ChoiceBox choice;
     @FXML private ChoiceBox choiceOpening;
 
-    public LoginController() { }
+    public LoginController() {}
 
     @FXML private void initialize(){
         choice.setItems(methods);
@@ -45,24 +46,19 @@ public class LoginController {
             Stage stage = (Stage) eBottim.getScene().getWindow();
             stage.close();
 
-            //Stage mainStage = new Stage(StageStyle.DECORATED);
-            //BoardController myBoard = new BoardController(GomokuGame.getGridDim());
-            //myBoard.initBoardController();
-            //myBoard.start(mainStage); //decidere se chiamare lo start method qui o nel constructor di GomokuBoard
-
-            GamePlay gamePlay = new GamePlay(this.targetGomoku, targetGomoku.getGridDim());
-            gamePlay.start();
-
-
+            Stage mainStage = new Stage(StageStyle.DECORATED);
+            BoardController myBoard = new BoardController(targetGomoku.getGridDim(), targetGomoku);
+            myBoard.initBoardController();
+            myBoard.start(mainStage);
         } else {
             Alert.loginAlert();
         }
-    }
+}
+
 
     @FXML
     public void close(){
         Stage stage = (Stage) eBottim.getScene().getWindow();
-        // do what you have to do
         stage.close();
     }
 
@@ -75,7 +71,6 @@ public class LoginController {
         this.targetGomoku.setGridSize(gridSize);
 
         this.targetGomoku.setOpeningRulesName(m);
-
     }
 
 }

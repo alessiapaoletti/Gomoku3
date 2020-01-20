@@ -10,7 +10,7 @@ public class GomokuFactory {
 
     static {
         gomokuMap.put("Standard", new GomokuStd());
-        gomokuMap.put("Free", new GomokuFree());
+        gomokuMap.put("Freestyle", new GomokuFree());
         gomokuMap.put("Omok", new GomokuOm());
     }
 
