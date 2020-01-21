@@ -4,14 +4,11 @@ package Model;
 public class Piece  {
 
     public enum PieceType{
-        NOT_VALID(-1),
-        EMPTY(0),
-        BLACK(1),
-        WHITE(2);
-        public int colorPiece;
-        PieceType(int i) {
-            this.colorPiece = i;
-        }
+        NOT_VALID,
+        EMPTY,
+        BLACK,
+        WHITE;
+        PieceType() {}
     }
 
     private PieceType pieceType;

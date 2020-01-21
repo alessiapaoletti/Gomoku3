@@ -28,7 +28,7 @@ public class GamePlay {
         String winner_name = "";
         if(this.closing.checkWinner(x,y)){
 
-            if(this.currentPlayer.colorPiece ==this.game.getP1().getColor()){
+            if(this.currentPlayer ==this.game.getP1().getColor()){
                 winner_name  = this.game.getP2().getName();
             }
             else winner_name  = this.game.getP1().getName();
@@ -87,7 +87,7 @@ public class GamePlay {
     private void InsertMove( int x,  int y){
         Pair<Integer, Integer> pair = new Pair<>(x, y);
 
-        if(this.currentPlayer.colorPiece ==this.game.getP1().getColor()){
+        if(this.currentPlayer ==this.game.getP1().getColor()){
             this.game.getP1().addPosition(pair);
         }
         else{
@@ -98,7 +98,7 @@ public class GamePlay {
     private void RemoveMove(int x,  int y){
 
         Pair<Integer, Integer> pair = new Pair<Integer, Integer>(x,y);
-        if(this.currentPlayer.colorPiece ==this.game.getP1().getColor()){
+        if(this.currentPlayer ==this.game.getP1().getColor()){
             if(this.game.getP1().checkMove(pair)) this.game.getP1().removePosition(this.game.getP1().getPositions().size()-1);
         }
         else{

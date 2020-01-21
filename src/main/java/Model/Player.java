@@ -31,8 +31,8 @@ public class Player {
         return name;
     }
 
-    public int getColor() {
-        return this.color.colorPiece;
+    public Piece.PieceType getColor() {
+        return this.color;
     }
 
     public String getColorName(){

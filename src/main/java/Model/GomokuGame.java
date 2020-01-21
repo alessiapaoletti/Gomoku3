@@ -48,12 +48,12 @@ public abstract class GomokuGame {
     public int getNumMovesOpening(){ return openingRules.getNumMoves();}
 
     public static Player GetBlack(){
-        if(p1.getColor() ==1) return p1;
+        if(p1.getColor() == Piece.PieceType.BLACK) return p1;
         else return p2;
     }
 
     public static Player GetWhite(){
-        if(p1.getColor() ==2) return p1;
+        if(p1.getColor() == Piece.PieceType.WHITE) return p1;
         else return p2;
     }
 
