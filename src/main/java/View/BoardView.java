@@ -1,16 +1,15 @@
 package View;
 
+
 import Model.Piece;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.RadialGradient;
-import javafx.scene.paint.Stop;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Translate;
 
 public class BoardView extends Pane{
+
     private Rectangle background; //rectangle for the background of the board
     private Line[] horizontal; //array for horizontal lines
     private Line[] vertical; //array for vertical lines
@@ -27,31 +26,34 @@ public class BoardView extends Pane{
 
     /* size of the grid */
     private int line_number;
-    int board_size;
+    private int board_size;
+
+    private PieceView[][] pieces;
 
     private static Color BACKGROUND_COLOR = Color.PINK;
 
-    public static RadialGradient WHITE_COLOR = new RadialGradient(0.5, 0.5, 0, 0, 1.5, true, CycleMethod.REFLECT, new Stop(0, Color.WHITE), new Stop(1, Color.GREY));
-    public static RadialGradient BLACK_COLOR = new RadialGradient(0.5, 0.5, 0, 0, 1.5, true, CycleMethod.REFLECT, new Stop(0, Color.DARKSLATEGREY), new Stop(1, Color.BLACK));
 
-    static final int EMPTY_SPACE = 0;
-    //static final int BLACK_PLAYER = 1;
-    //static final int WHITE_PLAYER = 2;
+  //  private final int EMPTY_SPACE = 0;
 
-    public static int APPLICATION_WIDTH = 600;
-    public static int APPLICATION_HEIGHT = 600;
 
-    public BoardView(int inputSize) {
+//    public static int APPLICATION_WIDTH = 600;
+//    public static int APPLICATION_HEIGHT = 600;
+
+
+    public BoardView(int inputSize){
         this.line_number = inputSize;
         this.board_size = this.line_number + 1;
-        // this.pieces = new Piece[this.board_size][this.board_size];
         this.horizontal = new Line[this.board_size + 1];
         this.vertical = new Line[this.board_size + 1];
         this.horizontal_t = new Translate[this.board_size + 1];
         this.vertical_t = new Translate[this.board_size + 1];
 
+        this.pieces = new PieceView[inputSize+1][inputSize+1];
         this.initialiseLinesBackground();
+
     }
+
+
 
     // overridden version of the resize method to give the board the correct size
     @Override
@@ -78,11 +80,16 @@ public class BoardView extends Pane{
 
         this.horizontalResizeRelocate(newWidth);
         this.verticalResizeRelocate(newHeight);
+
+        this.initialiseRender();
+        this.pieceResizeRelocate();
+
     }
+
 
     // private method that will initialise the background and the lines
     private void initialiseLinesBackground() {
-        this.background = new Rectangle(APPLICATION_WIDTH, APPLICATION_HEIGHT);
+        this.background = new Rectangle(600, 600);
         this.background.setFill(BACKGROUND_COLOR);
         this.getChildren().add(this.background);
 
@@ -132,7 +139,7 @@ public class BoardView extends Pane{
     }
 
     // private method for resizing and relocating all the pieces
-    public void pieceResizeRelocate(Piece[][] pieces) {
+    private void pieceResizeRelocate() {
         //piece dimension
         double PIECE_SIZE = 0.70;
         double cellX = this.cell_width * PIECE_SIZE;
@@ -148,14 +155,28 @@ public class BoardView extends Pane{
     }
 
     // private method that will initialise everything in the render array
-    public void initialiseRender(Piece[][] pieces) {
+    private void initialiseRender() {
+
         for (int i = 0; i < this.board_size; ++i) {
             for (int j = 0; j < this.board_size; ++j) {
-                pieces[i][j] = new Piece(EMPTY_SPACE);
+                pieces[i][j] = new PieceView();
                 pieces[i][j].setX(i);
                 pieces[i][j].setY(j);
             }
             this.getChildren().addAll(pieces[i]);
         }
     }
+
+
+    //public PieceView getPiece(int x, int y){return this.pieces[x][y]; }
+
+    public void setPiece(int x, int y,final Piece.PieceType color){
+
+        this.pieces[x][y].setPiece(color);
+    }
+
+    public void removePiece(int x , int y){
+        this.pieces[x][y].removePiece();
+    }
+
 }

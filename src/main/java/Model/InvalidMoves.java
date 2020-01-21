@@ -7,29 +7,23 @@ import java.util.*;
 
 public class InvalidMoves {
 
-    private Player player1;
-    private Player player2;
+    InvalidMoves(){ }
 
-    InvalidMoves(Player p1, Player p2){
-        this.player1=p1;
-        this.player2=p2;
-    }
-
-    private void findFork(Piece piece, String direction,Set<Pair<Integer,Integer>> aux_dir){
+    private void findFork(Pair<Integer, Integer> piece, String direction,Set<Pair<Integer,Integer>> aux_dir){
         Directions d= DirectionFactory.getDir(direction).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
-        d.Check(piece.getX(), piece.getY(),-1,aux_dir);
-        d.Check(piece.getX(), piece.getY(),1,aux_dir);
+        d.Check(piece.getKey(), piece.getValue(),-1,aux_dir);
+        d.Check(piece.getKey(), piece.getValue(),1,aux_dir);
    }
 
-    private int Duplicates(Piece lastMove,List<Pair<Integer,Integer>> aux){
+    private int Duplicates(Pair<Integer, Integer> lastMove,List<Pair<Integer,Integer>> aux){
         int count=0;
         for(Pair<Integer,Integer> el : aux){
-            if(el.getKey()==lastMove.getX() && el.getValue()==lastMove.getY()) count+=1;
+            if(el.getKey()==lastMove.getKey() && el.getValue()==lastMove.getValue()) count+=1;
         }
         return count;
     };
 
-    private void Check_Error(Piece lastMove,List<Pair<Integer,Integer>> aux){
+    private void Check_Error(Pair<Integer, Integer> lastMove,List<Pair<Integer,Integer>> aux){
         if(aux.size()>=6 && this.Duplicates(lastMove,aux)>=2){
             throw new Error("three and three error ");
         }
@@ -38,7 +32,7 @@ public class InvalidMoves {
     public void threeAndThree (){
         List<String> directions = Arrays.asList("hor","horgap","ver","vergap", "diag1","diag1gap", "diag2","diag2gap");
         int sizeList = GomokuGame.GetBlack().getPositions().size();
-        Piece lastMove = GomokuGame.GetBlack().getPositions().get(sizeList - 1);
+        Pair<Integer, Integer> lastMove = GomokuGame.GetBlack().getPositions().get(sizeList - 1);
         List<Pair<Integer,Integer>> aux= new ArrayList<>();
         for (String dir : directions) {
             Set<Pair<Integer,Integer>> aux_dir= new HashSet<>();

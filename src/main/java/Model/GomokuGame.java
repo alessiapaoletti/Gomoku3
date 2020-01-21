@@ -1,23 +1,21 @@
 package Model;
 
+
 public abstract class GomokuGame {
     private static   Player p1;
     private static Player p2;
     private static int gridSize;
 
     static String openingName;
-    protected static Opening openingRules;
-    protected InvalidMoves invalidMoves;
-    public static Closing closingRules;
+    static Opening openingRules;
+    InvalidMoves invalidMoves;
     public String gameName;
     String OpeningName;
 
-    public static int currentPlayer;
 
     public GomokuGame(){
         this.gameName = getGameName();
         this.OpeningName = GomokuGame.getOpeningRulesName();
-        currentPlayer = BoardLogic.BLACK_PLAYER;
     }
 
     public abstract void initGame();
@@ -31,7 +29,7 @@ public abstract class GomokuGame {
         GomokuGame.p2 = p2;
     }
 
-    public static void callOpeningRules(int clicksCount){ openingRules.callOpening(clicksCount); }
+    public void callOpeningRules(int clicksCount){ openingRules.callOpening(clicksCount); }
 
     public void setOpeningRulesName(String name){ openingName = name; }
 
@@ -47,21 +45,16 @@ public abstract class GomokuGame {
 
     public static String getOpeningRulesName(){ return openingName;}
 
-    public static int getNumMovesOpening(){ return openingRules.getNummoves();}
-
-    //utility function to call specific game's opening rule.
-    //public static void callOpeningRules(int c){ OpeningRules(c); }
-
-    //public void Rules(){ setInvalidMoves(); }
-
+    public int getNumMovesOpening(){ return openingRules.getNumMoves();}
 
     public static Player GetBlack(){
-        if(p1.getColor().get() ==1) return p1;
+        if(p1.getColor() == Piece.PieceType.BLACK) return p1;
         else return p2;
     }
 
     public static Player GetWhite(){
-        if(p1.getColor().get() ==2) return p1;
+        if(p1.getColor() == Piece.PieceType.WHITE) return p1;
         else return p2;
     }
+
 }

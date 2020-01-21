@@ -1,43 +1,136 @@
 package Controller;
 
-import Model.*;
+import Model.BoardLogic;
+import Model.GamePlay;
+import Model.GomokuGame;
+import Model.Piece;
+import View.Alert;
 import View.BoardView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Control;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
 import java.io.IOException;
+import java.net.URL;
 
 public class BoardController extends Control {
 
-    public static BoardLogic boardLogic;
-    public static BoardView boardView;
-    public int clicksCount; //clicks count added in order to set the opening moves check.
-    private StackPane stackPaneMainLayout;
+    public static BoardView myView;
+    public GamePlay myGame;
+    public static ScoreController scoreController;
+    private int clicksCount = 0; //clicks count added in order to set the opening moves check.
+    private final StackPane sp_mainlayout;
+    private static String gameName;
 
-    public BoardController(int gridSize, int clicksCount) {
-        boardLogic = new BoardLogic(gridSize);
-        boardView = new BoardView(gridSize);
+    public static String getGameName(){
+        return gameName;
+    }
+
+    public BoardController(int gridSize, GomokuGame game) {
+        this.myView = new BoardView(gridSize);
+        this.myGame = new GamePlay(game, gridSize);
         this.setSkin(new ControlSkin(this));
-        this.getChildren().add(boardView);
-        //this.clicksCount = boardLogic.InitialMove();
-        this.clicksCount = clicksCount;
-        this.stackPaneMainLayout = new StackPane();
-        this.stackPaneMainLayout.getChildren().add(this);
+        this.getChildren().add(this.myView);
+
+        this.sp_mainlayout = new StackPane();
+        this.sp_mainlayout.getChildren().add(this);
+        gameName = game.getGameName();
     }
 
-    public static void gameOver(String winner){
-        Stage stage = (Stage) boardView.getScene().getWindow();
+
+    public void initBoardController(){
+        clicksCount =this.myGame.InitialMove();
+        this.setOnMouseClicked((event) -> {
+            clicksCount++;
+
+            if(clicksCount == myGame.getNumMovesOpening() || clicksCount == this.myGame.getNumMovesOpening() +2) {
+                startOpening(event.getX(), event.getY(), clicksCount);
+            }
+
+            startGame(event.getX(), event.getY());
+        });
+    }
+
+
+    public void placePiece(final double x, final double y) {
+        int cellX = (int)((x - this.myView.start_x + (this.myView.cell_width / 2.0)) / this.myView.cell_width);
+        int cellY = (int)((y - this.myView.start_y + (this.myView.cell_height / 2.0)) / this.myView.cell_height);
+        System.out.println(cellX);
+        System.out.println(cellY);
+
+        if(this.myGame.isValidMove(cellX, cellY)){
+            this.myView.setPiece(cellX, cellY, this.myGame.getCurrentPlayer());
+            this.myGame.placePiece(cellX, cellY);
+            if(this.myGame.checkFullBoard())
+                this.gameOver();
+            if(!this.myGame.checkWinningMove(cellX, cellY).isEmpty() ){
+                this.gameOver(this.myGame.checkWinningMove(cellX, cellY));
+            }
+        }
+    }
+
+    private void UnplacePiece(final double x, final double y) {
+        int cellX = (int)((x - this.myView.start_x + (this.myView.cell_width / 2.0)) / this.myView.cell_width);
+        int cellY = (int)((y - this.myView.start_y + (this.myView.cell_height / 2.0)) / this.myView.cell_height);
+        this.myGame.unplacePiece(cellX, cellY);
+        this.myView.removePiece(cellX, cellY);
+        this.myView.setPiece(cellX, cellY, Piece.PieceType.EMPTY);
+    }
+
+    // function that allows the opening functions to work on the board.
+    public void startOpening(final double x, final double y, int c){
+        this.placePiece(x,y);
+        this.myGame.Opening(c);
+    }
+
+
+    public void startGame(final double x, final double y){
+        this.placePiece(x,y);
+        try {
+            this.myGame.Rules();
+        }
+        catch (Error e){
+            Alert.invalidMoveAlert(e.toString());
+            this.UnplacePiece(x,y);   //tolgo  l'ultima pedina inserita
+        }
+    }
+
+
+    private void gameOver(String winner){
+        Stage stage = (Stage) myView.getScene().getWindow();
         String result = View.Alert.gameOverAlert(winner);
-        if("OK".equals(result)) stage.close();
+        if("OK".equals(result))
+            stage.close();
     }
 
-    public static void gameOver(){
-        Stage stage = (Stage) boardView.getScene().getWindow();
+    private void gameOver(){
+        Stage stage = (Stage) myView.getScene().getWindow();
         String result = View.Alert.gameOverAlert();
-        if("OK".equals(result)) stage.close();
+        if("OK".equals(result))
+            stage.close();
+    }
+
+
+    void start(Stage primaryStage) throws IOException {
+        primaryStage.setTitle("GOMOKU version: "+ gameName);
+        primaryStage.setScene(new Scene(this.sp_mainlayout, 600, 600));
+        primaryStage.show();
+
+        URL myFxmlURL = ClassLoader.getSystemResource("ScoreView.fxml");
+
+        FXMLLoader loader = new FXMLLoader(myFxmlURL);
+        Parent root = loader.load();
+        scoreController = loader.getController();
+
+        Scene myScene = new Scene(root);
+        Stage myStage = new Stage();
+        myStage.setTitle("Score");
+        myStage.setX(135);
+        myStage.setY(65);
+        myStage.setScene(myScene);
+        myStage.show();
     }
 
 
@@ -45,30 +138,8 @@ public class BoardController extends Control {
     @Override
     public void resize(double width, double height) {
         super.resize(width, height);
-        boardView.resize(width, height);
-        boardView.initialiseRender(boardLogic.getPiecesMatrix());
-        boardView.pieceResizeRelocate(boardLogic.getPiecesMatrix());
-    }
+        this.myView.resize(width, height);
 
-    public void placePiece(final double x, final double y) {
-        int cellX = (int)((x - boardView.start_x + (boardView.cell_width / 2.0)) / boardView.cell_width);
-        int cellY = (int)((y - boardView.start_y + (boardView.cell_height / 2.0)) / boardView.cell_height);
-        boardLogic.placePieceBl(cellX, cellY);
-    }
-
-    public void UnplacePiece(final double x, final double y) {
-        int cellX = (int)((x - boardView.start_x + (boardView.cell_width / 2.0)) / boardView.cell_width);
-        int cellY = (int)((y - boardView.start_y + (boardView.cell_height / 2.0)) / boardView.cell_height);
-        //System.out.println(cellX);
-        //System.out.println(cellY);
-        boardLogic.unplacePieceBl(cellX, cellY);
-    }
-
-    public void start() throws IOException {
-        Stage primaryStage = new Stage(StageStyle.DECORATED);
-        primaryStage.setTitle("GOMOKU board");
-        primaryStage.setScene(new Scene(this.stackPaneMainLayout, BoardView.APPLICATION_WIDTH, BoardView.APPLICATION_HEIGHT));
-        primaryStage.show();
     }
 }
 

@@ -6,7 +6,7 @@ public class GomokuStd extends GomokuGame {
 
     @Override
     public void initGame() {
-        currentPlayer = BoardLogic.BLACK_PLAYER;
+
 
         System.out.println("Mode standard");
         //System.out.println("Players:" + getP1().getName() + " and " + getP2().getName() + " initial bets = " + getnBet() + " grDim= " + getGridDim());
