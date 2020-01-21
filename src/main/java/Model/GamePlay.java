@@ -104,6 +104,7 @@ public class GamePlay {
         else{
             if(this.game.getP2().checkMove(pair)) this.game.getP2().removePosition(this.game.getP2().getPositions().size()-1);
         }
+        myBoard.setPiece(x,y,Piece.PieceType.EMPTY);  //place empty on the board.
     }
 
     // private method for swapping the players
