@@ -100,6 +100,7 @@ public class Opening {
 
     private void Swap2_1(){
         if ("YES".equals(Alert.swap2_1Alert())) {
+            BoardController.scoreController.swapLabels();
             this.utilitySwap("Swap2");
         }
         CheckError();
