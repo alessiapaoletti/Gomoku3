@@ -36,9 +36,8 @@ public class Closing {
     Function that returns true if the board is full and false otherwise
     **/
     public boolean fullBoard(){
-
         Stream<Piece> stream = Arrays.stream(this.board.piecesMatrix).flatMap(Arrays::stream);
-        boolean anyZero = stream.map(x -> x.getPlayer()).anyMatch(x -> x.equals(0));
+        boolean anyZero = stream.map(x -> x.getPlayer()).anyMatch(x -> x.equals(Piece.PieceType.EMPTY));
         return !anyZero;
 
     }
@@ -50,9 +49,9 @@ public class Closing {
 
     public boolean checkWinner(int x, int y) {
 
-        int player = this.board.piecesMatrix[x][y].getPlayer();
+        Piece.PieceType player = this.board.piecesMatrix[x][y].getPlayer();
 
-        Pair<String, Integer> p = new Pair<>(this.gameType, player);
+        Pair<String, Piece.PieceType> p = new Pair<>(this.gameType, player);
 
         boolean result = false;
 
@@ -68,7 +67,7 @@ public class Closing {
     Function that checks if there is a horizontal, vertical or diagonal line of 5 or more pieces of the same color
     that passes through the point (x,y)
     **/
-    private boolean fiveOrMore(int x, int y, int player){
+    private boolean fiveOrMore(int x, int y, Piece.PieceType player){
 
         return this.horizontalCheck(x,y,player,true) | this.verticalCheck( x,y,player, true) |
                 this.diagonalCheck( x, y, player, false, true) |
@@ -79,7 +78,7 @@ public class Closing {
     Function that checks if there is a horizontal, vertical or diagonal line of exactly 5 pieces of the same color
     that passes through the point (x,y)
     **/
-    private boolean exactlyFive(int x, int y, int player){
+    private boolean exactlyFive(int x, int y, Piece.PieceType player){
         return horizontalCheck(x,y,player, false) | verticalCheck( x,y,player, false) |
                 diagonalCheck(x,y,player, true, false)|
                 diagonalCheck(x,y,player, false, false);
@@ -91,7 +90,7 @@ public class Closing {
     If the argument overlinesAllowed is set to false the pieces must be exactly 5 and not more.
     If the argument ascending is set to true the check is made on the ascending diagonal.
     **/
-    private boolean diagonalCheck(int x, int y, int player, boolean ascending, boolean overlinesAllowed) {
+    private boolean diagonalCheck(int x, int y, Piece.PieceType player, boolean ascending, boolean overlinesAllowed) {
 
         int yIncrement;
         int diagX;
@@ -132,7 +131,7 @@ public class Closing {
     Function that returns true if there is a horizontal line of 5 pieces of the same color that passes through the point (x,y).
     If the argument overlinesAllowed is set to false the pieces must be exactly 5 and not more
     **/
-    private boolean horizontalCheck(int x, int y, int player, boolean overlinesAllowed){
+    private boolean horizontalCheck(int x, int y, Piece.PieceType player, boolean overlinesAllowed){
 
         int count = 0;
 
@@ -155,7 +154,7 @@ public class Closing {
     Function that returns true if there is a vertical line of 5 pieces of the same color that passes through the point (x,y).
     If the argument overlinesAllowed is set to false the pieces must be exactly 5 and not more
     **/
-    private boolean verticalCheck(int x, int y, int player, boolean overlinesAllowed) {
+    private boolean verticalCheck(int x, int y, Piece.PieceType player, boolean overlinesAllowed) {
 
         int count = 0;
 

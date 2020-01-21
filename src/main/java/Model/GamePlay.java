@@ -1,13 +1,12 @@
 package Model;
 
-import Controller.BoardController;
 import View.Alert;
 import javafx.util.Pair;
 
 public class GamePlay {
 
     private BoardLogic myBoard;
-    private int currentPlayer;
+    private Piece.PieceType currentPlayer;
     private GomokuGame game;
     private Closing closing;
     private String gameName;
@@ -20,16 +19,16 @@ public class GamePlay {
         this.game.initGame();
         this.gameName = this.game.getGameName();
         this.OpeningName=this.game.getOpeningRulesName();
-        this.currentPlayer = BoardLogic.BLACK_PLAYER;
+        this.currentPlayer = Piece.PieceType.BLACK;
         this.closing = new Closing(this.myBoard,this.gameName);
     }
 
     public String checkWinningMove(int x, int y){
 
-        String winner_name = null;
+        String winner_name = "";
         if(this.closing.checkWinner(x,y)){
 
-            if(this.currentPlayer ==this.game.getP1().getColor()){
+            if(this.currentPlayer.colorPiece ==this.game.getP1().getColor()){
                 winner_name  = this.game.getP2().getName();
             }
             else winner_name  = this.game.getP1().getName();
@@ -52,7 +51,7 @@ public class GamePlay {
         //this.checkWinningMove(x,y);
         //this.checkFullBoard();
         this.swapPlayers(); //cambia il colore
-        this.Print();
+        this.printAllPositions();
 
     }
 
@@ -88,7 +87,7 @@ public class GamePlay {
     private void InsertMove( int x,  int y){
         Pair<Integer, Integer> pair = new Pair<>(x, y);
 
-        if(this.currentPlayer ==this.game.getP1().getColor()){
+        if(this.currentPlayer.colorPiece ==this.game.getP1().getColor()){
             this.game.getP1().addPosition(pair);
         }
         else{
@@ -99,7 +98,7 @@ public class GamePlay {
     private void RemoveMove(int x,  int y){
 
         Pair<Integer, Integer> pair = new Pair<Integer, Integer>(x,y);
-        if(this.currentPlayer ==this.game.getP1().getColor()){
+        if(this.currentPlayer.colorPiece ==this.game.getP1().getColor()){
             if(this.game.getP1().checkMove(pair)) this.game.getP1().removePosition(this.game.getP1().getPositions().size()-1);
         }
         else{
@@ -109,30 +108,27 @@ public class GamePlay {
 
     // private method for swapping the players
     private void swapPlayers() {
-        if (this.currentPlayer == BoardLogic.WHITE_PLAYER) {
-            this.currentPlayer = BoardLogic.BLACK_PLAYER;
+        if (this.currentPlayer == Piece.PieceType.WHITE) {
+            this.currentPlayer = Piece.PieceType.BLACK;
         }
         else {
-            this.currentPlayer = BoardLogic.WHITE_PLAYER;
+            this.currentPlayer = Piece.PieceType.WHITE;
         }
     }
 
-
-    private void Print(){
-        this.game.getP1().PrintPositions();
-        this.game.getP2().PrintPositions();
+    private void printAllPositions(){
+        this.game.getP1().printPositions();
+        this.game.getP2().printPositions();
     }
 
 
     public boolean isValidMove(int x, int y) {
-        if (this.myBoard.getPiece(x,y)!= BoardLogic.EMPTY_SPACE)
-            return (false);
-        return (true);
+        return this.myBoard.getPiece(x, y) == Piece.PieceType.EMPTY;
     }
 
     public int getNumMovesOpening(){ return this.game.getNumMovesOpening();}
 
-    public int getCurrentPlayer(){
+    public Piece.PieceType getCurrentPlayer(){
         return currentPlayer;
     }
 

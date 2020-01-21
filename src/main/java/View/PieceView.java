@@ -1,5 +1,6 @@
 package View;
 
+import Model.Piece;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
@@ -9,7 +10,7 @@ import javafx.scene.shape.Ellipse;
 
 public class PieceView extends Group {
 
-    private int color;		// the player that this piece belongs to
+    private Piece.PieceType color;		// the player that this piece belongs to
     private Ellipse ellipse;	// ellipse representing the player's piece
     private int x;          // x position
     private int y;          // y position
@@ -22,7 +23,7 @@ public class PieceView extends Group {
         //this.color = color;
         this.ellipse = new Ellipse();
         this.getChildren().add(this.ellipse);
-        this.setPiece(0);
+        this.setPiece(Piece.PieceType.EMPTY);
     }
 
     // overridden version of the resize method to give the piece the correct size
@@ -37,12 +38,12 @@ public class PieceView extends Group {
 
 
     // method that will set the piece type
-    void setPiece(final int type) {
+    void setPiece(final Piece.PieceType type) {
         this.color = type;
-        if (this.color == 0)
+        if (this.color == Piece.PieceType.EMPTY)
             this.ellipse.setFill(Color.TRANSPARENT);
         else
-            this.ellipse.setFill(this.color == 2 ? this.WHITE_COLOR : this.BLACK_COLOR);
+            this.ellipse.setFill(this.color == Piece.PieceType.WHITE ? this.WHITE_COLOR : this.BLACK_COLOR);
     }
 
     //method that will allow to remove the piece

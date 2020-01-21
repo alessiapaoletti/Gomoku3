@@ -46,7 +46,7 @@ public class Opening {
 
     private void CheckError(){
 
-        if(!player1.CheckAllMoves(player2)){
+        if(!player1.checkAllMoves(player2)){
             throw new Error("place stones in different places");
         }else{
             System.out.println("end of opening moves");
@@ -70,8 +70,8 @@ public class Opening {
         player1.removePosition(0);
         if (S.equals("Swap2")) player2.removePosition(1);
         player2.removePosition(0);
-        player1.SetColor(2);
-        player2.SetColor(1);
+        player1.setColor(Piece.PieceType.WHITE);
+        player2.setColor(Piece.PieceType.BLACK);
     }
 
     private void Swap(){

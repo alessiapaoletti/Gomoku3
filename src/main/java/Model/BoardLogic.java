@@ -5,9 +5,9 @@ public class BoardLogic {
     Piece[][] piecesMatrix; // matrix for the internal representation of the board and the pieces that are in place
     int boardSize;
 
-    public static final int EMPTY_SPACE = 0;
-    public static final int BLACK_PLAYER = 1;
-    public static final int WHITE_PLAYER = 2;
+//    public static final int EMPTY_SPACE = 0;
+//    public static final int BLACK_PLAYER = 1;
+//    public static final int WHITE_PLAYER = 2;
 
 
     public BoardLogic(final int gridSize){
@@ -20,7 +20,7 @@ public class BoardLogic {
     private void initPieces(){
         for (int i = 0; i <= this.boardSize; i++) {
             for (int j = 0; j <= this.boardSize; j++) {
-                this.piecesMatrix[i][j] = new Piece(BoardLogic.EMPTY_SPACE);
+                this.piecesMatrix[i][j] = new Piece(Piece.PieceType.EMPTY);
             }
         }
     }
@@ -35,13 +35,13 @@ public class BoardLogic {
 
 
 
-    int getPiece(final int x, final int y) {
+    Piece.PieceType getPiece(final int x, final int y) {
         if (validCoordinates(x, y))
             return (this.piecesMatrix[x][y].getPlayer());
-        return (-1);
+        return Piece.PieceType.NOT_VALID;
     }
 
-    void setPiece(int x, int y, int player){
+    void setPiece(int x, int y, Piece.PieceType player){
         this.piecesMatrix[x][y].setPlayer(player);
     }
 

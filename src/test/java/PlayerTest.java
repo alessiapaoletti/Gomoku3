@@ -17,7 +17,7 @@ public class PlayerTest {
         Player p=new Player("mario","white");
         assertEquals(p.getName(),"mario");
         assertEquals(p.getColor().intValue(),2);
-        p.SetColor(1);
+        p.setColor(1);
         assertEquals(p.getColor().intValue(),1);
     };
 
@@ -45,7 +45,7 @@ public class PlayerTest {
         Piece pie1=new Piece(2);
         pie1.setX(4);
         pie1.setY(2);
-        assertEquals(p.CheckinMoves(pie1),false);
+        assertEquals(p.checkMoves(pie1),false);
 
     }
 
@@ -62,7 +62,7 @@ public class PlayerTest {
         pie1.setX(4);
         pie1.setY(2);
         p1.addPosition(pie1);
-        assertEquals(p.CheckAllMoves(p1),true);
+        assertEquals(p.checkAllMoves(p1),true);
 
     }
 

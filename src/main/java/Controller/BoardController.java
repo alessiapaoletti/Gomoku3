@@ -3,6 +3,7 @@ package Controller;
 import Model.BoardLogic;
 import Model.GamePlay;
 import Model.GomokuGame;
+import Model.Piece;
 import View.Alert;
 import View.BoardView;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,7 @@ import java.net.URL;
 
 public class BoardController extends Control {
 
-    public BoardView myView;
+    public static BoardView myView;
     public GamePlay myGame;
     public static ScoreController scoreController;
     private int clicksCount = 0; //clicks count added in order to set the opening moves check.
@@ -64,7 +65,7 @@ public class BoardController extends Control {
             this.myGame.placePiece(cellX, cellY);
             if(this.myGame.checkFullBoard())
                 this.gameOver();
-            if(!this.myGame.checkWinningMove(cellX, cellY).equals(null) ){
+            if(!this.myGame.checkWinningMove(cellX, cellY).isEmpty() ){
                 this.gameOver(this.myGame.checkWinningMove(cellX, cellY));
             }
         }
@@ -75,7 +76,7 @@ public class BoardController extends Control {
         int cellY = (int)((y - this.myView.start_y + (this.myView.cell_height / 2.0)) / this.myView.cell_height);
         this.myGame.unplacePiece(cellX, cellY);
         this.myView.removePiece(cellX, cellY);
-        this.myView.setPiece(cellX, cellY, BoardLogic.EMPTY_SPACE);
+        this.myView.setPiece(cellX, cellY, Piece.PieceType.EMPTY);
     }
 
     // function that allows the opening functions to work on the board.

@@ -3,19 +3,28 @@ package Model;
 
 public class Piece  {
 
-    private int nPlayer;
-
-    public Piece(int p){
-        this.nPlayer = p;
+    public enum PieceType{
+        NOT_VALID(-1),
+        EMPTY(0),
+        BLACK(1),
+        WHITE(2);
+        public int colorPiece;
+        PieceType(int i) {
+            this.colorPiece = i;
+        }
     }
 
-    public int getPlayer(){
-        return this.nPlayer;
+    private PieceType pieceType;
+
+    public Piece(PieceType p){
+        this.pieceType = p;
     }
 
-    public void setPlayer(int p){
-        this.nPlayer = p;
+    public PieceType getPlayer(){
+        return this.pieceType;
     }
 
-
+    public void setPlayer(PieceType p){
+        this.pieceType = p;
+    }
 }

@@ -7,13 +7,7 @@ import java.util.*;
 
 public class InvalidMoves {
 
-    private Player player1;
-    private Player player2;
-
-    InvalidMoves(Player p1, Player p2){
-        this.player1=p1;
-        this.player2=p2;
-    }
+    InvalidMoves(){ }
 
     private void findFork(Pair<Integer, Integer> piece, String direction,Set<Pair<Integer,Integer>> aux_dir){
         Directions d= DirectionFactory.getDir(direction).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
