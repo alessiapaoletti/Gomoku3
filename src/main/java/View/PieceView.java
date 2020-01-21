@@ -18,11 +18,11 @@ public class PieceView extends Group {
     private RadialGradient BLACK_COLOR = new RadialGradient(0.5, 0.5, 0, 0, 1.5, true, CycleMethod.REFLECT, new Stop(0, Color.DARKSLATEGREY), new Stop(1, Color.BLACK));
 
 
-    public PieceView(int color) {
-        this.color = color;
+    public PieceView() {
+        //this.color = color;
         this.ellipse = new Ellipse();
         this.getChildren().add(this.ellipse);
-        this.setPiece(this.color);
+        this.setPiece(0);
     }
 
     // overridden version of the resize method to give the piece the correct size

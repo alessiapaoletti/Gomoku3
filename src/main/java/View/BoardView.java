@@ -32,7 +32,7 @@ public class BoardView extends Pane{
     private static Color BACKGROUND_COLOR = Color.PINK;
 
 
-    private final int EMPTY_SPACE = 0;
+  //  private final int EMPTY_SPACE = 0;
 
 
 //    public static int APPLICATION_WIDTH = 600;
@@ -158,7 +158,7 @@ public class BoardView extends Pane{
 
         for (int i = 0; i < this.board_size; ++i) {
             for (int j = 0; j < this.board_size; ++j) {
-                pieces[i][j] = new PieceView(EMPTY_SPACE);
+                pieces[i][j] = new PieceView();
                 pieces[i][j].setX(i);
                 pieces[i][j].setY(j);
             }

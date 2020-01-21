@@ -24,22 +24,24 @@ public class GamePlay {
         this.closing = new Closing(this.myBoard,this.gameName);
     }
 
-    private void checkWinningMove(int x, int y){
+    public String checkWinningMove(int x, int y){
+
+        String winner_name = null;
         if(this.closing.checkWinner(x,y)){
-            String winner_name;
+
             if(this.currentPlayer ==this.game.getP1().getColor()){
-                winner_name  = this.game.getP1().getName();
+                winner_name  = this.game.getP2().getName();
             }
-            else winner_name  = this.game.getP2().getName();
+            else winner_name  = this.game.getP1().getName();
 
-            BoardController.gameOver(winner_name);
         }
-
+        return winner_name;
     }
 
-    private void checkFullBoard(){
-        if(this.closing.fullBoard())
-            BoardController.gameOver();
+
+    public boolean checkFullBoard(){
+        return this.closing.fullBoard();
+           // BoardController.gameOver();
     }
 
 
@@ -47,8 +49,8 @@ public class GamePlay {
 
         this.InsertMove(x,y);
         this.myBoard.setPiece(x, y,this.currentPlayer);
-        this.checkWinningMove(x,y);
-        this.checkFullBoard();
+        //this.checkWinningMove(x,y);
+        //this.checkFullBoard();
         this.swapPlayers(); //cambia il colore
         this.Print();
 

@@ -16,7 +16,7 @@ import java.net.URL;
 
 public class BoardController extends Control {
 
-    public static BoardView myView;
+    public BoardView myView;
     public GamePlay myGame;
     public static ScoreController scoreController;
     private int clicksCount = 0; //clicks count added in order to set the opening moves check.
@@ -62,6 +62,11 @@ public class BoardController extends Control {
         if(this.myGame.isValidMove(cellX, cellY)){
             this.myView.setPiece(cellX, cellY, this.myGame.getCurrentPlayer());
             this.myGame.placePiece(cellX, cellY);
+            if(this.myGame.checkFullBoard())
+                this.gameOver();
+            if(!this.myGame.checkWinningMove(cellX, cellY).equals(null) ){
+                this.gameOver(this.myGame.checkWinningMove(cellX, cellY));
+            }
         }
     }
 
@@ -92,14 +97,14 @@ public class BoardController extends Control {
     }
 
 
-    public static void gameOver(String winner){
+    private void gameOver(String winner){
         Stage stage = (Stage) myView.getScene().getWindow();
         String result = View.Alert.gameOverAlert(winner);
         if("OK".equals(result))
             stage.close();
     }
 
-    public static void gameOver(){
+    private void gameOver(){
         Stage stage = (Stage) myView.getScene().getWindow();
         String result = View.Alert.gameOverAlert();
         if("OK".equals(result))
