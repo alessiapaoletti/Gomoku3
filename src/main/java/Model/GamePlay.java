@@ -46,7 +46,7 @@ public class GamePlay {
         //this.checkWinningMove(x,y);
         //this.checkFullBoard();
         this.swapPlayers(); //cambia il colore
-        this.printAllPositions();
+        this.printAllMoves();
 
     }
 
@@ -72,11 +72,11 @@ public class GamePlay {
 
     private void insertMove(Piece newPiece){
         if(this.currentPlayer == GomokuGame.getP1().getColor()) {
-            GomokuGame.getP1().addPosition(newPiece);
+            GomokuGame.getP1().addMove(newPiece);
             newPiece.setPieceType(GomokuGame.getP1().getColor());
         }
         else {
-            GomokuGame.getP2().addPosition(newPiece);
+            GomokuGame.getP2().addMove(newPiece);
             newPiece.setPieceType(GomokuGame.getP2().getColor());
         }
     }
@@ -85,9 +85,9 @@ public class GamePlay {
         Piece.PieceType colorFirstPlayer = GomokuGame.getP1().getColor();
 
         if(this.currentPlayer == colorFirstPlayer)
-            if(GomokuGame.getP1().isPlayerMove(bannedPiece)) GomokuGame.getP1().removePosition(GomokuGame.getP1().getPositions().size()-1);
+            if(GomokuGame.getP1().isPlayerMove(bannedPiece)) GomokuGame.getP1().removeMove(GomokuGame.getP1().getMoves().size()-1);
         else
-            if(GomokuGame.getP2().isPlayerMove(bannedPiece)) GomokuGame.getP2().removePosition(GomokuGame.getP2().getPositions().size()-1);
+            if(GomokuGame.getP2().isPlayerMove(bannedPiece)) GomokuGame.getP2().removeMove(GomokuGame.getP2().getMoves().size()-1);
         myBoard.setPiece(bannedPiece.getX(),bannedPiece.getY(),Piece.PieceType.EMPTY);  //place empty on the board
     }
 
@@ -100,9 +100,9 @@ public class GamePlay {
             this.currentPlayer = Piece.PieceType.WHITE;
     }
 
-    private void printAllPositions(){
-        GomokuGame.getP1().printPositions();
-        GomokuGame.getP2().printPositions();
+    private void printAllMoves(){
+        GomokuGame.getP1().printMoves();
+        GomokuGame.getP2().printMoves();
     }
 
     public boolean isValidMove(final int x, final int y) {

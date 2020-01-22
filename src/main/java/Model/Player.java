@@ -5,7 +5,7 @@ import java.util.List;
 public class Player {
     private String name;
     private Piece.PieceType color;
-    private List<Piece> positionsList = new ArrayList<>();
+    private List<Piece> movesList = new ArrayList<>();
 
     public Player(String name,String color){
         this.name = name;
@@ -13,12 +13,12 @@ public class Player {
         else {this.color = Piece.PieceType.WHITE;}
     }
 
-    public void addPosition(Piece piece){
-        positionsList.add(piece);
+    public void addMove(Piece piece){
+        movesList.add(piece);
     }
 
-    public void removePosition(int position){
-        positionsList.remove(positionsList.get(position));
+    public void removeMove(int position){
+        movesList.remove(movesList.get(position));
     }
 
     public String getName() {
@@ -35,24 +35,24 @@ public class Player {
         this.color = color;
     }
 
-    public List<Piece> getPositions(){return positionsList;}
+    public List<Piece> getMoves(){return movesList;}
 
     boolean isPlayerMove(Piece piece){
-        for(Piece p : this.getPositions()) {
+        for(Piece p : this.getMoves()) {
             if (piece.equalsCoordinates(p)) return true;
         }
         return false;
     }
 
     boolean checkAllMoves(Player p){
-        List<Piece> intersection = new ArrayList<>(this.positionsList);
-        intersection.retainAll(p.getPositions());
+        List<Piece> intersection = new ArrayList<>(this.movesList);
+        intersection.retainAll(p.getMoves());
         return intersection.isEmpty();
     }
 
-    void printPositions(){
+    void printMoves(){
         System.out.println("movements for player "+this.name+":");
-        for(Piece piece : positionsList) {
+        for(Piece piece : movesList) {
             System.out.println(piece.getX() +" "+ piece.getY());
         }
     }
