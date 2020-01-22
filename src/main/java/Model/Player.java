@@ -1,16 +1,11 @@
 package Model;
-
-import javafx.util.Pair;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Player {
     private String name;
     private Piece.PieceType color;
-    private List<Pair<Integer, Integer>> positionsList = new ArrayList<>();
-
+    private List<Piece> positionsList = new ArrayList<>();
 
     public Player(String name,String color){
         this.name = name;
@@ -18,13 +13,12 @@ public class Player {
         else {this.color = Piece.PieceType.WHITE;}
     }
 
-
-    public void addPosition(Pair<Integer, Integer> position){
-        positionsList.add(position);
+    public void addPosition(Piece piece){
+        positionsList.add(piece);
     }
 
-    public void removePosition(int i){
-        positionsList.remove(positionsList.get(i));
+    public void removePosition(int position){
+        positionsList.remove(positionsList.get(position));
     }
 
     public String getName() {
@@ -35,45 +29,32 @@ public class Player {
         return this.color;
     }
 
-    public String getColorName(){
-        return this.color.name(); }
-//                valueOf(this.color);
-//        if (this.color.colorPiece == 1 ) return "Black";
-//        else return "White";
- //   }
-
-//    public void setName(String name){
-//        this.name = name;
-//    }
+    public String getColorName(){ return this.color.name(); }
 
     public void setColor(Piece.PieceType color) {
         this.color = color;
-        //this.color.set(i);
     }
 
-    void printPositions(){
-        System.out.println("movements for player "+this.name+":");
-        for(Pair pair : positionsList) {
-            System.out.println(pair.getKey() +" "+ pair.getValue());
+
+    public List<Piece> getPositions(){return positionsList;}
+
+    boolean checkMove(Piece piece){
+        for(Piece p : this.getPositions()) {
+            if (p.equals(piece)) return true;
         }
+        return false;
     }
 
-    public List<Pair<Integer, Integer>> getPositions(){
-        return positionsList;
-    }
-
-    public boolean checkMove(Pair pair){
-        boolean b=false;
-        for(Pair p : this.getPositions()) {
-            if (p.getKey()== pair.getKey() && p.getValue()==pair.getValue()) b=true;
-        }
-        return b;
-    }
-
-    public boolean checkAllMoves(Player p){
-        List<Pair<Integer, Integer>> intersection = new ArrayList<Pair<Integer, Integer>>(this.positionsList);
+    boolean checkAllMoves(Player p){
+        List<Piece> intersection = new ArrayList<>(this.positionsList);
         intersection.retainAll(p.getPositions());
         return intersection.isEmpty();
     }
 
+    void printPositions(){
+        System.out.println("movements for player "+this.name+":");
+        for(Piece piece : positionsList) {
+            System.out.println(piece.getX() +" "+ piece.getY());
+        }
+    }
 }

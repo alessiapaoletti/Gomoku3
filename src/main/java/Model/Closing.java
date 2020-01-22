@@ -9,20 +9,22 @@ public class Closing {
 
     BoardLogic board;
     String gameType;
-    private HashMap<Pair<String, Integer>, String> map;
+    private HashMap<Pair<String, Integer>, String> closingMap;
 
 
     private void initMap(){
 
-        this.map = new HashMap<>();
+        this.closingMap = new HashMap<>();
 
-        this.map.put(new Pair<>("Standard", 1), "no overlines");
-        this.map.put(new Pair<>("Standard", 2), "no overlines");
-        this.map.put(new Pair<>("Freestyle", 1), "overlines");
-        this.map.put(new Pair<>("Freestyle", 1), "overlines");
-        this.map.put(new Pair<>("Omok", 1), "no overlines");
-        this.map.put(new Pair<>("Omok", 2), "overlines");
+        /*perchè abbiamo bisogno di così tante opzioni?
+        * l'intero cosa rappresenta? */
 
+        this.closingMap.put(new Pair<>("Standard", 1), "no overlines");
+        this.closingMap.put(new Pair<>("Standard", 2), "no overlines");
+        this.closingMap.put(new Pair<>("Freestyle", 1), "overlines");
+        this.closingMap.put(new Pair<>("Freestyle", 1), "overlines");
+        this.closingMap.put(new Pair<>("Omok", 1), "no overlines");
+        this.closingMap.put(new Pair<>("Omok", 2), "overlines");
     }
 
 
@@ -37,7 +39,7 @@ public class Closing {
     **/
     public boolean fullBoard(){
         Stream<Piece> stream = Arrays.stream(this.board.piecesMatrix).flatMap(Arrays::stream);
-        boolean anyZero = stream.map(x -> x.getPlayer()).anyMatch(x -> x.equals(Piece.PieceType.EMPTY));
+        boolean anyZero = stream.map(x -> x.getPieceType()).anyMatch(x -> x.equals(Piece.PieceType.EMPTY));
         return !anyZero;
 
     }
@@ -49,13 +51,13 @@ public class Closing {
 
     public boolean checkWinner(int x, int y) {
 
-        Piece.PieceType player = this.board.piecesMatrix[x][y].getPlayer();
+        Piece.PieceType player = this.board.piecesMatrix[x][y].getPieceType();
 
         Pair<String, Piece.PieceType> p = new Pair<>(this.gameType, player);
 
         boolean result = false;
 
-        if(this.map.get(p) == "no overlines")
+        if(this.closingMap.get(p) == "no overlines")
             result = exactlyFive(x,y, player);
         else
             result = fiveOrMore(x,y,player);
@@ -110,13 +112,13 @@ public class Closing {
         int count = 0;
 
         while (diagX < this.board.boardSize & diagY >= 0 & diagY < this.board.boardSize) {
-            if (this.board.piecesMatrix[diagX][diagY].getPlayer() == player)
+            if (this.board.piecesMatrix[diagX][diagY].getPieceType() == player)
                 count++;
             else
                 count = 0;
 
             if (count == 5)
-                if(this.board.piecesMatrix[diagX+1][diagY+ yIncrement].getPlayer() == player)
+                if(this.board.piecesMatrix[diagX+1][diagY+ yIncrement].getPieceType() == player)
                     return false|overlinesAllowed;
                 else
                     return true;
@@ -136,12 +138,12 @@ public class Closing {
         int count = 0;
 
         for(int i = 0; i< this.board.boardSize; i++){
-            if(this.board.piecesMatrix[i][y].getPlayer() == player)
+            if(this.board.piecesMatrix[i][y].getPieceType() == player)
                 count++;
             else
                 count = 0;
             if(count == 5)
-                if(this.board.piecesMatrix[i+1][y].getPlayer() == player)
+                if(this.board.piecesMatrix[i+1][y].getPieceType() == player)
                     return false|overlinesAllowed;
                 else
                     return true;
@@ -159,12 +161,12 @@ public class Closing {
         int count = 0;
 
         for(int i = 0; i< this.board.boardSize; i++){
-            if(this.board.piecesMatrix[x][i].getPlayer() == player)
+            if(this.board.piecesMatrix[x][i].getPieceType() == player)
                 count++;
             else
                 count = 0;
             if(count == 5)
-                if(this.board.piecesMatrix[x][i+1].getPlayer() == player)
+                if(this.board.piecesMatrix[x][i+1].getPieceType() == player)
                     return false|overlinesAllowed;
                 else
                     return true;
