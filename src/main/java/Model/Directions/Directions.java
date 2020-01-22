@@ -7,6 +7,10 @@ import java.util.Set;
 
 public abstract class Directions {
 
+    protected boolean in = true;
+    protected boolean out = true;
+    protected boolean outOpp = true;
+
     final int range1 = 1;
     final int range2 = 2;
     final int range3 = 3;
@@ -32,15 +36,20 @@ public abstract class Directions {
     }
 
     private void fillIn(int x, int y, int x1, int y1, int x2, int y2, Set<Piece> pieceSet){
-        pieceSet.add(new Piece(x,y));
-        pieceSet.add(new Piece(x1,y1));
-        pieceSet.add(new Piece(x2,y2));
+        pieceSet.add(new Piece(x,y, Piece.PieceType.BLACK));
+        pieceSet.add(new Piece(x1,y1,Piece.PieceType.BLACK));
+        pieceSet.add(new Piece(x2,y2,Piece.PieceType.BLACK));
+        System.out.println("inside fillIN");
+        System.out.println(pieceSet.isEmpty());
     }
 
     void auxiliaryCheck(int sign, int x, int y, int x1, int y1, int x2, int y2, Set<Piece> pieceSet) {
-        if (this.updateIn(x, y, sign) && this.updateOut(x, y, sign)
-                && this.outOfGridCheck(x, y, sign)) {
+//        System.out.println("---------");
+//        System.out.println(this.updateIn(x, y, sign));
+//        System.out.println(this.updateOut(x, y, sign) );
+//        System.out.println(this.outOfGridCheck(x, y, sign));
+//        System.out.println("---------");
+        if (this.updateIn(x, y, sign) && this.updateOut(x, y, sign) && this.outOfGridCheck(x, y, sign))
             this.fillIn(x1, y1, x2, y2, x, y, pieceSet);
-        }
     }
 }

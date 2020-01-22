@@ -1,4 +1,6 @@
 package Model;
+import java.util.Objects;
+
 public class Piece  {
 
     public enum PieceType{
@@ -24,9 +26,6 @@ public class Piece  {
         this.y = y;
     }
 
-
-    //public Pair<Integer, Integer> getCoordinates(){ return new Pair<>(this.x, this.y); }
-
     public int getX() {return this.x; }
     public int getY() {return this.y; }
 
@@ -36,5 +35,29 @@ public class Piece  {
 
     void setPieceType(PieceType p){
         this.pieceType = p;
+    }
+
+    boolean equalsCoordinates(Piece piece){
+        return this.x == piece.getX() && this.y == piece.y;
+    }
+
+    /* Override the equals methods for the Piece class*/
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Piece piece = (Piece) o;
+        return x == piece.x &&
+                y == piece.y &&
+                pieceType.equals(piece.pieceType);
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(x,y,pieceType);
     }
 }

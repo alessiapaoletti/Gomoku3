@@ -1,8 +1,6 @@
 package View;
 
 import javafx.scene.control.ButtonType;
-
-
 public class Alert {
 
     public static String gameOverAlert( String ... winner){

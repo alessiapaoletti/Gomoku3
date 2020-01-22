@@ -15,7 +15,6 @@ public class BoardLogic {
         for (int i = 0; i <= this.boardSize; i++) {
             for (int j = 0; j <= this.boardSize; j++)
                 this.piecesMatrix[i][j] = new Piece(i,j, Piece.PieceType.EMPTY);
-
         }
     }
 
@@ -24,15 +23,15 @@ public class BoardLogic {
     }
 
     public static boolean isPieceBlack(final int x, final int y){
-        Piece newPiece = new Piece(x,y, Piece.PieceType.BLACK);
+        Piece newPiece = new Piece(x,y);
         Player blackPlayer = GomokuGame.getBlackPlayer();
-        return blackPlayer.checkMove(newPiece);
+        return blackPlayer.isPlayerMove(newPiece);
     }
 
     public static boolean isPieceWhite(final int x, final int y){
-        Piece newPiece = new Piece(x,y, Piece.PieceType.WHITE);
+        Piece newPiece = new Piece(x,y);
         Player whitePlayer = GomokuGame.getWhitePlayer();
-        return whitePlayer.checkMove(newPiece);
+        return whitePlayer.isPlayerMove(newPiece);
     }
 
     Piece.PieceType getPiece(final int x, final int y) {
