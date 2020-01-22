@@ -35,12 +35,11 @@ public class Player {
         this.color = color;
     }
 
-
     public List<Piece> getPositions(){return positionsList;}
 
-    boolean checkMove(Piece piece){
+    boolean isPlayerMove(Piece piece){
         for(Piece p : this.getPositions()) {
-            if (p.equals(piece)) return true;
+            if (piece.equalsCoordinates(p)) return true;
         }
         return false;
     }

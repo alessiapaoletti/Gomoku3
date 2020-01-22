@@ -40,8 +40,8 @@ public class GamePlay {
 
 
     public void placePiece(final int x, final int y) {
-
-        this.insertMove(x,y);
+        Piece newPiece = new Piece(x,y);
+        this.insertMove(newPiece);
         this.myBoard.setPiece(x, y,this.currentPlayer);
         //this.checkWinningMove(x,y);
         //this.checkFullBoard();
@@ -52,7 +52,8 @@ public class GamePlay {
 
     public void unplacePiece(final int x, final int y) {
         this.swapPlayers();
-        this.removeMove(x,y);
+        Piece bannedPiece = new Piece(x,y);
+        this.removeMove(bannedPiece);
     }
 
     //utility function to call specific game's opening rule.
@@ -64,15 +65,12 @@ public class GamePlay {
         this.game.setInvalidMoves();
     }
 
-
     public int initialMove(){
         Alert.openingRulesAlert(GomokuGame.getOpeningRulesName());
         return 0;
     }
 
-    private void insertMove(final int x, final int y){
-        Piece newPiece = new Piece(x,y);
-
+    private void insertMove(Piece newPiece){
         if(this.currentPlayer == GomokuGame.getP1().getColor()) {
             GomokuGame.getP1().addPosition(newPiece);
             newPiece.setPieceType(GomokuGame.getP1().getColor());
@@ -83,15 +81,14 @@ public class GamePlay {
         }
     }
 
-    private void removeMove(final int x, final int y){
-        Piece bannedPiece = new Piece(x,y);
+    private void removeMove(Piece bannedPiece){
         Piece.PieceType colorFirstPlayer = GomokuGame.getP1().getColor();
 
         if(this.currentPlayer == colorFirstPlayer)
-            if(GomokuGame.getP1().checkMove(bannedPiece)) GomokuGame.getP1().removePosition(GomokuGame.getP1().getPositions().size()-1);
+            if(GomokuGame.getP1().isPlayerMove(bannedPiece)) GomokuGame.getP1().removePosition(GomokuGame.getP1().getPositions().size()-1);
         else
-            if(GomokuGame.getP2().checkMove(bannedPiece)) GomokuGame.getP2().removePosition(GomokuGame.getP2().getPositions().size()-1);
-        myBoard.setPiece(x,y,Piece.PieceType.EMPTY);  //place empty on the board
+            if(GomokuGame.getP2().isPlayerMove(bannedPiece)) GomokuGame.getP2().removePosition(GomokuGame.getP2().getPositions().size()-1);
+        myBoard.setPiece(bannedPiece.getX(),bannedPiece.getY(),Piece.PieceType.EMPTY);  //place empty on the board
     }
 
     // private method for swapping the players

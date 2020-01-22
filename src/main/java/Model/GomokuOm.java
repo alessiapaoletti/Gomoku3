@@ -20,4 +20,5 @@ public class GomokuOm extends GomokuGame {
 
     @Override
     public String getGameName(){return "Omok";}
+
 }
