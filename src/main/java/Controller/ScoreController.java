@@ -2,8 +2,12 @@ package Controller;
 
 
 import Model.GomokuGame;
+import View.BoardView;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -21,7 +25,9 @@ public class ScoreController implements Initializable {
     @FXML private javafx.scene.control.Label openV;
     @FXML private javafx.scene.control.Button exitB;
 
-    public ScoreController() { }
+    private BoardView myView;
+
+    public ScoreController() {}
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -46,7 +52,7 @@ public class ScoreController implements Initializable {
         Stage stage = (Stage) exitB.getScene().getWindow();
         stage.close();
 
-        Stage stageBoard = (Stage) BoardController.myView.getScene().getWindow();
+        Stage stageBoard = (Stage) this.myView.getScene().getWindow();
         stageBoard.close();
     }
 
@@ -54,8 +60,30 @@ public class ScoreController implements Initializable {
     public void swapLabels(){
         c1Board.setText(GomokuGame.getP2().getColorName());
         c2Board.setText(GomokuGame.getP1().getColorName());
-
     }
+
+    public void setView(BoardView myView){
+        this.myView = myView;
+    }
+
+
+    ScoreController start() throws IOException {
+        URL myFxmlURL = ClassLoader.getSystemResource("ScoreView.fxml");
+
+        FXMLLoader loader = new FXMLLoader(myFxmlURL);
+        Parent root = loader.load();
+
+        Scene myScene = new Scene(root);
+        Stage myStage = new Stage();
+        myStage.setTitle("Score");
+        myStage.setX(135);
+        myStage.setY(65);
+        myStage.setScene(myScene);
+        myStage.show();
+
+        return this;
+    }
+
 
 
 

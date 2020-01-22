@@ -9,7 +9,7 @@ public class Closing {
 
     BoardLogic board;
     String gameType;
-    private HashMap<Pair<String, Integer>, String> closingMap;
+    private HashMap<Pair<String, Piece.PieceType>, String> closingMap;
 
 
     private void initMap(){
@@ -19,12 +19,12 @@ public class Closing {
         /*perchè abbiamo bisogno di così tante opzioni?
         * l'intero cosa rappresenta? */
 
-        this.closingMap.put(new Pair<>("Standard", 1), "no overlines");
-        this.closingMap.put(new Pair<>("Standard", 2), "no overlines");
-        this.closingMap.put(new Pair<>("Freestyle", 1), "overlines");
-        this.closingMap.put(new Pair<>("Freestyle", 1), "overlines");
-        this.closingMap.put(new Pair<>("Omok", 1), "no overlines");
-        this.closingMap.put(new Pair<>("Omok", 2), "overlines");
+        this.closingMap.put(new Pair<>("Standard", Piece.PieceType.BLACK), "no overlines");
+        this.closingMap.put(new Pair<>("Standard", Piece.PieceType.WHITE), "no overlines");
+        this.closingMap.put(new Pair<>("Freestyle", Piece.PieceType.BLACK), "overlines");
+        this.closingMap.put(new Pair<>("Freestyle", Piece.PieceType.BLACK), "overlines");
+        this.closingMap.put(new Pair<>("Omok", Piece.PieceType.BLACK), "no overlines");
+        this.closingMap.put(new Pair<>("Omok", Piece.PieceType.WHITE), "overlines");
     }
 
 

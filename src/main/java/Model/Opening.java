@@ -72,7 +72,7 @@ public class Opening {
 
     private void Swap(){
         if ("YES".equals(Alert.swapAlert())){
-            BoardController.scoreController.swapLabels();
+           // BoardController.scoreController.swapLabels();
             this.utilitySwap("swap");
         }
         checkError();
@@ -80,7 +80,7 @@ public class Opening {
 
     private Boolean Swap2() {
         if ("YES".equals(Alert.swapAlert())){
-            BoardController.scoreController.swapLabels();
+           // BoardController.scoreController.swapLabels();
             this.utilitySwap("swap");
             checkError();
         } else {
@@ -96,7 +96,7 @@ public class Opening {
 
     private void Swap2_1(){
         if ("YES".equals(Alert.swap2_1Alert())) {
-            BoardController.scoreController.swapLabels();
+            //BoardController.scoreController.swapLabels();
             this.utilitySwap("Swap2");
         }
         checkError();

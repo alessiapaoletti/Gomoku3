@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.BoardLogic;
 import Model.GamePlay;
 import Model.GomokuGame;
 import Model.Piece;
@@ -17,20 +18,24 @@ import java.net.URL;
 
 public class BoardController extends Control {
 
-    public static BoardView myView;
-    private GamePlay myGame;
-    public static ScoreController scoreController;
+    private BoardView myView;
+    public GamePlay myGame;
+   // public static ScoreController scoreController;
     private int clicksCount = 0; //clicks count added in order to set the opening moves check.
     private final StackPane sp_mainlayout;
     private static String gameName;
 
-    static String getGameName(){
+    public static String getGameName(){
         return gameName;
     }
 
-    BoardController(int gridSize, GomokuGame game) {
-        this.myView = new BoardView(gridSize);
-        this.myGame = new GamePlay(game, gridSize);
+    public BoardView getMyView(){
+        return myView;
+    }
+
+    public BoardController(GomokuGame game) {
+        this.myView = new BoardView(game.getGridDim());
+        this.myGame = new GamePlay(game, game.getGridDim());
         this.setSkin(new ControlSkin(this));
         this.getChildren().add(this.myView);
 
@@ -40,7 +45,7 @@ public class BoardController extends Control {
     }
 
 
-    void initBoardController(){
+    public void initBoardController(){
         clicksCount =this.myGame.initialMove();
         this.setOnMouseClicked((event) -> {
             clicksCount++;
@@ -118,20 +123,9 @@ public class BoardController extends Control {
         primaryStage.setScene(new Scene(this.sp_mainlayout, 600, 600));
         primaryStage.show();
 
-        URL myFxmlURL = ClassLoader.getSystemResource("ScoreView.fxml");
-
-        FXMLLoader loader = new FXMLLoader(myFxmlURL);
-        Parent root = loader.load();
-        scoreController = loader.getController();
-
-        Scene myScene = new Scene(root);
-        Stage myStage = new Stage();
-        myStage.setTitle("Score");
-        myStage.setX(135);
-        myStage.setY(65);
-        myStage.setScene(myScene);
-        myStage.show();
     }
+
+
 
 
     /* Resize the width and the height of the window when dragging the mouse  */

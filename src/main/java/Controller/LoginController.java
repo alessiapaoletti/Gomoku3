@@ -16,6 +16,8 @@ import java.io.IOException;
 public class LoginController {
 
     private GomokuGame targetGomoku;
+
+
     private ObservableList<String> methods= FXCollections.observableArrayList("Standard","Omok", "Freestyle");
     private ObservableList<String> openings= FXCollections.observableArrayList("Standard","Swap","Swap2");
 
@@ -47,9 +49,14 @@ public class LoginController {
             stage.close();
 
             Stage mainStage = new Stage(StageStyle.DECORATED);
-            BoardController myBoard = new BoardController(targetGomoku.getGridDim(), targetGomoku);
+            BoardController myBoard = new BoardController( targetGomoku);
             myBoard.initBoardController();
             myBoard.start(mainStage);
+
+            ScoreController scoreController = new ScoreController().start();
+            scoreController.setView(myBoard.getMyView());
+
+
         } else {
             Alert.loginAlert();
         }

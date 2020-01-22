@@ -35,7 +35,7 @@ public abstract class GomokuGame {
 
     public void setGridSize(int size){ gridSize = size; }
 
-    public String getGameName(){return " ";}
+    public String getGameName(){return "";}
 
     public static Player getP1() { return p1; }
 
