@@ -9,14 +9,14 @@ public class DirectionFactory {
     private static Map<String, Directions> DirectionMap = new HashMap<>();
 
     static {
-        DirectionMap.put("hor", new Horizontal());
-        DirectionMap.put("horgap", new HorizontalGap());
-        DirectionMap.put("ver", new Vertical());
-        DirectionMap.put("vergap", new VerticalGap());
-        DirectionMap.put("diag1", new Diagonal1());
-        DirectionMap.put("diag1gap", new Diagonal1Gap());
-        DirectionMap.put("diag2", new Diagonal2());
-        DirectionMap.put("diag2gap", new Diagonal2Gap());
+        DirectionMap.put("Horizontal", new Horizontal());
+        DirectionMap.put("HorizontalGap", new HorizontalGap());
+        DirectionMap.put("Vertical", new Vertical());
+        DirectionMap.put("VerticalGap", new VerticalGap());
+        DirectionMap.put("Diagonal1", new Diagonal1());
+        DirectionMap.put("Diagonal1Gap", new Diagonal1Gap());
+        DirectionMap.put("Diagonal2", new Diagonal2());
+        DirectionMap.put("Diagonal2Gap", new Diagonal2Gap());
     }
 
     public static Optional<Directions> getDir(String dir) { return Optional.ofNullable(DirectionMap.get(dir)); }

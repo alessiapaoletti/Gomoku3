@@ -10,7 +10,7 @@ public class Opening {
     private Player player1;
     private Player player2;
     private String method;
-    private int numMoves=0;
+    private int numMoves;
     private Boolean over;
 
     public Opening(Player p1, Player p2, String m){
@@ -27,12 +27,12 @@ public class Opening {
     private HashMap<String, Consumer<Integer>> openingMap = new HashMap<>();
 
     {
-        openingMap.put("Standard", (c) -> { if(c == 2) CheckError(); });
+        openingMap.put("Standard", (c) -> { if(c == 2) checkError(); });
         openingMap.put("Swap", (c) -> { if(c == 3) Swap(); });
         openingMap.put("Swap2", this::whichSwap2 );
     }
 
-    public Consumer<Integer> getOpening(String opening) { return openingMap.get(opening); }
+    private Consumer<Integer> getOpening(String opening) { return openingMap.get(opening); }
 
     void callOpening(int c){
         getOpening(this.method).accept(c);
@@ -44,7 +44,7 @@ public class Opening {
         else if (!this.over) this.Swap2_1();
     }
 
-    private void CheckError(){
+    private void checkError(){
 
         if(!player1.checkAllMoves(player2)){
             throw new Error("place stones in different places");
@@ -52,10 +52,6 @@ public class Opening {
             System.out.println("end of opening moves");
         }
     }
-
-//    private void OpenStd(){
-//        CheckError();
-//    }
 
     private void utilitySwap(String S) {
         player1.addPosition(player2.getPositions().get(0));
@@ -79,17 +75,17 @@ public class Opening {
             BoardController.scoreController.swapLabels();
             this.utilitySwap("swap");
         }
-        CheckError();
+        checkError();
     }
 
     private Boolean Swap2() {
         if ("YES".equals(Alert.swapAlert())){
             BoardController.scoreController.swapLabels();
             this.utilitySwap("swap");
-            CheckError();
+            checkError();
         } else {
             if ("YES".equals(Alert.swap2Alert()))
-                CheckError();
+                checkError();
             else{
                 Alert.swap2Alert2();
                 return false;
@@ -100,8 +96,9 @@ public class Opening {
 
     private void Swap2_1(){
         if ("YES".equals(Alert.swap2_1Alert())) {
+            BoardController.scoreController.swapLabels();
             this.utilitySwap("Swap2");
         }
-        CheckError();
+        checkError();
     }
 }

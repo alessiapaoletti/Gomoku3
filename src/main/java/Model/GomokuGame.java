@@ -45,14 +45,14 @@ public abstract class GomokuGame {
 
     public static String getOpeningRulesName(){ return openingName;}
 
-    public int getNumMovesOpening(){ return openingRules.getNumMoves();}
+    int getNumMovesOpening(){ return openingRules.getNumMoves();}
 
-    public static Player GetBlack(){
+    static Player getBlackPlayer(){
         if(p1.getColor() == Piece.PieceType.BLACK) return p1;
         else return p2;
     }
 
-    public static Player GetWhite(){
+    static Player getWhitePlayer(){
         if(p1.getColor() == Piece.PieceType.WHITE) return p1;
         else return p2;
     }

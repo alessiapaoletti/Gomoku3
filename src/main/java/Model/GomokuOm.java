@@ -16,7 +16,6 @@ public class GomokuOm extends GomokuGame {
     @Override
     public void setInvalidMoves() {
         invalidMoves.threeAndThree();
-        //inv.three_and_three(2);
     }
 
     @Override

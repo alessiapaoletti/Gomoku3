@@ -12,7 +12,6 @@ public class GomokuFree extends GomokuGame{
         invalidMoves =new InvalidMoves();
     }
 
-
     @Override
     public void setInvalidMoves() {}
 

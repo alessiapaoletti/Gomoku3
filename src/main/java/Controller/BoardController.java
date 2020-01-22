@@ -1,11 +1,11 @@
 package Controller;
 
-import Model.BoardLogic;
 import Model.GamePlay;
 import Model.GomokuGame;
 import Model.Piece;
 import View.Alert;
 import View.BoardView;
+import View.ControlSkin;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,17 +18,17 @@ import java.net.URL;
 public class BoardController extends Control {
 
     public static BoardView myView;
-    public GamePlay myGame;
+    private GamePlay myGame;
     public static ScoreController scoreController;
     private int clicksCount = 0; //clicks count added in order to set the opening moves check.
     private final StackPane sp_mainlayout;
     private static String gameName;
 
-    public static String getGameName(){
+    static String getGameName(){
         return gameName;
     }
 
-    public BoardController(int gridSize, GomokuGame game) {
+    BoardController(int gridSize, GomokuGame game) {
         this.myView = new BoardView(gridSize);
         this.myGame = new GamePlay(game, gridSize);
         this.setSkin(new ControlSkin(this));
@@ -40,8 +40,8 @@ public class BoardController extends Control {
     }
 
 
-    public void initBoardController(){
-        clicksCount =this.myGame.InitialMove();
+    void initBoardController(){
+        clicksCount =this.myGame.initialMove();
         this.setOnMouseClicked((event) -> {
             clicksCount++;
 
@@ -82,14 +82,14 @@ public class BoardController extends Control {
     // function that allows the opening functions to work on the board.
     public void startOpening(final double x, final double y, int c){
         this.placePiece(x,y);
-        this.myGame.Opening(c);
+        this.myGame.opening(c);
     }
 
 
     public void startGame(final double x, final double y){
         this.placePiece(x,y);
         try {
-            this.myGame.Rules();
+            this.myGame.rules();
         }
         catch (Error e){
             Alert.invalidMoveAlert(e.toString());

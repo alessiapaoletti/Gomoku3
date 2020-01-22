@@ -19,7 +19,7 @@ public class PieceView extends Group {
     private RadialGradient BLACK_COLOR = new RadialGradient(0.5, 0.5, 0, 0, 1.5, true, CycleMethod.REFLECT, new Stop(0, Color.DARKSLATEGREY), new Stop(1, Color.BLACK));
 
 
-    public PieceView() {
+    PieceView() {
         //this.color = color;
         this.ellipse = new Ellipse();
         this.getChildren().add(this.ellipse);

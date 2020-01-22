@@ -1,6 +1,7 @@
 package Model.Directions;
 
-import Model.Directions.Directions;
+import Model.BoardLogic;
+import Model.Piece;
 import javafx.util.Pair;
 
 import java.util.Set;
@@ -16,8 +17,8 @@ public class Vertical extends Directions {
 
     @Override
     public boolean updateIn(int x, int y, int sign) {
-        return isBlack(x,updateCoord(y,range1,sign)) &&
-                isBlack(x,updateCoord(y,range2,sign));
+        return BoardLogic.isPieceBlack(x,updateCoord(y,range1,sign))
+                && BoardLogic.isPieceBlack(x,updateCoord(y,range2,sign));
     }
 
     @Override
@@ -27,22 +28,11 @@ public class Vertical extends Directions {
                 isEmpty(x,updateCoord(y,range4,sign)) &&
                 isEmpty(x,updateCoord(y,-range2,sign));
     }
-//        return !isBlack(x,updateCoord(y,range3,sign)) && !isBlack(x,updateCoord(y,-range1,sign)) &&
-//                !isBlack(x,updateCoord(y,range4,sign)) && !isBlack(x,updateCoord(y,-range2,sign));
-//    }
-//
-//    @Override
-//    public boolean updateOutOpp(int x, int y, int sign) {
-//        return !isWhite(x,updateCoord(y,range3,sign)) && !isWhite(x,updateCoord(y,-range1,sign)) &&
-//                !isWhite(x,updateCoord(y,range4,sign)) && !isWhite(x,updateCoord(y,-range2,sign));
-//    }
 
     @Override
-    public void Check(int xCord, int yCord, int sign, Set<Pair<Integer,Integer>> aux){
-        int y1=yCord + sign;
-        int y2=yCord + sign*2;
-        int x1=xCord;
-        int x2=xCord;
-        super.Auxiliary_check(sign,xCord,yCord,x1,y1,x2,y2,aux);
+    public void check(int x, int y, int sign, Set<Piece> pieceSet){
+        int y1=y + sign;
+        int y2=y + sign*2;
+        super.auxiliaryCheck(sign,x,y, x,y1, x,y2,pieceSet);
     }
 }

@@ -1,4 +1,4 @@
-package Controller;
+package View;
 import Controller.BoardController;
 
 import javafx.scene.control.SkinBase;
