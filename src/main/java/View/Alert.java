@@ -64,7 +64,7 @@ public class Alert {
 
 
     public static String swapAlert(){
-        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION, "Do you want to Swap ?");
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION, "White player, do you want to Swap ?");
         ButtonType buttonYes = new ButtonType("YES");
         ButtonType buttonNo = new ButtonType("NO");
         alert.getButtonTypes().setAll( buttonYes, buttonNo);
@@ -77,7 +77,7 @@ public class Alert {
     }
 
     public static String swap2Alert(){
-        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION, "Do you want to stay white?");
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION, "White player, do you want to stay white? If yes, put 4th stone, otherwise puts two more stones and after that lets your opponent to choose the colour.");
         ButtonType buttonYes = new ButtonType("YES");
         ButtonType buttonNo = new ButtonType("NO");
         alert.getButtonTypes().setAll( buttonYes, buttonNo);
@@ -96,7 +96,7 @@ public class Alert {
     }
 
     public static String swap2_1Alert(){
-        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION, "Black player you want to Swap ?");
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION, "Black player, you want to Swap ?");
         ButtonType buttonYes = new ButtonType("YES");
         ButtonType buttonNo = new ButtonType("NO");
         alert.getButtonTypes().setAll( buttonYes, buttonNo);

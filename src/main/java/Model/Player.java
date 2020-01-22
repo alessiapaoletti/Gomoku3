@@ -44,9 +44,9 @@ public class Player {
         return false;
     }
 
-    boolean checkAllMoves(Player p){
+    boolean checkAllMoves(Player opponent){
         List<Piece> intersection = new ArrayList<>(this.movesList);
-        intersection.retainAll(p.getMoves());
+        intersection.retainAll(opponent.getMoves());
         return intersection.isEmpty();
     }
 
