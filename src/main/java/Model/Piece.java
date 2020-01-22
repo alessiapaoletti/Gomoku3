@@ -37,4 +37,5 @@ public class Piece  {
     void setPieceType(PieceType p){
         this.pieceType = p;
     }
+
 }
