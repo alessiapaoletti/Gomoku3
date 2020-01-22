@@ -28,10 +28,10 @@ public class PlayerTest {
         Player player =new Player("mario","white");
         //Piece piece = new Piece(Piece.PieceType.WHITE);
         Pair<Integer, Integer> piece = new Pair<>(1,2);
-        player.addPosition(piece);
-        assertEquals(player.getPositions().get(0),piece);
-        player.removePosition(0);
-        assertEquals(player.getPositions().size(),0);
+        player.addMove(piece);
+        assertEquals(player.getMoves().get(0),piece);
+        player.removeMove(0);
+        assertEquals(player.getMoves().size(),0);
     }
 
     /* *  Test constructor,CheckinMoves() */

@@ -44,11 +44,6 @@ public abstract class Directions {
     }
 
     void auxiliaryCheck(int sign, int x, int y, int x1, int y1, int x2, int y2, Set<Piece> pieceSet) {
-//        System.out.println("---------");
-//        System.out.println(this.updateIn(x, y, sign));
-//        System.out.println(this.updateOut(x, y, sign) );
-//        System.out.println(this.outOfGridCheck(x, y, sign));
-//        System.out.println("---------");
         if (this.updateIn(x, y, sign) && this.updateOut(x, y, sign) && this.outOfGridCheck(x, y, sign))
             this.fillIn(x1, y1, x2, y2, x, y, pieceSet);
     }

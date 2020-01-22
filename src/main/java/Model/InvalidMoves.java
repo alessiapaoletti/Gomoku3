@@ -29,8 +29,8 @@ class InvalidMoves {
     void threeAndThree (){
         List<String> directions = Arrays.asList("Horizontal","HorizontalGap","Vertical","VerticalGap",
                 "Diagonal1","Diagonal1Gap", "Diagonal2","Diagonal2Gap");
-        int sizeList = GomokuGame.getBlackPlayer().getPositions().size();
-        Piece lastMove = GomokuGame.getBlackPlayer().getPositions().get(sizeList - 1);
+        int sizeList = GomokuGame.getBlackPlayer().getMoves().size();
+        Piece lastMove = GomokuGame.getBlackPlayer().getMoves().get(sizeList - 1);
         List<Piece> pieceList= new ArrayList<>();
         for (String dir : directions) {
             Set<Piece> pieceSet= new HashSet<>();
@@ -39,7 +39,7 @@ class InvalidMoves {
             //pieceSet.forEach(System.out::println);
             //System.out.println(pieceSet.isEmpty());
 
-            GomokuGame.getBlackPlayer().getPositions().forEach(i -> this.findFork(i, dir,pieceSet));
+            GomokuGame.getBlackPlayer().getMoves().forEach(i -> this.findFork(i, dir,pieceSet));
             //GomokuGame.getBlackPlayer().getPositions().forEach(i -> System.out.println(i.getX()  + " " + i.getY()));
             pieceList.addAll(pieceSet);
         }

@@ -1,6 +1,5 @@
 package Model;
 
-import Controller.BoardController;
 import View.Alert;
 
 import java.util.HashMap;
@@ -54,18 +53,18 @@ public class Opening {
     }
 
     private void utilitySwap(String S) {
-        player1.addPosition(player2.getPositions().get(0));
-        if (S.equals("Swap2")) player1.addPosition(player2.getPositions().get(1));
-        player2.addPosition(player1.getPositions().get(0));
-        player2.addPosition(player1.getPositions().get(1));
+        player1.addMove(player2.getMoves().get(0));
+        if (S.equals("Swap2")) player1.addMove(player2.getMoves().get(1));
+        player2.addMove(player1.getMoves().get(0));
+        player2.addMove(player1.getMoves().get(1));
         if (S.equals("Swap2")) {
-            player2.addPosition(player1.getPositions().get(2));
-            player1.removePosition(2);
+            player2.addMove(player1.getMoves().get(2));
+            player1.removeMove(2);
         }
-        player1.removePosition(1);
-        player1.removePosition(0);
-        if (S.equals("Swap2")) player2.removePosition(1);
-        player2.removePosition(0);
+        player1.removeMove(1);
+        player1.removeMove(0);
+        if (S.equals("Swap2")) player2.removeMove(1);
+        player2.removeMove(0);
         player1.setColor(Piece.PieceType.WHITE);
         player2.setColor(Piece.PieceType.BLACK);
     }
