@@ -1,7 +1,14 @@
 package Model;
+import java.awt.*;
 import java.util.Objects;
 
 public class Piece  {
+
+    private Point position;
+
+    public Point getPosition() {
+        return this.position;
+    }
 
     public enum PieceType{
         NOT_VALID,
@@ -11,23 +18,22 @@ public class Piece  {
         PieceType() {}
     }
 
-    private int x;
-    private int y;
+    //private Point position;
     private PieceType pieceType;
 
     public Piece(int x, int y, PieceType p){
-        this.x = x;
-        this.y = y;
+
+        position = new Point(x,y);
         this.pieceType = p;
     }
 
     public Piece(int x, int y ){
-        this.x = x;
-        this.y = y;
-    }
+        position = new Point(x,y);
 
-    public int getX() {return this.x; }
-    public int getY() {return this.y; }
+    }
+    //metodi Point
+    public int getX() {return (int) position.getX(); }
+    public int getY() {return (int) position.getY(); }
 
     PieceType getPieceType(){
         return this.pieceType;
@@ -38,7 +44,7 @@ public class Piece  {
     }
 
     boolean equalsCoordinates(Piece piece){
-        return this.x == piece.getX() && this.y == piece.y;
+        return this.position.equals(piece.getPosition());
     }
 
     /* Override the equals methods for the Piece class*/
@@ -51,13 +57,12 @@ public class Piece  {
             return false;
         }
         Piece piece = (Piece) o;
-        return x == piece.x &&
-                y == piece.y &&
+        return position.equals(piece.position) &&
                 pieceType.equals(piece.pieceType);
     }
 
     @Override
     public int hashCode(){
-        return Objects.hash(x,y,pieceType);
+        return Objects.hash(position,pieceType);
     }
 }

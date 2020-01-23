@@ -1,4 +1,5 @@
 package Model;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,7 @@ public class Player {
     private Piece.PieceType color;
     private List<Piece> movesList = new ArrayList<>();
 
+    //le stringhe bho??
     public Player(String name,String color){
         this.name = name;
         if(color.equals("Black")) { this.color = Piece.PieceType.BLACK;}
@@ -37,16 +39,16 @@ public class Player {
 
     public List<Piece> getMoves(){return movesList;}
 
-    boolean isPlayerMove(Piece piece){
+    boolean isPlayerMove(Point position){
         for(Piece p : this.getMoves()) {
-            if (piece.equalsCoordinates(p)) return true;
+            if (position.equals(p.getPosition())) return true;
         }
         return false;
     }
 
-    boolean checkAllMoves(Player p){
+    boolean checkAllMoves(Player opponent){
         List<Piece> intersection = new ArrayList<>(this.movesList);
-        intersection.retainAll(p.getMoves());
+        intersection.retainAll(opponent.getMoves());
         return intersection.isEmpty();
     }
 

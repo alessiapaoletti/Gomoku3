@@ -1,5 +1,7 @@
 package Model;
 
+import java.awt.*;
+
 public class BoardLogic {
 
     Piece[][] piecesMatrix; // matrix for the internal representation of the board and the pieces that are in place
@@ -23,15 +25,18 @@ public class BoardLogic {
     }
 
     public static boolean isPieceBlack(final int x, final int y){
-        Piece newPiece = new Piece(x,y);
         Player blackPlayer = GomokuGame.getBlackPlayer();
-        return blackPlayer.isPlayerMove(newPiece);
+        return blackPlayer.isPlayerMove(new Point(x,y));
     }
+    /*public static boolean isPieceBlack(Point move){
+
+        return blackPlayer.isPlayerMove(move);
+    }
+     */
 
     public static boolean isPieceWhite(final int x, final int y){
-        Piece newPiece = new Piece(x,y);
         Player whitePlayer = GomokuGame.getWhitePlayer();
-        return whitePlayer.isPlayerMove(newPiece);
+        return whitePlayer.isPlayerMove(new Point(x,y));
     }
 
     Piece.PieceType getPiece(final int x, final int y) {
