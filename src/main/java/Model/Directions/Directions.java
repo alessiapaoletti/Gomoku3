@@ -47,8 +47,8 @@ public abstract class Directions {
 
     boolean isPieceIn(final int x, final int y, Piece.PieceType color){
         if(color == Piece.PieceType.BLACK)
-            return black.isPlayerMove(new Piece(x,y));
+            return black.isPlayerMove(new Piece(x,y, Piece.PieceType.BLACK));
         else
-            return white.isPlayerMove(new Piece(x,y));
+            return white.isPlayerMove(new Piece(x,y, Piece.PieceType.WHITE));
     }
 }
