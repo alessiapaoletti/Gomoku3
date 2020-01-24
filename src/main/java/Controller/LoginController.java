@@ -3,8 +3,9 @@ import Model.*;
 
 import View.Alert;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
+
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.ChoiceBox;
@@ -13,10 +14,11 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
+
 public class LoginController {
 
     private GomokuGame targetGomoku;
-
+    private BoardController boardController;
 
     private ObservableList<String> methods= FXCollections.observableArrayList("Standard","Omok", "Freestyle");
     private ObservableList<String> openings= FXCollections.observableArrayList("Standard","Swap","Swap2");
@@ -26,6 +28,7 @@ public class LoginController {
     @FXML private javafx.scene.control.TextField player2;
     @FXML private ChoiceBox choice;
     @FXML private ChoiceBox choiceOpening;
+
 
     public LoginController() {}
 
@@ -49,12 +52,12 @@ public class LoginController {
             stage.close();
 
             Stage mainStage = new Stage(StageStyle.DECORATED);
-            BoardController myBoard = new BoardController( targetGomoku);
-            myBoard.initBoardController();
-            myBoard.start(mainStage);
+            this.boardController = new BoardController( targetGomoku);
+            this.boardController.initBoardController();
+            this.boardController.start(mainStage);
 
-            ScoreController scoreController = new ScoreController().start();
-            scoreController.setView(myBoard.getMyView());
+            ScoreController scoreController = new ScoreController(this.targetGomoku, this.boardController.getMyView());
+            scoreController.start();
 
 
         } else {
