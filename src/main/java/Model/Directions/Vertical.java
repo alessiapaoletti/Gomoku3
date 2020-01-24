@@ -16,9 +16,9 @@ public class Vertical extends Directions {
     }
 
     @Override
-    public boolean updateIn(int x, int y, int sign) {
-        return BoardLogic.isPieceBlack(x,updateCoord(y,range1,sign))
-                && BoardLogic.isPieceBlack(x,updateCoord(y,range2,sign));
+    public boolean updateIn(int x, int y, int sign,String col) {
+        return super.isPieceIn(x,updateCoord(y,range1,sign),col)
+                && super.isPieceIn(x,updateCoord(y,range2,sign),col);
     }
 
     @Override
@@ -34,5 +34,17 @@ public class Vertical extends Directions {
         int y1=y + sign;
         int y2=y + sign*2;
         super.auxiliaryCheck(sign,x,y, x,y1, x,y2,pieceSet);
+    }
+
+    public boolean consecutiveFivePiece(int x, int y, int sign,String col) {
+        return updateIn(x, y, sign,col)
+                && super.isPieceIn(x, updateCoord(y, range3, sign),col)
+                && super.isPieceIn(x, updateCoord(y, range4, sign),col);
+    }
+
+    @Override
+    public boolean FiveBoundaries(int x, int y, int sign, String col) {
+        return !super.isPieceIn(x,updateCoord(y, -range1, sign), col)
+                && !super.isPieceIn(x,updateCoord(y, range5, sign), col);
     }
 }

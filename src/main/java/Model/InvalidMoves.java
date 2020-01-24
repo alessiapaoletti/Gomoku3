@@ -3,11 +3,18 @@ import Model.Directions.DirectionFactory;
 import Model.Directions.Directions;
 import java.util.*;
 
+/**
+ * -three and three è un caso particolare di InvalidMoves...
+ * al momento è una funzione dentro invalidMoves */
 class InvalidMoves {
-    InvalidMoves(){ }
+    int dim_board;
+    InvalidMoves(){}
+
+    public void SetDimBoard(int dim){this.dim_board=dim;}
 
     private void findFork(Piece piece, String direction,Set<Piece> pieceSet){
         Directions dir = DirectionFactory.getDir(direction).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
+        dir.Setdim(this.dim_board);
         dir.check(piece.getX(), piece.getY(),-1,pieceSet);
         dir.check(piece.getX(), piece.getY(),1,pieceSet);
    }
@@ -34,13 +41,7 @@ class InvalidMoves {
         List<Piece> pieceList= new ArrayList<>();
         for (String dir : directions) {
             Set<Piece> pieceSet= new HashSet<>();
-
-            //System.out.println("set inside the 3 and 3 function");
-            //pieceSet.forEach(System.out::println);
-            //System.out.println(pieceSet.isEmpty());
-
             GomokuGame.getBlackPlayer().getMoves().forEach(i -> this.findFork(i, dir,pieceSet));
-            //GomokuGame.getBlackPlayer().getPositions().forEach(i -> System.out.println(i.getX()  + " " + i.getY()));
             pieceList.addAll(pieceSet);
         }
         this.checkError(lastMove,pieceList);

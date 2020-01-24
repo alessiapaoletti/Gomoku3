@@ -39,9 +39,9 @@ public class Player {
 
     public List<Piece> getMoves(){return movesList;}
 
-    boolean isPlayerMove(Point position){
+    public boolean isPlayerMove(Piece piece){
         for(Piece p : this.getMoves()) {
-            if (position.equals(p.getPosition())) return true;
+            if (piece.samePosition(p)) return true;
         }
         return false;
     }

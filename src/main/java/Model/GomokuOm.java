@@ -14,7 +14,8 @@ public class GomokuOm extends GomokuGame {
     }
 
     @Override
-    public void setInvalidMoves() {
+    public void setInvalidMoves(int dim) {
+        invalidMoves.SetDimBoard(dim);
         invalidMoves.threeAndThree();
     }
 
