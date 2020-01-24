@@ -28,6 +28,7 @@ public class ScoreController extends Control {
         StackPane stackPane = new StackPane();
         stackPane.getChildren().add(this.scoreView);
         Stage primaryStage = new Stage();
+        primaryStage.setX(1080);
         primaryStage.setTitle("Score ");
         primaryStage.setScene(new Scene(stackPane, 190, 200));
         primaryStage.show();

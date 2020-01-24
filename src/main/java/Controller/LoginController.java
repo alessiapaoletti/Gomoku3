@@ -52,7 +52,7 @@ public class LoginController {
             stage.close();
 
             Stage mainStage = new Stage(StageStyle.DECORATED);
-            this.boardController = new BoardController( targetGomoku);
+            this.boardController = new BoardController(targetGomoku);
             this.boardController.initBoardController();
             this.boardController.start(mainStage);
 

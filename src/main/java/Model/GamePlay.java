@@ -1,28 +1,23 @@
 package Model;
 import View.Alert;
 
-import java.awt.*;
-
 public class GamePlay {
 
     private BoardLogic myBoard;
     private Piece.PieceType currentPlayer;
     private GomokuGame game;
     private Closing closing;
-    private String OpeningName;
 
     public GamePlay(GomokuGame game, int gridSize) {
         this.myBoard = new BoardLogic(gridSize);
         this.game = game;
         this.game.initGame();
         String gameName = this.game.getGameName();
-        this.OpeningName= this.game.getOpeningRulesName();
         this.currentPlayer = Piece.PieceType.BLACK;
         this.closing = ClosingFactory.getClosing(gameName).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
-        this.closing.setPlayers(this.game.getBlackPlayer(),this.game.getWhitePlayer());
     }
 
-    private Player GetcurrentPlayer(){
+    public Player getCurrentPlayer(){
         if(this.currentPlayer==game.getP1().getColor())
             return game.getP1();
         else
@@ -31,20 +26,15 @@ public class GamePlay {
 
 
     public String checkWinningMove(){
-       // Piece winningPiece = new Piece(x,y,this.currentPlayer);
         String winner_name = "";
-        this.closing.setPlayers(this.game.getBlackPlayer(),this.game.getWhitePlayer());
-        if(this.closing.isWinning(this.GetcurrentPlayer().getMoves()))
-            winner_name=this.GetcurrentPlayer().getName();
+        if(this.closing.isWinning(this.getCurrentPlayer().getMoves()))
+            winner_name=this.getCurrentPlayer().getName();
         return winner_name;
     }
 
     public boolean checkFullBoard(){
-
-        return this.closing.fullBoard(this.myBoard.boardSize);
-           // BoardController.gameOver();
+        return this.closing.fullBoard(this.myBoard.boardSize,this.game.getP1().getMoves().size(),this.game.getP2().getMoves().size());
     }
-
 
     public void placePiece(final int x, final int y) {
         Piece newPiece = new Piece(x,y);
@@ -75,16 +65,15 @@ public class GamePlay {
     }
 
     private void insertMove(Piece newPiece){
-        newPiece.setPieceType(GetcurrentPlayer().getColor());
-        this.GetcurrentPlayer().addMove(newPiece);
+        newPiece.setPieceType(getCurrentPlayer().getColor());
+        this.getCurrentPlayer().addMove(newPiece);
     }
 
 
     private void removeMove(Piece bannedPiece){
-        if(this.GetcurrentPlayer().isPlayerMove(bannedPiece)) this.GetcurrentPlayer().removeMove(this.GetcurrentPlayer().getMoves().size()-1);
+        if(this.getCurrentPlayer().isPlayerMove(bannedPiece)) this.getCurrentPlayer().removeMove(this.getCurrentPlayer().getMoves().size()-1);
         myBoard.setPiece(bannedPiece.getX(),bannedPiece.getY(),Piece.PieceType.EMPTY);  //place empty on the board
     }
-
 
     // private method for swapping the players
     public void swapPlayers() {
@@ -105,9 +94,5 @@ public class GamePlay {
     }
 
     public int getNumMovesOpening(){ return this.game.getNumMovesOpening();}
-
-    public Piece.PieceType getCurrentPlayer(){
-        return currentPlayer;
-    }
 
 }

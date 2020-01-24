@@ -168,8 +168,6 @@ public class BoardView extends Pane{
     }
 
 
-    //public PieceView getPiece(int x, int y){return this.pieces[x][y]; }
-
     public void setPiece(int x, int y,final Piece.PieceType color){
         this.pieces[x][y].setPiece(color);
     }
