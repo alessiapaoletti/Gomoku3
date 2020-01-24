@@ -1,4 +1,5 @@
 package Model;
+import java.awt.*;
 import java.util.Objects;
 
 public class Piece  {
@@ -11,9 +12,10 @@ public class Piece  {
         PieceType() {}
     }
 
+    //private Point position;
     private int x;
     private int y;
-    private PieceType pieceType;
+    public PieceType pieceType;
 
     public Piece(int x, int y, PieceType p){
         this.x = x;
@@ -21,13 +23,20 @@ public class Piece  {
         this.pieceType = p;
     }
 
-    public Piece(int x, int y ){
+    public Piece(int x, int y){
         this.x = x;
         this.y = y;
+        this.pieceType = PieceType.EMPTY;
+    }
+
+    boolean samePosition(Piece piece) {return this.x ==piece.x && this.y == piece.y ; }
+
+    boolean sameColor(Piece piece){
+        return this.pieceType == piece.pieceType;
     }
 
     public int getX() {return this.x; }
-    public int getY() {return this.y; }
+    public int getY() {return this.y;  }
 
     PieceType getPieceType(){
         return this.pieceType;
@@ -37,9 +46,10 @@ public class Piece  {
         this.pieceType = p;
     }
 
-    boolean equalsCoordinates(Piece piece){
-        return this.x == piece.getX() && this.y == piece.y;
-    }
+//
+//    boolean equalsCoordinates(Piece piece){
+//        return this.position.equals(piece.getPosition());
+//    }
 
     /* Override the equals methods for the Piece class*/
     @Override

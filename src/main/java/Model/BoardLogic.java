@@ -22,17 +22,6 @@ public class BoardLogic {
         return (x >= 0 && x < this.boardSize) && (y >= 0 && y < this.boardSize);
     }
 
-    public static boolean isPieceBlack(final int x, final int y){
-        Piece newPiece = new Piece(x,y);
-        Player blackPlayer = GomokuGame.getBlackPlayer();
-        return blackPlayer.isPlayerMove(newPiece);
-    }
-
-    public static boolean isPieceWhite(final int x, final int y){
-        Piece newPiece = new Piece(x,y);
-        Player whitePlayer = GomokuGame.getWhitePlayer();
-        return whitePlayer.isPlayerMove(newPiece);
-    }
 
     Piece.PieceType getPiece(final int x, final int y) {
         if (isOutOfGrid(x, y))
@@ -43,6 +32,8 @@ public class BoardLogic {
     void setPiece(final int x, final int y, Piece.PieceType player){
         this.piecesMatrix[x][y].setPieceType(player);
     }
+
+
 }
 
 

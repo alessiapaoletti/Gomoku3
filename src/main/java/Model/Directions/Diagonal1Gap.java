@@ -13,15 +13,15 @@ public class Diagonal1Gap extends Directions {
     public boolean outOfGridCheck(int x, int y, int sign) {
         return !(isOutOfGrid(updateCoord(x,range4,sign),updateCoord(y,range4,sign)) && isOutOfGrid(updateCoord(x,-range1,sign),updateCoord(y,-range1,sign))) &&
                 !(isOutOfGrid(updateCoord(x,range5,sign),updateCoord(y,range5,sign)) && isOutOfGrid(updateCoord(x,-range1,sign),updateCoord(y,-range1,sign))) &&
-                !(isOutOfGrid(updateCoord(x,range4,sign),updateCoord(y,range4,sign)) && BoardLogic.isPieceWhite(updateCoord(x,-range1,sign),updateCoord(y,-range1,sign))) &&
-                !(BoardLogic.isPieceWhite(updateCoord(x,range4,sign),updateCoord(y,range4,sign)) && isOutOfGrid(updateCoord(x,-range1,sign),updateCoord(y,-range1,sign)));
+                !(isOutOfGrid(updateCoord(x,range4,sign),updateCoord(y,range4,sign)) && super.isPieceIn(updateCoord(x,-range1,sign),updateCoord(y,-range1,sign),"white")) &&
+                !(super.isPieceIn(updateCoord(x,range4,sign),updateCoord(y,range4,sign),"white") && isOutOfGrid(updateCoord(x,-range1,sign),updateCoord(y,-range1,sign)));
     }
 
 
     @Override
-    public boolean updateIn(int x, int y, int sign) {
-        return BoardLogic.isPieceBlack(updateCoord(x,range2,sign),updateCoord(y,range2,sign))
-                && BoardLogic.isPieceBlack(updateCoord(x,range3,sign),updateCoord(y,range3,sign));
+    public boolean updateIn(int x, int y, int sign,String col) {
+        return super.isPieceIn(updateCoord(x,range2,sign),updateCoord(y,range2,sign),col)
+                && super.isPieceIn(updateCoord(x,range3,sign),updateCoord(y,range3,sign),col);
     }
 
     @Override
@@ -39,4 +39,15 @@ public class Diagonal1Gap extends Directions {
         int y2=yCord+ sign*3;
         super.auxiliaryCheck(sign,xCord,yCord,x1,y1,x2,y2,pieceSet);
     }
+
+    @Override
+    public boolean consecutiveFivePiece(int x, int y, int sign,String col) {
+        return false;
+    }
+
+    @Override
+    public boolean FiveBoundaries(int x, int y, int sign, String col) {
+        return false;
+    }
+
 }

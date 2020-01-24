@@ -11,15 +11,15 @@ public class HorizontalGap extends Directions {
     public boolean outOfGridCheck(int x, int y, int sign) {
         return !(isOutOfGrid(updateCoord(x,range4,sign),y) && isOutOfGrid(updateCoord(x,-range1,sign),y)) &&
                 !(isOutOfGrid(updateCoord(x,range5,sign),y) && isOutOfGrid(updateCoord(x,-range1,sign),y)) &&
-                !(isOutOfGrid(updateCoord(x,range4,sign),y) && BoardLogic.isPieceWhite(updateCoord(x,-range1,sign),y)) &&
-                !(BoardLogic.isPieceWhite(updateCoord(x,range4,sign),y) && isOutOfGrid(updateCoord(x,-range1,sign),y));
+                !(isOutOfGrid(updateCoord(x,range4,sign),y) && super.isPieceIn(updateCoord(x,-range1,sign),y,"white")) &&
+                !(super.isPieceIn(updateCoord(x,range4,sign),y,"white") && isOutOfGrid(updateCoord(x,-range1,sign),y));
     }
 
 
     @Override
-    public boolean updateIn(int x, int y, int sign) {
-        return BoardLogic.isPieceBlack(updateCoord(x,range2,sign),y)  &&
-                BoardLogic.isPieceBlack(updateCoord(x,range3,sign) , y);
+    public boolean updateIn(int x, int y, int sign,String col) {
+        return super.isPieceIn(updateCoord(x,range2,sign),y,col)  &&
+                super.isPieceIn(updateCoord(x,range3,sign) , y,col);
     }
 
     @Override
@@ -34,5 +34,15 @@ public class HorizontalGap extends Directions {
         int x1=x + sign * 2 ;
         int x2=x + sign*3;
         super.auxiliaryCheck(sign,x,y,x1, y,x2, y,pieceSet);
+    }
+
+    @Override
+    public boolean consecutiveFivePiece(int x, int y, int sign,String col) {
+        return false;
+    }
+
+    @Override
+    public boolean FiveBoundaries(int x, int y, int sign, String col) {
+        return false;
     }
 }

@@ -16,7 +16,7 @@ public class GomokuStd extends GomokuGame {
     }
 
     @Override
-    public void setInvalidMoves(){}
+    public void setInvalidMoves(int dim){}
 
     @Override
     public String getGameName(){return "Standard";}

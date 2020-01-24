@@ -20,7 +20,7 @@ public abstract class GomokuGame {
 
     public abstract void initGame();
 
-    public void setInvalidMoves() {}
+    public void setInvalidMoves(int dim) {}
 
     public void setPlayers(Player p1, Player p2){
         System.out.println(p1.getColor());
@@ -47,12 +47,12 @@ public abstract class GomokuGame {
 
     int getNumMovesOpening(){ return openingRules.getNumMoves();}
 
-    static Player getBlackPlayer(){
+    public static Player getBlackPlayer(){
         if(p1.getColor() == Piece.PieceType.BLACK) return p1;
         else return p2;
     }
 
-    static Player getWhitePlayer(){
+    public static Player getWhitePlayer(){
         if(p1.getColor() == Piece.PieceType.WHITE) return p1;
         else return p2;
     }
