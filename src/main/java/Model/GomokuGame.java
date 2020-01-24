@@ -2,12 +2,12 @@ package Model;
 
 
 public abstract class GomokuGame {
-    private static   Player p1;
+    private static Player p1;
     private static Player p2;
-    private static int gridSize;
+    private int gridSize;
 
-    static String openingName;
-    static Opening openingRules;
+    String openingName;
+    Opening openingRules;
     InvalidMoves invalidMoves;
     public String gameName;
     String OpeningName;
@@ -15,7 +15,7 @@ public abstract class GomokuGame {
 
     public GomokuGame(){
         this.gameName = getGameName();
-        this.OpeningName = GomokuGame.getOpeningRulesName();
+        this.OpeningName = this.getOpeningRulesName();
     }
 
     public abstract void initGame();
@@ -25,8 +25,8 @@ public abstract class GomokuGame {
     public void setPlayers(Player p1, Player p2){
         System.out.println(p1.getColor());
         System.out.println(p2.getColor());
-        GomokuGame.p1 = p1;
-        GomokuGame.p2 = p2;
+        this.p1 = p1;
+        this.p2 = p2;
     }
 
     public void callOpeningRules(int clicksCount){ openingRules.callOpening(clicksCount); }
@@ -37,13 +37,13 @@ public abstract class GomokuGame {
 
     public String getGameName(){return "";}
 
-    public static Player getP1() { return p1; }
+    public Player getP1() { return this.p1; }
 
-    public static Player getP2() { return p2; }
+    public Player getP2() { return this.p2; }
 
-    public static int getGridDim() { return gridSize;  }
+    public int getGridDim() { return gridSize;  }
 
-    public static String getOpeningRulesName(){ return openingName;}
+    public String getOpeningRulesName(){ return openingName;}
 
     int getNumMovesOpening(){ return openingRules.getNumMoves();}
 
