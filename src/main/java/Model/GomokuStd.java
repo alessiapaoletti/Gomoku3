@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.List;
+
 public class GomokuStd extends GomokuGame {
 
     GomokuStd(){}

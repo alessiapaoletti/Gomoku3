@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.List;
+
 public class GomokuOm extends GomokuGame {
 
     @Override
@@ -16,6 +18,7 @@ public class GomokuOm extends GomokuGame {
     @Override
     public void setInvalidMoves(int dim) {
         invalidMoves.SetDimBoard(dim);
+        invalidMoves.setPlayers(super.getBlackPlayer(),super.getWhitePlayer());
         invalidMoves.threeAndThree();
     }
 

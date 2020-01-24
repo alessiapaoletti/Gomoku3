@@ -1,9 +1,11 @@
 package Model;
 
 
+import java.util.List;
+
 public abstract class GomokuGame {
-    private static Player p1;
-    private static Player p2;
+    private  Player p1;
+    private  Player p2;
     private int gridSize;
 
     String openingName;
@@ -47,12 +49,12 @@ public abstract class GomokuGame {
 
     int getNumMovesOpening(){ return openingRules.getNumMoves();}
 
-    public static Player getBlackPlayer(){
+    public Player getBlackPlayer(){
         if(p1.getColor() == Piece.PieceType.BLACK) return p1;
         else return p2;
     }
 
-    public static Player getWhitePlayer(){
+    public Player getWhitePlayer(){
         if(p1.getColor() == Piece.PieceType.WHITE) return p1;
         else return p2;
     }

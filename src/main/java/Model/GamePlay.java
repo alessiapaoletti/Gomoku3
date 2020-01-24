@@ -19,6 +19,7 @@ public class GamePlay {
         this.OpeningName= this.game.getOpeningRulesName();
         this.currentPlayer = Piece.PieceType.BLACK;
         this.closing = ClosingFactory.getClosing(gameName).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
+        this.closing.setPlayers(this.game.getBlackPlayer(),this.game.getWhitePlayer());
     }
 
     private Player GetcurrentPlayer(){
@@ -32,13 +33,15 @@ public class GamePlay {
     public String checkWinningMove(){
        // Piece winningPiece = new Piece(x,y,this.currentPlayer);
         String winner_name = "";
+        this.closing.setPlayers(this.game.getBlackPlayer(),this.game.getWhitePlayer());
         if(this.closing.isWinning(this.GetcurrentPlayer().getMoves()))
             winner_name=this.GetcurrentPlayer().getName();
         return winner_name;
     }
 
     public boolean checkFullBoard(){
-        return this.closing.fullBoard(this.myBoard.boardSize,this.game.getP1().getMoves().size(),this.game.getP2().getMoves().size());
+
+        return this.closing.fullBoard(this.myBoard.boardSize);
            // BoardController.gameOver();
     }
 
@@ -47,9 +50,6 @@ public class GamePlay {
         Piece newPiece = new Piece(x,y);
         this.insertMove(newPiece);
         this.myBoard.setPiece(x, y,this.currentPlayer);
-        //this.checkWinningMove(x,y);
-        //this.checkFullBoard();
-        //this.swapPlayers(); //cambia il colore
         this.printAllMoves();
 
     }
@@ -77,25 +77,11 @@ public class GamePlay {
     private void insertMove(Piece newPiece){
         newPiece.setPieceType(GetcurrentPlayer().getColor());
         this.GetcurrentPlayer().addMove(newPiece);
-        /*if(this.currentPlayer == GomokuGame.getP1().getColor()) {
-            newPiece.setPieceType(GomokuGame.getP1().getColor());
-            GomokuGame.getP1().addMove(newPiece);
-
-        }
-        else {
-            newPiece.setPieceType(GomokuGame.getP2().getColor());
-            GomokuGame.getP2().addMove(newPiece);
-        }*/
     }
 
 
     private void removeMove(Piece bannedPiece){
-        //Piece.PieceType colorFirstPlayer = GomokuGame.getP1().getColor();
         if(this.GetcurrentPlayer().isPlayerMove(bannedPiece)) this.GetcurrentPlayer().removeMove(this.GetcurrentPlayer().getMoves().size()-1);
-       /* if(this.currentPlayer == colorFirstPlayer)
-            if(GomokuGame.getP1().isPlayerMove(bannedPiece)) GomokuGame.getP1().removeMove(GomokuGame.getP1().getMoves().size()-1);
-        else
-            if(GomokuGame.getP2().isPlayerMove(bannedPiece)) GomokuGame.getP2().removeMove(GomokuGame.getP2().getMoves().size()-1);*/
         myBoard.setPiece(bannedPiece.getX(),bannedPiece.getY(),Piece.PieceType.EMPTY);  //place empty on the board
     }
 
