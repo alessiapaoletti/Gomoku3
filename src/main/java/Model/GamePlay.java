@@ -1,20 +1,25 @@
 package Model;
 import View.Alert;
 
+import java.awt.*;
+
 public class GamePlay {
 
     private BoardLogic myBoard;
     private Piece.PieceType currentPlayer;
     private GomokuGame game;
     private Closing closing;
+    private String OpeningName;
 
     public GamePlay(GomokuGame game, int gridSize) {
         this.myBoard = new BoardLogic(gridSize);
         this.game = game;
         this.game.initGame();
         String gameName = this.game.getGameName();
+        this.OpeningName= this.game.getOpeningRulesName();
         this.currentPlayer = Piece.PieceType.BLACK;
         this.closing = ClosingFactory.getClosing(gameName).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
+        this.closing.setPlayers(this.game.getBlackPlayer(),this.game.getWhitePlayer());
     }
 
     public Player getCurrentPlayer(){
@@ -27,14 +32,17 @@ public class GamePlay {
 
     public String checkWinningMove(){
         String winner_name = "";
+        this.closing.setPlayers(this.game.getBlackPlayer(),this.game.getWhitePlayer());
         if(this.closing.isWinning(this.getCurrentPlayer().getMoves()))
             winner_name=this.getCurrentPlayer().getName();
         return winner_name;
     }
 
     public boolean checkFullBoard(){
-        return this.closing.fullBoard(this.myBoard.boardSize,this.game.getP1().getMoves().size(),this.game.getP2().getMoves().size());
+        return this.closing.fullBoard(this.myBoard.boardSize);
+           // BoardController.gameOver();
     }
+
 
     public void placePiece(final int x, final int y) {
         Piece newPiece = new Piece(x,y);
@@ -75,6 +83,7 @@ public class GamePlay {
         myBoard.setPiece(bannedPiece.getX(),bannedPiece.getY(),Piece.PieceType.EMPTY);  //place empty on the board
     }
 
+
     // private method for swapping the players
     public void swapPlayers() {
         if (this.currentPlayer == Piece.PieceType.WHITE) {
@@ -94,5 +103,7 @@ public class GamePlay {
     }
 
     public int getNumMovesOpening(){ return this.game.getNumMovesOpening();}
+
+
 
 }
