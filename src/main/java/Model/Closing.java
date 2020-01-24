@@ -2,14 +2,13 @@ package Model;
 import Model.Directions.DirectionFactory;
 import Model.Directions.Directions;
 import java.util.*;
-import java.util.stream.Stream;
 
 abstract class Closing {
     private Player black;
     private Player white;
     Closing (){}
 
-    public void setPlayers(Player p1, Player p2){
+    void setPlayers(Player p1, Player p2){
         this.black=p1;
         this.white=p2;
     }
@@ -19,8 +18,8 @@ abstract class Closing {
     private boolean findFive(Piece piece, String direction){
         Directions dir = DirectionFactory.getDir(direction).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
         dir.setPlayers(black,white);
-        return (dir.consecutiveFivePiece(piece.getX(), piece.getY(), -1, piece.pieceType.name()) && this.checkCount(piece,direction,-1))
-                || (dir.consecutiveFivePiece(piece.getX(), piece.getY(), 1, piece.pieceType.name()) && this.checkCount(piece,direction,1));
+        return (dir.consecutiveFivePiece(piece.getX(), piece.getY(), -1, piece.pieceType) && this.checkCount(piece,direction,-1))
+                || (dir.consecutiveFivePiece(piece.getX(), piece.getY(), 1, piece.pieceType) && this.checkCount(piece,direction,1));
     }
 
     boolean isWinning(List<Piece> moves) {

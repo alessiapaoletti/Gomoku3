@@ -1,8 +1,6 @@
 package Model.Directions;
 
-import Model.BoardLogic;
 import Model.Piece;
-import javafx.util.Pair;
 
 import java.util.Set;
 
@@ -16,7 +14,7 @@ public class Vertical extends Directions {
     }
 
     @Override
-    public boolean updateIn(int x, int y, int sign,String col) {
+    public boolean updateIn(int x, int y, int sign,Piece.PieceType col) {
         return super.isPieceIn(x,updateCoord(y,range1,sign),col)
                 && super.isPieceIn(x,updateCoord(y,range2,sign),col);
     }
@@ -36,14 +34,14 @@ public class Vertical extends Directions {
         super.auxiliaryCheck(sign,x,y, x,y1, x,y2,pieceSet);
     }
 
-    public boolean consecutiveFivePiece(int x, int y, int sign,String col) {
+    public boolean consecutiveFivePiece(int x, int y, int sign,Piece.PieceType col) {
         return updateIn(x, y, sign,col)
                 && super.isPieceIn(x, updateCoord(y, range3, sign),col)
                 && super.isPieceIn(x, updateCoord(y, range4, sign),col);
     }
 
     @Override
-    public boolean FiveBoundaries(int x, int y, int sign, String col) {
+    public boolean fiveBoundaries(int x, int y, int sign, Piece.PieceType col) {
         return !super.isPieceIn(x,updateCoord(y, -range1, sign), col)
                 && !super.isPieceIn(x,updateCoord(y, range5, sign), col);
     }

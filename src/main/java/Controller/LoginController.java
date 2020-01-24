@@ -44,8 +44,8 @@ public class LoginController {
 
         if (!(player1.getText().equals("")) && !(player2.getText().equals(""))) {
 
-            Player p1 = new Player(player1.getText(),"Black");
-            Player p2 = new Player(player2.getText(), "White");
+            Player p1 = new Player(player1.getText(), Piece.PieceType.BLACK);
+            Player p2 = new Player(player2.getText(), Piece.PieceType.WHITE);
 
             startGameUsingFactory(p1, p2, choice.getSelectionModel().getSelectedItem().toString(), choiceOpening.getSelectionModel().getSelectedItem().toString());
             Stage stage = (Stage) eBottim.getScene().getWindow();
