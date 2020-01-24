@@ -66,7 +66,7 @@ public class BoardController extends Control {
         System.out.println(cellY);
 
         if(this.myGame.isValidMove(cellX, cellY)){
-            this.myView.setPiece(cellX, cellY, this.myGame.getCurrentPlayer());
+            this.myView.setPiece(cellX, cellY, this.myGame.getCurrentPlayer().getColor());
             this.myGame.placePiece(cellX, cellY);
 
             if(this.myGame.checkFullBoard())

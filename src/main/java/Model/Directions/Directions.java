@@ -3,14 +3,13 @@ package Model.Directions;
 
 import Model.GomokuGame;
 import Model.Piece;
+import Model.Player;
 
 import java.util.Set;
 
 public abstract class Directions {
-
-   /* protected boolean in = true;
-    protected boolean out = true;
-    protected boolean outOpp = true;*/
+    private Player black;
+    private Player white;
     int dim_board;
     final int range1 = 1;
     final int range2 = 2;
@@ -18,6 +17,10 @@ public abstract class Directions {
     final int range4 = 4;
     final int range5 = 5;
 
+    public void setPlayers(Player p1, Player p2){
+        this.black=p1;
+        this.white=p2;
+    }
     public abstract  boolean outOfGridCheck(int x, int y, int sign);
     public abstract boolean updateIn(int x, int y, int sign ,String col);
     public abstract boolean updateOut(int x, int y, int sign);
@@ -46,9 +49,9 @@ public abstract class Directions {
 
     public  boolean isPieceIn(final int x, final int y,String b){
         if(b.equals("BLACK"))
-            return GomokuGame.getBlackPlayer().isPlayerMove(new Piece(x,y));
+            return black.isPlayerMove(new Piece(x,y));
         else
-            return GomokuGame.getWhitePlayer().isPlayerMove(new Piece(x,y));
+            return white.isPlayerMove(new Piece(x,y));
     }
 
 

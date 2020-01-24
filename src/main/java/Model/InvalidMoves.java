@@ -8,13 +8,20 @@ import java.util.*;
  * al momento è una funzione dentro invalidMoves */
 class InvalidMoves {
     int dim_board;
+    private Player black;
+    private Player white;
     InvalidMoves(){}
 
+    public void setPlayers(Player p1, Player p2){
+        this.black=p1;
+        this.white=p2;
+    }
     public void SetDimBoard(int dim){this.dim_board=dim;}
 
     private void findFork(Piece piece, String direction,Set<Piece> pieceSet){
         Directions dir = DirectionFactory.getDir(direction).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
         dir.Setdim(this.dim_board);
+        dir.setPlayers(black,white);
         dir.check(piece.getX(), piece.getY(),-1,pieceSet);
         dir.check(piece.getX(), piece.getY(),1,pieceSet);
    }
@@ -36,12 +43,12 @@ class InvalidMoves {
     void threeAndThree (){
         List<String> directions = Arrays.asList("Horizontal","HorizontalGap","Vertical","VerticalGap",
                 "Diagonal1","Diagonal1Gap", "Diagonal2","Diagonal2Gap");
-        int sizeList = GomokuGame.getBlackPlayer().getMoves().size();
-        Piece lastMove = GomokuGame.getBlackPlayer().getMoves().get(sizeList - 1);
+        int sizeList =black.getMoves().size();
+        Piece lastMove = black.getMoves().get(sizeList - 1);
         List<Piece> pieceList= new ArrayList<>();
         for (String dir : directions) {
             Set<Piece> pieceSet= new HashSet<>();
-            GomokuGame.getBlackPlayer().getMoves().forEach(i -> this.findFork(i, dir,pieceSet));
+            black.getMoves().forEach(i -> this.findFork(i, dir,pieceSet));
             pieceList.addAll(pieceSet);
         }
         this.checkError(lastMove,pieceList);

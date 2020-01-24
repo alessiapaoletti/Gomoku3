@@ -5,11 +5,20 @@ import java.util.*;
 import java.util.stream.Stream;
 
 abstract class Closing {
+    private Player black;
+    private Player white;
     Closing (){}
+
+    public void setPlayers(Player p1, Player p2){
+        this.black=p1;
+        this.white=p2;
+    }
+
     public abstract boolean checkCount(Piece piece, String direction,int sign);
 
     private boolean findFive(Piece piece, String direction){
         Directions dir = DirectionFactory.getDir(direction).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
+        dir.setPlayers(black,white);
         return (dir.consecutiveFivePiece(piece.getX(), piece.getY(), -1, piece.pieceType.name()) && this.checkCount(piece,direction,-1))
                 || (dir.consecutiveFivePiece(piece.getX(), piece.getY(), 1, piece.pieceType.name()) && this.checkCount(piece,direction,1));
     }
@@ -30,6 +39,8 @@ abstract class Closing {
     /*
     Function that returns true if the board is full and false otherwise
     **/
-    boolean fullBoard(int dim,int MovesP1,int MovesP2){ return (MovesP1 + MovesP2) == dim * dim; }
+    boolean fullBoard(int dim){
+        return (black.getMoves().size() + white.getMoves().size()) == dim * dim;
+    }
 
 }

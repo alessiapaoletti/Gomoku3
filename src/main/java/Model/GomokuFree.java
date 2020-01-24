@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.List;
+
 public class GomokuFree extends GomokuGame{
 
     @Override

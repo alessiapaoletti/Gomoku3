@@ -20,13 +20,11 @@ public class Alert {
 
 
     public static void invalidMoveAlert(String error){
-
         javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
         alert.setTitle("ERROR -Invalid Move");
         alert.setHeaderText(null);
         alert.setContentText(error);
         alert.showAndWait();
-
     }
 
     public static void loginAlert(){
@@ -38,7 +36,6 @@ public class Alert {
     }
 
     public static void openingRulesAlert(String type){
-
         javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
 
         alert.setHeaderText(null);
@@ -68,12 +65,9 @@ public class Alert {
         ButtonType buttonYes = new ButtonType("YES");
         ButtonType buttonNo = new ButtonType("NO");
         alert.getButtonTypes().setAll( buttonYes, buttonNo);
-
         alert.setHeaderText(null);
         alert.showAndWait();
-
         return alert.getResult().getText();
-
     }
 
     public static String swap2Alert(){
@@ -83,7 +77,6 @@ public class Alert {
         alert.getButtonTypes().setAll( buttonYes, buttonNo);
         alert.setHeaderText(null);
         alert.showAndWait();
-
         return alert.getResult().getText();
     }
 
@@ -102,9 +95,6 @@ public class Alert {
         alert.getButtonTypes().setAll( buttonYes, buttonNo);
         alert.setHeaderText(null);
         alert.showAndWait();
-
         return alert.getResult().getText();
-
     }
-
 }
