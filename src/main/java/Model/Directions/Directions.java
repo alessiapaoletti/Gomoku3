@@ -1,9 +1,8 @@
 package Model.Directions;
 
-import Model.BoardLogic;
+
 import Model.GomokuGame;
 import Model.Piece;
-import Model.Player;
 
 import java.util.Set;
 
