@@ -70,7 +70,7 @@ public class GamePlay {
     }
 
     public int initialMove(){
-        Alert.openingRulesAlert(GomokuGame.getOpeningRulesName());
+        Alert.openingRulesAlert(game.getOpeningRulesName());
         return 0;
     }
 

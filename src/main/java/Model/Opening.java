@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.ScoreController;
 import View.Alert;
 
 import java.util.HashMap;
@@ -71,7 +72,7 @@ public class Opening {
 
     private void Swap(){
         if ("YES".equals(Alert.swapAlert())){
-           // BoardController.scoreController.swapLabels();
+            ScoreController.swapLabels();
             this.utilitySwap("swap");
         }
         checkError();
@@ -79,7 +80,7 @@ public class Opening {
 
     private Boolean Swap2() {
         if ("YES".equals(Alert.swapAlert())){
-           // BoardController.scoreController.swapLabels();
+            ScoreController.swapLabels();
             this.utilitySwap("swap");
             checkError();
         } else {
@@ -95,7 +96,7 @@ public class Opening {
 
     private void Swap2_1(){
         if ("YES".equals(Alert.swap2_1Alert())) {
-            //BoardController.scoreController.swapLabels();
+            ScoreController.swapLabels();
             this.utilitySwap("Swap2");
         }
         checkError();
