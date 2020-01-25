@@ -29,16 +29,7 @@ public class BoardView extends Pane{
     private int board_size;
 
     private PieceView[][] pieces;
-
     private static Color BACKGROUND_COLOR = Color.PINK;
-
-
-  //  private final int EMPTY_SPACE = 0;
-
-
-//    public static int APPLICATION_WIDTH = 600;
-//    public static int APPLICATION_HEIGHT = 600;
-
 
     public BoardView(int inputSize){
         this.line_number = inputSize;
@@ -52,8 +43,6 @@ public class BoardView extends Pane{
         this.initialiseLinesBackground();
 
     }
-
-
 
     // overridden version of the resize method to give the board the correct size
     @Override
@@ -85,7 +74,6 @@ public class BoardView extends Pane{
         this.pieceResizeRelocate();
 
     }
-
 
     // private method that will initialise the background and the lines
     private void initialiseLinesBackground() {
@@ -140,7 +128,6 @@ public class BoardView extends Pane{
 
     // private method for resizing and relocating all the pieces
     private void pieceResizeRelocate() {
-        //piece dimension
         double PIECE_SIZE = 0.70;
         double cellX = this.cell_width * PIECE_SIZE;
         double cellY = this.cell_height * PIECE_SIZE;
@@ -156,7 +143,6 @@ public class BoardView extends Pane{
 
     // private method that will initialise everything in the render array
     private void initialiseRender() {
-
         for (int i = 0; i < this.board_size; ++i) {
             for (int j = 0; j < this.board_size; ++j) {
                 pieces[i][j] = new PieceView();
@@ -166,7 +152,6 @@ public class BoardView extends Pane{
             this.getChildren().addAll(pieces[i]);
         }
     }
-
 
     public void setPiece(int x, int y,final Piece.PieceType color){
         this.pieces[x][y].setPiece(color);

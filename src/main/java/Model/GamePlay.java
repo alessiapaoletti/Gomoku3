@@ -1,22 +1,15 @@
 package Model;
 import View.Alert;
 
-import java.awt.*;
-
 public class GamePlay {
-
-    private BoardLogic myBoard;
     private Piece.PieceType currentPlayer;
     private GomokuGame game;
     private Closing closing;
-    private String OpeningName;
 
-    public GamePlay(GomokuGame game, int gridSize) {
-        this.myBoard = new BoardLogic(gridSize);
+    public GamePlay(GomokuGame game) {
         this.game = game;
         this.game.initGame();
         String gameName = this.game.getGameName();
-        this.OpeningName= this.game.getOpeningRulesName();
         this.currentPlayer = Piece.PieceType.BLACK;
         this.closing = ClosingFactory.getClosing(gameName).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
         this.closing.setPlayers(this.game.getBlackPlayer(),this.game.getWhitePlayer());
@@ -27,44 +20,38 @@ public class GamePlay {
             return game.getP1();
         else
             return game.getP2();
-    };
-
+    }
 
     public String checkWinningMove(){
-        String winner_name = "";
-        this.closing.setPlayers(this.game.getBlackPlayer(),this.game.getWhitePlayer());
+        String winnerName = "";
+        this.closing.setPlayers(this.game.getBlackPlayer(), this.game.getWhitePlayer());
         if(this.closing.isWinning(this.getCurrentPlayer().getMoves()))
-            winner_name=this.getCurrentPlayer().getName();
-        return winner_name;
+            winnerName=this.getCurrentPlayer().getName();
+        return winnerName;
     }
 
     public boolean checkFullBoard(){
-        return this.closing.fullBoard(this.myBoard.boardSize);
-           // BoardController.gameOver();
+        return this.closing.fullBoard(this.game.getGridDim());
     }
-
 
     public void placePiece(final int x, final int y) {
-        Piece newPiece = new Piece(x,y);
+        Piece newPiece = new Piece(x,y, getCurrentPlayer().getColor());
         this.insertMove(newPiece);
-        this.myBoard.setPiece(x, y,this.currentPlayer);
         this.printAllMoves();
-
     }
 
-    public void unplacePiece(final int x, final int y) {
+    public void displacePiece(final int x, final int y) {
         this.swapPlayers();
-        Piece bannedPiece = new Piece(x,y);
+        Piece bannedPiece = new Piece(x,y,Piece.PieceType.EMPTY);
         this.removeMove(bannedPiece);
     }
 
-    //utility function to call specific game's opening rule.
     public void opening(int c){
         this.game.callOpeningRules(c);
     }
 
     public void rules(){
-        this.game.setInvalidMoves(this.myBoard.boardSize);
+        this.game.setInvalidMoves(this.game.getGridDim());
     }
 
     public int initialMove(){
@@ -73,22 +60,17 @@ public class GamePlay {
     }
 
     private void insertMove(Piece newPiece){
-        newPiece.setPieceType(getCurrentPlayer().getColor());
+        //newPiece.setPieceType(getCurrentPlayer().getColor());
         this.getCurrentPlayer().addMove(newPiece);
     }
 
-
     private void removeMove(Piece bannedPiece){
         if(this.getCurrentPlayer().isPlayerMove(bannedPiece)) this.getCurrentPlayer().removeMove(this.getCurrentPlayer().getMoves().size()-1);
-        myBoard.setPiece(bannedPiece.getX(),bannedPiece.getY(),Piece.PieceType.EMPTY);  //place empty on the board
     }
 
-
-    // private method for swapping the players
     public void swapPlayers() {
-        if (this.currentPlayer == Piece.PieceType.WHITE) {
+        if (this.currentPlayer == Piece.PieceType.WHITE)
             this.currentPlayer = Piece.PieceType.BLACK;
-        }
         else
             this.currentPlayer = Piece.PieceType.WHITE;
     }
@@ -99,11 +81,9 @@ public class GamePlay {
     }
 
     public boolean isValidMove(final int x, final int y) {
-        return this.myBoard.getPiece(x, y) == Piece.PieceType.EMPTY;
+        Piece newPiece = new Piece(x,y,Piece.PieceType.EMPTY);
+        return !game.getP1().isPlayerMove(newPiece) && !game.getP2().isPlayerMove(newPiece);
     }
 
     public int getNumMovesOpening(){ return this.game.getNumMovesOpening();}
-
-
-
 }

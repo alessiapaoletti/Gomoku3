@@ -3,24 +3,21 @@ import Model.Directions.DirectionFactory;
 import Model.Directions.Directions;
 import java.util.*;
 
-/**
- * -three and three è un caso particolare di InvalidMoves...
- * al momento è una funzione dentro invalidMoves */
 class InvalidMoves {
-    int dim_board;
+    private int dimBoard;
     private Player black;
     private Player white;
     InvalidMoves(){}
 
-    public void setPlayers(Player p1, Player p2){
+    void setPlayers(Player p1, Player p2){
         this.black=p1;
         this.white=p2;
     }
-    public void SetDimBoard(int dim){this.dim_board=dim;}
+    void SetDimBoard(int dim){this.dimBoard =dim;}
 
     private void findFork(Piece piece, String direction,Set<Piece> pieceSet){
         Directions dir = DirectionFactory.getDir(direction).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
-        dir.Setdim(this.dim_board);
+        dir.setDim(this.dimBoard);
         dir.setPlayers(black,white);
         dir.check(piece.getX(), piece.getY(),-1,pieceSet);
         dir.check(piece.getX(), piece.getY(),1,pieceSet);
@@ -53,6 +50,5 @@ class InvalidMoves {
         }
         this.checkError(lastMove,pieceList);
     }
-
 }
 

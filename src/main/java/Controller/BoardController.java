@@ -1,20 +1,16 @@
 package Controller;
 
-import Model.BoardLogic;
 import Model.GamePlay;
 import Model.GomokuGame;
 import Model.Piece;
 import View.Alert;
 import View.BoardView;
 import View.ControlSkin;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Control;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.net.URL;
 
 public class BoardController extends Control {
 
@@ -35,7 +31,7 @@ public class BoardController extends Control {
 
     public BoardController(GomokuGame game) {
         this.myView = new BoardView(game.getGridDim());
-        this.myGame = new GamePlay(game, game.getGridDim());
+        this.myGame = new GamePlay(game);
         this.setSkin(new ControlSkin(this));
         this.getChildren().add(this.myView);
 
@@ -83,7 +79,7 @@ public class BoardController extends Control {
     private void UnplacePiece(final double x, final double y) {
         int cellX = (int)((x - this.myView.start_x + (this.myView.cell_width / 2.0)) / this.myView.cell_width);
         int cellY = (int)((y - this.myView.start_y + (this.myView.cell_height / 2.0)) / this.myView.cell_height);
-        this.myGame.unplacePiece(cellX, cellY);
+        this.myGame.displacePiece(cellX, cellY);
         this.myView.removePiece(cellX, cellY);
         this.myView.setPiece(cellX, cellY, Piece.PieceType.EMPTY);
     }

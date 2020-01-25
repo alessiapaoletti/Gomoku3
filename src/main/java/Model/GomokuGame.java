@@ -1,18 +1,14 @@
 package Model;
-
-
-import java.util.List;
-
 public abstract class GomokuGame {
     private  Player p1;
     private  Player p2;
     private int gridSize;
 
-    String openingName;
+    private String openingName;
     Opening openingRules;
     InvalidMoves invalidMoves;
-    public String gameName;
-    String OpeningName;
+    private String gameName;
+    private String OpeningName;
 
 
     public GomokuGame(){
@@ -31,7 +27,7 @@ public abstract class GomokuGame {
         this.p2 = p2;
     }
 
-    public void callOpeningRules(int clicksCount){ openingRules.callOpening(clicksCount); }
+    void callOpeningRules(int clicksCount){ openingRules.callOpening(clicksCount); }
 
     public void setOpeningRulesName(String name){ openingName = name; }
 
@@ -49,14 +45,13 @@ public abstract class GomokuGame {
 
     int getNumMovesOpening(){ return openingRules.getNumMoves();}
 
-    public Player getBlackPlayer(){
+    Player getBlackPlayer(){
         if(p1.getColor() == Piece.PieceType.BLACK) return p1;
         else return p2;
     }
 
-    public Player getWhitePlayer(){
+    Player getWhitePlayer(){
         if(p1.getColor() == Piece.PieceType.WHITE) return p1;
         else return p2;
     }
-
 }

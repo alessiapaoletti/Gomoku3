@@ -1,25 +1,22 @@
 package Model;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    private String name;
+    private final String name;
     private Piece.PieceType color;
     private List<Piece> movesList = new ArrayList<>();
 
-    //le stringhe bho??
-    public Player(String name,String color){
+    public Player(final String name, Piece.PieceType color){
         this.name = name;
-        if(color.equals("Black")) { this.color = Piece.PieceType.BLACK;}
-        else {this.color = Piece.PieceType.WHITE;}
+        this.color = color;
     }
 
-    public void addMove(Piece piece){
+    public void addMove(final Piece piece){
         movesList.add(piece);
     }
 
-    public void removeMove(int position){
+    public void removeMove(final int position){
         movesList.remove(movesList.get(position));
     }
 
@@ -33,20 +30,20 @@ public class Player {
 
     public String getColorName(){ return this.color.name(); }
 
-    public void setColor(Piece.PieceType color) {
+    public void setColor(final Piece.PieceType color) {
         this.color = color;
     }
 
     public List<Piece> getMoves(){return movesList;}
 
-    public boolean isPlayerMove(Piece piece){
+    public boolean isPlayerMove(final Piece piece){
         for(Piece p : this.getMoves()) {
             if (piece.samePosition(p)) return true;
         }
         return false;
     }
 
-    boolean checkAllMoves(Player opponent){
+    boolean checkAllMoves(final Player opponent){
         List<Piece> intersection = new ArrayList<>(this.movesList);
         intersection.retainAll(opponent.getMoves());
         return intersection.isEmpty();

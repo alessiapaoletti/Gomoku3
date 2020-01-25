@@ -18,15 +18,12 @@ public class PieceView extends Group {
     private RadialGradient WHITE_COLOR = new RadialGradient(0.5, 0.5, 0, 0, 1.5, true, CycleMethod.REFLECT, new Stop(0, Color.WHITE), new Stop(1, Color.GREY));
     private RadialGradient BLACK_COLOR = new RadialGradient(0.5, 0.5, 0, 0, 1.5, true, CycleMethod.REFLECT, new Stop(0, Color.DARKSLATEGREY), new Stop(1, Color.BLACK));
 
-
     PieceView() {
-        //this.color = color;
         this.ellipse = new Ellipse();
         this.getChildren().add(this.ellipse);
         this.setPiece(Piece.PieceType.EMPTY);
     }
 
-    // overridden version of the resize method to give the piece the correct size
     @Override
     public void resize(double width, double height) {
         super.resize(width, height);
@@ -36,8 +33,6 @@ public class PieceView extends Group {
         this.ellipse.setRadiusY(height / 2.0);
     }
 
-
-    // method that will set the piece type
     void setPiece(final Piece.PieceType type) {
         this.color = type;
         if (this.color == Piece.PieceType.EMPTY)
@@ -46,7 +41,6 @@ public class PieceView extends Group {
             this.ellipse.setFill(this.color == Piece.PieceType.WHITE ? this.WHITE_COLOR : this.BLACK_COLOR);
     }
 
-    //method that will allow to remove the piece
     void removePiece() {
         this.ellipse.setFill(Color.TRANSPARENT);
     }
@@ -58,19 +52,5 @@ public class PieceView extends Group {
     public void setY(final int y) {
         this.y = y;
     }
-
-
-//    // returns the type of this piece
-//    int getColor() {
-//        return (this.color);
-//    }
-//
-//    int getX() {
-//        return (this.x);
-//    }
-//
-//    int getY() {
-//        return (this.y);
-//    }
 
 }
