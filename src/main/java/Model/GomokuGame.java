@@ -1,4 +1,8 @@
 package Model;
+
+import Model.Rules.InvalidMoves;
+import Model.Rules.Opening;
+
 public abstract class GomokuGame {
     private  Player p1;
     private  Player p2;

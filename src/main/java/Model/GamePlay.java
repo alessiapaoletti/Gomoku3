@@ -1,4 +1,6 @@
 package Model;
+import Model.Rules.Closing;
+import Model.Rules.ClosingFactory;
 import View.Alert;
 
 public class GamePlay {

@@ -1,12 +1,14 @@
-package Model;
+package Model.Rules;
 
 import Controller.ScoreController;
+import Model.Piece;
+import Model.Player;
 import View.Alert;
 
 import java.util.HashMap;
 import java.util.function.Consumer;
 
-public class Opening {
+public  class Opening {
     private Player player1;
     private Player player2;
     private String method;
@@ -22,7 +24,7 @@ public class Opening {
         else this.numMoves=3;
     }
 
-    int getNumMoves(){ return this.numMoves; }
+    public int getNumMoves(){ return this.numMoves; }
 
     private HashMap<String, Consumer<Integer>> openingMap = new HashMap<>();
 
@@ -34,7 +36,7 @@ public class Opening {
 
     private Consumer<Integer> getOpening(String opening) { return openingMap.get(opening); }
 
-    void callOpening(int c){
+    public void callOpening(int c){
         getOpening(this.method).accept(c);
 
     }

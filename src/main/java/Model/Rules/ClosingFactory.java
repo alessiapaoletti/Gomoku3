@@ -1,9 +1,10 @@
-package Model;
+package Model.Rules;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-class ClosingFactory {
+public class ClosingFactory {
 
     private static Map<String, Closing> closingMap = new HashMap<>();
 

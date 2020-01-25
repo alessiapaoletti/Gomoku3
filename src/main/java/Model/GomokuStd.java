@@ -1,5 +1,7 @@
 package Model;
 
+import Model.Rules.Opening;
+
 public class GomokuStd extends GomokuGame {
 
     GomokuStd(){}
