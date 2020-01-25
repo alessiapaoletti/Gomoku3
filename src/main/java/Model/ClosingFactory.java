@@ -1,19 +1,9 @@
 package Model;
-
-import javafx.util.Pair;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Consumer;
 
 class ClosingFactory {
-
-//    private static BoardLogic board;
-//
-//    ClosingFactory(BoardLogic b){
-//        board = b;
-//    }
 
     private static Map<String, Closing> closingMap = new HashMap<>();
 

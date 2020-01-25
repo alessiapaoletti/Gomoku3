@@ -20,14 +20,20 @@ public class Piece  {
         this.pieceType = p;
     }
 
+    public Piece(int x, int y){
+        this.x = x;
+        this.y = y;
+        this.pieceType = PieceType.EMPTY;
+    }
+
     boolean samePosition(Piece piece) {return this.x ==piece.x && this.y == piece.y ; }
 
     public int getX() {return this.x; }
     public int getY() {return this.y;  }
-/*
+
     void setPieceType(PieceType p){
         this.pieceType = p;
-    }*/
+    }
 
     /* Override the equals methods for the Piece class*/
     @Override

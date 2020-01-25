@@ -35,14 +35,14 @@ public class GamePlay {
     }
 
     public void placePiece(final int x, final int y) {
-        Piece newPiece = new Piece(x,y, getCurrentPlayer().getColor());
+        Piece newPiece = new Piece(x,y);
         this.insertMove(newPiece);
         this.printAllMoves();
     }
 
     public void displacePiece(final int x, final int y) {
         this.swapPlayers();
-        Piece bannedPiece = new Piece(x,y,Piece.PieceType.EMPTY);
+        Piece bannedPiece = new Piece(x,y);
         this.removeMove(bannedPiece);
     }
 
@@ -60,7 +60,7 @@ public class GamePlay {
     }
 
     private void insertMove(Piece newPiece){
-        //newPiece.setPieceType(getCurrentPlayer().getColor());
+        newPiece.setPieceType(getCurrentPlayer().getColor());
         this.getCurrentPlayer().addMove(newPiece);
     }
 
@@ -81,7 +81,7 @@ public class GamePlay {
     }
 
     public boolean isValidMove(final int x, final int y) {
-        Piece newPiece = new Piece(x,y,Piece.PieceType.EMPTY);
+        Piece newPiece = new Piece(x,y);
         return !game.getP1().isPlayerMove(newPiece) && !game.getP2().isPlayerMove(newPiece);
     }
 
