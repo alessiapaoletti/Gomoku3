@@ -12,7 +12,7 @@ public class Piece  {
 
     private int x;
     private int y;
-    PieceType pieceType;
+    private PieceType pieceType;
 
     public Piece(int x, int y, PieceType p){
         this.x = x;
@@ -22,12 +22,9 @@ public class Piece  {
 
     boolean samePosition(Piece piece) {return this.x ==piece.x && this.y == piece.y ; }
 
+    public PieceType getPieceType(){return  this.pieceType; }
     public int getX() {return this.x; }
     public int getY() {return this.y;  }
-/*
-    void setPieceType(PieceType p){
-        this.pieceType = p;
-    }*/
 
     /* Override the equals methods for the Piece class*/
     @Override

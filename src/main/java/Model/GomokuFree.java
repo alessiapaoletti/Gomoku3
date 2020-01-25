@@ -1,5 +1,8 @@
 package Model;
 
+import Model.Rules.InvalidMoves;
+import Model.Rules.Opening;
+
 public class GomokuFree extends GomokuGame{
 
     @Override

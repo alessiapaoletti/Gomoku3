@@ -1,23 +1,18 @@
 package Model.Directions;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 public class DirectionFactory {
 
-    private static Map<String, Directions> DirectionMap = new HashMap<>();
+    private static Map<Directions.Dir, Directions> DirectionMap = new HashMap<>();
 
     static {
-        DirectionMap.put("Horizontal", new Horizontal());
-        DirectionMap.put("HorizontalGap", new HorizontalGap());
-        DirectionMap.put("Vertical", new Vertical());
-        DirectionMap.put("VerticalGap", new VerticalGap());
-        DirectionMap.put("Diagonal1", new Diagonal1());
-        DirectionMap.put("Diagonal1Gap", new Diagonal1Gap());
-        DirectionMap.put("Diagonal2", new Diagonal2());
-        DirectionMap.put("Diagonal2Gap", new Diagonal2Gap());
+        DirectionMap.put(Directions.Dir.HORIZONTAL, new Horizontal());
+        DirectionMap.put(Directions.Dir.VERTICAL, new Vertical());
+        DirectionMap.put(Directions.Dir.DIAGONAL1, new Diagonal1());
+        DirectionMap.put(Directions.Dir.DIAGONAL2, new Diagonal2());
     }
 
-    public static Optional<Directions> getDir(String dir) { return Optional.ofNullable(DirectionMap.get(dir)); }
+    public static Optional<Directions> getDir(Directions.Dir dir) { return Optional.ofNullable(DirectionMap.get(dir)); }
 }

@@ -43,13 +43,13 @@ public class Player {
         return false;
     }
 
-    boolean checkAllMoves(final Player opponent){
+    public boolean checkAllMoves(final Player opponent){
         List<Piece> intersection = new ArrayList<>(this.movesList);
         intersection.retainAll(opponent.getMoves());
         return intersection.isEmpty();
     }
 
-    void printMoves(){
+    public void printMoves(){
         System.out.println("movements for player "+this.name+":");
         for(Piece piece : movesList) {
             System.out.println(piece.getX() +" "+ piece.getY());
