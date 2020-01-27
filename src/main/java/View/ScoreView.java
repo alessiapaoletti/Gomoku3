@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class ScoreView extends Pane {
 
@@ -32,11 +34,18 @@ public class ScoreView extends Pane {
     private void initLabels(Player p1, Player p2, String gameName, String openingName){
 
         this.player1 = new Label(p1.getName());
+        this.player1.setFont(Font.font("Arial" , FontWeight.BOLD, 13));
+
         this.player2 = new Label(p2.getName());
+        this.player2.setFont(Font.font("Arial" , FontWeight.BOLD, 13));
+
         this.color1 = new Label(p1.getColorName());
         this.color2 = new Label(p2.getColorName());
-        this.gameType = new Label("Game type:  " + gameName);
-        this.openingType = new Label("Opening type:  " + openingName);
+
+        this.gameType = new Label("Game:  " + gameName);
+        this.gameType.setFont(Font.font("Arial" , 13));
+        this.openingType = new Label("Opening rules:  " + openingName);
+        this.openingType.setFont(Font.font("Arial" , 13));
 
         this.getChildren().add(this.player1);
         this.getChildren().add(this.player2);
@@ -50,13 +59,13 @@ public class ScoreView extends Pane {
         player1.setTranslateX(20);
         player1.setTranslateY(30);
 
-        color1.setTranslateX(120);
+        color1.setTranslateX(130);
         color1.setTranslateY(30);
 
         player2.setTranslateX(20);
         player2.setTranslateY(60);
 
-        color2.setTranslateX(120);
+        color2.setTranslateX(130);
         color2.setTranslateY(60);
 
         gameType.setTranslateX(20);
@@ -76,15 +85,16 @@ public class ScoreView extends Pane {
     }
 
     private void setButtonsCoordinates(){
-        this.closeButton.setTranslateX(115);
-        this.closeButton.setTranslateY(170);
-
         this.newGameButton.setTranslateX(20);
-        this.newGameButton.setTranslateY(170);
+        this.newGameButton.setTranslateY(180);
+
+        this.closeButton.setTranslateX(125);
+        this.closeButton.setTranslateY(180);
+
     }
 
     private void initBackGround(){
-        Rectangle background = new Rectangle(190, 220);
+        Rectangle background = new Rectangle(200, 240);
         background.setFill(Color.PINK);
 
         this.getChildren().add(background);
