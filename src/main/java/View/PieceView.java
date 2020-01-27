@@ -15,8 +15,8 @@ public class PieceView extends Group {
     private int x;
     private int y;
 
-    private RadialGradient WHITE_COLOR = new RadialGradient(0.5, 0.5, 0, 0, 1.5, true, CycleMethod.REFLECT, new Stop(0, Color.WHITE), new Stop(1, Color.GREY));
-    private RadialGradient BLACK_COLOR = new RadialGradient(0.5, 0.5, 0, 0, 1.5, true, CycleMethod.REFLECT, new Stop(0, Color.DARKSLATEGREY), new Stop(1, Color.BLACK));
+    private RadialGradient whiteColor = new RadialGradient(0.5, 0.5, 0, 0, 1.5, true, CycleMethod.REFLECT, new Stop(0, Color.WHITE), new Stop(1, Color.GREY));
+    private RadialGradient blackColor = new RadialGradient(0.5, 0.5, 0, 0, 1.5, true, CycleMethod.REFLECT, new Stop(0, Color.DARKSLATEGREY), new Stop(1, Color.BLACK));
 
     PieceView() {
         this.ellipse = new Ellipse();
@@ -38,7 +38,7 @@ public class PieceView extends Group {
         if (this.color == Piece.PieceType.EMPTY)
             this.ellipse.setFill(Color.TRANSPARENT);
         else
-            this.ellipse.setFill(this.color == Piece.PieceType.WHITE ? this.WHITE_COLOR : this.BLACK_COLOR);
+            this.ellipse.setFill(this.color == Piece.PieceType.WHITE ? this.whiteColor : this.blackColor);
     }
 
     void removePiece() {

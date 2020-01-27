@@ -63,7 +63,7 @@ public class GamePlay {
         return !game.getP1().isPlayerMove(newPiece) && !game.getP2().isPlayerMove(newPiece);
     }
 
-    public int getNumMovesOpening(){ return this.game.openingRules.getNumMoves();}
+    public int getNumMovesOpening(){ return this.game.getOpeningRules().getNumMoves();}
 
     public boolean isOutOfBound(final int x, final int y){
         return ((x < 0 || x > this.game.getGridDim()) || (y < 0 || y > this.game.getGridDim()) );

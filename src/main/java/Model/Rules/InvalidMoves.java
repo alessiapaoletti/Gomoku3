@@ -13,6 +13,7 @@ public class InvalidMoves {
     private int dimBoard;
     private Player black;
     private Player white;
+
     public InvalidMoves(){}
 
     public void setPlayers(Player p1, Player p2){

@@ -1,8 +1,11 @@
 package Controller;
 
 import Model.GamePlay;
+import Model.GomokuGame.GomokuFactory;
 import Model.GomokuGame.GomokuGame;
+import Model.GomokuGame.GomokuType;
 import Model.Piece;
+import Model.Player;
 import Model.Rules.Opening.OpeningType;
 import View.Alert;
 import View.BoardView;
@@ -19,14 +22,15 @@ public class BoardController extends Control {
     private int clicksCount = 0;
     private final StackPane mainLayout;
 
-     BoardController(GomokuGame game, OpeningType openingType) {
-        this.myView = new BoardView(game.getGridDim());
-        this.myGame = new GamePlay(game, openingType);
-        this.setSkin(new ControlSkin(this));
-        this.getChildren().add(this.myView);
-
-        this.mainLayout = new StackPane();
-        this.mainLayout.getChildren().add(this);
+     BoardController(Player p1, Player p2, GomokuType gomokuType, OpeningType openingType) {
+         GomokuGame gomokuGame = GomokuFactory.getGame(gomokuType).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
+         gomokuGame.setPlayers(p1, p2);
+         this.myView = new BoardView(gomokuGame.getGridDim());
+         this.myGame = new GamePlay(gomokuGame, openingType);
+         this.setSkin(new ControlSkin(this));
+         this.getChildren().add(this.myView);
+         this.mainLayout = new StackPane();
+         this.mainLayout.getChildren().add(this);
     }
 
     BoardView getMyView(){
@@ -34,7 +38,7 @@ public class BoardController extends Control {
     }
 
     void clickOpeningCounter(){
-         Alert.openingRulesAlert(myGame.getGame().openingRules.getOpeningType().name());
+         Alert.openingRulesAlert(myGame.getGame().getOpeningRules().getOpeningType().name());
          this.setOnMouseClicked((event) -> {
              this.clicksCount++;
              this.setClickCount(event.getX(), event.getY());
@@ -76,7 +80,7 @@ public class BoardController extends Control {
 
     private void startOpening(final double x, final double y){
         this.placePiece(x,y);
-        this.myGame.getGame().openingRules.callOpening(this.clicksCount);
+        this.myGame.getGame().getOpeningRules().callOpening(this.clicksCount);
     }
 
     private void startGame(final double x, final double y){

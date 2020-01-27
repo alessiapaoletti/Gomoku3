@@ -14,14 +14,14 @@ public abstract class GomokuGame {
     GomokuType gameType;
 
     public Closing closing;
-    public Opening openingRules;
+    private Opening openingRules;
 
     public GomokuGame(){ }
 
     public void setGameEnvironment(OpeningType openingType){
         this.openingRules = OpeningFactory.getOpening(openingType);
-        openingRules.setPlayer1(getP1());
-        openingRules.setPlayer2(getP2());
+        this.openingRules.setPlayer1(getP1());
+        this.openingRules.setPlayer2(getP2());
         this.setRules();
     }
 
@@ -33,13 +33,16 @@ public abstract class GomokuGame {
         this.p2 = p2;
     }
 
-    public GomokuType getType(){return this.gameType;}
+    //public GomokuType getType(){return this.gameType;}
 
     public Player getP1() { return this.p1; }
 
     public Player getP2() { return this.p2; }
 
     public int getGridDim() { return gridSize; }
+
+    public Closing getClosing(){return this.closing; }
+    public Opening getOpeningRules() {return this.openingRules; }
 
     public Player getBlackPlayer(){
         if(p1.getColor() == Piece.PieceType.BLACK) return p1;

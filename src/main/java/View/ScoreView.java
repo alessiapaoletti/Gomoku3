@@ -93,7 +93,6 @@ public class ScoreView extends Pane {
 
         this.closeButton.setTranslateX(125);
         this.closeButton.setTranslateY(180);
-
     }
 
     private void initBackGround(){
@@ -102,7 +101,6 @@ public class ScoreView extends Pane {
 
         this.getChildren().add(background);
     }
-
 
     public Button getCloseButton(){
         return this.closeButton;

@@ -1,5 +1,8 @@
 package Controller;
 import Model.GomokuGame.GomokuGame;
+import Model.GomokuGame.GomokuType;
+import Model.Player;
+import Model.Rules.Opening.OpeningType;
 import View.BoardView;
 import View.ScoreView;
 import javafx.scene.Scene;
@@ -12,14 +15,12 @@ public class ScoreController extends Control {
     private static ScoreView scoreView;
     private BoardView myView;
 
-    ScoreController(GomokuGame game, BoardView myView){
+    ScoreController(Player p1, Player p2, GomokuType gomokuType, OpeningType openingType, BoardView myView){
         this.myView = myView;
-        scoreView = new ScoreView(game.getP1(), game.getP2(), game.getType(), game.openingRules.getOpeningType());
+        scoreView = new ScoreView(p1, p2, gomokuType, openingType);
     }
 
-
     void start(){
-
         StackPane stackPane = new StackPane();
         stackPane.getChildren().add(scoreView);
         Stage primaryStage = new Stage();
@@ -33,9 +34,7 @@ public class ScoreController extends Control {
     }
 
     private void initClose(){
-
         scoreView.getCloseButton().setOnAction(actionEvent -> this.closeScoreView());
-
     }
 
     private void initNewGameButton(){
