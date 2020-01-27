@@ -1,6 +1,4 @@
 package Controller;
-
-
 import Model.GomokuGame.GomokuGame;
 import View.BoardView;
 import View.ScoreView;
@@ -13,7 +11,6 @@ public class ScoreController extends Control {
 
     private static ScoreView scoreView;
     private BoardView myView;
-
 
     ScoreController(GomokuGame game, BoardView myView){
         this.myView = myView;

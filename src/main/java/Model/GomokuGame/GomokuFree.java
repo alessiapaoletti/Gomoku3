@@ -1,7 +1,5 @@
 package Model.GomokuGame;
-
 import Model.Rules.InvalidMoves;
-
 import static Model.Rules.Opening.OpeningFactory.getOpening;
 
 public class GomokuFree extends GomokuGame{
