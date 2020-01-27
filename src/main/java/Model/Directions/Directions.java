@@ -10,7 +10,6 @@ public abstract class Directions {
         DIAGONAL2
     }
 
-    //public abstract void check(Piece piece, int i, Set<Piece> pieceSet);
     public abstract Piece updatePiece(Piece piece, int increment, int sign);
 
 }

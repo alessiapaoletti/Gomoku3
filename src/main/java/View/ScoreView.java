@@ -9,7 +9,6 @@ import javafx.scene.shape.Rectangle;
 
 public class ScoreView extends Pane {
 
-    private Rectangle background;
     private Label player1;
     private Label player2;
     private Label color1;
@@ -85,10 +84,10 @@ public class ScoreView extends Pane {
     }
 
     private void initBackGround(){
-        this.background = new Rectangle(190, 220);
-        this.background.setFill(Color.PINK);
+        Rectangle background = new Rectangle(190, 220);
+        background.setFill(Color.PINK);
 
-        this.getChildren().add(this.background);
+        this.getChildren().add(background);
     }
 
 

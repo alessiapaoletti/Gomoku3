@@ -1,6 +1,6 @@
 package Model;
-import Model.Rules.Closing;
-import Model.Rules.ClosingFactory;
+import Model.GomokuGame.GomokuGame;
+import Model.Rules.Closing.ClosingFactory;
 import View.Alert;
 
 public class GamePlay {
@@ -39,7 +39,6 @@ public class GamePlay {
     public void placePiece(final int x, final int y) {
         Piece newPiece = new Piece(x,y, getCurrentPlayer().getColor());
         this.insertMove(newPiece);
-        this.printAllMoves();
     }
 
     public void displacePiece(final int x, final int y) {
@@ -62,7 +61,6 @@ public class GamePlay {
     }
 
     private void insertMove(Piece newPiece){
-        //newPiece.setPieceType(getCurrentPlayer().getColor());
         this.getCurrentPlayer().addMove(newPiece);
     }
 
@@ -77,10 +75,6 @@ public class GamePlay {
             this.currentPlayer = Piece.PieceType.WHITE;
     }
 
-    private void printAllMoves(){
-        game.getP1().printMoves();
-        game.getP2().printMoves();
-    }
 
     public boolean isValidMove(final int x, final int y) {
         Piece newPiece = new Piece(x,y,Piece.PieceType.EMPTY);
@@ -88,4 +82,14 @@ public class GamePlay {
     }
 
     public int getNumMovesOpening(){ return this.game.getNumMovesOpening();}
+
+    public boolean isOutOfBound(final int x, final int y){
+        return ((x < 0 || x > this.game.getGridDim()) || (y < 0 || y > this.game.getGridDim()) );
+    }
+
+
+    private void printAllMoves(){
+        game.getP1().printMoves();
+        game.getP2().printMoves();
+    }
 }

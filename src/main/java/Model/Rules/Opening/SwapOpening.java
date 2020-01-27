@@ -1,4 +1,4 @@
-package Model.Rules;
+package Model.Rules.Opening;
 
 import Controller.ScoreController;
 import Model.Piece;
@@ -6,7 +6,7 @@ import View.Alert;
 
 public class SwapOpening extends Opening {
 
-    public SwapOpening(){
+    SwapOpening(){
         this.numMoves = 3;
     }
 
@@ -22,12 +22,11 @@ public class SwapOpening extends Opening {
     }
 
     @Override
-    public void toDoOpening(int c){
-        System.out.println("call swap");
-        if(c == 3) Swap();
+    public void toDoOpening(int numClicks){
+        if(numClicks == 3) swapQuestion();
     }
 
-    void Swap(){
+    private void swapQuestion(){
         if ("YES".equals(Alert.swapAlert())){
             ScoreController.swapLabels();
             this.utilitySwap();

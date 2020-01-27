@@ -1,20 +1,17 @@
-package Model.Rules;
+package Model.Rules.Opening;
 
 import Controller.ScoreController;
-import Model.Piece;
-import Model.Player;
 import View.Alert;
 
 public class Swap2Opening extends SwapOpening {
 
-    public Swap2Opening(){
+    Swap2Opening(){
         this.numMoves = 3;
     }
 
     @Override
-    public void toDoOpening(int c) {
-        System.out.println("call swap2");
-        whichSwap2(c);
+    public void toDoOpening(int numClicks) {
+        whichSwap2(numClicks);
     }
 
     @Override
@@ -26,12 +23,12 @@ public class Swap2Opening extends SwapOpening {
         super.utilitySwap();
     }
 
-    private void whichSwap2(int c){
-        if (c != 5) this.over = this.Swap2();
-        else if (!this.over) this.Swap2_1();
+    private void whichSwap2(int numClicks){
+        if (numClicks != 5) this.over = this.swap2InitQuestions();
+        else if (!this.over) this.swap2LastQuestion();
     }
 
-    private Boolean Swap2() {
+    private Boolean swap2InitQuestions() {
         if ("YES".equals(Alert.swapAlert())){
             ScoreController.swapLabels();
             super.utilitySwap();
@@ -47,7 +44,7 @@ public class Swap2Opening extends SwapOpening {
         return true;
     }
 
-    private void Swap2_1(){
+    private void swap2LastQuestion(){
         if ("YES".equals(Alert.swap2_1Alert())) {
             ScoreController.swapLabels();
             this.utilitySwap();

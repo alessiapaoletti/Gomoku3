@@ -49,7 +49,7 @@ public class Player {
         return intersection.isEmpty();
     }
 
-    public void printMoves(){
+    void printMoves(){
         System.out.println("movements for player "+this.name+":");
         for(Piece piece : movesList) {
             System.out.println(piece.getX() +" "+ piece.getY());

@@ -10,21 +10,21 @@ import javafx.scene.transform.Translate;
 
 public class BoardView extends Pane{
 
-    private Rectangle background; //rectangle for the background of the board
-    private Line[] horizontal; //array for horizontal lines
-    private Line[] vertical; //array for vertical lines
-    private Translate[] horizontal_t; //array holding translate obj for the horizontal grid lines
-    private Translate[] vertical_t; //array holding translate obj for the vertical grid lines
+    private Rectangle background;
+    private Line[] horizontal;
+    private Line[] vertical;
+    private Translate[] horizontal_t;
+    private Translate[] vertical_t;
 
-    /* needed when resizing the board */
+
     public double cell_width;
     public double cell_height;
 
-    /* offset to center the board in the window */
+
     public double start_x;
     public double start_y;
 
-    /* size of the grid */
+
     private int line_number;
     private int board_size;
 
@@ -44,11 +44,9 @@ public class BoardView extends Pane{
 
     }
 
-    // overridden version of the resize method to give the board the correct size
     @Override
     public void resize(double width, double height) {
         super.resize(width, height);
-        //border between the grid and the window
         int APPLICATION_BORDER = 50;
         double newWidth = width - APPLICATION_BORDER;
         double newHeight = height - APPLICATION_BORDER;
@@ -75,7 +73,7 @@ public class BoardView extends Pane{
 
     }
 
-    // private method that will initialise the background and the lines
+
     private void initialiseLinesBackground() {
         this.background = new Rectangle(600, 600);
         this.background.setFill(BACKGROUND_COLOR);
@@ -108,7 +106,7 @@ public class BoardView extends Pane{
         }
     }
 
-    // private method for resizing and relocating the horizontal lines
+
     private void horizontalResizeRelocate(final double width) {
         for (int i = 0; i < this.line_number + 1; ++i) {
             this.horizontal[i].setStartX(this.start_x);
@@ -117,7 +115,7 @@ public class BoardView extends Pane{
         }
     }
 
-    // private method for resizing and relocating the vertical lines
+
     private void verticalResizeRelocate(final double height) {
         for (int i = 0; i < this.line_number + 1; ++i) {
             this.vertical[i].setStartY(this.start_y);
@@ -126,7 +124,7 @@ public class BoardView extends Pane{
         }
     }
 
-    // private method for resizing and relocating all the pieces
+
     private void pieceResizeRelocate() {
         double PIECE_SIZE = 0.70;
         double cellX = this.cell_width * PIECE_SIZE;
@@ -141,7 +139,7 @@ public class BoardView extends Pane{
         }
     }
 
-    // private method that will initialise everything in the render array
+
     private void initialiseRender() {
         for (int i = 0; i < this.board_size; ++i) {
             for (int j = 0; j < this.board_size; ++j) {

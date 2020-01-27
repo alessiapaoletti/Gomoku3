@@ -1,7 +1,7 @@
 package Controller;
 
 
-import Model.GomokuGame;
+import Model.GomokuGame.GomokuGame;
 import View.BoardView;
 import View.ScoreView;
 import javafx.scene.Scene;
@@ -12,21 +12,19 @@ import javafx.stage.Stage;
 public class ScoreController extends Control {
 
     private static ScoreView scoreView;
-    private GomokuGame game;
     private BoardView myView;
 
 
-    public ScoreController(GomokuGame game, BoardView myView){
-        this.game = game;
+    ScoreController(GomokuGame game, BoardView myView){
         this.myView = myView;
-        this.scoreView = new ScoreView(game.getP1(), game.getP2(), game.getGameName(), game.getOpeningRulesName());
+        scoreView = new ScoreView(game.getP1(), game.getP2(), game.getGameName(), game.getOpeningRulesName());
     }
 
 
     void start(){
 
         StackPane stackPane = new StackPane();
-        stackPane.getChildren().add(this.scoreView);
+        stackPane.getChildren().add(scoreView);
         Stage primaryStage = new Stage();
         primaryStage.setX(1080);
         primaryStage.setTitle("Score ");
@@ -39,26 +37,24 @@ public class ScoreController extends Control {
 
     private void initClose(){
 
-        this.scoreView.getCloseButton().setOnAction(actionEvent ->  {
+        scoreView.getCloseButton().setOnAction(actionEvent -> this.closeScoreView());
 
-            this.closeScoreView();
-        });
     }
 
     private void initNewGameButton(){
-        this.scoreView.getNewGameButton().setOnAction(actionEvent ->  {
+        scoreView.getNewGameButton().setOnAction(actionEvent ->  {
             this.closeScoreView();
             try {
                 Main.startLogin(new Stage());
             }
             catch (java.io.IOException e){
-
+                e.printStackTrace();
             }
         });
     }
 
     private void closeScoreView(){
-        Stage stage = (Stage) this.scoreView.getCloseButton().getScene().getWindow();
+        Stage stage = (Stage) scoreView.getCloseButton().getScene().getWindow();
         stage.close();
 
         Stage stageBoard = (Stage) this.myView.getScene().getWindow();
