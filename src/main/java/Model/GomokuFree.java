@@ -1,7 +1,8 @@
 package Model;
 
 import Model.Rules.InvalidMoves;
-import Model.Rules.Opening;
+
+import static Model.Rules.OpeningFactory.getOpening;
 
 public class GomokuFree extends GomokuGame{
 
@@ -10,7 +11,9 @@ public class GomokuFree extends GomokuGame{
 
         System.out.println("Mode Free");
         System.out.println("Opening Rules:" + getOpeningRulesName());
-        openingRules =new Opening(getP1(),getP2(), getOpeningRulesName());
+        openingRules = getOpening(getOpeningRulesName());
+        openingRules.setPlayer1(this.getP1());
+        openingRules.setPlayer2(this.getP2());
         invalidMoves =new InvalidMoves();
     }
 
