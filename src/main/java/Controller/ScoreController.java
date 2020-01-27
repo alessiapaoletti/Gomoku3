@@ -27,8 +27,8 @@ public class ScoreController extends Control {
         stackPane.getChildren().add(scoreView);
         Stage primaryStage = new Stage();
         primaryStage.setX(1080);
-        primaryStage.setTitle("Score ");
-        primaryStage.setScene(new Scene(stackPane, 190, 220));
+        primaryStage.setResizable(false);
+        primaryStage.setScene(new Scene(stackPane, 200, 240));
         primaryStage.show();
 
         this.initClose();
