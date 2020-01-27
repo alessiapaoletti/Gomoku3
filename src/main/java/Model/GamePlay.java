@@ -1,20 +1,16 @@
 package Model;
+
 import Model.GomokuGame.GomokuGame;
-import Model.Rules.Closing.ClosingFactory;
-import View.Alert;
+import Model.Rules.Opening.OpeningType;
 
 public class GamePlay {
     private Piece.PieceType currentPlayer;
     private GomokuGame game;
 
-
-    public GamePlay(GomokuGame game) {
+    public GamePlay(GomokuGame game, OpeningType openingType) {
         this.game = game;
-        this.game.initGame();
-        String gameName = this.game.getGameName();
+        this.game.setGameEnvironment(openingType);
         this.currentPlayer = Piece.PieceType.BLACK;
-        this.game.closing = ClosingFactory.getClosing(gameName).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
-        this.game.closing.setPlayers(this.game.getBlackPlayer(),this.game.getWhitePlayer());
     }
 
     public Player getCurrentPlayer(){
@@ -47,19 +43,6 @@ public class GamePlay {
         this.removeMove(bannedPiece);
     }
 
-    public void opening(int c){
-        this.game.callOpeningRules(c);
-    }
-
-    public void rules(){
-        this.game.setInvalidMoves(this.game.getGridDim());
-    }
-
-    public int initialMove(){
-        Alert.openingRulesAlert(game.getOpeningRulesName());
-        return 0;
-    }
-
     private void insertMove(Piece newPiece){
         this.getCurrentPlayer().addMove(newPiece);
     }
@@ -75,21 +58,24 @@ public class GamePlay {
             this.currentPlayer = Piece.PieceType.WHITE;
     }
 
-
     public boolean isValidMove(final int x, final int y) {
         Piece newPiece = new Piece(x,y,Piece.PieceType.EMPTY);
         return !game.getP1().isPlayerMove(newPiece) && !game.getP2().isPlayerMove(newPiece);
     }
 
-    public int getNumMovesOpening(){ return this.game.getNumMovesOpening();}
+    public int getNumMovesOpening(){ return this.game.openingRules.getNumMoves();}
 
     public boolean isOutOfBound(final int x, final int y){
         return ((x < 0 || x > this.game.getGridDim()) || (y < 0 || y > this.game.getGridDim()) );
     }
 
-
-    private void printAllMoves(){
-        game.getP1().printMoves();
-        game.getP2().printMoves();
+    public GomokuGame getGame() {
+        return this.game;
     }
+
+
+//    private void printAllMoves(){
+//        game.getP1().printMoves();
+//        game.getP2().printMoves();
+//    }
 }

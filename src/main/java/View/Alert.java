@@ -31,7 +31,7 @@ public class Alert {
         javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
         alert.setTitle("ERROR - Missing values");
         alert.setHeaderText(null);
-        alert.setContentText("Insert the name of both players");
+        alert.setContentText("Fill all the fields");
         alert.showAndWait();
     }
 

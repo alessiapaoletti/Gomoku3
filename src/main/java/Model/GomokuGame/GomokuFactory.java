@@ -6,13 +6,13 @@ import java.util.Optional;
 
 public class GomokuFactory {
 
-    private static Map<String, GomokuGame> gomokuMap = new HashMap<>();
+    private static Map<GomokuType, GomokuGame> gomokuMap = new HashMap<>();
 
     static {
-        gomokuMap.put("Standard", new GomokuStd());
-        gomokuMap.put("Freestyle", new GomokuFree());
-        gomokuMap.put("Omok", new GomokuOm());
+        gomokuMap.put(GomokuType.Standard, new GomokuStd());
+        gomokuMap.put(GomokuType.Freestyle, new GomokuFree());
+        gomokuMap.put(GomokuType.Omok, new GomokuOm());
     }
 
-    public static Optional<GomokuGame> getGame(String game) { return Optional.ofNullable(gomokuMap.get(game)); }
+    public static Optional<GomokuGame> getGame(GomokuType game) { return Optional.ofNullable(gomokuMap.get(game)); }
 }

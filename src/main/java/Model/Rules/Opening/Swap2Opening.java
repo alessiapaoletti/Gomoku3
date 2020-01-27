@@ -6,11 +6,12 @@ import View.Alert;
 public class Swap2Opening extends SwapOpening {
 
     Swap2Opening(){
+        this.openingType = OpeningType.Swap2;
         this.numMoves = 3;
     }
 
     @Override
-    public void toDoOpening(int numClicks) {
+    public void openingBehaviour(int numClicks) {
         whichSwap2(numClicks);
     }
 

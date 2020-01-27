@@ -1,6 +1,5 @@
 package View;
 
-
 import Model.Piece;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -9,60 +8,50 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Translate;
 
 public class BoardView extends Pane{
-
     private Rectangle background;
     private Line[] horizontal;
     private Line[] vertical;
-    private Translate[] horizontal_t;
-    private Translate[] vertical_t;
-
-
-    public double cell_width;
-    public double cell_height;
-
-
-    public double start_x;
-    public double start_y;
-
-
-    private int line_number;
-    private int board_size;
-
+    private Translate[] horizontalTranslate;
+    private Translate[] verticalTranslate;
+    public double cellWidth;
+    public double cellHeight;
+    public double startX;
+    public double startY;
+    private int lineNumber;
+    private int boardSize;
     private PieceView[][] pieces;
-    private static Color BACKGROUND_COLOR = Color.PINK;
+    private Color backgroundColor = Color.PINK;
 
     public BoardView(int inputSize){
-        this.line_number = inputSize;
-        this.board_size = this.line_number + 1;
-        this.horizontal = new Line[this.board_size + 1];
-        this.vertical = new Line[this.board_size + 1];
-        this.horizontal_t = new Translate[this.board_size + 1];
-        this.vertical_t = new Translate[this.board_size + 1];
-
+        this.lineNumber = inputSize;
+        this.boardSize = this.lineNumber + 1;
+        this.horizontal = new Line[this.boardSize + 1];
+        this.vertical = new Line[this.boardSize + 1];
+        this.horizontalTranslate = new Translate[this.boardSize + 1];
+        this.verticalTranslate = new Translate[this.boardSize + 1];
         this.pieces = new PieceView[inputSize+1][inputSize+1];
         this.initialiseLinesBackground();
-
     }
 
     @Override
     public void resize(double width, double height) {
         super.resize(width, height);
-        int APPLICATION_BORDER = 50;
-        double newWidth = width - APPLICATION_BORDER;
-        double newHeight = height - APPLICATION_BORDER;
+        int applicationBorder = 50;
+        double newWidth = width - applicationBorder;
+        double newHeight = height - applicationBorder;
 
         if (width > height) newWidth = newHeight;
         else newHeight = newWidth;
 
-        this.cell_width = newWidth / this.line_number;
-        this.cell_height = newHeight / this.line_number;
+        this.cellWidth = newWidth / this.lineNumber;
+        this.cellHeight = newHeight / this.lineNumber;
 
-        this.start_x = (width / 2) - (newWidth / 2);
-        this.start_y = (height / 2) - (newHeight / 2);
+        this.startX = (width / 2) - (newWidth / 2);
+        this.startY = (height / 2) - (newHeight / 2);
 
         this.getChildren().remove(this.background);
         this.background = new Rectangle(width, height);
-        this.background.setFill(BACKGROUND_COLOR);
+        this.background.setFill(backgroundColor);
         this.getChildren().add(0, this.background);
 
         this.horizontalResizeRelocate(newWidth);
@@ -70,79 +59,73 @@ public class BoardView extends Pane{
 
         this.initialiseRender();
         this.pieceResizeRelocate();
-
     }
-
 
     private void initialiseLinesBackground() {
         this.background = new Rectangle(600, 600);
-        this.background.setFill(BACKGROUND_COLOR);
+        this.background.setFill(backgroundColor);
         this.getChildren().add(this.background);
 
-        for (int i = 0; i < this.line_number + 1; ++i) {
+        for (int i = 0; i < this.lineNumber + 1; ++i) {
             this.horizontal[i] = new Line();
 
             this.horizontal[i].setStartX(0);
             this.horizontal[i].setStartY(0);
             this.horizontal[i].setEndY(0);
 
-            this.horizontal_t[i] = new Translate(0, 0);
-            this.horizontal[i].getTransforms().add(this.horizontal_t[i]);
+            this.horizontalTranslate[i] = new Translate(0, 0);
+            this.horizontal[i].getTransforms().add(this.horizontalTranslate[i]);
 
             this.getChildren().add(this.horizontal[i]);
         }
 
-        for (int i = 0; i < this.line_number + 1; ++i) {
+        for (int i = 0; i < this.lineNumber + 1; ++i) {
             this.vertical[i] = new Line();
 
             this.vertical[i].setStartX(0);
             this.vertical[i].setEndX(0);
             this.vertical[i].setStartY(0);
 
-            this.vertical_t[i] = new Translate(0, 0);
-            this.vertical[i].getTransforms().add(this.vertical_t[i]);
+            this.verticalTranslate[i] = new Translate(0, 0);
+            this.vertical[i].getTransforms().add(this.verticalTranslate[i]);
 
             this.getChildren().add(this.vertical[i]);
         }
     }
 
-
     private void horizontalResizeRelocate(final double width) {
-        for (int i = 0; i < this.line_number + 1; ++i) {
-            this.horizontal[i].setStartX(this.start_x);
-            this.horizontal[i].setEndX(this.start_x + width);
-            this.horizontal_t[i].setY(this.start_y + this.cell_height * i);
+        for (int i = 0; i < this.lineNumber + 1; ++i) {
+            this.horizontal[i].setStartX(this.startX);
+            this.horizontal[i].setEndX(this.startX + width);
+            this.horizontalTranslate[i].setY(this.startY + this.cellHeight * i);
         }
     }
-
 
     private void verticalResizeRelocate(final double height) {
-        for (int i = 0; i < this.line_number + 1; ++i) {
-            this.vertical[i].setStartY(this.start_y);
-            this.vertical[i].setEndY(this.start_y + height);
-            this.vertical_t[i].setX(this.start_x + this.cell_width * i);
+        for (int i = 0; i < this.lineNumber + 1; ++i) {
+            this.vertical[i].setStartY(this.startY);
+            this.vertical[i].setEndY(this.startY + height);
+            this.verticalTranslate[i].setX(this.startX + this.cellWidth * i);
         }
     }
 
-
     private void pieceResizeRelocate() {
-        double PIECE_SIZE = 0.70;
-        double cellX = this.cell_width * PIECE_SIZE;
-        double cellY = this.cell_height * PIECE_SIZE;
-        double offsetX = this.cell_width * ((1 - PIECE_SIZE) / 2);
-        double offsetY = this.cell_height * ((1 - PIECE_SIZE) / 2);
-        for (int i = 0; i < this.board_size; ++i) {
-            for (int j = 0; j < this.board_size; ++j) {
+        double pieceSize = 0.70;
+        double cellX = this.cellWidth * pieceSize;
+        double cellY = this.cellHeight * pieceSize;
+        double offsetX = this.cellWidth * ((1 - pieceSize) / 2);
+        double offsetY = this.cellHeight * ((1 - pieceSize) / 2);
+        for (int i = 0; i < this.boardSize; ++i) {
+            for (int j = 0; j < this.boardSize; ++j) {
                 pieces[i][j].resize(cellX, cellY);
-                pieces[i][j].relocate(this.start_x + i * this.cell_width + offsetX - this.cell_width / 2.0, this.start_y + j * this.cell_height + offsetY - this.cell_height / 2.0);
+                pieces[i][j].relocate(this.startX + i * this.cellWidth + offsetX - this.cellWidth / 2.0, this.startY + j * this.cellHeight + offsetY - this.cellHeight / 2.0);
             }
         }
     }
 
-
     private void initialiseRender() {
-        for (int i = 0; i < this.board_size; ++i) {
-            for (int j = 0; j < this.board_size; ++j) {
+        for (int i = 0; i < this.boardSize; ++i) {
+            for (int j = 0; j < this.boardSize; ++j) {
                 pieces[i][j] = new PieceView();
                 pieces[i][j].setX(i);
                 pieces[i][j].setY(j);

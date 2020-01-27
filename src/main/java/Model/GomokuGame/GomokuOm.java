@@ -1,28 +1,29 @@
 package Model.GomokuGame;
-
+import Model.Rules.Closing.NoOverlines;
 import Model.Rules.InvalidMoves;
-
-import static Model.Rules.Opening.OpeningFactory.getOpening;
 
 public class GomokuOm extends GomokuGame {
 
-    @Override
-    public void initGame() {
+    private InvalidMoves invalidMoves;
 
-        openingRules = getOpening(getOpeningRulesName());
-        openingRules.setPlayer1(getP1());
-        openingRules.setPlayer2(getP2());
-        invalidMoves =new InvalidMoves();
+    GomokuOm(){
+        this.gameType = GomokuType.Omok;
+        this.gridSize = 18;
+        this.invalidMoves = new InvalidMoves();
+        invalidMoves.setDimBoard(this.gridSize);
     }
 
     @Override
-    public void setInvalidMoves(int dim) {
-        invalidMoves.setDimBoard(dim);
-        invalidMoves.setPlayers(super.getBlackPlayer(),super.getWhitePlayer());
-        invalidMoves.threeAndThree();
+    public void setRules() {
+        this.closing = new NoOverlines();
+        this.closing.setPlayers(this.getBlackPlayer(),this.getWhitePlayer());
     }
 
     @Override
-    public String getGameName(){return "Omok";}
+    public void checkInvalidMoves() throws Error {
+        this.invalidMoves.setPlayers(super.getBlackPlayer(),super.getWhitePlayer());
+        this.invalidMoves.threeAndThree();
+    }
+
 
 }

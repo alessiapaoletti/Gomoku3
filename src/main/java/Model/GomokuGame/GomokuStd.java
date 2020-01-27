@@ -1,22 +1,20 @@
 package Model.GomokuGame;
 
-import static Model.Rules.Opening.OpeningFactory.getOpening;
+import Model.Rules.Closing.NoOverlines;
 
-public class GomokuStd extends GomokuGame {
-
-    GomokuStd(){}
-
-    @Override
-    public void initGame() {
-
-        openingRules = getOpening(getOpeningRulesName());
-        openingRules.setPlayer1(getP1());
-        openingRules.setPlayer2(getP2());
+class GomokuStd extends GomokuGame {
+    GomokuStd(){
+        this.gameType = GomokuType.Standard;
+        this.gridSize = 14;
     }
 
     @Override
-    public void setInvalidMoves(int dim){}
+    public void setRules() {
+        this.closing = new NoOverlines();
+        this.closing.setPlayers(this.getBlackPlayer(),this.getWhitePlayer());
+
+    }
 
     @Override
-    public String getGameName(){return "Standard";}
+    public void checkInvalidMoves() { }
 }

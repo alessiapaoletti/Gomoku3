@@ -14,7 +14,7 @@ public class ScoreController extends Control {
 
     ScoreController(GomokuGame game, BoardView myView){
         this.myView = myView;
-        scoreView = new ScoreView(game.getP1(), game.getP2(), game.getGameName(), game.getOpeningRulesName());
+        scoreView = new ScoreView(game.getP1(), game.getP2(), game.getType(), game.openingRules.getOpeningType());
     }
 
 

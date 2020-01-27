@@ -3,6 +3,7 @@ package Controller;
 import Model.GamePlay;
 import Model.GomokuGame.GomokuGame;
 import Model.Piece;
+import Model.Rules.Opening.OpeningType;
 import View.Alert;
 import View.BoardView;
 import View.ControlSkin;
@@ -16,45 +17,41 @@ public class BoardController extends Control {
     private BoardView myView;
     private GamePlay myGame;
     private int clicksCount = 0;
-    private final StackPane sp_mainlayout;
-    private static String gameName;
+    private final StackPane mainLayout;
 
+     BoardController(GomokuGame game, OpeningType openingType) {
+        this.myView = new BoardView(game.getGridDim());
+        this.myGame = new GamePlay(game, openingType);
+        this.setSkin(new ControlSkin(this));
+        this.getChildren().add(this.myView);
+
+        this.mainLayout = new StackPane();
+        this.mainLayout.getChildren().add(this);
+    }
 
     BoardView getMyView(){
         return myView;
     }
 
-     BoardController(GomokuGame game) {
-        this.myView = new BoardView(game.getGridDim());
-        this.myGame = new GamePlay(game);
-        this.setSkin(new ControlSkin(this));
-        this.getChildren().add(this.myView);
+    void clickOpeningCounter(){
+         Alert.openingRulesAlert(myGame.getGame().openingRules.getOpeningType().name());
+         this.setOnMouseClicked((event) -> {
+             this.clicksCount++;
+             this.setClickCount(event.getX(), event.getY());
+             if(this.clicksCount == myGame.getNumMovesOpening() || this.clicksCount == 5)
+                 startOpening(event.getX(), event.getY());
+             startGame(event.getX(), event.getY());
+         });
+     }
 
-        this.sp_mainlayout = new StackPane();
-        this.sp_mainlayout.getChildren().add(this);
-        gameName = game.getGameName();
-    }
+    private void setClickCount(final double x, final double y ){
+         int cellX = (int)((x - this.myView.startX + (this.myView.cellWidth / 2.0)) / this.myView.cellWidth);
+         int cellY = (int)((y - this.myView.startY + (this.myView.cellHeight / 2.0)) / this.myView.cellHeight);
+         if(!this.myGame.isValidMove(cellX, cellY)) this.clicksCount-=1;}
 
-
-    void ClickController(){
-        clicksCount =this.myGame.initialMove();
-        this.setOnMouseClicked((event) -> {
-            clicksCount++;
-
-            if(clicksCount == myGame.getNumMovesOpening() || clicksCount == this.myGame.getNumMovesOpening() +2) {
-                startOpening(event.getX(), event.getY(), clicksCount);
-            }
-
-            startGame(event.getX(), event.getY(),clicksCount);
-        });
-    }
-
-
-    private void SetClickCount(int c){ this.clicksCount-=c;}
-
-    private void placePiece(final double x, final double y,int clicksCount) {
-        int cellX = (int)((x - this.myView.start_x + (this.myView.cell_width / 2.0)) / this.myView.cell_width);
-        int cellY = (int)((y - this.myView.start_y + (this.myView.cell_height / 2.0)) / this.myView.cell_height);
+    private void placePiece(final double x, final double y) {
+        int cellX = (int)((x - this.myView.startX + (this.myView.cellWidth / 2.0)) / this.myView.cellWidth);
+        int cellY = (int)((y - this.myView.startY + (this.myView.cellHeight / 2.0)) / this.myView.cellHeight);
 
         if(this.myGame.isValidMove(cellX, cellY) && !this.myGame.isOutOfBound(cellX, cellY) ){
             this.myView.setPiece(cellX, cellY, this.myGame.getCurrentPlayer().getColor());
@@ -65,38 +62,33 @@ public class BoardController extends Control {
             if(!this.myGame.checkWinningMove().isEmpty() ){
                 this.gameOver(this.myGame.checkWinningMove());
             }
-
             this.myGame.swapPlayers();
-
         }
-        else this.SetClickCount(1);
     }
 
     private void displacePiece(final double x, final double y) {
-        int cellX = (int)((x - this.myView.start_x + (this.myView.cell_width / 2.0)) / this.myView.cell_width);
-        int cellY = (int)((y - this.myView.start_y + (this.myView.cell_height / 2.0)) / this.myView.cell_height);
+        int cellX = (int)((x - this.myView.startX + (this.myView.cellWidth / 2.0)) / this.myView.cellWidth);
+        int cellY = (int)((y - this.myView.startY + (this.myView.cellHeight / 2.0)) / this.myView.cellHeight);
         this.myGame.displacePiece(cellX, cellY);
         this.myView.removePiece(cellX, cellY);
         this.myView.setPiece(cellX, cellY, Piece.PieceType.EMPTY);
     }
 
-    private void startOpening(final double x, final double y, int c){
-        this.placePiece(x,y,c);
-        this.myGame.opening(c);
+    private void startOpening(final double x, final double y){
+        this.placePiece(x,y);
+        this.myGame.getGame().openingRules.callOpening(this.clicksCount);
     }
 
-
-    private void startGame(final double x, final double y,int clicksCount){
-        this.placePiece(x,y,clicksCount);
+    private void startGame(final double x, final double y){
         try {
-            this.myGame.rules();
+            this.placePiece(x,y);
+            this.myGame.getGame().checkInvalidMoves();
         }
-        catch (Error e){
+        catch (Error | Exception e){
             Alert.invalidMoveAlert(e.toString());
             this.displacePiece(x,y);
         }
     }
-
 
     private void gameOver(String winner){
         Stage stage = (Stage) myView.getScene().getWindow();
@@ -112,13 +104,10 @@ public class BoardController extends Control {
             stage.close();
     }
 
-
     void start(Stage primaryStage) {
-        primaryStage.setTitle("GOMOKU version: "+ gameName);
-        primaryStage.setScene(new Scene(this.sp_mainlayout, 600, 600));
+        primaryStage.setTitle("GOMOKU GAME");
+        primaryStage.setScene(new Scene(this.mainLayout, 600, 600));
         primaryStage.show();
-
     }
-
 }
 

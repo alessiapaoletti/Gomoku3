@@ -1,4 +1,5 @@
 package Model.Rules;
+
 import Model.Directions.DirectionFactory;
 import Model.Directions.Directions;
 import Model.HotFormations.Three;
@@ -18,6 +19,7 @@ public class InvalidMoves {
         this.black=p1;
         this.white=p2;
     }
+
     public void setDimBoard(int dim){this.dimBoard =dim;}
 
     private void findFork(Piece piece, Directions.Dir direction, Three.ThreeTypes three, Set<Piece> pieceSet) {
@@ -37,14 +39,12 @@ public class InvalidMoves {
         return count;
     }
 
-    private void checkError(final Piece lastMove, final List<Piece> pieceList){
-        if(pieceList.size()>=6 && this.duplicates(lastMove,pieceList)>=2){
+    private void checkError(final Piece lastMove, final List<Piece> pieceList) throws Error{
+        if(pieceList.size()>=6 && this.duplicates(lastMove,pieceList)>=2)
             throw new Error("three and three error ");
-        }
     }
 
-    public void threeAndThree(){
-
+    public void threeAndThree() throws Error{
         List<Directions.Dir> directions = Arrays.asList(Directions.Dir.HORIZONTAL, Directions.Dir.VERTICAL,
                 Directions.Dir.DIAGONAL1, Directions.Dir.DIAGONAL2);
         List<Three.ThreeTypes> three = Arrays.asList(Three.ThreeTypes.THREE, Three.ThreeTypes.GAPTHREE);

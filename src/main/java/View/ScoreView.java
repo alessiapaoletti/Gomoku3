@@ -1,6 +1,8 @@
 package View;
 
+import Model.GomokuGame.GomokuType;
 import Model.Player;
+import Model.Rules.Opening.OpeningType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -20,7 +22,7 @@ public class ScoreView extends Pane {
     private Button closeButton;
     private Button newGameButton;
 
-    public ScoreView(Player p1, Player p2, String gameName, String openingName){
+    public ScoreView(Player p1, Player p2, GomokuType gameName, OpeningType openingName){
 
         this.initBackGround();
 
@@ -31,7 +33,7 @@ public class ScoreView extends Pane {
         this.setButtonsCoordinates();
     }
 
-    private void initLabels(Player p1, Player p2, String gameName, String openingName){
+    private void initLabels(Player p1, Player p2, GomokuType gameName, OpeningType openingName){
 
         this.player1 = new Label(p1.getName());
         this.player1.setFont(Font.font("Arial" , FontWeight.BOLD, 13));
@@ -42,10 +44,10 @@ public class ScoreView extends Pane {
         this.color1 = new Label(p1.getColorName());
         this.color2 = new Label(p2.getColorName());
 
-        this.gameType = new Label("Game:  " + gameName);
-        this.gameType.setFont(Font.font("Arial" , 13));
         this.openingType = new Label("Opening rules:  " + openingName);
         this.openingType.setFont(Font.font("Arial" , 13));
+        this.gameType = new Label("Game:  " + gameName);
+        this.gameType.setFont(Font.font("Arial" , 13));
 
         this.getChildren().add(this.player1);
         this.getChildren().add(this.player2);
@@ -68,10 +70,11 @@ public class ScoreView extends Pane {
         color2.setTranslateX(130);
         color2.setTranslateY(60);
 
-        gameType.setTranslateX(20);
-        gameType.setTranslateY(100);
         openingType.setTranslateX(20);
-        openingType.setTranslateY(130);
+        openingType.setTranslateY(100);
+        gameType.setTranslateX(20);
+        gameType.setTranslateY(130);
+
     }
 
     private void initButtons(){

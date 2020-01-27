@@ -3,52 +3,43 @@ package Model.GomokuGame;
 import Model.Piece;
 import Model.Player;
 import Model.Rules.Closing.Closing;
-import Model.Rules.InvalidMoves;
 import Model.Rules.Opening.Opening;
-
+import Model.Rules.Opening.OpeningFactory;
+import Model.Rules.Opening.OpeningType;
 
 public abstract class GomokuGame {
     private Player p1;
-    private  Player p2;
+    private Player p2;
+    int gridSize;
+    GomokuType gameType;
+
     public Closing closing;
-    private int gridSize;
+    public Opening openingRules;
 
-    private String openingName;
-    Opening openingRules;
-    InvalidMoves invalidMoves;
+    public GomokuGame(){ }
 
-
-    public GomokuGame(){
-        String gameName = getGameName();
-        this.openingName = this.getOpeningRulesName();
+    public void setGameEnvironment(OpeningType openingType){
+        this.openingRules = OpeningFactory.getOpening(openingType);
+        openingRules.setPlayer1(getP1());
+        openingRules.setPlayer2(getP2());
+        this.setRules();
     }
 
-    public abstract void initGame();
-
-    public void setInvalidMoves(int dim) {}
+    public abstract void setRules();
+    public abstract void checkInvalidMoves();
 
     public void setPlayers(Player p1, Player p2){
         this.p1 = p1;
         this.p2 = p2;
     }
 
-    public void callOpeningRules(int clicksCount){ openingRules.callOpening(clicksCount); }
-
-    public void setOpeningRulesName(String name){ openingName = name; }
-
-    public void setGridSize(int size){ gridSize = size; }
-
-    public String getGameName(){return "";}
+    public GomokuType getType(){return this.gameType;}
 
     public Player getP1() { return this.p1; }
 
     public Player getP2() { return this.p2; }
 
-    public int getGridDim() { return gridSize;  }
-
-    public String getOpeningRulesName(){ return openingName;}
-
-    public int getNumMovesOpening(){ return openingRules.getNumMoves();}
+    public int getGridDim() { return gridSize; }
 
     public Player getBlackPlayer(){
         if(p1.getColor() == Piece.PieceType.BLACK) return p1;

@@ -1,21 +1,18 @@
 package Model.GomokuGame;
-import Model.Rules.InvalidMoves;
-import static Model.Rules.Opening.OpeningFactory.getOpening;
+import Model.Rules.Closing.Overlines;
 
 public class GomokuFree extends GomokuGame{
-
-    @Override
-    public void initGame() {
-
-        openingRules = getOpening(getOpeningRulesName());
-        openingRules.setPlayer1(this.getP1());
-        openingRules.setPlayer2(this.getP2());
-        invalidMoves =new InvalidMoves();
+    GomokuFree(){
+        this.gameType = GomokuType.Freestyle;
+        this.gridSize = 14;
     }
 
     @Override
-    public void setInvalidMoves(int dim) {}
+    public void setRules() {
+        this.closing = new Overlines();
+        this.closing.setPlayers(this.getBlackPlayer(),this.getWhitePlayer());
+    }
 
     @Override
-    public String getGameName(){return "Freestyle";}
+    public void checkInvalidMoves() { }
 }

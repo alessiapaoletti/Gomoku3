@@ -7,6 +7,7 @@ import View.Alert;
 public class SwapOpening extends Opening {
 
     SwapOpening(){
+        this.openingType = OpeningType.Swap;
         this.numMoves = 3;
     }
 
@@ -22,7 +23,7 @@ public class SwapOpening extends Opening {
     }
 
     @Override
-    public void toDoOpening(int numClicks){
+    public void openingBehaviour(int numClicks){
         if(numClicks == 3) swapQuestion();
     }
 
