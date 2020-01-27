@@ -24,7 +24,7 @@ public class InvalidMoves {
     public void setDimBoard(int dim){this.dimBoard =dim;}
 
     private void findFork(Piece piece, Directions.Dir direction, Three.ThreeTypes three, Set<Piece> pieceSet) {
-        Directions dir = DirectionFactory.getDir(direction).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
+        Directions dir = DirectionFactory.getDir(direction);
         Three th = ThreeFactory.getThree(three).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
         th.setDim(this.dimBoard);
         th.setPlayers(this.black, this.white);

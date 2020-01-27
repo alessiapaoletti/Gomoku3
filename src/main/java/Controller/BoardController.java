@@ -23,9 +23,9 @@ public class BoardController extends Control {
     private final StackPane mainLayout;
 
      BoardController(Player p1, Player p2, GomokuType gomokuType, OpeningType openingType) {
-         GomokuGame gomokuGame = GomokuFactory.getGame(gomokuType).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
+         GomokuGame gomokuGame = GomokuFactory.getGame(gomokuType);
          gomokuGame.setPlayers(p1, p2);
-         this.myView = new BoardView(gomokuGame.getGridDim());
+         this.myView = new BoardView(gomokuGame.getGridSize());
          this.myGame = new GamePlay(gomokuGame, openingType);
          this.setSkin(new ControlSkin(this));
          this.getChildren().add(this.myView);

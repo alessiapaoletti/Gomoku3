@@ -11,6 +11,7 @@ import java.util.*;
 public abstract class Closing {
     private Player black;
     private Player white;
+
     Closing (){}
 
     public void setPlayers(Player p1, Player p2){
@@ -21,7 +22,7 @@ public abstract class Closing {
     public abstract boolean checkCount(Piece piece, Directions direction, int sign,Five f);
 
     private boolean findFive(Piece piece, Directions.Dir direction){
-        Directions dir = DirectionFactory.getDir(direction).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
+        Directions dir = DirectionFactory.getDir(direction);
         Five f = new Five();
         f.setPlayers(this.black, this.white);
         return (f.consecutiveFivePiece(piece, -1, piece.getPieceType(),dir) && this.checkCount(piece,dir,-1,f))

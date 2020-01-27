@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class FiveTest {
     protected Player black=new Player("mario", Piece.PieceType.BLACK);
     protected Player white=new Player("mario", Piece.PieceType.WHITE);
-    Directions dir = DirectionFactory.getDir(Directions.Dir.HORIZONTAL).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
+    Directions dir = DirectionFactory.getDir(Directions.Dir.HORIZONTAL);
     Five f=new Five();
 
     protected void FillPlayer(Player p){

@@ -14,20 +14,20 @@ import javafx.stage.StageStyle;
 
 public class LoginController {
 
-    private ObservableList<GomokuType> methods= FXCollections.observableArrayList(GomokuType.Standard,GomokuType.Omok, GomokuType.Freestyle);
-    private ObservableList<OpeningType> openings= FXCollections.observableArrayList(OpeningType.Standard,OpeningType.Swap,OpeningType.Swap2);
+    private ObservableList<GomokuType> gomokuTypes = FXCollections.observableArrayList(GomokuType.Standard,GomokuType.Omok, GomokuType.Freestyle);
+    private ObservableList<OpeningType> openingTypes = FXCollections.observableArrayList(OpeningType.Standard,OpeningType.Swap,OpeningType.Swap2);
 
     @FXML private javafx.scene.control.Button exitButton;
     @FXML private javafx.scene.control.TextField player1;
     @FXML private javafx.scene.control.TextField player2;
-    @FXML private ChoiceBox choice;
+    @FXML private ChoiceBox choiceGomokuType;
     @FXML private ChoiceBox choiceOpening;
 
     public LoginController() {}
 
     @FXML private void initialize(){
-        choice.setItems(methods);
-        choiceOpening.setItems(openings);
+        choiceGomokuType.setItems(gomokuTypes);
+        choiceOpening.setItems(openingTypes);
     }
 
     @FXML
@@ -37,7 +37,7 @@ public class LoginController {
 
             Player p1 = new Player(player1.getText(), Piece.PieceType.BLACK);
             Player p2 = new Player(player2.getText(), Piece.PieceType.WHITE);
-            GomokuType gomokuType = (GomokuType) choice.getSelectionModel().getSelectedItem();
+            GomokuType gomokuType = (GomokuType) choiceGomokuType.getSelectionModel().getSelectedItem();
             OpeningType openingType = (OpeningType) choiceOpening.getSelectionModel().getSelectedItem();
 
             Stage stage = (Stage) exitButton.getScene().getWindow();
@@ -60,7 +60,7 @@ public class LoginController {
     }
 
     private boolean checkGameSetUp(){
-        return !(choice.getSelectionModel().isEmpty())  && !(choiceOpening.getSelectionModel().isEmpty());
+        return !(choiceGomokuType.getSelectionModel().isEmpty())  && !(choiceOpening.getSelectionModel().isEmpty());
     }
 
     @FXML

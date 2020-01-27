@@ -18,6 +18,9 @@ public abstract class GomokuGame {
 
     public GomokuGame(){ }
 
+    public abstract void setRules();
+    public abstract void checkInvalidMoves();
+
     public void setGameEnvironment(OpeningType openingType){
         this.openingRules = OpeningFactory.getOpening(openingType);
         this.openingRules.setPlayer1(getP1());
@@ -25,23 +28,22 @@ public abstract class GomokuGame {
         this.setRules();
     }
 
-    public abstract void setRules();
-    public abstract void checkInvalidMoves();
-
     public void setPlayers(Player p1, Player p2){
         this.p1 = p1;
         this.p2 = p2;
     }
 
+    //void setGameType(GomokuType gomokuType) {this.gameType = gomokuType; }
+    //void setGridSize (int gridSize){ this.gridSize = gridSize; }
     //public GomokuType getType(){return this.gameType;}
 
     public Player getP1() { return this.p1; }
 
     public Player getP2() { return this.p2; }
 
-    public int getGridDim() { return gridSize; }
+    public int getGridSize() { return gridSize; }
 
-    public Closing getClosing(){return this.closing; }
+    //public Closing getClosing(){return this.closing; }
     public Opening getOpeningRules() {return this.openingRules; }
 
     public Player getBlackPlayer(){

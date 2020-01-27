@@ -1,7 +1,7 @@
 package Model.Directions;
+
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 public class DirectionFactory {
 
@@ -14,5 +14,5 @@ public class DirectionFactory {
         DirectionMap.put(Directions.Dir.DIAGONAL2, new Diagonal2());
     }
 
-    public static Optional<Directions> getDir(Directions.Dir dir) { return Optional.ofNullable(DirectionMap.get(dir)); }
+    public static Directions getDir(Directions.Dir dir) { return DirectionMap.get(dir); }
 }

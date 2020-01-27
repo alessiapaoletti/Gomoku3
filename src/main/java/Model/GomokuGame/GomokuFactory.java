@@ -2,7 +2,6 @@ package Model.GomokuGame;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 public class GomokuFactory {
 
@@ -14,5 +13,5 @@ public class GomokuFactory {
         gomokuMap.put(GomokuType.Omok, new GomokuOm());
     }
 
-    public static Optional<GomokuGame> getGame(GomokuType game) { return Optional.ofNullable(gomokuMap.get(game)); }
+    public static GomokuGame getGame(GomokuType game) { return gomokuMap.get(game); }
 }

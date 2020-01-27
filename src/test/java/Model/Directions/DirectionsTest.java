@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class DirectionsTest {
 
     private Piece CreateDir(Directions.Dir dir,int range,int x,int y,int sign){
-        Directions DirTest = Model.Directions.DirectionFactory.getDir(dir).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
+        Directions DirTest = Model.Directions.DirectionFactory.getDir(dir);
         return DirTest.updatePiece(new Piece(x,y, Piece.PieceType.BLACK),range,sign);
     };
 

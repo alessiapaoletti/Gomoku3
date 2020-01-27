@@ -13,7 +13,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ThreeTest extends FiveTest{
-    Directions dir = DirectionFactory.getDir(Directions.Dir.HORIZONTAL).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
+    Directions dir = DirectionFactory.getDir(Directions.Dir.HORIZONTAL);
     Three th;
     Set<Piece> pieceSet= new HashSet<>();
     void CreateThree(Three.ThreeTypes three){

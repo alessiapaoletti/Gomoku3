@@ -4,8 +4,9 @@ import Model.Rules.Closing.NoOverlines;
 
 class GomokuStd extends GomokuGame {
     GomokuStd(){
-        this.gameType = GomokuType.Standard;
-        this.gridSize = 14;
+       this.gameType = GomokuType.Standard;
+       this.gridSize = 14;
+
     }
 
     @Override

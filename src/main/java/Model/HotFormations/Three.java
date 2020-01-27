@@ -4,13 +4,13 @@ import Model.Directions.Directions;
 import java.util.Set;
 
 public abstract class Three extends HotFormations{
+    private int dimBoard;
 
     public enum ThreeTypes{
         THREE,
         GAPTHREE
     }
 
-    private int dimBoard;
     public void setDim(int dim){this.dimBoard =dim;}
 
     boolean isOutOfGrid(Piece piece){
@@ -21,7 +21,7 @@ public abstract class Three extends HotFormations{
     public abstract boolean outOfGridCheck(Piece p, int sig, Directions d);
     public abstract boolean updateOut(Piece p, int sign, Directions d);
     public abstract boolean updateIn(Piece p, int sign, Piece.PieceType pt, Directions d);
-    public abstract void check(Piece piece, int i, Set<Piece> pieceSet, Directions d);
+    public abstract void check(Piece piece, int sign, Set<Piece> pieceSet, Directions d);
 
     private void fillIn(Piece p, Piece p1, Piece p2, Set<Piece> pieceSet){
         pieceSet.add(p);

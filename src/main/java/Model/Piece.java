@@ -6,8 +6,7 @@ public class Piece  {
     public enum PieceType{
         EMPTY,
         BLACK,
-        WHITE;
-        PieceType() {}
+        WHITE
     }
 
     private int x;

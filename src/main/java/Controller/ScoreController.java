@@ -1,5 +1,4 @@
 package Controller;
-import Model.GomokuGame.GomokuGame;
 import Model.GomokuGame.GomokuType;
 import Model.Player;
 import Model.Rules.Opening.OpeningType;

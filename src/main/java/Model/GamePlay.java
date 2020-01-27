@@ -29,7 +29,7 @@ public class GamePlay {
     }
 
     public boolean checkFullBoard(){
-        return this.game.closing.fullBoard(this.game.getGridDim());
+        return this.game.closing.fullBoard(this.game.getGridSize());
     }
 
     public void placePiece(final int x, final int y) {
@@ -66,7 +66,7 @@ public class GamePlay {
     public int getNumMovesOpening(){ return this.game.getOpeningRules().getNumMoves();}
 
     public boolean isOutOfBound(final int x, final int y){
-        return ((x < 0 || x > this.game.getGridDim()) || (y < 0 || y > this.game.getGridDim()) );
+        return ((x < 0 || x > this.game.getGridSize()) || (y < 0 || y > this.game.getGridSize()) );
     }
 
     public GomokuGame getGame() {
