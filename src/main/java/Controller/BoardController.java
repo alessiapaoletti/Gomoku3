@@ -36,7 +36,7 @@ public class BoardController extends Control {
     }
 
 
-    void initBoardController(){
+    void ClickController(){
         clicksCount =this.myGame.initialMove();
         this.setOnMouseClicked((event) -> {
             clicksCount++;
@@ -45,12 +45,14 @@ public class BoardController extends Control {
                 startOpening(event.getX(), event.getY(), clicksCount);
             }
 
-            startGame(event.getX(), event.getY());
+            startGame(event.getX(), event.getY(),clicksCount);
         });
     }
 
 
-    private void placePiece(final double x, final double y) {
+    private void SetClickCount(int c){ this.clicksCount-=c;}
+
+    private void placePiece(final double x, final double y,int clicksCount) {
         int cellX = (int)((x - this.myView.start_x + (this.myView.cell_width / 2.0)) / this.myView.cell_width);
         int cellY = (int)((y - this.myView.start_y + (this.myView.cell_height / 2.0)) / this.myView.cell_height);
 
@@ -67,6 +69,7 @@ public class BoardController extends Control {
             this.myGame.swapPlayers();
 
         }
+        else this.SetClickCount(1);
     }
 
     private void displacePiece(final double x, final double y) {
@@ -78,13 +81,13 @@ public class BoardController extends Control {
     }
 
     private void startOpening(final double x, final double y, int c){
-        this.placePiece(x,y);
+        this.placePiece(x,y,c);
         this.myGame.opening(c);
     }
 
 
-    private void startGame(final double x, final double y){
-        this.placePiece(x,y);
+    private void startGame(final double x, final double y,int clicksCount){
+        this.placePiece(x,y,clicksCount);
         try {
             this.myGame.rules();
         }
