@@ -30,26 +30,24 @@ public class ScoreController extends Control {
         Stage primaryStage = new Stage();
         primaryStage.setX(1080);
         primaryStage.setTitle("Score ");
-        primaryStage.setScene(new Scene(stackPane, 190, 200));
+        primaryStage.setScene(new Scene(stackPane, 190, 220));
         primaryStage.show();
 
-        this.close();
-        this.newGame();
+        this.initClose();
+        this.initNewGameButton();
     }
 
-    void close(){
+    private void initClose(){
 
         this.scoreView.getCloseButton().setOnAction(actionEvent ->  {
 
-            this.closeUtility();
+            this.closeScoreView();
         });
-
-
     }
 
-    void newGame(){
+    private void initNewGameButton(){
         this.scoreView.getNewGameButton().setOnAction(actionEvent ->  {
-            this.closeUtility();
+            this.closeScoreView();
             try {
                 Main.startLogin(new Stage());
             }
@@ -59,7 +57,7 @@ public class ScoreController extends Control {
         });
     }
 
-    void closeUtility(){
+    private void closeScoreView(){
         Stage stage = (Stage) this.scoreView.getCloseButton().getScene().getWindow();
         stage.close();
 
@@ -70,7 +68,5 @@ public class ScoreController extends Control {
     public static void swapLabels(){
         scoreView.swapColors();
     }
-
-
 
 }

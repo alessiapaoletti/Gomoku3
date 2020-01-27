@@ -9,10 +9,13 @@ import javafx.scene.shape.Rectangle;
 
 public class ScoreView extends Pane {
 
+    private Rectangle background;
     private Label player1;
     private Label player2;
     private Label color1;
     private Label color2;
+    private Label gameType;
+    private Label openingType;
     private Button closeButton;
     private Button newGameButton;
 
@@ -20,38 +23,51 @@ public class ScoreView extends Pane {
 
         this.initBackGround();
 
-        this.initLabels(p1, p2);
+        this.initLabels(p1, p2, gameName, openingName);
         this.setLabelsCoordinates();
 
         this.initButtons();
         this.setButtonsCoordinates();
-
     }
 
-    private void initLabels(Player p1, Player p2){
+    private void initLabels(Player p1, Player p2, String gameName, String openingName){
+
         this.player1 = new Label(p1.getName());
         this.player2 = new Label(p2.getName());
         this.color1 = new Label(p1.getColorName());
         this.color2 = new Label(p2.getColorName());
+        this.gameType = new Label("Game type:  " + gameName);
+        this.openingType = new Label("Opening type:  " + openingName);
 
         this.getChildren().add(this.player1);
         this.getChildren().add(this.player2);
         this.getChildren().add(this.color1);
         this.getChildren().add(this.color2);
+        this.getChildren().add(this.gameType);
+        this.getChildren().add(this.openingType);
     }
 
     private void setLabelsCoordinates(){
-        player1.setTranslateY(30);
         player1.setTranslateX(20);
-        player2.setTranslateY(60);
-        player2.setTranslateX(20);
-        color1.setTranslateY(30);
+        player1.setTranslateY(30);
+
         color1.setTranslateX(120);
-        color2.setTranslateY(60);
+        color1.setTranslateY(30);
+
+        player2.setTranslateX(20);
+        player2.setTranslateY(60);
+
         color2.setTranslateX(120);
+        color2.setTranslateY(60);
+
+        gameType.setTranslateX(20);
+        gameType.setTranslateY(100);
+        openingType.setTranslateX(20);
+        openingType.setTranslateY(130);
     }
 
     private void initButtons(){
+
         this.closeButton = new Button("Close");
         this.newGameButton = new Button("New game");
 
@@ -62,17 +78,17 @@ public class ScoreView extends Pane {
 
     private void setButtonsCoordinates(){
         this.closeButton.setTranslateX(115);
-        this.closeButton.setTranslateY(110);
+        this.closeButton.setTranslateY(170);
 
         this.newGameButton.setTranslateX(20);
-        this.newGameButton.setTranslateY(110);
+        this.newGameButton.setTranslateY(170);
     }
 
     private void initBackGround(){
-        Rectangle background = new Rectangle(190, 200);
-        background.setFill(Color.PINK);
+        this.background = new Rectangle(190, 220);
+        this.background.setFill(Color.PINK);
 
-        this.getChildren().add(background);
+        this.getChildren().add(this.background);
     }
 
 
@@ -89,6 +105,5 @@ public class ScoreView extends Pane {
         color1.setText(color2.getText());
         color2.setText(tmp);
     }
-
 
 }

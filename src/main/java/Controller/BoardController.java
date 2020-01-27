@@ -125,15 +125,5 @@ public class BoardController extends Control {
 
     }
 
-
-
-
-    /* Resize the width and the height of the window when dragging the mouse  */
-    @Override
-    public void resize(double width, double height) {
-        super.resize(width, height);
-        this.myView.resize(width, height);
-
-    }
 }
 
