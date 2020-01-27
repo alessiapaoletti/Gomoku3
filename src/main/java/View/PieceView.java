@@ -10,10 +10,10 @@ import javafx.scene.shape.Ellipse;
 
 public class PieceView extends Group {
 
-    private Piece.PieceType color;		// the player that this piece belongs to
-    private Ellipse ellipse;	// ellipse representing the player's piece
-    private int x;          // x position
-    private int y;          // y position
+    private Piece.PieceType color;
+    private Ellipse ellipse;
+    private int x;
+    private int y;
 
     private RadialGradient WHITE_COLOR = new RadialGradient(0.5, 0.5, 0, 0, 1.5, true, CycleMethod.REFLECT, new Stop(0, Color.WHITE), new Stop(1, Color.GREY));
     private RadialGradient BLACK_COLOR = new RadialGradient(0.5, 0.5, 0, 0, 1.5, true, CycleMethod.REFLECT, new Stop(0, Color.DARKSLATEGREY), new Stop(1, Color.BLACK));
@@ -45,11 +45,11 @@ public class PieceView extends Group {
         this.ellipse.setFill(Color.TRANSPARENT);
     }
 
-    public void setX(final int x) {
+    void setX(final int x) {
         this.x = x;
     }
 
-    public void setY(final int y) {
+    void setY(final int y) {
         this.y = y;
     }
 

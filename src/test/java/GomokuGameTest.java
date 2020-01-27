@@ -1,5 +1,5 @@
-import Model.GomokuGame;
-import Model.GomokuFactory;
+import Model.GomokuGame.GomokuGame;
+import GomokuFactory;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -12,7 +12,7 @@ public class GomokuGameTest {
     /*  * Testing GomokuFactory and GetName()   */
     @Test
     public void Initialize(){
-        GomokuGame targetGomoku=GomokuFactory.getGame("Omok").orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
+        GomokuGame targetGomoku= GomokuFactory.getGame("Omok").orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
         //assertEquals(targetGomoku.GetName(),"Omok");
     }
     @Test

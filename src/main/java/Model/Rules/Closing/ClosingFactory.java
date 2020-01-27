@@ -1,4 +1,4 @@
-package Model.Rules;
+package Model.Rules.Closing;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +14,6 @@ public class ClosingFactory {
         closingMap.put("Omok", new NoOverlines());
     }
 
-    //public static Consumer<BoardLogic> getClosing(String closing) { return closingMap.get(closing); }
 
     public static Optional<Closing> getClosing(String closing) {
         return Optional.ofNullable(closingMap.get(closing));

@@ -44,8 +44,7 @@ public class InvalidMoves {
     }
 
     public void threeAndThree(){
-//        List<String> directions = Arrays.asList("Horizontal","HorizontalGap","Vertical","VerticalGap",
-//                "Diagonal1","Diagonal1Gap", "Diagonal2","Diagonal2Gap");
+
         List<Directions.Dir> directions = Arrays.asList(Directions.Dir.HORIZONTAL, Directions.Dir.VERTICAL,
                 Directions.Dir.DIAGONAL1, Directions.Dir.DIAGONAL2);
         List<Three.ThreeTypes> three = Arrays.asList(Three.ThreeTypes.THREE, Three.ThreeTypes.GAPTHREE);
@@ -55,7 +54,6 @@ public class InvalidMoves {
         for (Directions.Dir dir : directions){
             for(Three.ThreeTypes t: three){
             Set<Piece> pieceSet= new HashSet<>();
-            //black.getMoves().forEach(i -> this.findFork(i, dir,pieceSet));
             black.getMoves().forEach(i -> this.findFork(i, dir,t,pieceSet));
             pieceList.addAll(pieceSet);
             }

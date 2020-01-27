@@ -10,7 +10,6 @@ public abstract class Three extends HotFormations{
         GAPTHREE
     }
 
-    //é sempre 19?!
     private int dimBoard;
     public void setDim(int dim){this.dimBoard =dim;}
 

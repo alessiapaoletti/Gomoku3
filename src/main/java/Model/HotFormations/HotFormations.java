@@ -17,12 +17,7 @@ abstract class HotFormations {
         this.black=p1;
         this.white=p2;
     }
-/*
-    public void printPlayer(){
-        this.black.printMoves();
-        this.white.printMoves();
-    }
-*/
+
     boolean isPieceIn(Piece piece, Piece.PieceType color){
         if(color== Piece.PieceType.BLACK)
             return this.black.isPlayerMove(new Piece(piece.getX(), piece.getY(), Piece.PieceType.BLACK));

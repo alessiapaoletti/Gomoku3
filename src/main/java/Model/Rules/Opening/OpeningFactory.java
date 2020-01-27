@@ -1,4 +1,4 @@
-package Model.Rules;
+package Model.Rules.Opening;
 
 import java.util.HashMap;
 import java.util.Map;

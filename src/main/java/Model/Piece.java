@@ -26,7 +26,7 @@ public class Piece  {
     public int getX() {return this.x; }
     public int getY() {return this.y;  }
 
-    /* Override the equals methods for the Piece class*/
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

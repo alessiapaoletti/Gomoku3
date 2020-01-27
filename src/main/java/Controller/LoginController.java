@@ -1,6 +1,8 @@
 package Controller;
 import Model.*;
 
+import Model.GomokuGame.GomokuFactory;
+import Model.GomokuGame.GomokuGame;
 import View.Alert;
 import javafx.collections.FXCollections;
 
@@ -12,13 +14,11 @@ import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.IOException;
 
 
 public class LoginController {
 
     private GomokuGame targetGomoku;
-    private BoardController boardController;
 
     private ObservableList<String> methods= FXCollections.observableArrayList("Standard","Omok", "Freestyle");
     private ObservableList<String> openings= FXCollections.observableArrayList("Standard","Swap","Swap2");
@@ -38,9 +38,7 @@ public class LoginController {
     }
 
     @FXML
-    public void startGame() throws IOException {
-
-        System.out.println("start game!");
+    public void startGame() {
 
         if (!(player1.getText().equals("")) && !(player2.getText().equals(""))) {
 
@@ -52,11 +50,12 @@ public class LoginController {
             stage.close();
 
             Stage mainStage = new Stage(StageStyle.DECORATED);
-            this.boardController = new BoardController(targetGomoku);
-            this.boardController.initBoardController();
-            this.boardController.start(mainStage);
+            mainStage.setResizable(false);
+            BoardController boardController = new BoardController(targetGomoku);
+            boardController.initBoardController();
+            boardController.start(mainStage);
 
-            ScoreController scoreController = new ScoreController(this.targetGomoku, this.boardController.getMyView());
+            ScoreController scoreController = new ScoreController(this.targetGomoku, boardController.getMyView());
             scoreController.start();
 
 
@@ -76,8 +75,8 @@ public class LoginController {
         this.targetGomoku = GomokuFactory.getGame(game).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
         this.targetGomoku.setPlayers(p1, p2);
 
-        int gridSize = 14; //default size
-        if (game.equals("Omok")) gridSize = 18; //different size for the Omok version
+        int gridSize = 14;
+        if (game.equals("Omok")) gridSize = 18;
         this.targetGomoku.setGridSize(gridSize);
 
         this.targetGomoku.setOpeningRulesName(m);

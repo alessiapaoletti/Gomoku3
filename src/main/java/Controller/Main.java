@@ -15,7 +15,7 @@ public class Main extends Application {
         startLogin(primaryStage);
     }
 
-    public static void startLogin(Stage primaryStage) throws IOException {
+    static void startLogin(Stage primaryStage) throws IOException {
         URL myFxmlURL = ClassLoader.getSystemResource("LoginView.fxml");
         Parent root = FXMLLoader.load(myFxmlURL);
         primaryStage.setTitle("Login section");
