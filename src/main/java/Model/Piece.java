@@ -20,7 +20,7 @@ public class Piece  {
         this.pieceType = p;
     }
 
-    boolean samePosition(Piece piece) {return this.x ==piece.x && this.y == piece.y ; }
+    public boolean samePosition(Piece piece) {return this.x ==piece.x && this.y == piece.y ; }
 
     public PieceType getPieceType(){return  this.pieceType; }
     public int getX() {return this.x; }

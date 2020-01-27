@@ -1,5 +1,6 @@
 package Model;
 
+import Model.Rules.Closing;
 import Model.Rules.InvalidMoves;
 import Model.Rules.Opening;
 
@@ -8,16 +9,16 @@ public abstract class GomokuGame {
     private  Player p2;
     private int gridSize;
 
-    private String openingName;
     Opening openingRules;
     InvalidMoves invalidMoves;
+    Closing closing;
     private String gameName;
-    private String OpeningName;
+    private String openingName;
 
 
     public GomokuGame(){
         this.gameName = getGameName();
-        this.OpeningName = this.getOpeningRulesName();
+        this.openingName = this.getOpeningRulesName();
     }
 
     public abstract void initGame();

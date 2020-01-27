@@ -59,7 +59,7 @@ public class ScoreController extends Control {
         });
     }
 
-    void closeUtility(){
+    private void closeUtility(){
         Stage stage = (Stage) this.scoreView.getCloseButton().getScene().getWindow();
         stage.close();
 

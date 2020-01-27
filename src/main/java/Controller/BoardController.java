@@ -15,7 +15,7 @@ import java.io.IOException;
 public class BoardController extends Control {
 
     private BoardView myView;
-    public GamePlay myGame;
+    private GamePlay myGame;
    // public static ScoreController scoreController;
     private int clicksCount = 0; //clicks count added in order to set the opening moves check.
     private final StackPane sp_mainlayout;
