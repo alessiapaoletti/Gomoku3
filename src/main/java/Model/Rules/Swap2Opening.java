@@ -5,9 +5,7 @@ import Model.Piece;
 import Model.Player;
 import View.Alert;
 
-public class Swap2Opening extends Opening {
-
-    SwapOpening swapOpening;
+public class Swap2Opening extends SwapOpening {
 
     public Swap2Opening(){
         this.numMoves = 3;
@@ -19,19 +17,13 @@ public class Swap2Opening extends Opening {
         whichSwap2(c);
     }
 
-    public void utilitySwap2() {
-        player1.addMove(player2.getMoves().get(0));
+    @Override
+    public void utilitySwap() {
         player1.addMove(player2.getMoves().get(1));
-        player2.addMove(player1.getMoves().get(0));
-        player2.addMove(player1.getMoves().get(1));
         player2.addMove(player1.getMoves().get(2));
         player1.removeMove(2);
-        player1.removeMove(1);
-        player1.removeMove(0);
         player2.removeMove(1);
-        player2.removeMove(0);
-        player1.setColor(Piece.PieceType.WHITE);
-        player2.setColor(Piece.PieceType.BLACK);
+        super.utilitySwap();
     }
 
     private void whichSwap2(int c){
@@ -42,7 +34,7 @@ public class Swap2Opening extends Opening {
     private Boolean Swap2() {
         if ("YES".equals(Alert.swapAlert())){
             ScoreController.swapLabels();
-            this.swapOpening.utilitySwap();
+            super.utilitySwap();
             checkError();
         } else {
             if ("YES".equals(Alert.swap2Alert()))
@@ -58,7 +50,7 @@ public class Swap2Opening extends Opening {
     private void Swap2_1(){
         if ("YES".equals(Alert.swap2_1Alert())) {
             ScoreController.swapLabels();
-            this.utilitySwap2();
+            this.utilitySwap();
         }
         checkError();
     }
