@@ -3,13 +3,17 @@ package Model;
 import Model.Rules.InvalidMoves;
 import Model.Rules.Opening;
 
+import static Model.Rules.OpeningFactory.getOpening;
+
 public class GomokuOm extends GomokuGame {
 
     @Override
     public void initGame() {
         System.out.println("Mode Omok");
         System.out.println("Opening Rules:" + getOpeningRulesName());
-        openingRules =new Opening(getP1(),getP2(), getOpeningRulesName());
+        openingRules = getOpening(getOpeningRulesName());
+        openingRules.setPlayer1(getP1());
+        openingRules.setPlayer2(getP2());
         invalidMoves =new InvalidMoves();
     }
 

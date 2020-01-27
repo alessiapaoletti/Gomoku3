@@ -2,6 +2,8 @@ package Model;
 
 import Model.Rules.Opening;
 
+import static Model.Rules.OpeningFactory.getOpening;
+
 public class GomokuStd extends GomokuGame {
 
     GomokuStd(){}
@@ -10,8 +12,9 @@ public class GomokuStd extends GomokuGame {
     public void initGame() {
         System.out.println("Mode standard");
         System.out.println("Opening Rules:" + getOpeningRulesName());
-        openingRules =new Opening(getP1(),getP2(), getOpeningRulesName());
-
+        openingRules = getOpening(getOpeningRulesName());
+        openingRules.setPlayer1(getP1());
+        openingRules.setPlayer2(getP2());
     }
 
     @Override

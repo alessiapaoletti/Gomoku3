@@ -1,20 +1,20 @@
 package Model;
+import Model.Rules.Closing;
 import Model.Rules.ClosingFactory;
 import View.Alert;
 
-/** perchè le closing sono qui mentre le opening sono in gomoku game?*/
 public class GamePlay {
     private Piece.PieceType currentPlayer;
     private GomokuGame game;
-    //private Closing closing;
+
 
     public GamePlay(GomokuGame game) {
         this.game = game;
         this.game.initGame();
         String gameName = this.game.getGameName();
         this.currentPlayer = Piece.PieceType.BLACK;
-        game.closing = ClosingFactory.getClosing(gameName).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
-        game.closing.setPlayers(this.game.getBlackPlayer(),this.game.getWhitePlayer());
+        this.game.closing = ClosingFactory.getClosing(gameName).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
+        this.game.closing.setPlayers(this.game.getBlackPlayer(),this.game.getWhitePlayer());
     }
 
     public Player getCurrentPlayer(){
@@ -26,14 +26,14 @@ public class GamePlay {
 
     public String checkWinningMove(){
         String winnerName = "";
-        game.closing.setPlayers(this.game.getBlackPlayer(), this.game.getWhitePlayer());
-        if(game.closing.isWinning(this.getCurrentPlayer().getMoves()))
+        this.game.closing.setPlayers(this.game.getBlackPlayer(), this.game.getWhitePlayer());
+        if(this.game.closing.isWinning(this.getCurrentPlayer().getMoves()))
             winnerName=this.getCurrentPlayer().getName();
         return winnerName;
     }
 
     public boolean checkFullBoard(){
-        return game.closing.fullBoard(this.game.getGridDim());
+        return this.game.closing.fullBoard(this.game.getGridDim());
     }
 
     public void placePiece(final int x, final int y) {
@@ -85,7 +85,6 @@ public class GamePlay {
     public boolean isValidMove(final int x, final int y) {
         Piece newPiece = new Piece(x,y,Piece.PieceType.EMPTY);
         return !game.getP1().isPlayerMove(newPiece) && !game.getP2().isPlayerMove(newPiece);
-        /** controllo sulla size della board? è possibile metterla fuori?  */
     }
 
     public int getNumMovesOpening(){ return this.game.getNumMovesOpening();}

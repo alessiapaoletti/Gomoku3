@@ -1,19 +1,22 @@
 package Model;
 
 import Model.Rules.Closing;
+import Model.Rules.ClosingFactory;
 import Model.Rules.InvalidMoves;
 import Model.Rules.Opening;
+
+import java.util.Optional;
 
 public abstract class GomokuGame {
     private  Player p1;
     private  Player p2;
+    Closing closing;
     private int gridSize;
 
+    private String openingName;
     Opening openingRules;
     InvalidMoves invalidMoves;
-    Closing closing;
     private String gameName;
-    private String openingName;
 
 
     public GomokuGame(){
