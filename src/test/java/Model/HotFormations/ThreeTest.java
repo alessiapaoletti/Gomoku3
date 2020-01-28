@@ -50,28 +50,30 @@ class ThreeTest extends FiveTest{
         }
     };
 
+    private void FillSetaux(Three.ThreeTypes three,int x,int x1){
+        this.CreateThree(three);
+        super.black.getMoves().clear();
+        for(int i=x;i<x1;i++) super.black.addMove(new Piece(i,0,  Piece.PieceType.BLACK));
+    };
+
+    private void CheckSetaux(int x,int Exp){
+        th.setPlayers(super.black, super.white);
+        th.check(new Piece(x,0, Piece.PieceType.BLACK),1,pieceSet,dir);
+        assertEquals(Exp,pieceSet.size());
+    }
+
     @Test
     void FillSetcheck(){
-        this.CreateThree(Three.ThreeTypes.THREE);
-        super.black.getMoves().clear();
-        super.black.addMove(new Piece(17,0, Piece.PieceType.BLACK));
-        super.black.addMove(new Piece(18,0, Piece.PieceType.BLACK));
-        super.black.addMove(new Piece(19,0, Piece.PieceType.BLACK));
-        th.setPlayers(super.black, super.white);
-        th.check(new Piece(17,0, Piece.PieceType.BLACK),1,pieceSet,dir);
-        assertEquals(0,pieceSet.size());
+        this.FillSetaux(Three.ThreeTypes.THREE,17,20);
+        this.CheckSetaux(17,0);
     };
 
     @Test
     void FillSetGapcheck(){
-        this.CreateThree(Three.ThreeTypes.GAPTHREE);
-        super.black.getMoves().clear();
-        super.black.addMove(new Piece(5,0, Piece.PieceType.BLACK));
-        super.black.addMove(new Piece(7,0, Piece.PieceType.BLACK));
-        super.black.addMove(new Piece(8,0, Piece.PieceType.BLACK));
-        th.setPlayers(super.black, super.white);
-        th.check(new Piece(5,0, Piece.PieceType.BLACK),1,pieceSet,dir);
-        assertEquals(3,pieceSet.size());
+        this.FillSetaux(Three.ThreeTypes.GAPTHREE,5,9);
+        this.CheckSetaux(5,0);
+        super.black.removeMove(1);
+        this.CheckSetaux(5,3);
     };
 
 }

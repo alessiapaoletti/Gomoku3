@@ -14,11 +14,7 @@ class FiveTest {
     Five f=new Five();
 
     protected void FillPlayer(Player p){
-        p.addMove(new Piece(0,0, p.getColor()));
-        p.addMove(new Piece(1,0, p.getColor()));
-        p.addMove(new Piece(2,0, p.getColor()));
-        p.addMove(new Piece(3,0, p.getColor()));
-        p.addMove(new Piece(4,0, p.getColor()));
+        for(int i=0;i<5;i++) p.addMove(new Piece(i,0, p.getColor()));
     };
 
     @Test
