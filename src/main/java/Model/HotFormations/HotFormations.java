@@ -1,5 +1,6 @@
 package Model.HotFormations;
 import Model.Piece;
+import Model.PieceColor;
 import Model.Player;
 
 abstract class HotFormations {
@@ -18,14 +19,14 @@ abstract class HotFormations {
         this.white=p2;
     }
 
-    boolean isPieceIn(Piece piece, Piece.PieceType color){
-        if(color== Piece.PieceType.BLACK)
-            return this.black.isPlayerMove(new Piece(piece.getX(), piece.getY(), Piece.PieceType.BLACK));
+    boolean isPieceIn(Piece piece, PieceColor color){
+        if(color== PieceColor.BLACK)
+            return this.black.isPlayerMove(new Piece(piece.getX(), piece.getY(), PieceColor.BLACK));
         else
-            return this.white.isPlayerMove(new Piece(piece.getX(), piece.getY(), Piece.PieceType.WHITE));
+            return this.white.isPlayerMove(new Piece(piece.getX(), piece.getY(), PieceColor.WHITE));
     }
 
     boolean isEmpty(Piece p){
-        return !isPieceIn(p, Piece.PieceType.BLACK) && !isPieceIn(p, Piece.PieceType.WHITE);
+        return !isPieceIn(p, PieceColor.BLACK) && !isPieceIn(p, PieceColor.WHITE);
     }
 }

@@ -1,6 +1,6 @@
 package View;
 
-import Model.Piece;
+import Model.PieceColor;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -134,7 +134,7 @@ public class BoardView extends Pane{
         }
     }
 
-    public void setPiece(int x, int y,final Piece.PieceType color){
+    public void setPiece(int x, int y,final PieceColor color){
         this.pieces[x][y].setPiece(color);
     }
 

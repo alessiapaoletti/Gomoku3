@@ -1,54 +1,46 @@
-package test.java.Model.Directions;
+package Model.Directions;
+
 import Model.Piece;
-import Model.Directions.Directions;
-import org.junit.jupiter.api.Test;
+import Model.PieceColor;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class DirectionsTest {
+public class DirectionsTest {
 
-    private Piece CreateDir(Directions.Dir dir,int range,int x,int y,int sign){
+    private Piece createDir(Directions.Dir dir, int range, int x, int y, int sign){
         Directions DirTest = Model.Directions.DirectionFactory.getDir(dir);
-        return DirTest.updatePiece(new Piece(x,y, Piece.PieceType.BLACK),range,sign);
-    };
+        return DirTest.updatePiece(new Piece(x,y, PieceColor.BLACK),range,sign);
+    }
+
+    private void initialization(Directions.Dir dir, int ExpX, int ExpY, int sign){
+        Piece p=this.createDir(dir,2,1,2,sign);
+        assertEquals(p.getX(),ExpX);
+        assertEquals(p.getY(),ExpY);
+    }
 
     @Test
-    public void CheckUpdateHor(){
-        Piece p=this.CreateDir(Directions.Dir.HORIZONTAL,2,1,2,1);
-        assertEquals(p.getX(),3);
-        assertEquals(p.getY(),2);
-        p=this.CreateDir(Directions.Dir.HORIZONTAL,2,1,2,-1);
-        assertEquals(p.getX(),-1);
-        assertEquals(p.getY(),2);
-    };
+    public void checkUpdateHor(){
+        this.initialization(Directions.Dir.HORIZONTAL,3,2,1);
+        this.initialization(Directions.Dir.HORIZONTAL,-1,2,-1);
+    }
 
     @Test
-    public void CheckUpdateVer(){
-        Piece p=this.CreateDir(Directions.Dir.VERTICAL,2,1,2,1);
-        assertEquals(p.getX(),1);
-        assertEquals(p.getY(),4);
-        p=this.CreateDir(Directions.Dir.VERTICAL,2,1,2,-1);
-        assertEquals(p.getX(),1);
-        assertEquals(p.getY(),0);
-    };
+    public void checkUpdateVer(){
+        this.initialization(Directions.Dir.VERTICAL,1,4,1);
+        this.initialization(Directions.Dir.VERTICAL,1,0,-1);
+    }
 
     @Test
-    public void CheckUpdateDiag1(){
-        Piece p=this.CreateDir(Directions.Dir.DIAGONAL1,2,1,2,1);
-        assertEquals(p.getX(),3);
-        assertEquals(p.getY(),4);
-        p=this.CreateDir(Directions.Dir.DIAGONAL1,2,1,2,-1);
-        assertEquals(p.getX(),-1);
-        assertEquals(p.getY(),0);
-    };
+    public void checkUpdateDiag1(){
+        this.initialization(Directions.Dir.DIAGONAL1,3,4,1);
+        this.initialization(Directions.Dir.DIAGONAL1,-1,0,-1);
+    }
 
     @Test
-    public void CheckUpdateDiag2(){
-        Piece p=this.CreateDir(Directions.Dir.DIAGONAL2,2,1,2,1);
-        assertEquals(p.getX(),3);
-        assertEquals(p.getY(),0);
-        p=this.CreateDir(Directions.Dir.DIAGONAL2,2,1,2,-1);
-        assertEquals(p.getX(),-1);
-        assertEquals(p.getY(),4);
-    };
+    public void checkUpdateDiag2(){
+        this.initialization(Directions.Dir.DIAGONAL2,3,0,1);
+        this.initialization(Directions.Dir.DIAGONAL2,-1,4,-1);
+    }
+
 }

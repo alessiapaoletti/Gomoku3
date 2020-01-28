@@ -3,25 +3,19 @@ import java.util.Objects;
 
 public class Piece  {
 
-    public enum PieceType{
-        EMPTY,
-        BLACK,
-        WHITE
-    }
-
     private int x;
     private int y;
-    private PieceType pieceType;
+    private PieceColor pieceColor;
 
-    public Piece(int x, int y, PieceType p){
+    public Piece(int x, int y, PieceColor p){
         this.x = x;
         this.y = y;
-        this.pieceType = p;
+        this.pieceColor = p;
     }
 
     public boolean samePosition(Piece piece) {return this.x ==piece.x && this.y == piece.y ; }
 
-    public PieceType getPieceType(){return  this.pieceType; }
+    public PieceColor getPieceType(){return  this.pieceColor; }
     public int getX() {return this.x; }
     public int getY() {return this.y;  }
 
@@ -37,11 +31,11 @@ public class Piece  {
         Piece piece = (Piece) o;
         return x == piece.x &&
                 y == piece.y &&
-                pieceType.equals(piece.pieceType);
+                pieceColor.equals(piece.pieceColor);
     }
 
     @Override
     public int hashCode(){
-        return Objects.hash(x,y,pieceType);
+        return Objects.hash(x,y,pieceColor);
     }
 }

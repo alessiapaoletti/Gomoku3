@@ -2,6 +2,8 @@ package Model.HotFormations;
 
 import Model.Piece;
 import Model.Directions.Directions;
+import Model.PieceColor;
+
 import java.util.Set;
 
 public class GapThree extends Three {
@@ -9,13 +11,13 @@ public class GapThree extends Three {
     public boolean outOfGridCheck(Piece p, int sign, Directions dir) {
         return !(isOutOfGrid(dir.updatePiece(p,range4,sign)) && isOutOfGrid(dir.updatePiece(p,-range1,sign))) &&
                 !(isOutOfGrid(dir.updatePiece(p,range5,sign)) && isOutOfGrid(dir.updatePiece(p,-range1,sign))) &&
-                !(isOutOfGrid(dir.updatePiece(p,range4,sign)) && super.isPieceIn(dir.updatePiece(p,-range1,sign), Piece.PieceType.WHITE)) &&
-                !(super.isPieceIn(dir.updatePiece(p,range4,sign), Piece.PieceType.WHITE) && isOutOfGrid(dir.updatePiece(p,-range1,sign)));
+                !(isOutOfGrid(dir.updatePiece(p,range4,sign)) && super.isPieceIn(dir.updatePiece(p,-range1,sign), PieceColor.WHITE)) &&
+                !(super.isPieceIn(dir.updatePiece(p,range4,sign), PieceColor.WHITE) && isOutOfGrid(dir.updatePiece(p,-range1,sign)));
 
     }
 
     @Override
-    public boolean updateIn(Piece p, int sign,Piece.PieceType col, Directions dir) {
+    public boolean updateIn(Piece p, int sign, PieceColor col, Directions dir) {
         return super.isPieceIn(dir.updatePiece(p,range2,sign),col)
                 && super.isPieceIn(dir.updatePiece(p,range3,sign),col);
     }

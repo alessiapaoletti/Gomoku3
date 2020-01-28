@@ -4,7 +4,7 @@ import Model.GamePlay;
 import Model.GomokuGame.GomokuFactory;
 import Model.GomokuGame.GomokuGame;
 import Model.GomokuGame.GomokuType;
-import Model.Piece;
+import Model.PieceColor;
 import Model.Player;
 import Model.Rules.Opening.OpeningType;
 import View.Alert;
@@ -75,7 +75,7 @@ public class BoardController extends Control {
         int cellY = (int)((y - this.myView.startY + (this.myView.cellHeight / 2.0)) / this.myView.cellHeight);
         this.myGame.displacePiece(cellX, cellY);
         this.myView.removePiece(cellX, cellY);
-        this.myView.setPiece(cellX, cellY, Piece.PieceType.EMPTY);
+        this.myView.setPiece(cellX, cellY, PieceColor.EMPTY);
     }
 
     private void startOpening(final double x, final double y){

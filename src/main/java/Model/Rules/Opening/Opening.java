@@ -10,12 +10,17 @@ public abstract class Opening {
 
     public Opening(){ }
 
-    public void setPlayer1(Player player1) {
-        this.player1 = player1;
-    }
+//    public void setPlayer1(Player player1) {
+//        this.player1 = player1;
+//    }
+//
+//    public void setPlayer2(Player player2){
+//        this.player2 = player2;
+//    }
 
-    public void setPlayer2(Player player2){
-        this.player2 = player2;
+    public void setPlayers(Player p1, Player p2){
+        this.player1 = p1;
+        this.player2 = p2;
     }
 
     public int getNumMoves(){ return this.numMoves; }

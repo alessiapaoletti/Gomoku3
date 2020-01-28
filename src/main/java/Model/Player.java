@@ -4,10 +4,10 @@ import java.util.List;
 
 public class Player {
     private final String name;
-    private Piece.PieceType color;
+    private PieceColor color;
     private List<Piece> movesList = new ArrayList<>();
 
-    public Player(final String name, Piece.PieceType color){
+    public Player(final String name, PieceColor color){
         this.name = name;
         this.color = color;
     }
@@ -24,13 +24,13 @@ public class Player {
         return name;
     }
 
-    public Piece.PieceType getColor() {
+    public PieceColor getColor() {
         return this.color;
     }
 
     public String getColorName(){ return this.color.name(); }
 
-    public void setColor(final Piece.PieceType color) {
+    public void setColor(final PieceColor color) {
         this.color = color;
     }
 

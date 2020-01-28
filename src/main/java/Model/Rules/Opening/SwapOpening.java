@@ -1,7 +1,7 @@
 package Model.Rules.Opening;
 
 import Controller.ScoreController;
-import Model.Piece;
+import Model.PieceColor;
 import View.Alert;
 
 public class SwapOpening extends Opening {
@@ -18,8 +18,8 @@ public class SwapOpening extends Opening {
         player1.removeMove(1);
         player1.removeMove(0);
         player2.removeMove(0);
-        player1.setColor(Piece.PieceType.WHITE);
-        player2.setColor(Piece.PieceType.BLACK);
+        player1.setColor(PieceColor.WHITE);
+        player2.setColor(PieceColor.BLACK);
     }
 
     @Override

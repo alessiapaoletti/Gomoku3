@@ -1,6 +1,6 @@
 package View;
 
-import Model.Piece;
+import Model.PieceColor;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
@@ -10,7 +10,7 @@ import javafx.scene.shape.Ellipse;
 
 public class PieceView extends Group {
 
-    private Piece.PieceType color;
+    private PieceColor color;
     private Ellipse ellipse;
     private int x;
     private int y;
@@ -21,7 +21,7 @@ public class PieceView extends Group {
     PieceView() {
         this.ellipse = new Ellipse();
         this.getChildren().add(this.ellipse);
-        this.setPiece(Piece.PieceType.EMPTY);
+        this.setPiece(PieceColor.EMPTY);
     }
 
     @Override
@@ -33,12 +33,12 @@ public class PieceView extends Group {
         this.ellipse.setRadiusY(height / 2.0);
     }
 
-    void setPiece(final Piece.PieceType type) {
+    void setPiece(final PieceColor type) {
         this.color = type;
-        if (this.color == Piece.PieceType.EMPTY)
+        if (this.color == PieceColor.EMPTY)
             this.ellipse.setFill(Color.TRANSPARENT);
         else
-            this.ellipse.setFill(this.color == Piece.PieceType.WHITE ? this.whiteColor : this.blackColor);
+            this.ellipse.setFill(this.color == PieceColor.WHITE ? this.whiteColor : this.blackColor);
     }
 
     void removePiece() {

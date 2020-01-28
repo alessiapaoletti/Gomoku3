@@ -1,6 +1,6 @@
 package Model.GomokuGame;
 
-import Model.Piece;
+import Model.PieceColor;
 import Model.Player;
 import Model.Rules.Closing.Closing;
 import Model.Rules.Opening.Opening;
@@ -23,8 +23,9 @@ public abstract class GomokuGame {
 
     public void setGameEnvironment(OpeningType openingType){
         this.openingRules = OpeningFactory.getOpening(openingType);
-        this.openingRules.setPlayer1(getP1());
-        this.openingRules.setPlayer2(getP2());
+        this.openingRules.setPlayers(getP1(), getP2());
+//        this.openingRules.setPlayer1(getP1());
+//        this.openingRules.setPlayer2(getP2());
         this.setRules();
     }
 
@@ -47,12 +48,12 @@ public abstract class GomokuGame {
     public Opening getOpeningRules() {return this.openingRules; }
 
     public Player getBlackPlayer(){
-        if(p1.getColor() == Piece.PieceType.BLACK) return p1;
+        if(p1.getColor() == PieceColor.BLACK) return p1;
         else return p2;
     }
 
     public Player getWhitePlayer(){
-        if(p1.getColor() == Piece.PieceType.WHITE) return p1;
+        if(p1.getColor() == PieceColor.WHITE) return p1;
         else return p2;
     }
 }

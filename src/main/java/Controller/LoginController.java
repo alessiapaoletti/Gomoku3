@@ -1,7 +1,7 @@
 package Controller;
 
 import Model.GomokuGame.GomokuType;
-import Model.Piece;
+import Model.PieceColor;
 import Model.Player;
 import Model.Rules.Opening.OpeningType;
 import View.Alert;
@@ -35,8 +35,8 @@ public class LoginController {
 
         if (checkPlayersName() && checkGameSetUp()) {
 
-            Player p1 = new Player(player1.getText(), Piece.PieceType.BLACK);
-            Player p2 = new Player(player2.getText(), Piece.PieceType.WHITE);
+            Player p1 = new Player(player1.getText(), PieceColor.BLACK);
+            Player p2 = new Player(player2.getText(), PieceColor.WHITE);
             GomokuType gomokuType = (GomokuType) choiceGomokuType.getSelectionModel().getSelectedItem();
             OpeningType openingType = (OpeningType) choiceOpening.getSelectionModel().getSelectedItem();
 

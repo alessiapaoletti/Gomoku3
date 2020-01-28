@@ -4,13 +4,13 @@ import Model.GomokuGame.GomokuGame;
 import Model.Rules.Opening.OpeningType;
 
 public class GamePlay {
-    private Piece.PieceType currentPlayer;
+    private PieceColor currentPlayer;
     private GomokuGame game;
 
     public GamePlay(GomokuGame game, OpeningType openingType) {
         this.game = game;
         this.game.setGameEnvironment(openingType);
-        this.currentPlayer = Piece.PieceType.BLACK;
+        this.currentPlayer = PieceColor.BLACK;
     }
 
     public Player getCurrentPlayer(){
@@ -39,7 +39,7 @@ public class GamePlay {
 
     public void displacePiece(final int x, final int y) {
         this.swapPlayers();
-        Piece bannedPiece = new Piece(x,y,Piece.PieceType.EMPTY);
+        Piece bannedPiece = new Piece(x,y, PieceColor.EMPTY);
         this.removeMove(bannedPiece);
     }
 
@@ -52,14 +52,14 @@ public class GamePlay {
     }
 
     public void swapPlayers() {
-        if (this.currentPlayer == Piece.PieceType.WHITE)
-            this.currentPlayer = Piece.PieceType.BLACK;
+        if (this.currentPlayer == PieceColor.WHITE)
+            this.currentPlayer = PieceColor.BLACK;
         else
-            this.currentPlayer = Piece.PieceType.WHITE;
+            this.currentPlayer = PieceColor.WHITE;
     }
 
     public boolean isValidMove(final int x, final int y) {
-        Piece newPiece = new Piece(x,y,Piece.PieceType.EMPTY);
+        Piece newPiece = new Piece(x,y, PieceColor.EMPTY);
         return !game.getP1().isPlayerMove(newPiece) && !game.getP2().isPlayerMove(newPiece);
     }
 

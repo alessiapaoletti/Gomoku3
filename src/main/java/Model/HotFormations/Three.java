@@ -1,6 +1,8 @@
 package Model.HotFormations;
 import Model.Piece;
 import Model.Directions.Directions;
+import Model.PieceColor;
+
 import java.util.Set;
 
 public abstract class Three extends HotFormations{
@@ -20,7 +22,7 @@ public abstract class Three extends HotFormations{
 
     public abstract boolean outOfGridCheck(Piece p, int sig, Directions d);
     public abstract boolean updateOut(Piece p, int sign, Directions d);
-    public abstract boolean updateIn(Piece p, int sign, Piece.PieceType pt, Directions d);
+    public abstract boolean updateIn(Piece p, int sign, PieceColor pt, Directions d);
     public abstract void check(Piece piece, int sign, Set<Piece> pieceSet, Directions d);
 
     private void fillIn(Piece p, Piece p1, Piece p2, Set<Piece> pieceSet){
@@ -30,7 +32,7 @@ public abstract class Three extends HotFormations{
     }
 
     void auxiliaryCheck(int sign, Piece p, Piece p1, Piece p2, Set<Piece> pieceSet, Directions d) {
-        if (this.updateIn(p, sign, Piece.PieceType.BLACK, d) && this.updateOut(p, sign, d) && this.outOfGridCheck(p, sign, d))
+        if (this.updateIn(p, sign, PieceColor.BLACK, d) && this.updateOut(p, sign, d) && this.outOfGridCheck(p, sign, d))
             this.fillIn(p1, p2, p, pieceSet);
     }
 

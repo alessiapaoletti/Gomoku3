@@ -1,77 +1,81 @@
-package test.java.Model.HotFormations;
-import  Model.Directions.*;
-import Model.HotFormations.*;
-import Model.HotFormations.Three;
+package Model.HotFormations;
+
+import Model.Directions.DirectionFactory;
+import Model.Directions.Directions;
 import Model.Piece;
-import org.junit.jupiter.api.Test;
+import Model.PieceColor;
+import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class ThreeTest extends FiveTest{
-    Directions dir = DirectionFactory.getDir(Directions.Dir.HORIZONTAL);
-    Three th;
-    Set<Piece> pieceSet= new HashSet<>();
-    void CreateThree(Three.ThreeTypes three){
+public class ThreeTest extends FiveTest {
+
+    private Directions dir = DirectionFactory.getDir(Directions.Dir.HORIZONTAL);
+    private Three th;
+    private Set<Piece> pieceSet = new HashSet<>();
+
+    private void createThree(Three.ThreeTypes three) {
         th = ThreeFactory.getThree(three).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
         th.setDim(19);
-        super.FillPlayer(super.black);
-        super.black.addMove(new Piece(6,0, Piece.PieceType.BLACK));
-        super.black.addMove(new Piece(7,0, Piece.PieceType.BLACK));
+        super.fillPlayer(super.black);
+        super.black.addMove(new Piece(6, 0, PieceColor.BLACK));
+        super.black.addMove(new Piece(7, 0, PieceColor.BLACK));
         th.setPlayers(super.black, super.white);
-    };
+    }
 
-    void UpdateInCheck(Three.ThreeTypes three){
-        this.CreateThree(three);
-        assertTrue(th.updateIn(new Piece(0,0, Piece.PieceType.BLACK),1,Piece.PieceType.BLACK,dir));
-    };
+    private void updateInCheck(Three.ThreeTypes three) {
+        this.createThree(three);
+        assertTrue(th.updateIn(new Piece(0, 0, PieceColor.BLACK), 1, PieceColor.BLACK, dir));
+    }
 
-    void UpdateOutCheck(Three.ThreeTypes three){
-        this.CreateThree(three);
-        assertFalse(th.updateOut(new Piece(0,0, Piece.PieceType.BLACK),1,dir));
-    };
+    private void updateOutCheck(Three.ThreeTypes three) {
+        this.createThree(three);
+        assertFalse(th.updateOut(new Piece(0, 0, PieceColor.BLACK), 1, dir));
+    }
 
-    void outOfGridCheck(Three.ThreeTypes three){
-        this.CreateThree(three);
-        assertTrue(th.outOfGridCheck(new Piece(2,0, Piece.PieceType.BLACK),1,dir));
-    };
+    private void outOfGridCheck(Three.ThreeTypes three) {
+        this.createThree(three);
+        assertTrue(th.outOfGridCheck(new Piece(2, 0, PieceColor.BLACK), 1, dir));
+    }
 
     @Test
-    void UpdateCheck(){
+    public void updateCheck() {
         List<Three.ThreeTypes> three = Arrays.asList(Three.ThreeTypes.THREE, Three.ThreeTypes.GAPTHREE);
-        for(Three.ThreeTypes i : three){
-            this.UpdateInCheck(i);
-            this.UpdateOutCheck(i);
+        for (Three.ThreeTypes i : three) {
+            this.updateInCheck(i);
+            this.updateOutCheck(i);
             this.outOfGridCheck(i);
         }
-    };
+    }
+
+    private void fillSetaux(Three.ThreeTypes three, int x, int x1) {
+        this.createThree(three);
+        super.black.getMoves().clear();
+        for (int i = x; i < x1; i++) super.black.addMove(new Piece(i, 0, PieceColor.BLACK));
+    }
+
+    private void checkSetaux(int x, int Exp) {
+        th.setPlayers(super.black, super.white);
+        th.check(new Piece(x, 0, PieceColor.BLACK), 1, pieceSet, dir);
+        assertEquals(Exp, pieceSet.size());
+    }
 
     @Test
-    void FillSetcheck(){
-        this.CreateThree(Three.ThreeTypes.THREE);
-        super.black.getMoves().clear();
-        super.black.addMove(new Piece(17,0, Piece.PieceType.BLACK));
-        super.black.addMove(new Piece(18,0, Piece.PieceType.BLACK));
-        super.black.addMove(new Piece(19,0, Piece.PieceType.BLACK));
-        th.setPlayers(super.black, super.white);
-        th.check(new Piece(17,0, Piece.PieceType.BLACK),1,pieceSet,dir);
-        assertEquals(0,pieceSet.size());
-    };
+    public void fillSetcheck() {
+        this.fillSetaux(Three.ThreeTypes.THREE, 17, 20);
+        this.checkSetaux(17, 0);
+    }
 
     @Test
-    void FillSetGapcheck(){
-        this.CreateThree(Three.ThreeTypes.GAPTHREE);
-        super.black.getMoves().clear();
-        super.black.addMove(new Piece(5,0, Piece.PieceType.BLACK));
-        super.black.addMove(new Piece(7,0, Piece.PieceType.BLACK));
-        super.black.addMove(new Piece(8,0, Piece.PieceType.BLACK));
-        th.setPlayers(super.black, super.white);
-        th.check(new Piece(5,0, Piece.PieceType.BLACK),1,pieceSet,dir);
-        assertEquals(3,pieceSet.size());
-    };
-
+    public void fillSetGapcheck() {
+        this.fillSetaux(Three.ThreeTypes.GAPTHREE, 5, 9);
+        this.checkSetaux(5, 0);
+        super.black.removeMove(1);
+        this.checkSetaux(5, 3);
+    }
 }
