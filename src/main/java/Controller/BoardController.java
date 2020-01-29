@@ -23,44 +23,58 @@ public class BoardController extends Control {
     private final StackPane mainLayout;
     private int cellX=0;
     private int cellY=0;
+    private boolean OpeningDone=false;
+    private boolean OpeningDone2=false;
 
-     BoardController(Player p1, Player p2, GomokuType gomokuType, OpeningType openingType) {
-         GomokuGame gomokuGame = GomokuFactory.getGame(gomokuType);
-         gomokuGame.setPlayers(p1, p2);
-         this.myView = new BoardView(gomokuGame.getGridSize());
-         this.myGame = new GamePlay(gomokuGame, openingType);
-         this.setSkin(new ControlSkin(this));
-         this.getChildren().add(this.myView);
-         this.mainLayout = new StackPane();
-         this.mainLayout.getChildren().add(this);
+    BoardController(Player p1, Player p2, GomokuType gomokuType, OpeningType openingType) {
+        GomokuGame gomokuGame = GomokuFactory.getGame(gomokuType);
+        gomokuGame.setPlayers(p1, p2);
+        this.myView = new BoardView(gomokuGame.getGridSize());
+        this.myGame = new GamePlay(gomokuGame, openingType);
+        this.setSkin(new ControlSkin(this));
+        this.getChildren().add(this.myView);
+        this.mainLayout = new StackPane();
+        this.mainLayout.getChildren().add(this);
     }
 
     BoardView getMyView(){
-        return myView;
+        return this.myView;
     }
+   // public GamePlay getMyGame(){return this.myGame;}
 
     void clickOpeningCounter(){
-         Alert.openingRulesAlert(myGame.getGame().getOpeningRules().getOpeningType().name());
-         this.setOnMouseClicked((event) -> {
-             this.clicksCount++;
-             this.setClickCount(event.getX(), event.getY());
-             if(this.clicksCount == myGame.getNumMovesOpening() || this.clicksCount == 5)
-                 startOpening(event.getX(), event.getY());
-             startGame(event.getX(), event.getY());
-         });
-     }
+        Alert.openingRulesAlert(myGame.getGame().getOpeningRules().getOpeningType().name());
+        this.setOnMouseClicked((event) -> {
+            this.clicksCount++;
+            this.setClickCount(event.getX(), event.getY());
+            if(this.clicksCount == myGame.getNumMovesOpening() && !OpeningDone) {
+                startOpening(event.getX(), event.getY());
+                this.OpeningDone=true;
+            }
+            if(this.clicksCount == 5 && !OpeningDone2) {
+                startOpening(event.getX(), event.getY());
+                this.OpeningDone2=true;
+            }
+            startGame(event.getX(), event.getY());
+        });
+    }
 
-     private void CoordinateSet(final double x, final double y ){
-         this.cellX = (int)((x - this.myView.startX + (this.myView.cellWidth / 2.0)) / this.myView.cellWidth);
-         this.cellY = (int)((y - this.myView.startY + (this.myView.cellHeight / 2.0)) / this.myView.cellHeight);
-     };
+
+    private void coordinateSet(final double x, final double y ){
+        this.cellX = (int)((x - this.myView.gridStructure.getStartX() + (this.myView.gridStructure.getCellWidth() / 2.0)) / this.myView.gridStructure.getCellWidth());
+        this.cellY = (int)((y - this.myView.gridStructure.getStartY() + (this.myView.gridStructure.getCellHeight() / 2.0)) / this.myView.gridStructure.getCellHeight());
+    }
 
     private void setClickCount(final double x, final double y ){
-        this.CoordinateSet(x,y);
-         if(!this.myGame.isValidMove(this.cellX, this.cellY)) this.clicksCount-=1;}
+        this.coordinateSet(x,y);
+        if(!this.myGame.isValidMove(this.cellX, this.cellY)){
+            this.clicksCount-=1;
+        }
+    }
+
 
     private void placePiece(final double x, final double y) {
-        this.CoordinateSet(x,y);
+        this.coordinateSet(x,y);
         if(this.myGame.isValidMove(this.cellX,this.cellY) && !this.myGame.isOutOfBound(this.cellX, this.cellY) ){
             this.myView.setPiece(this.cellX, this.cellY, this.myGame.getCurrentPlayer().getColor());
             this.myGame.placePiece(this.cellX, this.cellY);
@@ -75,7 +89,7 @@ public class BoardController extends Control {
     }
 
     private void displacePiece(final double x, final double y) {
-        this.CoordinateSet(x,y);
+        this.coordinateSet(x,y);
         this.myGame.displacePiece(this.cellX, this.cellY);
         this.myView.removePiece(this.cellX, this.cellY);
         this.myView.setPiece(this.cellX, this.cellY, PieceColor.EMPTY);

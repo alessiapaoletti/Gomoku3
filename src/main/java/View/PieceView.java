@@ -18,10 +18,12 @@ public class PieceView extends Group {
     private RadialGradient whiteColor = new RadialGradient(0.5, 0.5, 0, 0, 1.5, true, CycleMethod.REFLECT, new Stop(0, Color.WHITE), new Stop(1, Color.GREY));
     private RadialGradient blackColor = new RadialGradient(0.5, 0.5, 0, 0, 1.5, true, CycleMethod.REFLECT, new Stop(0, Color.DARKSLATEGREY), new Stop(1, Color.BLACK));
 
-    PieceView() {
+    PieceView(int x, int y) {
         this.ellipse = new Ellipse();
         this.getChildren().add(this.ellipse);
         this.setPiece(PieceColor.EMPTY);
+        this.x = x;
+        this.y = y;
     }
 
     @Override
@@ -45,12 +47,5 @@ public class PieceView extends Group {
         this.ellipse.setFill(Color.TRANSPARENT);
     }
 
-    void setX(final int x) {
-        this.x = x;
-    }
-
-    void setY(final int y) {
-        this.y = y;
-    }
 
 }
