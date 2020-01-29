@@ -46,7 +46,7 @@ public class GridStructure {
     }
 
 
-    public void initializeLines(){
+    void initializeLines(){
         this.createHorizontalLines();
         this.createVerticalLines();
     }
@@ -68,7 +68,7 @@ public class GridStructure {
     }
 
 
-    public void setCellWidth(double cellWidth) {
+    void setCellWidth(double cellWidth) {
         this.cellWidth = cellWidth;
     }
 
@@ -81,7 +81,7 @@ public class GridStructure {
         return cellHeight;
     }
 
-    public void setCellHeight(double cellHeight) {
+    void setCellHeight(double cellHeight) {
         this.cellHeight = cellHeight;
     }
 
@@ -89,7 +89,7 @@ public class GridStructure {
         return startX;
     }
 
-    public void setStartX(double startX) {
+    void setStartX(double startX) {
         this.startX = startX;
     }
 
@@ -97,7 +97,7 @@ public class GridStructure {
         return startY;
     }
 
-    public void setStartY(double startY) {
+    void setStartY(double startY) {
         this.startY = startY;
     }
 

@@ -23,8 +23,8 @@ public class BoardController extends Control {
     private final StackPane mainLayout;
     private int cellX=0;
     private int cellY=0;
-    private boolean OpeningDone=false;
-    private boolean OpeningDone2=false;
+    private boolean openingDone =false;
+    private boolean openingDone2 =false;
 
     BoardController(Player p1, Player p2, GomokuType gomokuType, OpeningType openingType) {
         GomokuGame gomokuGame = GomokuFactory.getGame(gomokuType);
@@ -47,8 +47,8 @@ public class BoardController extends Control {
         this.setOnMouseClicked((event) -> {
             this.clicksCount++;
             this.setClickCount(event.getX(), event.getY());
-            this.OpeningDone=this.getOpeningDone(event.getX(), event.getY(),this.clicksCount == myGame.getNumMovesOpening(),OpeningDone);
-            this.OpeningDone2=this.getOpeningDone(event.getX(), event.getY(),this.clicksCount == 5,OpeningDone2);
+            this.openingDone =this.getOpeningDone(event.getX(), event.getY(),this.clicksCount == myGame.getNumMovesOpening(), openingDone);
+            this.openingDone2 =this.getOpeningDone(event.getX(), event.getY(),this.clicksCount == 5, openingDone2);
             startGame(event.getX(), event.getY());
         });
     }
@@ -59,7 +59,7 @@ public class BoardController extends Control {
             check2=true;
         }
         return check2;
-    };
+    }
 
     private void coordinateSet(final double x, final double y ){
         this.cellX = (int)((x - this.myView.gridStructure.getStartX() + (this.myView.gridStructure.getCellWidth() / 2.0)) / this.myView.gridStructure.getCellWidth());

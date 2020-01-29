@@ -1,11 +1,15 @@
 package Model;
 
+import Model.GomokuGame.GomokuFactory;
+import Model.GomokuGame.GomokuGame;
 import Model.GomokuGame.GomokuType;
 import Model.Rules.Opening.OpeningType;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+
+//import static org.junit.Assert.assertFalse;
+//import static org.junit.Assert.assertTrue;
 
 public class GamePlayTest {
 
@@ -13,6 +17,7 @@ public class GamePlayTest {
     private Player white=new Player("w", PieceColor.WHITE);
     private GomokuGame gomokuGame = GomokuFactory.getGame(GomokuType.Standard);
     private GamePlay Pgame;
+
     private void SetConditions(){
         for(int i=0;i<5;i++){ this.black.addMove(new Piece(i,0,PieceColor.BLACK));}
         gomokuGame.setPlayers(this.black,this.white);
@@ -20,8 +25,9 @@ public class GamePlayTest {
     }
 
     private void SetFullBoard(){
-        for(int i=0;i<14;i++){
-            for(int j=0;j<14;j++){ this.black.addMove(new Piece(i,j,PieceColor.BLACK));}
+        int gridSize = 14;
+        for(int i = 0; i<= gridSize; i++){
+            for(int j = 0; j<= gridSize; j++){ this.black.addMove(new Piece(i,j,PieceColor.BLACK));}
         }
         gomokuGame.setPlayers(this.black,this.white);
         Pgame=new GamePlay(gomokuGame, OpeningType.Standard);
@@ -62,8 +68,8 @@ public class GamePlayTest {
     }
     @Test
     public void CheckFullBoard(){
-        //this.SetFullBoard();
-        //assertTrue(Pgame.checkFullBoard());
+        this.SetFullBoard();
+        assertTrue(Pgame.checkFullBoard());
     }
 
     @Test

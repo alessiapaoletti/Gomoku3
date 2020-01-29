@@ -16,7 +16,6 @@ public class ClosingTest {
     private Player black=new Player("mario", PieceColor.BLACK);
     private Player white=new Player("mario",PieceColor.WHITE);
 
-
     private NoOverlines noOverlines = new NoOverlines();
     private Overlines overlines = new Overlines();
 
@@ -30,22 +29,22 @@ public class ClosingTest {
 
     private void fullBoardConfiguration(){
         clearMoves();
-        for (int i = 0; i<gridDim; i ++ ) {
-            for (int j = 0; j <gridDim; j++)
+        for (int i = 0; i<=gridDim; i ++ ) {
+            for (int j = 0; j <=gridDim; j++)
                 this.black.addMove(new Piece(i, j, PieceColor.BLACK));
         }
     }
 
     @Test
     public void testFullBoard(){
-      /*  overlines.setPlayers(black, white);
-        noOverlines.setPlayers(black, white);
-        assertFalse(overlines.fullBoard(gridDim));
-        assertFalse(noOverlines.fullBoard(gridDim));
+      overlines.setPlayers(black, white);
+      noOverlines.setPlayers(black, white);
+      assertFalse(overlines.fullBoard(gridDim));
+      assertFalse(noOverlines.fullBoard(gridDim));
 
-        this.fullBoardConfiguration();
-        assertTrue(overlines.fullBoard(gridDim));
-        assertTrue(noOverlines.fullBoard(gridDim)); */
+      this.fullBoardConfiguration();
+      assertTrue(overlines.fullBoard(gridDim));
+      assertTrue(noOverlines.fullBoard(gridDim));
     }
 
 
@@ -72,8 +71,6 @@ public class ClosingTest {
         horizontalWinning(this.white);
         assertTrue(noOverlines.isWinning(this.white.getMoves()));
     }
-
-
 
     @Test
     public void checkCountOverlines(){
