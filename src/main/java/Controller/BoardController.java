@@ -47,18 +47,19 @@ public class BoardController extends Control {
         this.setOnMouseClicked((event) -> {
             this.clicksCount++;
             this.setClickCount(event.getX(), event.getY());
-            if(this.clicksCount == myGame.getNumMovesOpening() && !OpeningDone) {
-                startOpening(event.getX(), event.getY());
-                this.OpeningDone=true;
-            }
-            if(this.clicksCount == 5 && !OpeningDone2) {
-                startOpening(event.getX(), event.getY());
-                this.OpeningDone2=true;
-            }
+            this.OpeningDone=this.getOpeningDone(event.getX(), event.getY(),this.clicksCount == myGame.getNumMovesOpening(),OpeningDone);
+            this.OpeningDone2=this.getOpeningDone(event.getX(), event.getY(),this.clicksCount == 5,OpeningDone2);
             startGame(event.getX(), event.getY());
         });
     }
 
+    private boolean getOpeningDone(final double x, final double y,boolean check1,boolean check2){
+        if(check1 && !check2) {
+            startOpening(x,y);
+            check2=true;
+        }
+        return check2;
+    };
 
     private void coordinateSet(final double x, final double y ){
         this.cellX = (int)((x - this.myView.gridStructure.getStartX() + (this.myView.gridStructure.getCellWidth() / 2.0)) / this.myView.gridStructure.getCellWidth());
