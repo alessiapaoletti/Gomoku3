@@ -3,8 +3,8 @@ package Model.HotFormations;
 import Model.Directions.DirectionFactory;
 import Model.Directions.Directions;
 import Model.Piece;
-import Model.PieceColor;
 import Model.Player;
+import Model.PieceColor;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

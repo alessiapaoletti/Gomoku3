@@ -5,8 +5,6 @@ import Model.Player;
 import Model.Rules.Opening.OpeningType;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class GomokuGameTest {
     @Test
     public void gomokuFactoryTest(){
