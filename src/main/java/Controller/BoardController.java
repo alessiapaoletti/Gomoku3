@@ -21,6 +21,8 @@ public class BoardController extends Control {
     private GamePlay myGame;
     private int clicksCount = 0;
     private final StackPane mainLayout;
+    private int cellX=0;
+    private int cellY=0;
 
      BoardController(Player p1, Player p2, GomokuType gomokuType, OpeningType openingType) {
          GomokuGame gomokuGame = GomokuFactory.getGame(gomokuType);
@@ -48,21 +50,23 @@ public class BoardController extends Control {
          });
      }
 
+     private void CoordinateSet(final double x, final double y ){
+         this.cellX = (int)((x - this.myView.startX + (this.myView.cellWidth / 2.0)) / this.myView.cellWidth);
+         this.cellY = (int)((y - this.myView.startY + (this.myView.cellHeight / 2.0)) / this.myView.cellHeight);
+     };
+
     private void setClickCount(final double x, final double y ){
-         int cellX = (int)((x - this.myView.startX + (this.myView.cellWidth / 2.0)) / this.myView.cellWidth);
-         int cellY = (int)((y - this.myView.startY + (this.myView.cellHeight / 2.0)) / this.myView.cellHeight);
-         if(!this.myGame.isValidMove(cellX, cellY)) this.clicksCount-=1;}
+        this.CoordinateSet(x,y);
+         if(!this.myGame.isValidMove(this.cellX, this.cellY)) this.clicksCount-=1;}
 
     private void placePiece(final double x, final double y) {
-        int cellX = (int)((x - this.myView.startX + (this.myView.cellWidth / 2.0)) / this.myView.cellWidth);
-        int cellY = (int)((y - this.myView.startY + (this.myView.cellHeight / 2.0)) / this.myView.cellHeight);
-
-        if(this.myGame.isValidMove(cellX, cellY) && !this.myGame.isOutOfBound(cellX, cellY) ){
-            this.myView.setPiece(cellX, cellY, this.myGame.getCurrentPlayer().getColor());
-            this.myGame.placePiece(cellX, cellY);
+        this.CoordinateSet(x,y);
+        if(this.myGame.isValidMove(this.cellX,this.cellY) && !this.myGame.isOutOfBound(this.cellX, this.cellY) ){
+            this.myView.setPiece(this.cellX, this.cellY, this.myGame.getCurrentPlayer().getColor());
+            this.myGame.placePiece(this.cellX, this.cellY);
 
             if(this.myGame.checkFullBoard())
-                this.gameOver();
+                this.gameOver(" ");
             if(!this.myGame.checkWinningMove().isEmpty() ){
                 this.gameOver(this.myGame.checkWinningMove());
             }
@@ -71,11 +75,10 @@ public class BoardController extends Control {
     }
 
     private void displacePiece(final double x, final double y) {
-        int cellX = (int)((x - this.myView.startX + (this.myView.cellWidth / 2.0)) / this.myView.cellWidth);
-        int cellY = (int)((y - this.myView.startY + (this.myView.cellHeight / 2.0)) / this.myView.cellHeight);
-        this.myGame.displacePiece(cellX, cellY);
-        this.myView.removePiece(cellX, cellY);
-        this.myView.setPiece(cellX, cellY, PieceColor.EMPTY);
+        this.CoordinateSet(x,y);
+        this.myGame.displacePiece(this.cellX, this.cellY);
+        this.myView.removePiece(this.cellX, this.cellY);
+        this.myView.setPiece(this.cellX, this.cellY, PieceColor.EMPTY);
     }
 
     private void startOpening(final double x, final double y){
@@ -97,13 +100,6 @@ public class BoardController extends Control {
     private void gameOver(String winner){
         Stage stage = (Stage) myView.getScene().getWindow();
         String result = View.Alert.gameOverAlert(winner);
-        if("OK".equals(result))
-            stage.close();
-    }
-
-    private void gameOver(){
-        Stage stage = (Stage) myView.getScene().getWindow();
-        String result = View.Alert.gameOverAlert();
         if("OK".equals(result))
             stage.close();
     }
