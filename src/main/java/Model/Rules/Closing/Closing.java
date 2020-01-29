@@ -44,6 +44,6 @@ public abstract class Closing {
     }
 
     public boolean fullBoard(int dim){
-        return (black.getMoves().size() + white.getMoves().size()) == dim * dim;
+        return (black.getMoves().size() + white.getMoves().size()) == (dim+1) * (dim+1);
     }
 }
