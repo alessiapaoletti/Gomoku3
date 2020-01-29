@@ -66,7 +66,7 @@ public class BoardController extends Control {
             this.myGame.placePiece(this.cellX, this.cellY);
 
             if(this.myGame.checkFullBoard())
-                this.gameOver(" ");
+                this.gameOver();
             if(!this.myGame.checkWinningMove().isEmpty() ){
                 this.gameOver(this.myGame.checkWinningMove());
             }
@@ -97,7 +97,7 @@ public class BoardController extends Control {
         }
     }
 
-    private void gameOver(String winner){
+    private void gameOver(String ... winner){
         Stage stage = (Stage) myView.getScene().getWindow();
         String result = View.Alert.gameOverAlert(winner);
         if("OK".equals(result))
