@@ -73,12 +73,5 @@ public class PlayerTest {
         assertTrue(this.blackPlayer.isPlayerMove(newPieceBlack));
     }
 
-    @Test
-    public void checkAllMovesTest(){
-        Piece m=new Piece(4,5,PieceColor.BLACK);
-        Piece n=new Piece(4,5,PieceColor.WHITE);
-        this.blackPlayer.addMove(m);
-        this.whitePlayer.addMove(n);
-        assertTrue(this.blackPlayer.checkAllMoves(this.whitePlayer));
-    }
+   
 }
