@@ -73,5 +73,4 @@ public class PlayerTest {
         assertTrue(this.blackPlayer.isPlayerMove(newPieceBlack));
     }
 
-   
 }

@@ -1,7 +1,7 @@
 package Model.Rules.Opening;
 
 import Controller.ScoreController;
-import View.Alert;
+import View.Alert.*;
 
 public class Swap2Opening extends SwapOpening {
 
@@ -30,15 +30,12 @@ public class Swap2Opening extends SwapOpening {
     }
 
     private Boolean swap2InitQuestions() {
-        if ("YES".equals(Alert.swapAlert())){
+        if ("YES".equals(AlertSwap.swapAlert())){
             ScoreController.swapLabels();
             super.utilitySwap();
-            checkError();
         } else {
-            if ("YES".equals(Alert.swap2Alert()))
-                checkError();
-            else{
-                Alert.swap2Alert2();
+            if ("NO".equals(AlertSwap.swap2Alert())) {
+                AlertSwap.swap2Alert2();
                 return false;
             }
         }
@@ -46,10 +43,9 @@ public class Swap2Opening extends SwapOpening {
     }
 
     private void swap2LastQuestion(){
-        if ("YES".equals(Alert.swap2_1Alert())) {
+        if ("YES".equals(AlertSwap.swap2_1Alert())) {
             ScoreController.swapLabels();
             this.utilitySwap();
         }
-        checkError();
     }
 }

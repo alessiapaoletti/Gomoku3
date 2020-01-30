@@ -6,14 +6,16 @@ import Model.GomokuGame.GomokuGame;
 import Model.GomokuGame.GomokuType;
 import Model.PieceColor;
 import Model.Player;
+import View.Alert.*;
 import Model.Rules.Opening.OpeningType;
-import View.Alert;
 import View.BoardView;
 import View.ControlSkin;
 import javafx.scene.Scene;
 import javafx.scene.control.Control;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import java.lang.reflect.InvocationTargetException;
 
 public class BoardController extends Control {
 
@@ -42,8 +44,8 @@ public class BoardController extends Control {
     }
    // public GamePlay getMyGame(){return this.myGame;}
 
-    void clickOpeningCounter(){
-        Alert.openingRulesAlert(myGame.getGame().getOpeningRules().getOpeningType().name());
+    void clickOpeningCounter() throws InvocationTargetException, IllegalAccessException {
+        AlertOpening.getAlertOpening(myGame.getGame().getOpeningRules().getOpeningType());
         this.setOnMouseClicked((event) -> {
             this.clicksCount++;
             this.setClickCount(event.getX(), event.getY());
@@ -107,14 +109,14 @@ public class BoardController extends Control {
             this.myGame.getGame().checkInvalidMoves();
         }
         catch (Error | Exception e){
-            Alert.invalidMoveAlert(e.toString());
+            AlertInvalidMove.invalidMoveAlert(e.toString());
             this.displacePiece(x,y);
         }
     }
 
     private void gameOver(String ... winner){
         Stage stage = (Stage) myView.getScene().getWindow();
-        String result = View.Alert.gameOverAlert(winner);
+        String result = AlertGameOver.gameOverAlert(winner);
         if("OK".equals(result))
             stage.close();
     }

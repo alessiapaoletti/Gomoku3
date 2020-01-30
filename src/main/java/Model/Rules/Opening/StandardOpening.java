@@ -9,7 +9,7 @@ public class StandardOpening extends Opening {
 
     @Override
     public void openingBehaviour(int numClicks){
-        if (numClicks == 2) checkError();
+        if (numClicks == 2) {};
     }
 
 

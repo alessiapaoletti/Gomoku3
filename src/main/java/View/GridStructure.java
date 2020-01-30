@@ -45,6 +45,7 @@ public class GridStructure {
         }
     }
 
+
     void initializeLines(){
         this.createHorizontalLines();
         this.createVerticalLines();

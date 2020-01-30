@@ -7,7 +7,6 @@ import Model.Piece;
 import Model.PieceColor;
 import Model.Player;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 public class OpeningTest {
@@ -30,7 +29,7 @@ public class OpeningTest {
     Player p1 = new Player("A", PieceColor.BLACK);
     Player p2 = new Player("B", PieceColor.WHITE);
 
-    @Test(expected = Error.class)
+    /*@Test(expected = Error.class)
     public void checkErrorTest(){
         p1.addMove(new Piece(1,1, PieceColor.BLACK));
         p1.addMove(new Piece(1,2, PieceColor.BLACK));
@@ -42,7 +41,7 @@ public class OpeningTest {
         gomokuGame.setPlayers(p1, p2);
         gomokuGame.setGameEnvironment(OpeningType.Standard);
         gomokuGame.getOpeningRules().openingBehaviour(2);
-    }
+    }*/
 
     @Test
     public void utilitySwapTest(){

@@ -3,14 +3,17 @@ package Controller;
 import Model.GomokuGame.GomokuType;
 import Model.PieceColor;
 import Model.Player;
+import View.Alert.*;
 import Model.Rules.Opening.OpeningType;
-import View.Alert;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import java.lang.reflect.InvocationTargetException;
 
 public class LoginController {
 
@@ -31,7 +34,7 @@ public class LoginController {
     }
 
     @FXML
-    public void startGame() {
+    public void startGame() throws InvocationTargetException, IllegalAccessException{
 
         if (checkPlayersName() && checkGameSetUp()) {
 
@@ -52,7 +55,7 @@ public class LoginController {
             ScoreController scoreController = new ScoreController(p1, p2,gomokuType, openingType, boardController.getMyView());
             scoreController.start();
         } else
-            Alert.loginAlert();
+            AlertLogin.loginAlert();
     }
 
     private boolean checkPlayersName(){

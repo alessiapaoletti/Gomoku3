@@ -2,7 +2,7 @@ package Model.Rules.Opening;
 
 import Controller.ScoreController;
 import Model.PieceColor;
-import View.Alert;
+import View.Alert.*;
 
 public class SwapOpening extends Opening {
 
@@ -28,10 +28,9 @@ public class SwapOpening extends Opening {
     }
 
     private void swapQuestion(){
-        if ("YES".equals(Alert.swapAlert())){
+        if ("YES".equals(AlertSwap.swapAlert())){
             ScoreController.swapLabels();
             this.utilitySwap();
         }
-        checkError();
     }
 }
