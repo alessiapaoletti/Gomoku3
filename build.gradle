@@ -13,9 +13,7 @@ repositories {
 
 dependencies {
     testImplementation 'junit:junit:4.12'
-    implementation 'org.junit.jupiter:junit-jupiter'
-    implementation 'org.junit.jupiter:junit-jupiter'
-    implementation 'org.junit.jupiter:junit-jupiter'
+
 }
 
 test {
