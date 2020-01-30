@@ -62,8 +62,8 @@ public class BoardController extends Control {
     }
 
     private void coordinateSet(final double x, final double y ){
-        this.cellX = (int)((x - this.myView.gridStructure.getStartX() + (this.myView.gridStructure.getCellWidth() / 2.0)) / this.myView.gridStructure.getCellWidth());
-        this.cellY = (int)((y - this.myView.gridStructure.getStartY() + (this.myView.gridStructure.getCellHeight() / 2.0)) / this.myView.gridStructure.getCellHeight());
+        this.cellX = (int)((x - this.myView.getGrid().getStartX() + (this.myView.getGrid().getCellWidth() / 2.0)) / this.myView.getGrid().getCellWidth());
+        this.cellY = (int)((y - this.myView.getGrid().getStartY() + (this.myView.getGrid().getCellHeight() / 2.0)) / this.myView.getGrid().getCellHeight());
     }
 
     private void setClickCount(final double x, final double y ){

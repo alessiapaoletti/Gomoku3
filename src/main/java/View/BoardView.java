@@ -4,16 +4,17 @@ import Model.PieceColor;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import java.util.stream.IntStream;
 
 public class BoardView extends Pane{
-    private Rectangle background;
-    public GridStructure gridStructure;
+
+    private GridStructure gridStructure;
     private int boardSize;
     private PieceView[][] pieces;
+    private Rectangle background;
     private Color backgroundColor = Color.PINK;
 
     public BoardView(int inputSize){
-
         this.boardSize = inputSize + 1;
         this.gridStructure = new GridStructure(this.boardSize);
         this.pieces = new PieceView[this.boardSize][this.boardSize];
@@ -23,12 +24,13 @@ public class BoardView extends Pane{
     @Override
     public void resize(double width, double height) {
         super.resize(width, height);
+
         int applicationBorder = 50;
         double newWidth = width - applicationBorder;
         double newHeight = height - applicationBorder;
 
-        if (width > height) newWidth = newHeight;
-        else newHeight = newWidth;
+//        if (width > height) newWidth = newHeight;
+//        else newHeight = newWidth;
 
         this.gridStructure.setCellWidth(newWidth / (this.boardSize - 1));
         this.gridStructure.setCellHeight(newHeight / (this.boardSize - 1));
@@ -44,7 +46,7 @@ public class BoardView extends Pane{
         this.gridStructure.horizontalResizeRelocate(newWidth);
         this.gridStructure.verticalResizeRelocate(newHeight);
 
-        this.initialiseRender();
+        this.initialisePieceMatrix();
         this.pieceResizeRelocate();
     }
 
@@ -56,13 +58,10 @@ public class BoardView extends Pane{
         this.gridStructure.initializeLines();
 
         for (int i = 0; i < this.boardSize; ++i) {
-
             this.getChildren().add(this.gridStructure.horizontal[i]);
             this.getChildren().add(this.gridStructure.vertical[i]);
         }
     }
-
-
 
     private void pieceResizeRelocate() {
         double pieceSize = 0.70;
@@ -70,6 +69,7 @@ public class BoardView extends Pane{
         double cellY = this.gridStructure.getCellHeight() * pieceSize;
         double offsetX = this.gridStructure.getCellWidth() * ((1 - pieceSize) / 2);
         double offsetY = this.gridStructure.getCellHeight() * ((1 - pieceSize) / 2);
+
         for (int i = 0; i < this.boardSize; ++i) {
             for (int j = 0; j < this.boardSize; ++j) {
                 pieces[i][j].resize(cellX, cellY);
@@ -79,15 +79,26 @@ public class BoardView extends Pane{
         }
     }
 
-    private void initialiseRender() {
-        for (int i = 0; i < this.boardSize; ++i) {
-            for (int j = 0; j < this.boardSize; ++j) {
-                pieces[i][j] = new PieceView(i,j);
+    private void initialisePieceMatrix() {
+        this.pieces = IntStream
+                .range(0, this.boardSize)
+                .mapToObj(i -> IntStream.range(0, this.boardSize)
+                        .mapToObj(j -> new PieceView(i,j))
+                        .toArray(PieceView[]::new))
+                .toArray(PieceView[][]::new);
 
+        for (int i = 0; i < this.boardSize; ++i)
+            this.getChildren().addAll(pieces[i]);
+
+
+        /*for (int i = 0; i < this.boardSize; ++i) {
+            for (int j = 0; j < this.boardSize; ++j) {
+               pieces[i][j] = new PieceView(i,j);
             }
             this.getChildren().addAll(pieces[i]);
-        }
+        }*/
     }
+
 
     public void setPiece(int x, int y,final PieceColor color){
         this.pieces[x][y].setPiece(color);
@@ -95,6 +106,10 @@ public class BoardView extends Pane{
 
     public void removePiece(final int x , final int y){
         this.pieces[x][y].removePiece();
+    }
+
+    public GridStructure getGrid() {
+        return this.gridStructure;
     }
 
 }

@@ -22,7 +22,7 @@ public class InvalidMovesTest {
         assertEquals(white.getColor(),PieceColor.WHITE);
     }
 
-    private void createVerticalHorizontalFork(){
+    private void horizontalVertical(){
         this.black.getMoves().clear();
         this.black.addMove(new Piece(3,5,PieceColor.BLACK));
         this.black.addMove(new Piece(4,5,PieceColor.BLACK));
@@ -32,34 +32,34 @@ public class InvalidMovesTest {
     }
 
     @Test(expected = java.lang.Error.class)
-    public void verticalHorizontalFork() {
+    public void horizontalVerticalTest() {
         /*number 1*/
         invalidMoves.setPlayers(black, white);
         invalidMoves.setDimBoard(gridDim);
-        createVerticalHorizontalFork();
+        horizontalVertical();
         invalidMoves.threeAndThree();
     }
 
-    private void createVerticalHorizontalForkWhite(){
-        this.black.getMoves().clear();
-        this.black.addMove(new Piece(12,11,PieceColor.BLACK));
-        this.white.addMove(new Piece(3,5,PieceColor.WHITE));
-        this.white.addMove(new Piece(4,5,PieceColor.WHITE));
-        this.white.addMove(new Piece(5,4,PieceColor.WHITE));
-        this.white.addMove(new Piece(5,3,PieceColor.WHITE));
-        this.white.addMove(new Piece(5,5,PieceColor.WHITE));
-    }
+//    private void createVerticalHorizontalForkWhite(){
+//        this.black.getMoves().clear();
+//        this.black.addMove(new Piece(12,11,PieceColor.BLACK));
+//        this.white.addMove(new Piece(3,5,PieceColor.WHITE));
+//        this.white.addMove(new Piece(4,5,PieceColor.WHITE));
+//        this.white.addMove(new Piece(5,4,PieceColor.WHITE));
+//        this.white.addMove(new Piece(5,3,PieceColor.WHITE));
+//        this.white.addMove(new Piece(5,5,PieceColor.WHITE));
+//    }
+//
+//    @Test(expected = Test.None.class)
+//    public void verticalHorizontalForkWhite() {
+//        /*no error expected -> invalid moves only for the black player*/
+//        invalidMoves.setPlayers(black, white);
+//        invalidMoves.setDimBoard(gridDim);
+//        createVerticalHorizontalForkWhite();
+//        invalidMoves.threeAndThree();
+//    }
 
-    @Test(expected = Test.None.class)
-    public void verticalHorizontalForkWhite() {
-        /*no error expected -> invalid moves only for the black player*/
-        invalidMoves.setPlayers(black, white);
-        invalidMoves.setDimBoard(gridDim);
-        createVerticalHorizontalForkWhite();
-        invalidMoves.threeAndThree();
-    }
-
-    private void createVerticalHorizontalForkGap(){
+    private void horizontalVerticalGap(){
         this.black.getMoves().clear();
         this.black.addMove(new Piece(2,5,PieceColor.BLACK));
         this.black.addMove(new Piece(3,5,PieceColor.BLACK));
@@ -69,15 +69,15 @@ public class InvalidMovesTest {
     }
 
     @Test(expected = java.lang.Error.class)
-    public void verticalHorizontalForkGap() {
+    public void horizontalVerticalGapTest() {
         /*number 2*/
         invalidMoves.setPlayers(black, white);
         invalidMoves.setDimBoard(gridDim);
-        createVerticalHorizontalForkGap();
+        horizontalVerticalGap();
         invalidMoves.threeAndThree();
     }
 
-    private void createDiagDiagFork(){
+    private void diagonalOneDiagonalTwo(){
         this.black.getMoves().clear();
         this.black.addMove(new Piece(3,2,PieceColor.BLACK));
         this.black.addMove(new Piece(4,3,PieceColor.BLACK));
@@ -87,15 +87,15 @@ public class InvalidMovesTest {
     }
 
     @Test(expected = java.lang.Error.class)
-    public void diagDiagFork() {
+    public void diagonalOneDiagonalTwoTest() {
         /*number 3*/
         invalidMoves.setPlayers(black, white);
         invalidMoves.setDimBoard(gridDim);
-        createDiagDiagFork();
+        diagonalOneDiagonalTwo();
         invalidMoves.threeAndThree();
     }
 
-    private void createDiagDiagForkGap(){
+    private void diagonalOneDiagonalTwoGap(){
         this.black.getMoves().clear();
         this.black.addMove(new Piece(3,2,PieceColor.BLACK));
         this.black.addMove(new Piece(4,3,PieceColor.BLACK));
@@ -105,16 +105,16 @@ public class InvalidMovesTest {
     }
 
     @Test(expected = java.lang.Error.class)
-    public void diagDiagForkGap() {
+    public void diagonalOneDiagonalTwoGapTest() {
         /*number 4*/
         invalidMoves.setPlayers(black, white);
         invalidMoves.setDimBoard(gridDim);
-        createDiagDiagForkGap();
+        diagonalOneDiagonalTwoGap();
         invalidMoves.threeAndThree();
     }
 
 
-    private void createDiagHorizontalFork(){
+    private void horizontalDiagonal(){
         this.black.getMoves().clear();
         this.black.addMove(new Piece(7,5,PieceColor.BLACK));
         this.black.addMove(new Piece(8,6,PieceColor.BLACK));
@@ -124,15 +124,15 @@ public class InvalidMovesTest {
     }
 
     @Test(expected = java.lang.Error.class)
-    public void diagHorizontalFork() {
+    public void horizontalDiagonalTest() {
         /*number 5*/
         invalidMoves.setPlayers(black, white);
         invalidMoves.setDimBoard(gridDim);
-        createDiagHorizontalFork();
+        horizontalDiagonal();
         invalidMoves.threeAndThree();
     }
 
-    private void createVerticalHorizontalMiddle(){
+    private void horizontalVerticalMiddle(){
         this.black.getMoves().clear();
         this.black.addMove(new Piece(11,4,PieceColor.BLACK));
         this.black.addMove(new Piece(11,5,PieceColor.BLACK));
@@ -142,16 +142,15 @@ public class InvalidMovesTest {
     }
 
     @Test(expected = java.lang.Error.class)
-    public void verticalHorizontalMiddle() {
-        /* l'ultima pedina inserita è quella centrale
-        * numero 6 quaderno*/
+    public void horizontalVerticalMiddleTest() {
+        /* numero 6 */
         invalidMoves.setPlayers(black, white);
         invalidMoves.setDimBoard(gridDim);
-        createVerticalHorizontalMiddle();
+        horizontalVerticalMiddle();
         invalidMoves.threeAndThree();
     }
 
-    private void createDiagDiagMiddle(){
+    private void diagonalOneDiagonalTwoMiddle(){
         this.black.getMoves().clear();
         this.black.addMove(new Piece(7,6,PieceColor.BLACK));
         this.black.addMove(new Piece(9,6,PieceColor.BLACK));
@@ -161,17 +160,15 @@ public class InvalidMovesTest {
     }
 
     @Test(expected = java.lang.Error.class)
-    public void diagDiagMiddle() {
-        /* l'ultima pedina inserita è quella centrale
-        * (ho le due diagonali e l'ultima inserita è quella centrale per entrambe
-        * numero 7 quaderno*/
+    public void diagonalOneDiagonalTwoMiddleTest() {
+        /* numero 7 */
         invalidMoves.setPlayers(black, white);
         invalidMoves.setDimBoard(gridDim);
-        createDiagDiagMiddle();
+        diagonalOneDiagonalTwoMiddle();
         invalidMoves.threeAndThree();
     }
 
-    private void createDiagHorizontalkGap(){
+    private void horizontalDiagonalGap(){
         this.black.getMoves().clear();
         this.black.addMove(new Piece(4,3,PieceColor.BLACK));
         this.black.addMove(new Piece(5,4,PieceColor.BLACK));
@@ -181,16 +178,16 @@ public class InvalidMovesTest {
     }
 
     @Test(expected = java.lang.Error.class)
-    public void diagHorizontalGap() {
-        /*numero 8 quaderno*/
+    public void horizontalDiagonalGapTest() {
+        /*numero 8*/
         invalidMoves.setPlayers(black, white);
         invalidMoves.setDimBoard(gridDim);
-        createDiagHorizontalkGap();
+        horizontalDiagonalGap();
         invalidMoves.threeAndThree();
     }
 
 
-    private void createVerticalDiagonal(){
+    private void verticalDiagonal(){
         this.black.getMoves().clear();
         this.black.addMove(new Piece(7,7,PieceColor.BLACK));
         this.black.addMove(new Piece(8,8,PieceColor.BLACK));
@@ -200,15 +197,15 @@ public class InvalidMovesTest {
     }
 
     @Test(expected = java.lang.Error.class)
-    public void verticalDiag() {
-        /*numero 9 quaderno*/
+    public void verticalDiagonalTest() {
+        /*numero 9*/
         invalidMoves.setPlayers(black, white);
         invalidMoves.setDimBoard(gridDim);
-        createVerticalDiagonal();
+        verticalDiagonal();
         invalidMoves.threeAndThree();
     }
 
-    private void createVerticalDiagonalGap(){
+    private void verticalDiagonalGap(){
         this.black.getMoves().clear();
         this.black.addMove(new Piece(7,7,PieceColor.BLACK));
         this.black.addMove(new Piece(8,8,PieceColor.BLACK));
@@ -218,11 +215,11 @@ public class InvalidMovesTest {
     }
 
     @Test(expected = java.lang.Error.class)
-    public void verticalDiagGap() {
-        /*numero 10 quaderno*/
+    public void verticalDiagonalGapTest() {
+        /*numero 10*/
         invalidMoves.setPlayers(black, white);
         invalidMoves.setDimBoard(gridDim);
-        createVerticalDiagonalGap();
+        verticalDiagonalGap();
         invalidMoves.threeAndThree();
     }
 
@@ -237,13 +234,12 @@ public class InvalidMovesTest {
 
     @Test(expected = java.lang.Error.class)
     public void horizontalDiagonalMiddle() {
-        /*numero 11 quaderno*/
+        /*numero 11*/
         invalidMoves.setPlayers(black, white);
         invalidMoves.setDimBoard(gridDim);
         createHorizontalDiagonalMiddle();
         invalidMoves.threeAndThree();
     }
-
 
     private void createHorizontalDiagonalMiddleGap(){
         this.black.getMoves().clear();
@@ -263,7 +259,7 @@ public class InvalidMovesTest {
         invalidMoves.threeAndThree();
     }
 
-    private void createHorizontalVerticalMiddleGap(){
+    private void horizontalVerticalMiddleGap(){
         this.black.getMoves().clear();
         this.black.addMove(new Piece(7,7,PieceColor.BLACK));
         this.black.addMove(new Piece(7,8,PieceColor.BLACK));
@@ -273,15 +269,15 @@ public class InvalidMovesTest {
     }
 
     @Test(expected = java.lang.Error.class)
-    public void horizontalVerticallMiddleGap() {
-        /*numero 13 quaderno*/
+    public void horizontalVerticallMiddleGapTest() {
+        /*numero 13 */
         invalidMoves.setPlayers(black, white);
         invalidMoves.setDimBoard(gridDim);
-        createHorizontalVerticalMiddleGap();
+        horizontalVerticalMiddleGap();
         invalidMoves.threeAndThree();
     }
 
-    private void createVerticalDiagonalInvGap(){
+    private void verticalDiagonalOneGap(){
         this.black.getMoves().clear();
         this.black.addMove(new Piece(10,7,PieceColor.BLACK));
         this.black.addMove(new Piece(9,8,PieceColor.BLACK));
@@ -291,24 +287,12 @@ public class InvalidMovesTest {
     }
 
     @Test(expected = java.lang.Error.class)
-    public void verticalDiagInvGap() {
-        /*numero 14 quaderno*/
+    public void verticalDiagonalOneGapTest() {
+        /*numero 14*/
         invalidMoves.setPlayers(black, white);
         invalidMoves.setDimBoard(gridDim);
-        createVerticalDiagonalInvGap();
+        verticalDiagonalOneGap();
         invalidMoves.threeAndThree();
     }
-
-
-
-
-
-//    @Test(expected = Test.None.class /* no exception expected */)
-//    public void test_printLine() {
-//        Printer.printLine("line");
-//    }
-//
-//
-
 
 }

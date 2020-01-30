@@ -6,10 +6,10 @@ import Model.HotFormations.Three;
 import Model.HotFormations.ThreeFactory;
 import Model.Piece;
 import Model.Player;
-
 import java.util.*;
 
 public class InvalidMoves {
+
     private int dimBoard;
     private Player black;
     private Player white;
@@ -49,7 +49,7 @@ public class InvalidMoves {
         List<Directions.Dir> directions = Arrays.asList(Directions.Dir.HORIZONTAL, Directions.Dir.VERTICAL,
                 Directions.Dir.DIAGONAL1, Directions.Dir.DIAGONAL2);
         List<Three.ThreeTypes> three = Arrays.asList(Three.ThreeTypes.THREE, Three.ThreeTypes.GAPTHREE);
-        int sizeList =black.getMoves().size();
+        int sizeList = black.getMoves().size();
         Piece lastMove = black.getMoves().get(sizeList - 1);
         List<Piece> pieceList= new ArrayList<>();
         for (Directions.Dir dir : directions){
