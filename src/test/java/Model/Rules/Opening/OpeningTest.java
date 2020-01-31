@@ -6,6 +6,8 @@ import Model.GomokuGame.GomokuType;
 import Model.Piece;
 import Model.PieceColor;
 import Model.Player;
+import Model.BlackPlayer;
+import Model.WhitePlayer;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -26,8 +28,8 @@ public class OpeningTest {
         assertEquals(openingSwap2.numMoves, 3);
     }
 
-    Player p1 = new Player("A", PieceColor.BLACK);
-    Player p2 = new Player("B", PieceColor.WHITE);
+    BlackPlayer p1 = new BlackPlayer("A");
+    WhitePlayer p2 = new WhitePlayer("B");
 
     /*@Test(expected = Error.class)
     public void checkErrorTest(){

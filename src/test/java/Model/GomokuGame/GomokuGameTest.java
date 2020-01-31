@@ -1,7 +1,8 @@
 package Model.GomokuGame;
 
 import Model.PieceColor;
-import Model.Player;
+import Model.BlackPlayer;
+import Model.WhitePlayer;
 import Model.Rules.Opening.OpeningType;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -23,8 +24,8 @@ public class GomokuGameTest {
         assertEquals(omokGomoku.getGridSize(), 18);
     }
 
-    private Player p1 = new Player("A", PieceColor.BLACK);
-    private Player p2 = new Player("B", PieceColor.WHITE);
+    private BlackPlayer p1 = new BlackPlayer("A");
+    private WhitePlayer p2 = new WhitePlayer("B");
 
     private GomokuGame game = GomokuFactory.getGame(GomokuType.Omok);
 

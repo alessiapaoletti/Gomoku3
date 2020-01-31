@@ -5,6 +5,8 @@ import Model.Directions.Directions;
 import Model.HotFormations.Five;
 import Model.Piece;
 import Model.Player;
+import Model.BlackPlayer;
+import Model.WhitePlayer;
 import Model.PieceColor;
 import org.junit.Test;
 
@@ -12,8 +14,8 @@ import static org.junit.Assert.*;
 
 public class ClosingTest {
 
-    private Player black=new Player("mario", PieceColor.BLACK);
-    private Player white=new Player("mario",PieceColor.WHITE);
+    private BlackPlayer black=new BlackPlayer("mario");
+    private WhitePlayer white=new WhitePlayer("mario");
 
     private NoOverlines noOverlines = new NoOverlines();
     private Overlines overlines = new Overlines();

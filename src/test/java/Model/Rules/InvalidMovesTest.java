@@ -2,14 +2,15 @@ package Model.Rules;
 
 import Model.Piece;
 import Model.PieceColor;
-import Model.Player;
+import Model.BlackPlayer;
+import Model.WhitePlayer;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class InvalidMovesTest {
 
-    private Player black=new Player("mario", PieceColor.BLACK);
-    private Player white=new Player("mario",PieceColor.WHITE);
+    private BlackPlayer black=new BlackPlayer("mario");
+    private WhitePlayer white=new WhitePlayer("mario");
 
     private int gridDim = 18;
     private InvalidMoves invalidMoves = new InvalidMoves();

@@ -3,6 +3,8 @@ package Model;
 import Model.GomokuGame.GomokuFactory;
 import Model.GomokuGame.GomokuGame;
 import Model.GomokuGame.GomokuType;
+import Model.BlackPlayer;
+import Model.WhitePlayer;
 import Model.Rules.Opening.OpeningType;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -13,8 +15,8 @@ import static org.junit.Assert.*;
 
 public class GamePlayTest {
 
-    private Player black=new Player("b", PieceColor.BLACK);
-    private Player white=new Player("w", PieceColor.WHITE);
+    private BlackPlayer black=new BlackPlayer("b");
+    private WhitePlayer white=new WhitePlayer("w");
     private GomokuGame gomokuGame = GomokuFactory.getGame(GomokuType.Standard);
     private GamePlay Pgame;
     private int gridSize = 14;
