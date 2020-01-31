@@ -41,11 +41,12 @@ public class BoardController extends Control {
     void clickEventHandler() throws InvocationTargetException, IllegalAccessException {
         AlertOpening.getAlertOpening(gamePlay.getGame().getOpeningRules().getOpeningType());
         this.setOnMouseClicked((event) -> {
-            placePiece(event.getX(), event.getY());
-            if(this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() == 5){
-                startOpening();
+            if(placePiece(event.getX(), event.getY())) {
+                if (this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() == 5) {
+                    startOpening();
+                }
+                startGame(event.getX(), event.getY());
             }
-            startGame(event.getX(), event.getY());
         });
     }
 
@@ -59,7 +60,7 @@ public class BoardController extends Control {
         this.cellY = (int)((y - this.boardView.getGrid().getStartY() + (this.boardView.getGrid().getCellHeight() / 2.0)) / this.boardView.getGrid().getCellHeight());
     }
 
-    private void placePiece(final double x, final double y) {
+    private boolean placePiece(final double x, final double y) {
         this.coordinateSet(x,y);
         if(this.gamePlay.isValidMove(this.cellX,this.cellY) && !this.gamePlay.isOutOfBound(this.cellX, this.cellY) ){
             this.boardView.setPiece(this.cellX, this.cellY, this.gamePlay.getCurrentPlayer().getColor());
@@ -71,7 +72,9 @@ public class BoardController extends Control {
                 this.gameOver(this.gamePlay.checkWinningMove());
             }
             this.gamePlay.changeTurn();
+            return true;
         }
+        return false;
     }
 
     private void displacePiece(final double x, final double y) {
