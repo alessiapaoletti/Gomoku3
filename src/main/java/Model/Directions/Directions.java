@@ -1,4 +1,5 @@
 package Model.Directions;
+
 import Model.Piece;
 
 public abstract class Directions {

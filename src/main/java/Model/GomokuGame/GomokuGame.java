@@ -1,15 +1,17 @@
 package Model.GomokuGame;
 
-import Model.PieceColor;
-import Model.Player;
+import Model.BlackPlayer;
 import Model.Rules.Closing.Closing;
 import Model.Rules.Opening.Opening;
 import Model.Rules.Opening.OpeningFactory;
 import Model.Rules.Opening.OpeningType;
+import Model.WhitePlayer;
 
 public abstract class GomokuGame {
-    private Player p1;
-    private Player p2;
+//    private Player blackPlayer;
+//    private Player whitePlayer;
+    private BlackPlayer blackPlayer;
+    private WhitePlayer whitePlayer;
     int gridSize;
     GomokuType gameType;
 
@@ -23,37 +25,35 @@ public abstract class GomokuGame {
 
     public void setGameEnvironment(OpeningType openingType){
         this.openingRules = OpeningFactory.getOpening(openingType);
-        this.openingRules.setPlayers(getP1(), getP2());
-//        this.openingRules.setPlayer1(getP1());
-//        this.openingRules.setPlayer2(getP2());
+        this.openingRules.setPlayers(getBlackPlayer(), getWhitePlayer());
         this.setRules();
     }
 
-    public void setPlayers(Player p1, Player p2){
-        this.p1 = p1;
-        this.p2 = p2;
+    public void setPlayers(BlackPlayer p1, WhitePlayer p2){
+        this.blackPlayer = p1;
+        this.whitePlayer = p2;
     }
 
     //void setGameType(GomokuType gomokuType) {this.gameType = gomokuType; }
     //void setGridSize (int gridSize){ this.gridSize = gridSize; }
     //public GomokuType getType(){return this.gameType;}
 
-    public Player getP1() { return this.p1; }
+    public BlackPlayer getBlackPlayer() { return this.blackPlayer; }
 
-    public Player getP2() { return this.p2; }
+    public WhitePlayer getWhitePlayer() { return this.whitePlayer; }
 
     public int getGridSize() { return gridSize; }
 
     //public Closing getClosing(){return this.closing; }
     public Opening getOpeningRules() {return this.openingRules; }
 
-    public Player getBlackPlayer(){
-        if(p1.getColor() == PieceColor.BLACK) return p1;
-        else return p2;
-    }
-
-    public Player getWhitePlayer(){
-        if(p1.getColor() == PieceColor.WHITE) return p1;
-        else return p2;
-    }
+//    public Player getBlackPlayer(){
+//        if(blackPlayer.getColor() == PieceColor.BLACK) return blackPlayer;
+//        else return whitePlayer;
+//    }
+//
+//    public Player getWhitePlayer(){
+//        if(blackPlayer.getColor() == PieceColor.WHITE) return blackPlayer;
+//        else return whitePlayer;
+//    }
 }

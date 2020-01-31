@@ -1,29 +1,37 @@
 package Model.Rules.Opening;
-import Model.Player;
+
+import Model.BlackPlayer;
+import Model.WhitePlayer;
 
 public abstract class Opening {
-    Player player1;
-    Player player2;
-    int numMoves;
-    Boolean over;
+
+    BlackPlayer blackPlayer;
+    WhitePlayer whitePlayer;
     OpeningType openingType;
+    int numMoves;
 
     public Opening(){ }
 
-    public void setPlayers(Player p1, Player p2){
-        this.player1 = p1;
-        this.player2 = p2;
+    public void setPlayers(BlackPlayer blackPlayer, WhitePlayer whitePlayer){
+        this.blackPlayer = blackPlayer;
+        this.whitePlayer = whitePlayer;
     }
 
     public int getNumMoves(){ return this.numMoves; }
 
-    public void callOpening(int numClicks){
-        this.openingBehaviour(numClicks);
+    public void callOpening(){
+        this.openingBehaviour();
     }
 
-    public abstract void openingBehaviour(int numClicks);
+    public abstract void openingBehaviour();
 
     public OpeningType getOpeningType(){ return this.openingType;}
 
+    public BlackPlayer getBlackPlayer() {
+        return this.blackPlayer;
+    }
 
+    public WhitePlayer getWhitePlayer() {
+        return this.whitePlayer;
+    }
 }

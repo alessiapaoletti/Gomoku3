@@ -12,14 +12,11 @@ import static org.junit.Assert.*;
 
 public class ClosingTest {
 
-
     private Player black=new Player("mario", PieceColor.BLACK);
     private Player white=new Player("mario",PieceColor.WHITE);
 
     private NoOverlines noOverlines = new NoOverlines();
     private Overlines overlines = new Overlines();
-
-
     private int gridDim = 14;
 
     private void clearMoves (){

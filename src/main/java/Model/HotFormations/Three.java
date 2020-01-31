@@ -1,4 +1,5 @@
 package Model.HotFormations;
+
 import Model.Piece;
 import Model.Directions.Directions;
 import Model.PieceColor;
@@ -6,8 +7,8 @@ import Model.PieceColor;
 import java.util.Set;
 
 public abstract class Three extends HotFormations{
-    private int dimBoard;
 
+    private int dimBoard;
     public enum ThreeTypes{
         THREE,
         GAPTHREE
@@ -18,7 +19,6 @@ public abstract class Three extends HotFormations{
     boolean isOutOfGrid(Piece piece){
         return ((piece.getX() <0 || piece.getX()>this.dimBoard) || (piece.getY()<0 || piece.getY()>this.dimBoard));
     }
-
 
     public abstract boolean outOfGridCheck(Piece p, int sig, Directions d);
     public abstract boolean updateOut(Piece p, int sign, Directions d);

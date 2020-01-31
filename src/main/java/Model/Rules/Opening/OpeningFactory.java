@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class OpeningFactory {
+
     private static Map<OpeningType, Opening> openingMap = new HashMap<>();
 
     static {

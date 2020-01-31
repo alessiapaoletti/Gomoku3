@@ -3,7 +3,6 @@ package Model.Directions;
 import Model.Piece;
 import Model.PieceColor;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 public class DirectionsTest {

@@ -14,15 +14,17 @@ public class GamePlay {
     }
 
     public Player getCurrentPlayer(){
-        if(this.currentPlayer==game.getP1().getColor())
-            return game.getP1();
+        if(this.currentPlayer==PieceColor.BLACK)
+            return game.getBlackPlayer();
         else
-            return game.getP2();
+            return game.getWhitePlayer();
     }
 
     public String checkWinningMove(){
         String winnerName = "";
-        this.game.closing.setPlayers(this.game.getBlackPlayer(), this.game.getWhitePlayer());
+//        this.game.closing.setPlayers(this.game.getBlackPlayer(), this.game.getWhitePlayer());
+        this.game.closing.setPlayers(this.game.getOpeningRules().getBlackPlayer(),this.game.getOpeningRules().getWhitePlayer());
+
         if(this.game.closing.isWinning(this.getCurrentPlayer().getMoves()))
             winnerName=this.getCurrentPlayer().getName();
         return winnerName;
@@ -38,7 +40,7 @@ public class GamePlay {
     }
 
     public void displacePiece(final int x, final int y) {
-        this.swapPlayers();
+        this.changeTurn();
         Piece bannedPiece = new Piece(x,y, PieceColor.EMPTY);
         this.removeMove(bannedPiece);
     }
@@ -51,7 +53,7 @@ public class GamePlay {
         if(this.getCurrentPlayer().isPlayerMove(bannedPiece)) this.getCurrentPlayer().removeMove(this.getCurrentPlayer().getMoves().size()-1);
     }
 
-    public void swapPlayers() {
+    public void changeTurn() {
         if (this.currentPlayer == PieceColor.WHITE)
             this.currentPlayer = PieceColor.BLACK;
         else
@@ -60,7 +62,7 @@ public class GamePlay {
 
     public boolean isValidMove(final int x, final int y) {
         Piece newPiece = new Piece(x,y, PieceColor.EMPTY);
-        return !game.getP1().isPlayerMove(newPiece) && !game.getP2().isPlayerMove(newPiece);
+        return !game.getBlackPlayer().isPlayerMove(newPiece) && !game.getWhitePlayer().isPlayerMove(newPiece);
     }
 
     public int getNumMovesOpening(){ return this.game.getOpeningRules().getNumMoves();}

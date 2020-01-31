@@ -14,7 +14,6 @@ public class PieceTest {
         this.piece1 = new Piece(2,4, PieceColor.BLACK);
         this.piece2 = new Piece(2, 4 , PieceColor.WHITE);
         assertTrue(this.piece1.samePosition(piece2));
-
     }
 
     @Test

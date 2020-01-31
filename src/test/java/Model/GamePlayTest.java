@@ -17,7 +17,7 @@ public class GamePlayTest {
     private Player white=new Player("w", PieceColor.WHITE);
     private GomokuGame gomokuGame = GomokuFactory.getGame(GomokuType.Standard);
     private GamePlay Pgame;
-
+    private int gridSize = 14;
     private void SetConditions(){
         for(int i=0;i<5;i++){ this.black.addMove(new Piece(i,0,PieceColor.BLACK));}
         gomokuGame.setPlayers(this.black,this.white);
@@ -25,9 +25,8 @@ public class GamePlayTest {
     }
 
     private void SetFullBoard(){
-        int gridSize = 14;
-        for(int i = 0; i<= gridSize; i++){
-            for(int j = 0; j<= gridSize; j++){ this.black.addMove(new Piece(i,j,PieceColor.BLACK));}
+        for(int i=0;i<=this.gridSize;i++){
+            for(int j=0;j<=gridSize;j++){ this.black.addMove(new Piece(i,j,PieceColor.BLACK));}
         }
         gomokuGame.setPlayers(this.black,this.white);
         Pgame=new GamePlay(gomokuGame, OpeningType.Standard);
@@ -63,7 +62,7 @@ public class GamePlayTest {
     public void TestSwap(){
         this.SetConditions();
         assertEquals(Pgame.getCurrentPlayer().getName(),this.black.getName());
-        Pgame.swapPlayers();
+        Pgame.changeTurn();
         assertEquals(Pgame.getCurrentPlayer().getName(),this.white.getName());
     }
     @Test

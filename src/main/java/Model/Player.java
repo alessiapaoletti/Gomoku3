@@ -1,9 +1,11 @@
 package Model;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    private final String name;
+
+    private String name;
     private PieceColor color;
     private List<Piece> movesList = new ArrayList<>();
 
@@ -43,4 +45,25 @@ public class Player {
         return false;
     }
 
+    public boolean checkAllMoves(final Player opponent){
+        List<Piece> intersection = new ArrayList<>(this.movesList);
+        intersection.retainAll(opponent.getMoves());
+        return intersection.isEmpty();
+    }
+
+    public void printMoves(){
+        System.out.println("movements for player "+this.name+":");
+        for(Piece piece : movesList) {
+            System.out.println(piece.getX() +" "+ piece.getY());
+        }
+    }
+
+    public void setName(String name){
+        this.name = name;
+
+    }
+
+    public int listSize(){
+        return this.movesList.size();
+    }
 }

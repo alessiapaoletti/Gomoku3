@@ -1,4 +1,5 @@
 package Model.HotFormations;
+
 import Model.Directions.Directions;
 import Model.Piece;
 import Model.PieceColor;
@@ -6,11 +7,13 @@ import Model.PieceColor;
 import java.util.Set;
 
 public class SimpleThree extends Three {
+
     @Override
     public boolean outOfGridCheck(Piece p, int sign, Directions dir) {
         return !(isOutOfGrid(dir.updatePiece(p,range3,sign)) || isOutOfGrid(dir.updatePiece(p,-range1,sign))) &&
                 !(isOutOfGrid(dir.updatePiece(p,range4,sign)) && isOutOfGrid(dir.updatePiece(p,-range2,sign)));
     }
+
     @Override
     public boolean updateIn(Piece p, int sign, PieceColor col, Directions dir) {
         return isPieceIn(dir.updatePiece(p,range1,sign),col)

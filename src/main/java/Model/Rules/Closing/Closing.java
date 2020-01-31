@@ -1,22 +1,25 @@
 package Model.Rules.Closing;
+
+import Model.BlackPlayer;
 import Model.Directions.DirectionFactory;
 import Model.Directions.Directions;
 import Model.HotFormations.Five;
 import Model.Piece;
-import Model.Player;
+import Model.WhitePlayer;
 
 
 import java.util.*;
 
 public abstract class Closing {
-    private Player black;
-    private Player white;
+
+    private BlackPlayer blackPlayer;
+    private WhitePlayer whitePlayer;
 
     Closing (){}
 
-    public void setPlayers(Player p1, Player p2){
-        this.black=p1;
-        this.white=p2;
+    public void setPlayers(BlackPlayer blackPlayer, WhitePlayer whitePlayer){
+        this.blackPlayer = blackPlayer;
+        this.whitePlayer = whitePlayer;
     }
 
     public abstract boolean checkCount(Piece piece, Directions direction, int sign,Five f);
@@ -24,7 +27,7 @@ public abstract class Closing {
     private boolean findFive(Piece piece, Directions.Dir direction){
         Directions dir = DirectionFactory.getDir(direction);
         Five f = new Five();
-        f.setPlayers(this.black, this.white);
+        f.setPlayers(this.blackPlayer, this.whitePlayer);
         return (f.consecutiveFivePiece(piece, -1, piece.getPieceType(),dir) && this.checkCount(piece,dir,-1,f))
                 || (f.consecutiveFivePiece(piece, 1, piece.getPieceType(),dir) && this.checkCount(piece,dir,1,f));
     }
@@ -44,6 +47,6 @@ public abstract class Closing {
     }
 
     public boolean fullBoard(int dim){
-        return (black.getMoves().size() + white.getMoves().size()) == (dim+1) * (dim+1);
+        return (blackPlayer.getMoves().size() + whitePlayer.getMoves().size()) == (dim+1) * (dim+1);
     }
 }

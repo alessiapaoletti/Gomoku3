@@ -15,8 +15,8 @@
         <Button fx:id="okButton" layoutX="132.0" layoutY="356.0" mnemonicParsing="false" onAction="#startGame" prefHeight="43.0" prefWidth="74.0" text="OK" />
         <Button fx:id="exitButton" layoutX="258.0" layoutY="356.0" mnemonicParsing="false" onAction="#close" prefHeight="43.0" prefWidth="74.0" text="Exit" />
         <Separator layoutX="-444.0" layoutY="337.0" prefHeight="2.0" prefWidth="1017.0" />
-        <TextField fx:id="player1" layoutX="36.0" layoutY="137.0" />
-        <TextField fx:id="player2" layoutX="278.0" layoutY="138.0" />
+        <TextField fx:id="playerBlack" layoutX="36.0" layoutY="137.0" />
+        <TextField fx:id="playerWhite" layoutX="278.0" layoutY="138.0" />
         <Label layoutX="36.0" layoutY="120.0" text="Name" textAlignment="CENTER" />
         <Label layoutX="279.0" layoutY="121.0" text="Name" textAlignment="CENTER" />
         <Label layoutX="106.0" layoutY="20.0" prefHeight="34.0" prefWidth="241.0" text="Welcome in Gomoku">

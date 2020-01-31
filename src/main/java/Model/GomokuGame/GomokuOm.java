@@ -1,4 +1,5 @@
 package Model.GomokuGame;
+
 import Model.Rules.Closing.NoOverlines;
 import Model.Rules.InvalidMoves;
 

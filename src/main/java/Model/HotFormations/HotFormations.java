@@ -1,4 +1,5 @@
 package Model.HotFormations;
+
 import Model.Piece;
 import Model.PieceColor;
 import Model.Player;

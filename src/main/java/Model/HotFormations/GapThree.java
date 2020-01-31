@@ -7,6 +7,7 @@ import Model.PieceColor;
 import java.util.Set;
 
 public class GapThree extends Three {
+
     @Override
     public boolean outOfGridCheck(Piece p, int sign, Directions dir) {
         return !(isOutOfGrid(dir.updatePiece(p,range4,sign)) && isOutOfGrid(dir.updatePiece(p,-range1,sign))) &&

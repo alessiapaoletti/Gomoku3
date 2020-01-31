@@ -1,4 +1,5 @@
 package Model.Rules.Closing;
+
 import Model.Directions.Directions;
 import Model.HotFormations.Five;
 import Model.Piece;

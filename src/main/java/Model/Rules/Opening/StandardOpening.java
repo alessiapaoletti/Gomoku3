@@ -8,9 +8,5 @@ public class StandardOpening extends Opening {
     }
 
     @Override
-    public void openingBehaviour(int numClicks){
-        if (numClicks == 2) {};
-    }
-
-
+    public void openingBehaviour(){}
 }

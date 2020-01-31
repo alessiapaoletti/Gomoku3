@@ -11,7 +11,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class ScoreView extends Pane {
+public class GameStatusView extends Pane {
 
     private Label player1;
     private Label player2;
@@ -22,7 +22,7 @@ public class ScoreView extends Pane {
     private Button closeButton;
     private Button newGameButton;
 
-    public ScoreView(Player p1, Player p2, GomokuType gameName, OpeningType openingName){
+    public GameStatusView(Player p1, Player p2, GomokuType gameName, OpeningType openingName){
 
         this.initBackGround();
 

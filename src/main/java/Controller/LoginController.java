@@ -1,14 +1,13 @@
 package Controller;
 
+import Model.BlackPlayer;
 import Model.GomokuGame.GomokuType;
-import Model.PieceColor;
-import Model.Player;
+import Model.WhitePlayer;
 import View.Alert.*;
 import Model.Rules.Opening.OpeningType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -21,8 +20,8 @@ public class LoginController {
     private ObservableList<OpeningType> openingTypes = FXCollections.observableArrayList(OpeningType.Standard,OpeningType.Swap,OpeningType.Swap2);
 
     @FXML private javafx.scene.control.Button exitButton;
-    @FXML private javafx.scene.control.TextField player1;
-    @FXML private javafx.scene.control.TextField player2;
+    @FXML private javafx.scene.control.TextField playerBlack;
+    @FXML private javafx.scene.control.TextField playerWhite;
     @FXML private ChoiceBox choiceGomokuType;
     @FXML private ChoiceBox choiceOpening;
 
@@ -38,8 +37,8 @@ public class LoginController {
 
         if (checkPlayersName() && checkGameSetUp()) {
 
-            Player p1 = new Player(player1.getText(), PieceColor.BLACK);
-            Player p2 = new Player(player2.getText(), PieceColor.WHITE);
+            BlackPlayer blackPlayer = new BlackPlayer(playerBlack.getText());
+            WhitePlayer whitePlayer = new WhitePlayer(playerWhite.getText());
             GomokuType gomokuType = (GomokuType) choiceGomokuType.getSelectionModel().getSelectedItem();
             OpeningType openingType = (OpeningType) choiceOpening.getSelectionModel().getSelectedItem();
 
@@ -48,18 +47,18 @@ public class LoginController {
 
             Stage mainStage = new Stage(StageStyle.DECORATED);
             mainStage.setResizable(false);
-            BoardController boardController = new BoardController(p1,p2,gomokuType, openingType);
-            boardController.clickOpeningCounter(); /*questa funzione va qui ? */
+            BoardController boardController = new BoardController(blackPlayer,whitePlayer,gomokuType, openingType);
+            boardController.clickEventHandler();
             boardController.start(mainStage);
 
-            ScoreController scoreController = new ScoreController(p1, p2,gomokuType, openingType, boardController.getMyView());
-            scoreController.start();
+            GameStatusController gameStatusController = new GameStatusController(blackPlayer, whitePlayer,gomokuType, openingType, boardController.getBoardView());
+            gameStatusController.start();
         } else
             AlertLogin.loginAlert();
     }
 
     private boolean checkPlayersName(){
-        return !(player1.getText().equals("")) && !(player2.getText().equals(""));
+        return !(playerBlack.getText().equals("")) && !(playerWhite.getText().equals(""));
     }
 
     private boolean checkGameSetUp(){

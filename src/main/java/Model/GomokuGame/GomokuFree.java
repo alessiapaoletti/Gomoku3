@@ -1,7 +1,9 @@
 package Model.GomokuGame;
+
 import Model.Rules.Closing.Overlines;
 
 public class GomokuFree extends GomokuGame{
+
     GomokuFree(){
         this.gameType = GomokuType.Freestyle;
         this.gridSize = 14;

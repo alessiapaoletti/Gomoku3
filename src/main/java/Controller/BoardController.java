@@ -1,11 +1,9 @@
 package Controller;
 
-import Model.GamePlay;
+import Model.*;
 import Model.GomokuGame.GomokuFactory;
 import Model.GomokuGame.GomokuGame;
 import Model.GomokuGame.GomokuType;
-import Model.PieceColor;
-import Model.Player;
 import View.Alert.*;
 import Model.Rules.Opening.OpeningType;
 import View.BoardView;
@@ -19,103 +17,87 @@ import java.lang.reflect.InvocationTargetException;
 
 public class BoardController extends Control {
 
-    private BoardView myView;
-    private GamePlay myGame;
-    private int clicksCount = 0;
+    private BoardView boardView;
+    private GamePlay gamePlay;
     private final StackPane mainLayout;
-    private int cellX=0;
-    private int cellY=0;
-    private boolean openingDone =false;
-    private boolean openingDone2 =false;
+    private int cellX = 0;
+    private int cellY = 0;
 
-    BoardController(Player p1, Player p2, GomokuType gomokuType, OpeningType openingType) {
+    BoardController(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gomokuType, OpeningType openingType) {
         GomokuGame gomokuGame = GomokuFactory.getGame(gomokuType);
-        gomokuGame.setPlayers(p1, p2);
-        this.myView = new BoardView(gomokuGame.getGridSize());
-        this.myGame = new GamePlay(gomokuGame, openingType);
+        gomokuGame.setPlayers(blackPlayer, whitePlayer);
+        this.boardView = new BoardView(gomokuGame.getGridSize());
+        this.gamePlay = new GamePlay(gomokuGame, openingType);
         this.setSkin(new ControlSkin(this));
-        this.getChildren().add(this.myView);
+        this.getChildren().add(this.boardView);
         this.mainLayout = new StackPane();
         this.mainLayout.getChildren().add(this);
     }
 
-    BoardView getMyView(){
-        return this.myView;
+    BoardView getBoardView(){
+        return this.boardView;
     }
-   // public GamePlay getMyGame(){return this.myGame;}
 
-    void clickOpeningCounter() throws InvocationTargetException, IllegalAccessException {
-        AlertOpening.getAlertOpening(myGame.getGame().getOpeningRules().getOpeningType());
+    void clickEventHandler() throws InvocationTargetException, IllegalAccessException {
+        AlertOpening.getAlertOpening(gamePlay.getGame().getOpeningRules().getOpeningType());
         this.setOnMouseClicked((event) -> {
-            this.clicksCount++;
-            this.setClickCount(event.getX(), event.getY());
-            this.openingDone =this.getOpeningDone(event.getX(), event.getY(),this.clicksCount == myGame.getNumMovesOpening(), openingDone);
-            this.openingDone2 =this.getOpeningDone(event.getX(), event.getY(),this.clicksCount == 5, openingDone2);
+            placePiece(event.getX(), event.getY());
+            if(this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() == 5){
+                startOpening();
+            }
             startGame(event.getX(), event.getY());
         });
     }
 
-    private boolean getOpeningDone(final double x, final double y,boolean check1,boolean check2){
-        if(check1 && !check2) {
-            startOpening(x,y);
-            check2=true;
-        }
-        return check2;
+    private int numMovesDone(){
+        System.out.println(this.gamePlay.getGame().getOpeningRules().getBlackPlayer().listSize() + this.gamePlay.getGame().getOpeningRules().getWhitePlayer().listSize());
+        return this.gamePlay.getGame().getOpeningRules().getBlackPlayer().listSize() + this.gamePlay.getGame().getOpeningRules().getWhitePlayer().listSize();
     }
 
     private void coordinateSet(final double x, final double y ){
-        this.cellX = (int)((x - this.myView.getGrid().getStartX() + (this.myView.getGrid().getCellWidth() / 2.0)) / this.myView.getGrid().getCellWidth());
-        this.cellY = (int)((y - this.myView.getGrid().getStartY() + (this.myView.getGrid().getCellHeight() / 2.0)) / this.myView.getGrid().getCellHeight());
+        this.cellX = (int)((x - this.boardView.getGrid().getStartX() + (this.boardView.getGrid().getCellWidth() / 2.0)) / this.boardView.getGrid().getCellWidth());
+        this.cellY = (int)((y - this.boardView.getGrid().getStartY() + (this.boardView.getGrid().getCellHeight() / 2.0)) / this.boardView.getGrid().getCellHeight());
     }
-
-    private void setClickCount(final double x, final double y ){
-        this.coordinateSet(x,y);
-        if(!this.myGame.isValidMove(this.cellX, this.cellY)){
-            this.clicksCount-=1;
-        }
-    }
-
 
     private void placePiece(final double x, final double y) {
         this.coordinateSet(x,y);
-        if(this.myGame.isValidMove(this.cellX,this.cellY) && !this.myGame.isOutOfBound(this.cellX, this.cellY) ){
-            this.myView.setPiece(this.cellX, this.cellY, this.myGame.getCurrentPlayer().getColor());
-            this.myGame.placePiece(this.cellX, this.cellY);
+        if(this.gamePlay.isValidMove(this.cellX,this.cellY) && !this.gamePlay.isOutOfBound(this.cellX, this.cellY) ){
+            this.boardView.setPiece(this.cellX, this.cellY, this.gamePlay.getCurrentPlayer().getColor());
+            this.gamePlay.placePiece(this.cellX, this.cellY);
 
-            if(this.myGame.checkFullBoard())
+            if(this.gamePlay.checkFullBoard())
                 this.gameOver();
-            if(!this.myGame.checkWinningMove().isEmpty() ){
-                this.gameOver(this.myGame.checkWinningMove());
+            if(!this.gamePlay.checkWinningMove().isEmpty() ){
+                this.gameOver(this.gamePlay.checkWinningMove());
             }
-            this.myGame.swapPlayers();
+            this.gamePlay.changeTurn();
         }
     }
 
     private void displacePiece(final double x, final double y) {
         this.coordinateSet(x,y);
-        this.myGame.displacePiece(this.cellX, this.cellY);
-        this.myView.removePiece(this.cellX, this.cellY);
-        this.myView.setPiece(this.cellX, this.cellY, PieceColor.EMPTY);
+        this.gamePlay.displacePiece(this.cellX, this.cellY);
+        this.boardView.removePiece(this.cellX, this.cellY);
+        this.boardView.setPiece(this.cellX, this.cellY, PieceColor.EMPTY);
     }
 
-    private void startOpening(final double x, final double y){
-        this.placePiece(x,y);
-        this.myGame.getGame().getOpeningRules().callOpening(this.clicksCount);
+    private void startOpening(){
+        this.gamePlay.getGame().getOpeningRules().callOpening();
     }
 
     private void startGame(final double x, final double y){
         try {
             this.placePiece(x,y);
-            this.myGame.getGame().checkInvalidMoves();
+            this.gamePlay.getGame().checkInvalidMoves();
         }
         catch (Error | Exception e){
-            AlertInvalidMove.invalidMoveAlert(e.toString());
+            AlertInvalidMove.invalidMoveAlert(e.toString().substring(17));
             this.displacePiece(x,y);
         }
     }
 
     private void gameOver(String ... winner){
-        Stage stage = (Stage) myView.getScene().getWindow();
+        Stage stage = (Stage) boardView.getScene().getWindow();
         String result = AlertGameOver.gameOverAlert(winner);
         if("OK".equals(result))
             stage.close();

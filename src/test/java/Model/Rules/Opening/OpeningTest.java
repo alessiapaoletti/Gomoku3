@@ -56,11 +56,11 @@ public class OpeningTest {
         SwapOpening swapOpening = (SwapOpening) gomokuGame.getOpeningRules();
         swapOpening.utilitySwap();
 
-        assertEquals(gomokuGame.getP1().getColor(), PieceColor.WHITE);
-        assertEquals(gomokuGame.getP2().getColor(), PieceColor.BLACK);
+        assertEquals(gomokuGame.getWhitePlayer().getColor(), PieceColor.WHITE);
+        assertEquals(gomokuGame.getBlackPlayer().getColor(), PieceColor.BLACK);
 
-        assertEquals(gomokuGame.getP1().getMoves().size(), 1);
-        assertEquals(gomokuGame.getP2().getMoves().size(), 2);
+        assertEquals(gomokuGame.getWhitePlayer().getMoves().size(), 1);
+        assertEquals(gomokuGame.getBlackPlayer().getMoves().size(), 2);
     }
 
     @Test
@@ -78,11 +78,11 @@ public class OpeningTest {
         SwapOpening swap2Opening = (Swap2Opening) gomokuGame.getOpeningRules();
         swap2Opening.utilitySwap();
 
-        assertEquals(gomokuGame.getP1().getColor(), PieceColor.WHITE);
-        assertEquals(gomokuGame.getP2().getColor(), PieceColor.BLACK);
+        assertEquals(gomokuGame.getWhitePlayer().getColor(), PieceColor.WHITE);
+        assertEquals(gomokuGame.getBlackPlayer().getColor(), PieceColor.BLACK);
 
-        assertEquals(gomokuGame.getP1().getMoves().size(), 2);
-        assertEquals(gomokuGame.getP2().getMoves().size(), 3);
+        assertEquals(gomokuGame.getWhitePlayer().getMoves().size(), 2);
+        assertEquals(gomokuGame.getBlackPlayer().getMoves().size(), 3);
 
     }
 
