@@ -4,12 +4,15 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import Model.BlackPlayer;
+import Model.WhitePlayer;
 import static org.junit.Assert.*;
 
 public class PlayerTest {
 
-    private Player blackPlayer = new Player("Mario",PieceColor.BLACK);
-    private Player whitePlayer = new Player("Pietro",PieceColor.WHITE);
+    private BlackPlayer blackPlayer = new BlackPlayer("Mario");
+    private WhitePlayer whitePlayer = new WhitePlayer("Pietro");
     private final Piece pieceBlack = new Piece(5,6,PieceColor.BLACK);
     private Piece pieceWhite = new Piece(2,5,PieceColor.WHITE);
 

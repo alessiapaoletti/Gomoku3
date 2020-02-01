@@ -3,13 +3,13 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player {
+public abstract class Player {
 
     private String name;
     private PieceColor color;
     private List<Piece> movesList = new ArrayList<>();
 
-    public Player(final String name, PieceColor color){
+     Player(final String name, PieceColor color){
         this.name = name;
         this.color = color;
     }

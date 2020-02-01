@@ -5,7 +5,6 @@ import Model.GomokuGame.GomokuGame;
 import Model.GomokuGame.GomokuType;
 import Model.Piece;
 import Model.PieceColor;
-import Model.Player;
 import Model.BlackPlayer;
 import Model.WhitePlayer;
 import org.junit.Test;

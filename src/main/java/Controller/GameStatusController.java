@@ -1,7 +1,8 @@
 package Controller;
 
 import Model.GomokuGame.GomokuType;
-import Model.Player;
+import Model.BlackPlayer;
+import Model.WhitePlayer;
 import Model.Rules.Opening.OpeningType;
 import View.BoardView;
 import View.GameStatusView;
@@ -15,7 +16,7 @@ public class GameStatusController extends Control {
     private static GameStatusView gameStatusView;
     private BoardView boardView;
 
-    GameStatusController(Player p1, Player p2, GomokuType gomokuType, OpeningType openingType, BoardView boardView){
+    GameStatusController(BlackPlayer p1, WhitePlayer p2, GomokuType gomokuType, OpeningType openingType, BoardView boardView){
         this.boardView = boardView;
         gameStatusView = new GameStatusView(p1, p2, gomokuType, openingType);
     }

@@ -1,7 +1,8 @@
 package View;
 
 import Model.GomokuGame.GomokuType;
-import Model.Player;
+import Model.BlackPlayer;
+import Model.WhitePlayer;
 import Model.Rules.Opening.OpeningType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,7 +23,7 @@ public class GameStatusView extends Pane {
     private Button closeButton;
     private Button newGameButton;
 
-    public GameStatusView(Player p1, Player p2, GomokuType gameName, OpeningType openingName){
+    public GameStatusView(BlackPlayer p1, WhitePlayer p2, GomokuType gameName, OpeningType openingName){
 
         this.initBackGround();
 
@@ -33,7 +34,7 @@ public class GameStatusView extends Pane {
         this.setButtonsCoordinates();
     }
 
-    private void initLabels(Player p1, Player p2, GomokuType gameName, OpeningType openingName){
+    private void initLabels(BlackPlayer p1, WhitePlayer p2, GomokuType gameName, OpeningType openingName){
 
         this.player1 = new Label(p1.getName());
         this.player1.setFont(Font.font("Arial" , FontWeight.BOLD, 13));

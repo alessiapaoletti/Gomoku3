@@ -3,6 +3,9 @@ package Model.HotFormations;
 import Model.Directions.DirectionFactory;
 import Model.Directions.Directions;
 import Model.Piece;
+import Model.PieceColor;
+import Model.BlackPlayer;
+import Model.WhitePlayer;
 import Model.Player;
 import Model.PieceColor;
 import org.junit.Test;
@@ -11,8 +14,8 @@ import static org.junit.Assert.*;
 
 public class FiveTest {
 
-    Player black=new Player("mario", PieceColor.BLACK);
-    Player white=new Player("mario",PieceColor.WHITE);
+    BlackPlayer black=new BlackPlayer("mario");
+    WhitePlayer white=new WhitePlayer("gino");
     private Directions dir = DirectionFactory.getDir(Directions.Dir.HORIZONTAL);
     private Five f=new Five();
 

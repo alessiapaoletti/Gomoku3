@@ -2,7 +2,8 @@ package Model.HotFormations;
 
 import Model.Piece;
 import Model.PieceColor;
-import Model.Player;
+import Model.BlackPlayer;
+import Model.WhitePlayer;
 
 abstract class HotFormations {
 
@@ -12,10 +13,10 @@ abstract class HotFormations {
     int range4 = 4;
     int range5 = 5;
 
-    private Player black;
-    private Player white;
+    private BlackPlayer black;
+    private WhitePlayer white;
 
-    public void setPlayers(Player p1, Player p2){
+    public void setPlayers(BlackPlayer p1, WhitePlayer p2){
         this.black=p1;
         this.white=p2;
     }

@@ -51,7 +51,6 @@ public class BoardController extends Control {
     }
 
     private int numMovesDone(){
-        System.out.println(this.gamePlay.getGame().getOpeningRules().getBlackPlayer().listSize() + this.gamePlay.getGame().getOpeningRules().getWhitePlayer().listSize());
         return this.gamePlay.getGame().getOpeningRules().getBlackPlayer().listSize() + this.gamePlay.getGame().getOpeningRules().getWhitePlayer().listSize();
     }
 
@@ -90,7 +89,7 @@ public class BoardController extends Control {
 
     private void startGame(final double x, final double y){
         try {
-            this.placePiece(x,y);
+            //this.placePiece(x,y);
             this.gamePlay.getGame().checkInvalidMoves();
         }
         catch (Error | Exception e){
