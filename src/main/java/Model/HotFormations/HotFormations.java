@@ -13,19 +13,19 @@ abstract class HotFormations {
     int range4 = 4;
     int range5 = 5;
 
-    private BlackPlayer black;
-    private WhitePlayer white;
+    private BlackPlayer blackPlayer;
+    private WhitePlayer whitePlayer;
 
-    public void setPlayers(BlackPlayer p1, WhitePlayer p2){
-        this.black=p1;
-        this.white=p2;
+    public void setPlayers(BlackPlayer blackPlayer, WhitePlayer whitePlayer){
+        this.blackPlayer = blackPlayer;
+        this.whitePlayer = whitePlayer;
     }
 
     boolean isPieceIn(Piece piece, PieceColor color){
-        if(color== PieceColor.BLACK)
-            return this.black.isPlayerMove(new Piece(piece.getX(), piece.getY(), PieceColor.BLACK));
+        if(color == PieceColor.BLACK)
+            return this.blackPlayer.isPlayerMove(new Piece(piece.getX(), piece.getY(), PieceColor.BLACK));
         else
-            return this.white.isPlayerMove(new Piece(piece.getX(), piece.getY(), PieceColor.WHITE));
+            return this.whitePlayer.isPlayerMove(new Piece(piece.getX(), piece.getY(), PieceColor.WHITE));
     }
 
     boolean isEmpty(Piece p){

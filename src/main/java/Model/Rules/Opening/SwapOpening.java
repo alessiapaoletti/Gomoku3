@@ -26,7 +26,6 @@ public class SwapOpening extends Opening {
         if ("YES".equals(AlertSwap.swapAlert())){
             GameStatusController.swapLabels();
             this.utilitySwap();
-            System.out.println("openign over");
         }
     }
 }

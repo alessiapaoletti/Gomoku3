@@ -23,15 +23,15 @@ public class GamePlay {
     public String checkWinningMove(){
         String winnerName = "";
 //        this.game.closing.setPlayers(this.game.getBlackPlayer(), this.game.getWhitePlayer());
-        this.game.closing.setPlayers(this.game.getOpeningRules().getBlackPlayer(),this.game.getOpeningRules().getWhitePlayer());
+        this.game.getClosing().setPlayers(this.game.getOpeningRules().getBlackPlayer(),this.game.getOpeningRules().getWhitePlayer());
 
-        if(this.game.closing.isWinning(this.getCurrentPlayer().getMoves()))
+        if(this.game.getClosing().isWinning(this.getCurrentPlayer().getMoves()))
             winnerName=this.getCurrentPlayer().getName();
         return winnerName;
     }
 
     public boolean checkFullBoard(){
-        return this.game.closing.fullBoard(this.game.getGridSize());
+        return this.game.getClosing().fullBoard(this.game.getGridSize());
     }
 
     public void placePiece(final int x, final int y) {

@@ -29,9 +29,6 @@ public class BoardView extends Pane{
         double newWidth = width - applicationBorder;
         double newHeight = height - applicationBorder;
 
-//        if (width > height) newWidth = newHeight;
-//        else newHeight = newWidth;
-
         this.gridStructure.setCellWidth(newWidth / (this.boardSize - 1));
         this.gridStructure.setCellHeight(newHeight / (this.boardSize - 1));
 
@@ -89,16 +86,7 @@ public class BoardView extends Pane{
 
         for (int i = 0; i < this.boardSize; ++i)
             this.getChildren().addAll(pieces[i]);
-
-
-        /*for (int i = 0; i < this.boardSize; ++i) {
-            for (int j = 0; j < this.boardSize; ++j) {
-               pieces[i][j] = new PieceView(i,j);
-            }
-            this.getChildren().addAll(pieces[i]);
-        }*/
     }
-
 
     public void setPiece(int x, int y,final PieceColor color){
         this.pieces[x][y].setPiece(color);

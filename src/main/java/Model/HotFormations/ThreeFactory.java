@@ -13,5 +13,5 @@ public class ThreeFactory {
         TType.put(Three.ThreeTypes.THREE, new SimpleThree());
     }
 
-    public static Optional<Three> getThree(Three.ThreeTypes three) { return Optional.ofNullable(TType.get(three)); }
+    public static Three getThree(Three.ThreeTypes three) { return TType.get(three); }
 }

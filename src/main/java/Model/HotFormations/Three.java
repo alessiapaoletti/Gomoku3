@@ -14,16 +14,16 @@ public abstract class Three extends HotFormations{
         GAPTHREE
     }
 
+    public abstract boolean outOfGridCheck(Piece p, int sig, Directions d);
+    public abstract boolean updateOut(Piece p, int sign, Directions d);
+    public abstract boolean updateIn(Piece p, int sign, PieceColor pt, Directions d);
+    public abstract void check(Piece piece, int sign, Set<Piece> pieceSet, Directions d);
+
     public void setDim(int dim){this.dimBoard =dim;}
 
     boolean isOutOfGrid(Piece piece){
         return ((piece.getX() <0 || piece.getX()>this.dimBoard) || (piece.getY()<0 || piece.getY()>this.dimBoard));
     }
-
-    public abstract boolean outOfGridCheck(Piece p, int sig, Directions d);
-    public abstract boolean updateOut(Piece p, int sign, Directions d);
-    public abstract boolean updateIn(Piece p, int sign, PieceColor pt, Directions d);
-    public abstract void check(Piece piece, int sign, Set<Piece> pieceSet, Directions d);
 
     private void fillIn(Piece p, Piece p1, Piece p2, Set<Piece> pieceSet){
         pieceSet.add(p);

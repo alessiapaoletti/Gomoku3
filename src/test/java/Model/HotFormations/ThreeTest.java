@@ -20,7 +20,7 @@ public class ThreeTest extends FiveTest {
     private Set<Piece> pieceSet = new HashSet<>();
 
     private void createThree(Three.ThreeTypes three) {
-        th = ThreeFactory.getThree(three).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
+        th = ThreeFactory.getThree(three);
         th.setDim(19);
         super.fillPlayer(super.black);
         super.black.addMove(new Piece(6, 0, PieceColor.BLACK));

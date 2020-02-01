@@ -26,23 +26,29 @@ public class InvalidMoves {
 
     private void findFork(Piece piece, Directions.Dir direction, Three.ThreeTypes three, Set<Piece> pieceSet) {
         Directions dir = DirectionFactory.getDir(direction);
-        Three th = ThreeFactory.getThree(three).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
+        Three th = ThreeFactory.getThree(three);
         th.setDim(this.dimBoard);
         th.setPlayers(this.blackPlayer, this.whitePlayer);
         th.check(piece, -1, pieceSet, dir);
         th.check(piece, 1, pieceSet, dir);
     }
 
-    private int duplicates(Piece lastMove, final List<Piece> pieceList){
-        int count=0;
+    private int countDuplicates(Piece lastMove, final List<Piece> pieceList){
+        long count = pieceList
+                .stream()
+                .filter(p -> p.getX() == lastMove.getX() &&  p.getY() == lastMove.getY() )
+                .count();
+        return (int) count;
+
+        /* int count=0;
         for(Piece piece : pieceList) {
             if (piece.getX() == lastMove.getX() && piece.getY() == lastMove.getY()) count += 1;
         }
-        return count;
+        return count; */
     }
 
     private void checkError(final Piece lastMove, final List<Piece> pieceList) throws Error{
-        if(pieceList.size()>=6 && this.duplicates(lastMove,pieceList)>=2)
+        if(pieceList.size()>=6 && this.countDuplicates(lastMove,pieceList)>=2)
             throw new Error("three and three error ");
     }
 

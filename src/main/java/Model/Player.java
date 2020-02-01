@@ -14,14 +14,6 @@ public abstract class Player {
         this.color = color;
     }
 
-    public void addMove(final Piece piece){
-        movesList.add(piece);
-    }
-
-    public void removeMove(final int position){
-        movesList.remove(movesList.get(position));
-    }
-
     public String getName() {
         return name;
     }
@@ -32,38 +24,45 @@ public abstract class Player {
 
     public String getColorName(){ return this.color.name(); }
 
+    public List<Piece> getMoves(){return movesList;}
+
+    public void addMove(final Piece piece){
+        movesList.add(piece);
+    }
+
+    public void removeMove(final int position){
+        movesList.remove(movesList.get(position));
+    }
+
     public void setColor(final PieceColor color) {
         this.color = color;
     }
 
-    public List<Piece> getMoves(){return movesList;}
+    public void setName(String name){ this.name = name; }
+
+    public int listSize(){ return this.movesList.size(); }
 
     public boolean isPlayerMove(final Piece piece){
-        for(Piece p : this.getMoves()) {
+        return movesList.stream().anyMatch(piece::samePosition);
+
+        /*for(Piece p : this.getMoves()) {
             if (piece.samePosition(p)) return true;
         }
-        return false;
+        return false;*/
     }
 
-    public boolean checkAllMoves(final Player opponent){
-        List<Piece> intersection = new ArrayList<>(this.movesList);
-        intersection.retainAll(opponent.getMoves());
-        return intersection.isEmpty();
-    }
+//    public boolean checkAllMoves(final Player opponent){
+//        List<Piece> intersection = new ArrayList<>(this.movesList);
+//        intersection.retainAll(opponent.getMoves());
+//        return intersection.isEmpty();
+//    }
+//
+//    public void printMoves(){
+//        System.out.println("movements for player "+this.name+":");
+//        for(Piece piece : movesList) {
+//            System.out.println(piece.getX() +" "+ piece.getY());
+//        }
+//    }
 
-    public void printMoves(){
-        System.out.println("movements for player "+this.name+":");
-        for(Piece piece : movesList) {
-            System.out.println(piece.getX() +" "+ piece.getY());
-        }
-    }
 
-    public void setName(String name){
-        this.name = name;
-
-    }
-
-    public int listSize(){
-        return this.movesList.size();
-    }
 }
