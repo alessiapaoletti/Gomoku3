@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.openjfx.javafxplugin' version '8.1.1'
+    id 'org.openjfx.javafxplugin' version '0.0.7'
 }
 
 group 'org.example'
