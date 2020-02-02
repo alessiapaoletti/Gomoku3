@@ -39,14 +39,10 @@ public class BoardController extends Control {
     }
 
     void clickEventHandler() throws InvocationTargetException, IllegalAccessException {
-        AlertOpening.getAlertOpening(gamePlay.getGame().getOpeningRules().getOpeningType());
+        AlertOpening alertOp=new AlertOpening();
+        alertOp.getAlertOpening(gamePlay.getGame().getOpeningRules().getOpeningType());
         this.setOnMouseClicked((event) -> {
-            if(placePiece(event.getX(), event.getY())) {
-                //if (this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() == 5) {
-                //startOpening();
-               // }
-                startGame(event.getX(), event.getY());
-            }
+            if(placePiece(event.getX(), event.getY())) startGame(event.getX(), event.getY());
         });
     }
 
@@ -92,18 +88,19 @@ public class BoardController extends Control {
     private void startGame(final double x, final double y){
         this.startOpening();
         try {
-            //this.placePiece(x,y);
             this.gamePlay.getGame().checkInvalidMoves();
         }
         catch (Error | Exception e){
-            AlertInvalidMove.invalidMoveAlert(e.toString().substring(17));
+            AlertInvalidMove alertinv=new AlertInvalidMove();
+            alertinv.invalidMoveAlert(e.toString().substring(17));
             this.displacePiece(x,y);
         }
     }
 
     private void gameOver(String ... winner){
         Stage stage = (Stage) boardView.getScene().getWindow();
-        String result = AlertGameOver.gameOverAlert(winner);
+        AlertGameOver alert=new AlertGameOver();
+        String result= alert.gameOverAlert(winner);
         if("OK".equals(result))
             stage.close();
     }

@@ -18,12 +18,13 @@ public class Swap2Opening extends SwapOpening {
     }
 
     private Boolean swap2InitQuestions() {
-        if ("YES".equals(AlertSwap.swapAlert())){
+        AlertSwap alerts=new AlertSwap();
+        if ("YES".equals(alerts.swapAlert())){
             GameStatusController.swapLabels();
             super.utilitySwap();
         } else {
-            if ("NO".equals(AlertSwap.swap2Alert())) {
-                AlertSwap.swap2Alert2();
+            if ("NO".equals(alerts.swap2Alert())) {
+                alerts.swap2Alert2();
                 return false;
             }
         }
@@ -31,7 +32,8 @@ public class Swap2Opening extends SwapOpening {
     }
 
     private void swap2LastQuestion(){
-        if ("YES".equals(AlertSwap.swap2_1Alert())) {
+        AlertSwap alerts=new AlertSwap();
+        if ("YES".equals(alerts.swap2_1Alert())) {
             GameStatusController.swapLabels();
             super.utilitySwap();
         }

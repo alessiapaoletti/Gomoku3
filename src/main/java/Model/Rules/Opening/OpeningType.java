@@ -3,5 +3,5 @@ package Model.Rules.Opening;
 public enum OpeningType{
     Standard,
     Swap,
-    Swap2
+    Swap2,
 }

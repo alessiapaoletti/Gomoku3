@@ -3,8 +3,8 @@ package View.Alert;
 import javafx.scene.control.Alert;
 public class AlertGameOver extends AlertGenerator {
 
-    public static String gameOverAlert( String ... winner){
-         Alert alert = createInformationAlert("Game Over", "");
+    public  String gameOverAlert( String ... winner){
+         Alert alert = super.createInformationAlert("Game Over", "");
 
         if (winner.length > 0)
             alert.setHeaderText("The winner is " + winner[0]);

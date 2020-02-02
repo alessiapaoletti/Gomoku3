@@ -4,17 +4,17 @@ import Model.GomokuGame.GomokuGame;
 import Model.Rules.Opening.OpeningType;
 
 public class GamePlay {
-    private PieceColor currentPlayer;
+    private PieceColor currentColor;
     private GomokuGame game;
 
     public GamePlay(GomokuGame game, OpeningType openingType) {
         this.game = game;
         this.game.setGameEnvironment(openingType);
-        this.currentPlayer = PieceColor.BLACK;
+        this.currentColor = PieceColor.BLACK;
     }
 
     public Player getCurrentPlayer(){
-        if(this.currentPlayer==PieceColor.BLACK)
+        if(this.currentColor==PieceColor.BLACK)
             return game.getBlackPlayer();
         else
             return game.getWhitePlayer();
@@ -54,10 +54,10 @@ public class GamePlay {
     }
 
     public void changeTurn() {
-        if (this.currentPlayer == PieceColor.WHITE)
-            this.currentPlayer = PieceColor.BLACK;
+        if (this.currentColor == PieceColor.WHITE)
+            this.currentColor = PieceColor.BLACK;
         else
-            this.currentPlayer = PieceColor.WHITE;
+            this.currentColor = PieceColor.WHITE;
     }
 
     public boolean isValidMove(final int x, final int y) {

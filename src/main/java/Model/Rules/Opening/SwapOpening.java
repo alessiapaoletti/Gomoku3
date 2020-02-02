@@ -23,7 +23,8 @@ public class SwapOpening extends Opening {
     }
 
     private void swapQuestion(){
-        if ("YES".equals(AlertSwap.swapAlert())){
+        AlertSwap alerts=new AlertSwap();
+        if ("YES".equals(alerts.swapAlert())){
             GameStatusController.swapLabels();
             this.utilitySwap();
         }

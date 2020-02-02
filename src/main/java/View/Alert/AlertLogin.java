@@ -4,8 +4,8 @@ import javafx.scene.control.Alert;
 
 public class AlertLogin extends AlertGenerator{
 
-    public static void loginAlert(){
-        Alert alert = createErrorAlert("ERROR - Missing values", "Fill all the fields" );
+    public  void loginAlert(){
+        Alert alert = super.createErrorAlert("ERROR - Missing values", "Fill all the fields" );
         alert.showAndWait();
     }
 }
