@@ -42,9 +42,9 @@ public class BoardController extends Control {
         AlertOpening.getAlertOpening(gamePlay.getGame().getOpeningRules().getOpeningType());
         this.setOnMouseClicked((event) -> {
             if(placePiece(event.getX(), event.getY())) {
-                if (this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() == 5) {
-                    startOpening();
-                }
+                //if (this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() == 5) {
+                startOpening();
+               // }
                 startGame(event.getX(), event.getY());
             }
         });
@@ -84,7 +84,9 @@ public class BoardController extends Control {
     }
 
     private void startOpening(){
-        this.gamePlay.getGame().getOpeningRules().callOpening();
+        if (this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() == 5) {
+            this.gamePlay.getGame().getOpeningRules().callOpening();
+        }
     }
 
     private void startGame(final double x, final double y){
