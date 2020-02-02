@@ -43,7 +43,7 @@ public class BoardController extends Control {
         this.setOnMouseClicked((event) -> {
             if(placePiece(event.getX(), event.getY())) {
                 //if (this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() == 5) {
-                startOpening();
+                //startOpening();
                // }
                 startGame(event.getX(), event.getY());
             }
@@ -90,6 +90,7 @@ public class BoardController extends Control {
     }
 
     private void startGame(final double x, final double y){
+        this.startOpening();
         try {
             //this.placePiece(x,y);
             this.gamePlay.getGame().checkInvalidMoves();
