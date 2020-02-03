@@ -12,7 +12,7 @@ public abstract class AlertGenerator {
     }
 
     public Alert createInformationAlert(String title, String contentText){
-        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         setAlertContent(alert, title, contentText);
         ButtonType buttonTypeOK = new ButtonType("OK");
         alert.getButtonTypes().setAll( buttonTypeOK);
@@ -20,7 +20,7 @@ public abstract class AlertGenerator {
     }
 
     public Alert createErrorAlert(String title, String contentText){
-        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(Alert.AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         setAlertContent(alert, title, contentText);
         ButtonType buttonTypeOK = new ButtonType("OK");
         alert.getButtonTypes().setAll( buttonTypeOK);
@@ -28,7 +28,7 @@ public abstract class AlertGenerator {
     }
 
     public Alert createConfirmationAlert(String title, String contentText){
-        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         setAlertContent(alert, title, contentText);
         ButtonType buttonYes = new ButtonType("YES");
         ButtonType buttonNo = new ButtonType("NO");

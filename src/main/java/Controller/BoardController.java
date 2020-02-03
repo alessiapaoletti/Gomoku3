@@ -24,7 +24,8 @@ public class BoardController extends Control {
     private int cellY = 0;
 
     BoardController(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gomokuType, OpeningType openingType) {
-        GomokuGame gomokuGame = GomokuFactory.getGame(gomokuType);
+        //GomokuFactory gomofact=new GomokuFactory();
+        GomokuGame gomokuGame = new GomokuFactory().getGame(gomokuType);
         gomokuGame.setPlayers(blackPlayer, whitePlayer);
         this.boardView = new BoardView(gomokuGame.getGridSize());
         this.gamePlay = new GamePlay(gomokuGame, openingType);

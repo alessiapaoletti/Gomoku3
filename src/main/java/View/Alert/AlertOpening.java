@@ -18,7 +18,7 @@ public class AlertOpening extends AlertGenerator{
     }
 
     public  Alert swapOpeningRulesAlert(){
-        javafx.scene.control.Alert alert = super.createInformationAlert("Swap opening - Rules", "Black player places 3 stones: 2 black and 1 white. White player can decide to swap color or stay white.");
+        Alert alert = super.createInformationAlert("Swap opening - Rules", "Black player places 3 stones: 2 black and 1 white. White player can decide to swap color or stay white.");
         return alert;
     }
 

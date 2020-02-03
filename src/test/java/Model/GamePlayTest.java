@@ -17,7 +17,8 @@ public class GamePlayTest {
 
     private BlackPlayer black=new BlackPlayer("b");
     private WhitePlayer white=new WhitePlayer("w");
-    private GomokuGame gomokuGame = GomokuFactory.getGame(GomokuType.Standard);
+
+    private GomokuGame gomokuGame = new GomokuFactory().getGame(GomokuType.Standard);
     private GamePlay Pgame;
     private int gridSize = 14;
     private void SetConditions(){

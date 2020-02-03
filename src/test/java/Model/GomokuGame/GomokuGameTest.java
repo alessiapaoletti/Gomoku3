@@ -1,5 +1,6 @@
 package Model.GomokuGame;
 
+import Model.GomokuGame.*;
 import Model.PieceColor;
 import Model.BlackPlayer;
 import Model.WhitePlayer;
@@ -11,15 +12,15 @@ import static org.junit.Assert.*;
 public class GomokuGameTest {
     @Test
     public void gomokuFactoryTest(){
-        GomokuGame standardGomoku = GomokuFactory.getGame(GomokuType.Standard);
+        GomokuGame standardGomoku = new GomokuFactory().getGame(GomokuType.Standard);
         assertEquals(standardGomoku.gameType, GomokuType.Standard);
         assertEquals(standardGomoku.getGridSize(), 14);
 
-        GomokuGame freeGomoku = GomokuFactory.getGame(GomokuType.Freestyle);
+        GomokuGame freeGomoku = new GomokuFactory().getGame(GomokuType.Freestyle);
         assertEquals(freeGomoku.gameType, GomokuType.Freestyle);
         assertEquals(freeGomoku.getGridSize(), 14);
 
-        GomokuGame omokGomoku = GomokuFactory.getGame(GomokuType.Omok);
+        GomokuGame omokGomoku = new GomokuFactory().getGame(GomokuType.Omok);
         assertEquals(omokGomoku.gameType, GomokuType.Omok);
         assertEquals(omokGomoku.getGridSize(), 18);
     }
@@ -27,7 +28,7 @@ public class GomokuGameTest {
     private BlackPlayer p1 = new BlackPlayer("A");
     private WhitePlayer p2 = new WhitePlayer("B");
 
-    private GomokuGame game = GomokuFactory.getGame(GomokuType.Omok);
+    private GomokuGame game = new GomokuFactory().getGame(GomokuType.Omok);
 
     @Test
     public void setGameEnvironmentTest(){

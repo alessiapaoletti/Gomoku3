@@ -75,9 +75,4 @@ public class GamePlay {
         return this.game;
     }
 
-
-//    private void printAllMoves(){
-//        game.getP1().printMoves();
-//        game.getP2().printMoves();
-//    }
 }

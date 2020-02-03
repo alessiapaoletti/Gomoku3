@@ -5,13 +5,13 @@ import java.util.Map;
 
 public class GomokuFactory {
 
-    private static Map<GomokuType, GomokuGame> gomokuMap = new HashMap<>();
+    private  Map<GomokuType, GomokuGame> gomokuMap = new HashMap<>();
 
-    static {
-        gomokuMap.put(GomokuType.Standard, new GomokuStd());
-        gomokuMap.put(GomokuType.Freestyle, new GomokuFree());
-        gomokuMap.put(GomokuType.Omok, new GomokuOm());
+    public GomokuFactory(){
+        this.gomokuMap.put(GomokuType.Standard, new GomokuStd());
+        this.gomokuMap.put(GomokuType.Freestyle, new GomokuFree());
+        this.gomokuMap.put(GomokuType.Omok, new GomokuOm());
     }
 
-    public static GomokuGame getGame(GomokuType game) { return gomokuMap.get(game); }
+    public  GomokuGame getGame(GomokuType game) { return gomokuMap.get(game); }
 }

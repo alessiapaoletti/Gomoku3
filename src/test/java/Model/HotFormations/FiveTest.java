@@ -16,7 +16,7 @@ public class FiveTest {
 
     BlackPlayer black=new BlackPlayer("mario");
     WhitePlayer white=new WhitePlayer("gino");
-    private Directions dir = DirectionFactory.getDir(Directions.Dir.HORIZONTAL);
+    private Directions dir = new DirectionFactory().getDir(Directions.Dir.HORIZONTAL);
     private Five f=new Five();
 
     void fillPlayer(Player p){

@@ -5,7 +5,7 @@ import Model.Directions.Directions;
 import Model.Piece;
 import Model.PieceColor;
 import org.junit.Test;
-
+import Model.HotFormations.ThreeFactory;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -15,12 +15,12 @@ import static org.junit.Assert.*;
 
 public class ThreeTest extends FiveTest {
 
-    private Directions dir = DirectionFactory.getDir(Directions.Dir.HORIZONTAL);
+    private Directions dir = new DirectionFactory().getDir(Directions.Dir.HORIZONTAL);
     private Three th;
     private Set<Piece> pieceSet = new HashSet<>();
 
     private void createThree(Three.ThreeTypes three) {
-        th = ThreeFactory.getThree(three);
+        th = new ThreeFactory().getThree(three);
         th.setDim(19);
         super.fillPlayer(super.black);
         super.black.addMove(new Piece(6, 0, PieceColor.BLACK));

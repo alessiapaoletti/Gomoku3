@@ -22,7 +22,7 @@ public abstract class GomokuGame {
     public abstract void checkInvalidMoves();
 
     public void setGameEnvironment(OpeningType openingType){
-        this.openingRules = OpeningFactory.getOpening(openingType);
+        this.openingRules = new OpeningFactory().getOpening(openingType);
         this.openingRules.setPlayers(getBlackPlayer(), getWhitePlayer());
         this.setRules();
     }

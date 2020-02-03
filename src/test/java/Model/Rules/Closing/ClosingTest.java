@@ -73,7 +73,7 @@ public class ClosingTest {
 
     @Test
     public void checkCountOverlines(){
-        Directions dir = DirectionFactory.getDir(Directions.Dir.HORIZONTAL);
+        Directions dir = new DirectionFactory().getDir(Directions.Dir.HORIZONTAL);
         Five f=new Five();
         assertTrue(overlines.checkCount(new Piece(5,7,PieceColor.BLACK), dir, 1, f));
     }

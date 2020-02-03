@@ -25,7 +25,7 @@ public abstract class Closing {
     public abstract boolean checkCount(Piece piece, Directions direction, int sign,Five f);
 
     private boolean findFive(Piece piece, Directions.Dir direction){
-        Directions dir = DirectionFactory.getDir(direction);
+        Directions dir = new DirectionFactory().getDir(direction);
         Five f = new Five();
         f.setPlayers(this.blackPlayer, this.whitePlayer);
         return (f.consecutiveFivePiece(piece, -1, piece.getPieceType(),dir) && this.checkCount(piece,dir,-1,f))

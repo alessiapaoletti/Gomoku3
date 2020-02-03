@@ -1,6 +1,7 @@
 package Model.Directions;
 
 import Model.Piece;
+import Model.Directions.*;
 import Model.PieceColor;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -8,7 +9,7 @@ import static org.junit.Assert.*;
 public class DirectionsTest {
 
     private Piece createDir(Directions.Dir dir, int range, int x, int y, int sign){
-        Directions DirTest = Model.Directions.DirectionFactory.getDir(dir);
+        Directions DirTest = new DirectionFactory().getDir(dir);
         return DirTest.updatePiece(new Piece(x,y, PieceColor.BLACK),range,sign);
     }
 

@@ -3,6 +3,7 @@ package Model.Rules.Opening;
 import Model.GomokuGame.GomokuFactory;
 import Model.GomokuGame.GomokuGame;
 import Model.GomokuGame.GomokuType;
+import Model.Rules.Opening.*;
 import Model.Piece;
 import Model.PieceColor;
 import Model.BlackPlayer;
@@ -14,15 +15,15 @@ public class OpeningTest {
 
     @Test
     public void openingFactoryTest(){
-        Opening openingStd = OpeningFactory.getOpening(OpeningType.Standard);
+        Opening openingStd = new OpeningFactory().getOpening(OpeningType.Standard);
         assertEquals(openingStd.getOpeningType(), OpeningType.Standard);
         assertEquals(openingStd.numMoves, 2);
 
-        Opening openingSwap = OpeningFactory.getOpening(OpeningType.Swap);
+        Opening openingSwap = new OpeningFactory().getOpening(OpeningType.Swap);
         assertEquals(openingSwap.getOpeningType(), OpeningType.Swap);
         assertEquals(openingSwap.numMoves, 3);
 
-        Opening openingSwap2 = OpeningFactory.getOpening(OpeningType.Swap2);
+        Opening openingSwap2 = new OpeningFactory().getOpening(OpeningType.Swap2);
         assertEquals(openingSwap2.getOpeningType(), OpeningType.Swap2);
         assertEquals(openingSwap2.numMoves, 3);
     }
@@ -51,7 +52,7 @@ public class OpeningTest {
 
         p2.addMove(new Piece(3,3, PieceColor.WHITE));
 
-        GomokuGame gomokuGame = GomokuFactory.getGame(GomokuType.Standard);
+        GomokuGame gomokuGame = new GomokuFactory().getGame(GomokuType.Standard);
         gomokuGame.setPlayers(p1, p2);
         gomokuGame.setGameEnvironment(OpeningType.Swap);
         SwapOpening swapOpening = (SwapOpening) gomokuGame.getOpeningRules();
@@ -73,7 +74,7 @@ public class OpeningTest {
         p2.addMove(new Piece(4,4, PieceColor.WHITE)); //--> ATTENZIONE: AL GIOCATORE BIANCO POSSO AGGIUNGERE PEDINE NERE E VIC
         p2.addMove(new Piece(5,5, PieceColor.WHITE));
 
-        GomokuGame gomokuGame = GomokuFactory.getGame(GomokuType.Standard);
+        GomokuGame gomokuGame = new GomokuFactory().getGame(GomokuType.Standard);
         gomokuGame.setPlayers(p1, p2);
         gomokuGame.setGameEnvironment(OpeningType.Swap2);
         SwapOpening swap2Opening = (Swap2Opening) gomokuGame.getOpeningRules();
