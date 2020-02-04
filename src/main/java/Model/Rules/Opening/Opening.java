@@ -3,7 +3,7 @@ package Model.Rules.Opening;
 import Model.BlackPlayer;
 import Model.WhitePlayer;
 import Model.Rules.Opening.OpeningType;
-import javafx.scene.control.Alert
+import javafx.scene.control.Alert;
 import main.java.ControllerCL.GameStatusController;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
