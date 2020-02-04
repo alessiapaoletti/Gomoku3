@@ -48,7 +48,7 @@ public class BoardController {
             if(placePiece(event.getX(), event.getY())) startGame(event.getX(), event.getY());
         });
     }
-*/
+
     private int numMovesDone(){
         return this.gamePlay.getGame().getOpeningRules().getBlackPlayer().listSize() + this.gamePlay.getGame().getOpeningRules().getWhitePlayer().listSize();
     }
@@ -74,14 +74,14 @@ public class BoardController {
         }
         return false;
     }
-/*
+
     private void displacePiece(final double x, final double y) {
         this.coordinateSet(x,y);
         this.gamePlay.displacePiece(this.cellX, this.cellY);
         this.boardView.removePiece(this.cellX, this.cellY);
         this.boardView.setPiece(this.cellX, this.cellY, PieceColor.EMPTY);
     }
-*/
+
     private void startOpening(){
         if (this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() == 5) {
             this.gamePlay.getGame().getOpeningRules().callOpening();
@@ -107,7 +107,7 @@ public class BoardController {
         if("OK".equals(result))
             stage.close();
     }
-/*
+
     void start(Stage primaryStage) {
         primaryStage.setTitle("GOMOKU GAME");
         primaryStage.setScene(new Scene(this.mainLayout, 600, 600));
