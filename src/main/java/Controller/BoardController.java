@@ -24,7 +24,6 @@ public class BoardController extends Control {
     private int cellY = 0;
 
     BoardController(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gomokuType, OpeningType openingType) {
-        //GomokuFactory gomofact=new GomokuFactory();
         GomokuGame gomokuGame = new GomokuFactory().getGame(gomokuType);
         gomokuGame.setPlayers(blackPlayer, whitePlayer);
         this.boardView = new BoardView(gomokuGame.getGridSize());
@@ -82,7 +81,7 @@ public class BoardController extends Control {
 
     private void startOpening(){
         if (this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() == 5) {
-            this.gamePlay.getGame().getOpeningRules().callOpening();
+            this.gamePlay.getGame().getOpeningRules().callOpening(new View.Alert.AlertSwap());
         }
     }
 

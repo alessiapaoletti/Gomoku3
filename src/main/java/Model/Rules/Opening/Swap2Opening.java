@@ -3,6 +3,8 @@ package Model.Rules.Opening;
 import Controller.GameStatusController;
 import View.Alert.*;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class Swap2Opening extends SwapOpening {
 
     private Boolean answerInitQuestions;
@@ -14,17 +16,17 @@ public class Swap2Opening extends SwapOpening {
     @Override
     public void openingBehaviour() {
         if ( (this.whitePlayer.listSize() + this.blackPlayer.listSize())!= 5) this.answerInitQuestions = this.swap2InitQuestions();
-        else if (!this.answerInitQuestions) this.swap2LastQuestion();
+        else if (!this.answerInitQuestions) { this.swap2LastQuestion();}
     }
 
-    private Boolean swap2InitQuestions() {
-        AlertSwap alerts=new AlertSwap();
-        if ("YES".equals(alerts.swapAlert())){
-            GameStatusController.swapLabels();
+    private Boolean swap2InitQuestions(){
+        if (super.AnswerQuestionAlert("YES","swapAlert")){
+            super.SwapLabel();
             super.utilitySwap();
         } else {
-            if ("NO".equals(alerts.swap2Alert())) {
-                alerts.swap2Alert2();
+            if (super.AnswerQuestionAlert("NO","swap2Alert")) {
+                if(super.alert!=null) super.alert.swap2Alert2();
+                else super.print.swap2Alert2();
                 return false;
             }
         }
@@ -32,9 +34,8 @@ public class Swap2Opening extends SwapOpening {
     }
 
     private void swap2LastQuestion(){
-        AlertSwap alerts=new AlertSwap();
-        if ("YES".equals(alerts.swap2_1Alert())) {
-            GameStatusController.swapLabels();
+        if (super.AnswerQuestionAlert("YES","swap2_1Alert")) {
+            super.SwapLabel();
             super.utilitySwap();
         }
     }

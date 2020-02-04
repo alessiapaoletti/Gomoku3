@@ -53,9 +53,9 @@ public class GameStatusController {
         Stage stageBoard = (Stage) this.boardView.getScene().getWindow();
         stageBoard.close();
     }
-
+*/
     public static void swapLabels(){
         gameStatusView.swapColors();
     }
-*/
+
 }
