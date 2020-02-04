@@ -4,8 +4,8 @@ import Model.BlackPlayer;
 import Model.WhitePlayer;
 import Model.Rules.Opening.OpeningType;
 import javafx.scene.control.Alert;
-import main.java.ControllerCL.GameStatusController;
-
+import srcCommandLine.main.java.ControllerCL.*;
+import srcCommandLine.main.java.ViewCL.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.function.Function;
@@ -36,7 +36,7 @@ public abstract class Opening {
         try {
             Controller.GameStatusController.swapLabels();
         }catch (ExceptionInInitializerError e){
-            GameStatusController.swapLabels();
+            ControllerCL.GameStatusController.swapLabels();
         }
     };
 
