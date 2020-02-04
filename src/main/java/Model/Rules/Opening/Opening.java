@@ -3,9 +3,8 @@ package Model.Rules.Opening;
 import Model.BlackPlayer;
 import Model.WhitePlayer;
 import Model.Rules.Opening.OpeningType;
-import javafx.scene.control.Alert;
-import srcCommandLine.main.java.ControllerCL.*;
-import srcCommandLine.main.java.ViewCL.*;
+import javafx.scene.control.Alert
+import main.java.ControllerCL.GameStatusController;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.function.Function;
@@ -36,7 +35,7 @@ public abstract class Opening {
         try {
             Controller.GameStatusController.swapLabels();
         }catch (ExceptionInInitializerError e){
-            ControllerCL.GameStatusController.swapLabels();
+            GameStatusController.swapLabels();
         }
     };
 
