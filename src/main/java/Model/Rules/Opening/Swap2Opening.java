@@ -1,7 +1,5 @@
 package Model.Rules.Opening;
 
-import Controller.GameStatusController;
-import View.Alert.*;
 
 import java.lang.reflect.InvocationTargetException;
 
