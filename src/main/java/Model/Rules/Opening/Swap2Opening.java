@@ -23,10 +23,10 @@ public class Swap2Opening extends SwapOpening {
 
     private boolean swap2WhiteOptions() {
         String answer = super.alertControllerInterface.swap2Alert();
-        if ("Option One".equals(answer))
+        if ("1".equals(answer))
             /*white player stay white and put 4th stone*/
             return true;
-        else if ("Option Two".equals(answer)) {
+        else if ("2".equals(answer)) {
             /*white player swap color and control black stones*/
             super.SwapLabel();
             super.utilitySwap();

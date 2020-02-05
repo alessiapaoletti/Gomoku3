@@ -12,6 +12,7 @@ public class AlertSwap extends AlertGenerator {
         return (answ.equals("1") || answ.equals("2") || answ.equals("3")) ;
     }
 
+
     private  String generateYesNoAlert(String textContent){
         Scanner scanner = new Scanner(System.in);
         String answer;

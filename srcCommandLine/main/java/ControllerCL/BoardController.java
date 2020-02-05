@@ -76,7 +76,7 @@ class BoardController {
 
     private void startOpening(){
         if (this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() == 5) {
-            this.gamePlay.getGame().getOpeningRules().callOpening(new AlertController(),this.gameStatusController);
+            this.gamePlay.getGame().getOpeningRules().callOpening(this.alertController,this.gameStatusController);
         }
     }
 

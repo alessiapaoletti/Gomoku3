@@ -4,9 +4,9 @@ public interface AlertControllerInterface {
 
     //boolean AnswerQuestionAlert(String Answ, String m);
 
-    String swap2Alert();
+    public String swap2Alert();
 
-    String swapAlert();
+    public String swapAlert();
 
-    String swapBlack();
+    public String swapBlack();
 }

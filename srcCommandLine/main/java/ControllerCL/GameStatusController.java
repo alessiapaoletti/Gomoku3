@@ -10,11 +10,11 @@ public class GameStatusController implements GameStatusControllerInterface {
 
     private GameStatusView gameStatusView;
 
-    GameStatusController(BlackPlayer p1, WhitePlayer p2, GomokuType gomokuType, OpeningType openingType){
+    public GameStatusController(BlackPlayer p1, WhitePlayer p2, GomokuType gomokuType, OpeningType openingType){
         this.gameStatusView = new GameStatusView(p1, p2, gomokuType, openingType);
     }
 
-    void start(){
+    public void start(){
         this.gameStatusView.initBackGround();
     }
 

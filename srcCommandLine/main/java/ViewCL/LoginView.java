@@ -1,44 +1,44 @@
 package ViewCL;
 
-import ControllerCL.AlertController;
+import ViewCL.Alert.AlertLogin;
 import Model.Rules.Opening.OpeningType;
 import java.util.Scanner;
 import Model.GomokuGame.GomokuType;
 
 public class LoginView {
 
-    private AlertController login=new AlertController();
+    private AlertLogin login=new AlertLogin();
 
     public LoginView(){
-        login.callLoginWelcome();
+        login.welcomePrint();
     }
 
     public String setBlackPlayer(){
-        login.callLoginBlack();
+        login.setBlackPlayer();
         return new Scanner(System.in).next();
     }
 
     public String setWhitePlayer(){
-        login.callLoginWhite();
+        login.setWhitePlayer();
         return new Scanner(System.in).next();
     }
 
     public GomokuType setGame(){
-        login.callLoginGame();
+        login.setGame();
         try {
             return GomokuType.valueOf(new Scanner(System.in).next());
         }catch (IllegalArgumentException e){
-          login.callLoginAlert();
+          login.loginAlert();
           return this.setGame();
         }
     }
 
     public OpeningType setOpening(){
-        login.callLoginOpening();
+        login.setOpening();
         try {
             return OpeningType.valueOf(new Scanner(System.in).next());
         }catch (IllegalArgumentException e){
-            login.callLoginAlert();
+            login.loginAlert();
             return this.setOpening();
         }
     }

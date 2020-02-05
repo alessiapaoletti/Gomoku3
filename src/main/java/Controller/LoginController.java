@@ -3,7 +3,7 @@ package Controller;
 import Model.BlackPlayer;
 import Model.GomokuGame.GomokuType;
 import Model.WhitePlayer;
-import View.Alert.*;
+import Controller.AlertController;
 import Model.Rules.Opening.OpeningType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -55,8 +55,7 @@ public class LoginController {
             boardController.setGameStatusController(gameStatusController);
             gameStatusController.start();
         } else {
-            AlertLogin alertLogin = new AlertLogin();
-            alertLogin.loginAlert();
+            new AlertController().callLoginAlert();
         }
     }
 

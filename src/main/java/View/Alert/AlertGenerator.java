@@ -39,9 +39,9 @@ public abstract class AlertGenerator {
     Alert createSwap2Alert(String contentText){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         setAlertContent(alert, "", contentText);
-        ButtonType buttonOne = new ButtonType("Option One");
-        ButtonType buttonTwo = new ButtonType("Option Two");
-        ButtonType buttonThree = new ButtonType("Option Three");
+        ButtonType buttonOne = new ButtonType("1");
+        ButtonType buttonTwo = new ButtonType("2");
+        ButtonType buttonThree = new ButtonType("3");
         alert.getButtonTypes().setAll( buttonOne, buttonTwo, buttonThree);
         return alert;
     }

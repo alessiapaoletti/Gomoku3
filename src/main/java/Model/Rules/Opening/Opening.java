@@ -16,7 +16,7 @@ public abstract class Opening {
 
     public Opening(){ }
 
-    void SwapLabel(){
+    protected void SwapLabel(){
         this.gameStatusControllerInterface.swapLabel();
     }
 
