@@ -17,6 +17,19 @@ dependencies {
 
 }
 
+sourceSets {
+    main{
+        java {
+            srcDir 'src/'
+            srcDir 'srcCommandLine'
+        }
+    }
+    test {
+        java { srcDir 'src/test/java' }
+    }
+}
+
+
 javafx {
     version = "12"
     modules = [ 'javafx.controls', 'javafx.fxml']
