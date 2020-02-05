@@ -1,8 +1,6 @@
 package Model.Rules.Opening;
 
-import Controller.GameStatusController;
-import View.Alert.*;
-import ViewCL.Alert.*;
+
 
 public class SwapOpening extends Opening {
 
