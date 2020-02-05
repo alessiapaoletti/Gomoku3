@@ -21,6 +21,7 @@ public class BoardController {
     private BoardView boardView;
     private GamePlay gamePlay;
     private GameStatusController gameStatusController;
+    private AlertController alertController=new AlertController();
     private boolean Over=false;
     private int X = 0;
     private int Y = 0;
@@ -34,7 +35,7 @@ public class BoardController {
     }
 
     public void StartGame(){
-        new AlertOpening().getAlertOpening(gamePlay.getGame().getOpeningRules().getOpeningType());
+       this.alertController.callGetAlertOpening(gamePlay.getGame().getOpeningRules().getOpeningType());
         this.boardView.createBoard();
         this.gameStatusController.start();
         this.CarryOnGame();
@@ -47,20 +48,6 @@ public class BoardController {
             this.gameStatusController.start();
         }
     };
-
-
-   /* BoardView getBoardView(){
-        return this.boardView;
-    }
-
-
-    void clickEventHandler() throws InvocationTargetException, IllegalAccessException {
-        AlertOpening alertOp=new AlertOpening();
-        alertOp.getAlertOpening(gamePlay.getGame().getOpeningRules().getOpeningType());
-        this.setOnMouseClicked((event) -> {
-            if(placePiece(event.getX(), event.getY())) startGame(event.getX(), event.getY());
-        });
-    }*/
 
     private int numMovesDone(){
         return this.gamePlay.getGame().getOpeningRules().getBlackPlayer().listSize() + this.gamePlay.getGame().getOpeningRules().getWhitePlayer().listSize();
@@ -89,15 +76,13 @@ public class BoardController {
     }
 
     private void displacePiece() {
-        //this.coordinateSet(x,y);
         this.gamePlay.displacePiece(this.X, this.Y);
         this.boardView.removePiece(this.X, this.Y);
-        //this.boardView.setPiece(this.cellX, this.cellY, PieceColor.EMPTY);
     }
 
     private void startOpening(){
         if (this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() == 5) {
-            this.gamePlay.getGame().getOpeningRules().callOpening(new AlertSwap());
+            this.gamePlay.getGame().getOpeningRules().callOpening(new AlertController(),this.gameStatusController);
         }
     }
 
@@ -107,25 +92,16 @@ public class BoardController {
             this.gamePlay.getGame().checkInvalidMoves();
         }
         catch (Error | Exception e){
-            new AlertInvalidMove().invalidMoveAlert(e.toString().substring(17));
+           this.alertController.callInvalidMoveError(e.toString().substring(17));
             this.displacePiece();
         }
     }
 
     private void gameOver(String ... winner){
-        //Stage stage = (Stage) boardView.getScene().getWindow();
-        new AlertGameOver().gameOverAlert(winner);
+        this.alertController.callGameOverAlert(winner);
         this.Over=true;
-      //  if("OK".equals(result))
-      //      stage.close();
     }
 
-  /*  void start(Stage primaryStage) {
-        primaryStage.setTitle("GOMOKU GAME");
-        primaryStage.setScene(new Scene(this.mainLayout, 600, 600));
-        primaryStage.show();
-    }
-*/
 
 }
 

@@ -1,5 +1,6 @@
 package Controller;
 
+import ControllerCL.GameStatusControllerInterface;
 import Model.*;
 import Model.GomokuGame.GomokuFactory;
 import Model.GomokuGame.GomokuGame;
@@ -19,7 +20,9 @@ public class BoardController extends Control {
 
     private BoardView boardView;
     private GamePlay gamePlay;
+    private GameStatusControllerInterface mygameStatus;
     private final StackPane mainLayout;
+    private AlertController alertController;
     private int cellX = 0;
     private int cellY = 0;
 
@@ -28,19 +31,20 @@ public class BoardController extends Control {
         gomokuGame.setPlayers(blackPlayer, whitePlayer);
         this.boardView = new BoardView(gomokuGame.getGridSize());
         this.gamePlay = new GamePlay(gomokuGame, openingType);
+         alertController= new AlertController();
         this.setSkin(new ControlSkin(this));
         this.getChildren().add(this.boardView);
         this.mainLayout = new StackPane();
         this.mainLayout.getChildren().add(this);
     }
-
+    public void setGameStatusController(GameStatusControllerInterface g){this.mygameStatus=g;};
     BoardView getBoardView(){
         return this.boardView;
     }
 
     void clickEventHandler() throws InvocationTargetException, IllegalAccessException {
-        AlertOpening alertOp=new AlertOpening();
-        alertOp.getAlertOpening(gamePlay.getGame().getOpeningRules().getOpeningType());
+        //AlertOpening alertOp=new AlertOpening();
+        alertController.callGetAlertOpening(gamePlay.getGame().getOpeningRules().getOpeningType());
         this.setOnMouseClicked((event) -> {
             if(placePiece(event.getX(), event.getY())) startGame(event.getX(), event.getY());
         });
@@ -81,7 +85,8 @@ public class BoardController extends Control {
 
     private void startOpening(){
         if (this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() == 5) {
-            this.gamePlay.getGame().getOpeningRules().callOpening(new View.Alert.AlertSwap());
+            this.gamePlay.getGame().getOpeningRules().callOpening(new AlertController(),this.mygameStatus);
+            //this.gamePlay.getGame().getOpeningRules().callOpening(alertController.istantiateAlertSwap());
         }
     }
 

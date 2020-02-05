@@ -1,5 +1,6 @@
 package ViewCL;
 
+import ControllerCL.AlertController;
 import ViewCL.Alert.AlertLogin;
 
 import Model.Rules.Opening.OpeningType;
@@ -8,38 +9,38 @@ import Model.GomokuGame.GomokuType;
 
 public class LoginView {
 
-    private AlertLogin login=new AlertLogin();
+    private AlertController login=new AlertController();
 
     public LoginView(){
-        login.Welcome();
+        login.callLoginWelcome();
     };
 
     public String SetBlackPlayer(){
-        login.SetBlackPlayer();
+        login.callLoginBlack();
         return new Scanner(System.in).next();
     };
 
     public String SetWhitePlayer(){
-        login.SetWhitePlayer();
+        login.callLoginWhite();
         return new Scanner(System.in).next();
     };
 
     public GomokuType SetGame(){
-        login.SetGame();
+        login.callLoginGame();
         try {
             return GomokuType.valueOf(new Scanner(System.in).next());
         }catch (IllegalArgumentException e){
-          login.loginAlert();
+          login.callLoginAlert();
           return this.SetGame();
         }
     };
 
     public OpeningType SetOpening(){
-        login.SetOpening();
+        login.callLoginOpening();
         try {
             return OpeningType.valueOf(new Scanner(System.in).next());
         }catch (IllegalArgumentException e){
-            login.loginAlert();
+            login.callLoginAlert();
             return this.SetOpening();
         }
     };

@@ -20,13 +20,12 @@ public class Swap2Opening extends SwapOpening {
     }
 
     private Boolean swap2InitQuestions(){
-        if (super.AnswerQuestionAlert("YES","swapAlert")){
+        if (super.alertControllerInterface.AnswerQuestionAlert("YES","swapAlert")){
             super.SwapLabel();
             super.utilitySwap();
         } else {
-            if (super.AnswerQuestionAlert("NO","swap2Alert")) {
-                if(super.alert!=null) super.alert.swap2Alert2();
-                else super.print.swap2Alert2();
+            if (super.alertControllerInterface.AnswerQuestionAlert("NO","swap2Alert")) {
+                super.alertControllerInterface.callSwap2Alert2();
                 return false;
             }
         }
@@ -34,7 +33,7 @@ public class Swap2Opening extends SwapOpening {
     }
 
     private void swap2LastQuestion(){
-        if (super.AnswerQuestionAlert("YES","swap2_1Alert")) {
+        if (super.alertControllerInterface.AnswerQuestionAlert("YES","swap2_1Alert")) {
             super.SwapLabel();
             super.utilitySwap();
         }

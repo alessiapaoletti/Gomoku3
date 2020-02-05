@@ -1,13 +1,9 @@
 package Model.Rules.Opening;
 
+import ControllerCL.AlertControllerInterface;
+import ControllerCL.GameStatusControllerInterface;
 import Model.BlackPlayer;
 import Model.WhitePlayer;
-import Model.Rules.Opening.OpeningType;
-import javafx.scene.control.Alert;
-import main.java.ControllerCL.GameStatusController;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.function.Function;
 
 public abstract class Opening {
 
@@ -15,28 +11,16 @@ public abstract class Opening {
     WhitePlayer whitePlayer;
     OpeningType openingType;
     int numMoves;
-    protected View.Alert.AlertSwap alert;
-    protected ViewCL.Alert.AlertSwap print;
+
+    protected AlertControllerInterface alertControllerInterface;
+    private  GameStatusControllerInterface gameStatusControllerInterface;
+
 
     public Opening(){ };
 
-    protected boolean AnswerQuestionAlert(String Answ,String m ){
-        try {
-            Method met = View.Alert.AlertSwap.class.getDeclaredMethod(m);
-            Method met1 = ViewCL.Alert.AlertSwap.class.getDeclaredMethod(m);
-            if(this.alert!=null) return Answ.equals(met.invoke(this.alert));
-            else return Answ.equals(met1.invoke(this.print));
-        }catch (NoSuchMethodException e){}
-        catch (InvocationTargetException i){}
-        catch (IllegalAccessException r){};
-        return false;
-    };
+
     protected void SwapLabel(){
-        try {
-            Controller.GameStatusController.swapLabels();
-        }catch (ExceptionInInitializerError e){
-            GameStatusController.swapLabels();
-        }
+        this.gameStatusControllerInterface.swapLabel();
     };
 
     public void setPlayers(BlackPlayer blackPlayer, WhitePlayer whitePlayer){
@@ -46,15 +30,12 @@ public abstract class Opening {
 
     public int getNumMoves(){ return this.numMoves; }
 
-    public void callOpening(View.Alert.AlertSwap a){
-        this.alert=a;
-         this.openingBehaviour();
-    };
-
-    public void callOpening(ViewCL.Alert.AlertSwap p){
-        this.print=p;
+    public void callOpening(AlertControllerInterface alertControllerInterface,GameStatusControllerInterface g){
+        this.alertControllerInterface=alertControllerInterface;
+        this.gameStatusControllerInterface=g;
         this.openingBehaviour();
     };
+
 
     public abstract void openingBehaviour();
 

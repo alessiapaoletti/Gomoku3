@@ -25,7 +25,7 @@ public class SwapOpening extends Opening {
     }
 
     private void swapQuestion(){
-        if (super.AnswerQuestionAlert("YES","swapAlert")){
+        if (super.alertControllerInterface.AnswerQuestionAlert("YES","swapAlert")){
             super.SwapLabel();
             this.utilitySwap();
         }
