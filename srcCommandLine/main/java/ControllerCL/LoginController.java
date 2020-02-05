@@ -3,28 +3,21 @@ package ControllerCL;
 import Model.BlackPlayer;
 import Model.GomokuGame.GomokuType;
 import Model.WhitePlayer;
-import View.Alert.*;
 import ViewCL.LoginView;
 import Model.Rules.Opening.OpeningType;
-import ControllerCL.BoardController;
-import main.java.ControllerCL.GameStatusController;
 
-import java.util.ArrayList;
-import java.util.List;
+class LoginController {
 
-public class LoginController {
+    private LoginView loginView = new LoginView();
 
-    private LoginView myview = new LoginView();
+    LoginController() {}
 
-    public LoginController() {
-    }
-
-    public void startGame() {
-        BlackPlayer blackPlayer = new BlackPlayer(myview.SetBlackPlayer());
-        WhitePlayer whitePlayer = new WhitePlayer(myview.SetWhitePlayer());
-        GomokuType gomokuType = myview.SetGame();
-        OpeningType openingType = myview.SetOpening();
+    void startGame() {
+        BlackPlayer blackPlayer = new BlackPlayer(loginView.setBlackPlayer());
+        WhitePlayer whitePlayer = new WhitePlayer(loginView.setWhitePlayer());
+        GomokuType gomokuType = loginView.setGame();
+        OpeningType openingType = loginView.setOpening();
         BoardController boardController = new BoardController(blackPlayer, whitePlayer, gomokuType, openingType);
         boardController.StartGame();
-    };
+    }
 }

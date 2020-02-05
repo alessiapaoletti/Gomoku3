@@ -1,8 +1,6 @@
 package ViewCL;
 
 import ControllerCL.AlertController;
-import ViewCL.Alert.AlertLogin;
-
 import Model.Rules.Opening.OpeningType;
 import java.util.Scanner;
 import Model.GomokuGame.GomokuType;
@@ -13,36 +11,36 @@ public class LoginView {
 
     public LoginView(){
         login.callLoginWelcome();
-    };
+    }
 
-    public String SetBlackPlayer(){
+    public String setBlackPlayer(){
         login.callLoginBlack();
         return new Scanner(System.in).next();
-    };
+    }
 
-    public String SetWhitePlayer(){
+    public String setWhitePlayer(){
         login.callLoginWhite();
         return new Scanner(System.in).next();
-    };
+    }
 
-    public GomokuType SetGame(){
+    public GomokuType setGame(){
         login.callLoginGame();
         try {
             return GomokuType.valueOf(new Scanner(System.in).next());
         }catch (IllegalArgumentException e){
           login.callLoginAlert();
-          return this.SetGame();
+          return this.setGame();
         }
-    };
+    }
 
-    public OpeningType SetOpening(){
+    public OpeningType setOpening(){
         login.callLoginOpening();
         try {
             return OpeningType.valueOf(new Scanner(System.in).next());
         }catch (IllegalArgumentException e){
             login.callLoginAlert();
-            return this.SetOpening();
+            return this.setOpening();
         }
-    };
+    }
 
 }

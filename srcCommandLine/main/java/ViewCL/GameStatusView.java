@@ -1,4 +1,4 @@
-package main.java.ViewCL;
+package ViewCL;
 
 import Model.BlackPlayer;
 import Model.GomokuGame.GomokuType;

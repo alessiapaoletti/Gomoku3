@@ -1,7 +1,5 @@
 package Model.Rules.Opening;
 
-
-
 public class SwapOpening extends Opening {
 
     SwapOpening(){
@@ -9,8 +7,7 @@ public class SwapOpening extends Opening {
         this.numMoves = 3;
     }
 
-
-    public void utilitySwap() {
+    void utilitySwap() {
         String tmpName = blackPlayer.getName();
         blackPlayer.setName(whitePlayer.getName());
         whitePlayer.setName(tmpName);
@@ -23,9 +20,8 @@ public class SwapOpening extends Opening {
     }
 
     private void swapQuestion(){
-        if (super.alertControllerInterface.AnswerQuestionAlert("YES","swapAlert")){
+        if ("YES".equals(super.alertControllerInterface.swapAlert()))
             super.SwapLabel();
             this.utilitySwap();
         }
-    }
 }

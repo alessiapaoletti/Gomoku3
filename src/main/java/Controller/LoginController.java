@@ -54,9 +54,9 @@ public class LoginController {
             GameStatusController gameStatusController = new GameStatusController(blackPlayer, whitePlayer,gomokuType, openingType, boardController.getBoardView());
             boardController.setGameStatusController(gameStatusController);
             gameStatusController.start();
-        } else{
-            AlertLogin alertlog=new AlertLogin();
-            alertlog.loginAlert();
+        } else {
+            AlertLogin alertLogin = new AlertLogin();
+            alertLogin.loginAlert();
         }
     }
 

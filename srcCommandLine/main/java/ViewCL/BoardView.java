@@ -1,12 +1,8 @@
 package ViewCL;
 
 import Model.PieceColor;
-import Model.Piece;
-import ViewCL.GridStructure;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.stream.IntStream;
 
 public class BoardView{
     private final String ANSI_PURPLE = "\u001B[35m";
@@ -24,25 +20,25 @@ public class BoardView{
 
     }
 
-    public int Getx(String PlayerColor){
+    public int getX(String PlayerColor){
         System.out.println("\n"+ANSI_PURPLE+"Insert new "+PlayerColor+" piece (x coordinate): "+ANSI_RESET);
         try {
            return new Scanner(System.in).nextInt();
         }catch (InputMismatchException e){
             System.out.println(ANSI_RED+"Invalid coordinate"+ANSI_RESET);
-           return this.Getx(PlayerColor);
+           return this.getX(PlayerColor);
         }
-    };
+    }
 
-    public int Gety(String PlayerColor){
+    public int getY(String PlayerColor){
         System.out.println("\n"+ANSI_PURPLE+"Insert new "+PlayerColor+" piece (y coordinate): "+ANSI_RESET);
         try {
             return new Scanner(System.in).nextInt();
         }catch (InputMismatchException e){
             System.out.println(ANSI_RED+"Invalid coordinate"+ANSI_RESET);
-            return this.Gety(PlayerColor);
+            return this.getY(PlayerColor);
         }
-    };
+    }
 
     public void setPiece(int x, int y,final PieceColor color){
         this.gridStructure.setPiece(x,y,color);
@@ -58,6 +54,6 @@ public class BoardView{
             this.gridStructure.createVerticalLines();
         }
         this.gridStructure.createHorizontalLines(this.boardSize-1);
-    };
+    }
 
 }

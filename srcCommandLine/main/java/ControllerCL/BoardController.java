@@ -6,27 +6,20 @@ import Model.GomokuGame.GomokuGame;
 import Model.GomokuGame.GomokuType;
 import Model.BlackPlayer;
 import Model.WhitePlayer;
-import ViewCL.Alert.AlertOpening;
-import ViewCL.Alert.AlertGameOver;
 import Model.Rules.Opening.OpeningType;
-import ViewCL.Alert.AlertSwap;
 import ViewCL.BoardView;
-import ViewCL.Alert.AlertInvalidMove;
-import main.java.ControllerCL.GameStatusController;
 
-import java.lang.reflect.InvocationTargetException;
-
-public class BoardController {
+class BoardController {
 
     private BoardView boardView;
     private GamePlay gamePlay;
     private GameStatusController gameStatusController;
-    private AlertController alertController=new AlertController();
-    private boolean Over=false;
+    private AlertController alertController = new AlertController();
+    private boolean gameOver = false;
     private int X = 0;
     private int Y = 0;
 
-    public  BoardController(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gomokuType, OpeningType openingType) {
+    BoardController(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gomokuType, OpeningType openingType) {
         GomokuGame gomokuGame = new GomokuFactory().getGame(gomokuType);
         gomokuGame.setPlayers(blackPlayer, whitePlayer);
         this.boardView = new BoardView(gomokuGame.getGridSize(),gomokuType.toString().toUpperCase());
@@ -34,28 +27,29 @@ public class BoardController {
         this.gameStatusController = new GameStatusController(blackPlayer, whitePlayer,gomokuType, openingType);
     }
 
-    public void StartGame(){
-       this.alertController.callGetAlertOpening(gamePlay.getGame().getOpeningRules().getOpeningType());
+    /**change the name */
+    void StartGame(){
+        this.alertController.callGetAlertOpening(gamePlay.getGame().getOpeningRules().getOpeningType());
         this.boardView.createBoard();
         this.gameStatusController.start();
-        this.CarryOnGame();
-    };
+        this.carryOnGame();
+    }
 
-    public void CarryOnGame(){
-        while (!Over) {
+    private void carryOnGame(){
+        while (!gameOver) {
             if(placePiece()) startGame();
             this.boardView.createBoard();
             this.gameStatusController.start();
         }
-    };
+    }
 
     private int numMovesDone(){
         return this.gamePlay.getGame().getOpeningRules().getBlackPlayer().listSize() + this.gamePlay.getGame().getOpeningRules().getWhitePlayer().listSize();
     }
 
     private void coordinateSet(){
-        this.X=this.boardView.Getx(this.gamePlay.getCurrentPlayer().getColorName());
-        this.Y=this.boardView.Gety(this.gamePlay.getCurrentPlayer().getColorName());
+        this.X=this.boardView.getX(this.gamePlay.getCurrentPlayer().getColorName());
+        this.Y=this.boardView.getY(this.gamePlay.getCurrentPlayer().getColorName());
     }
 
     private boolean placePiece() {
@@ -99,7 +93,7 @@ public class BoardController {
 
     private void gameOver(String ... winner){
         this.alertController.callGameOverAlert(winner);
-        this.Over=true;
+        this.gameOver =true;
     }
 
 

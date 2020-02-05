@@ -11,17 +11,14 @@ public abstract class Opening {
     WhitePlayer whitePlayer;
     OpeningType openingType;
     int numMoves;
-
-    protected AlertControllerInterface alertControllerInterface;
+    AlertControllerInterface alertControllerInterface;
     private  GameStatusControllerInterface gameStatusControllerInterface;
 
+    public Opening(){ }
 
-    public Opening(){ };
-
-
-    protected void SwapLabel(){
+    void SwapLabel(){
         this.gameStatusControllerInterface.swapLabel();
-    };
+    }
 
     public void setPlayers(BlackPlayer blackPlayer, WhitePlayer whitePlayer){
         this.blackPlayer = blackPlayer;
@@ -30,12 +27,11 @@ public abstract class Opening {
 
     public int getNumMoves(){ return this.numMoves; }
 
-    public void callOpening(AlertControllerInterface alertControllerInterface,GameStatusControllerInterface g){
-        this.alertControllerInterface=alertControllerInterface;
-        this.gameStatusControllerInterface=g;
+    public void callOpening(AlertControllerInterface alertControllerInterface, GameStatusControllerInterface g){
+        this.alertControllerInterface = alertControllerInterface;
+        this.gameStatusControllerInterface = g;
         this.openingBehaviour();
-    };
-
+    }
 
     public abstract void openingBehaviour();
 
