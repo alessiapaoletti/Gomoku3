@@ -25,9 +25,6 @@ sourceSets {
             srcDir 'srcCommandLine'
         }
     }
-    //test {
-    //    java { srcDir 'src/test/java' }
-   // }
 }
 
 
