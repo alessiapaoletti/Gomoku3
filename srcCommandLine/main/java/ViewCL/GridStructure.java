@@ -1,5 +1,6 @@
 package ViewCL;
 
+import Model.PieceColor;
 
 public class GridStructure {
 
@@ -12,6 +13,7 @@ public class GridStructure {
     private double cellHeight;
     private double startX;
     private double startY;*/
+    private PieceColor[][] pieces;
     private final String ANSI_BLACK = "\033[1;90m";
     private final String ANSI_PURPLE = "\u001B[35m";
     private final String ANSI_RESET = "\u001B[0m";
@@ -19,32 +21,60 @@ public class GridStructure {
     public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
     private int size;
 
+    public void setPiece(int x, int y,final PieceColor color){
+        this.pieces[x][y]=color;  //se la posizione è nera stampo X nera altrimenti bianca.
+    };
+
+    public void removePiece(int x ,int y){ this.pieces[x][y]=PieceColor.EMPTY;}
+
     GridStructure(int size){
         this.size = size;
+        this.pieces=new PieceColor[this.size+1][this.size+1];
+        for(int j=0;j<this.size+1;j++){
+            for(int i=0;i<this.size+1;i++){ this.pieces[i][j]=PieceColor.EMPTY;}
+        }
        /* this.horizontal = new Line[this.size + 1];
         this.vertical = new Line[this.size + 1];
         this.horizontalTranslate = new Translate[this.size + 1];
         this.verticalTranslate = new Translate[this.size + 1];*/
     }
-
+    public String placePiece(int x,int y){
+        if(this.pieces[x][y].equals(PieceColor.BLACK)) return ANSI_PURPLE_BACKGROUND+ANSI_BLACK+"X";
+        else if(this.pieces[x][y].equals(PieceColor.WHITE)) return ANSI_WHITE+ANSI_PURPLE_BACKGROUND+"X"+ANSI_BLACK;
+        else return "-";
+    };
 
     public void createHorizontalNumbers(){
-        String enumeration = "   ";
+        String enumeration = " ";
         for(int i=0;i<10;i++){enumeration+= "  "+Integer.toString(i)+"  ";}
         for(int i=10;i<this.size;i++){enumeration+= "  "+Integer.toString(i)+" ";}
         System.out.println(ANSI_PURPLE+enumeration+ANSI_RESET);
     }
 
-    public void createHorizontalLines(){
-        System.out.println("   "+ANSI_PURPLE_BACKGROUND+ANSI_BLACK+"+----".repeat(this.size-1)+"+----+"+ANSI_RESET);
-    }
-
-    public void createVerticalLines(Integer i){
+    public void createHorizontalLines(Integer i){
         String num;
         if(i<10) num=i.toString()+"  ";
         else num=i.toString()+" ";
-        System.out.println(ANSI_PURPLE+num+ANSI_PURPLE_BACKGROUND+ANSI_BLACK+"|    ".repeat(this.size)+"|"+ANSI_RESET);
+        System.out.print(ANSI_PURPLE+num);
+        //System.out.println(ANSI_PURPLE_BACKGROUND+ANSI_BLACK+"-----".repeat(this.size-1)+"------"+ANSI_RESET);
+        for(int j=0;j<this.size-1;j++){
+            System.out.print(ANSI_PURPLE_BACKGROUND+ANSI_BLACK+this.placePiece(j,i)+"----"+ANSI_RESET);
+        }
+        System.out.println(ANSI_PURPLE_BACKGROUND+ANSI_BLACK+this.placePiece(this.size-1,i)+ANSI_RESET);
+    }
 
+    //i-> Y, j->X
+
+    public void createVerticalLines(){
+        //String num="   ";
+        //if(i<10) num=i.toString()+"  ";
+        //else num=i.toString()+" ";
+        //System.out.print(ANSI_PURPLE+num);
+        //for(int j=0;j<this.size;j++){
+        System.out.println("   "+ANSI_PURPLE+ANSI_PURPLE_BACKGROUND+ANSI_BLACK+"|    ".repeat(this.size-1)+"|"+ANSI_RESET);
+        //    System.out.print(ANSI_PURPLE_BACKGROUND+ANSI_BLACK+"| "+this.placePiece(j,i)+ANSI_RESET);
+        //}
+        //System.out.println(ANSI_PURPLE_BACKGROUND+ANSI_BLACK+"|"+ANSI_RESET);
     }
 
     /*

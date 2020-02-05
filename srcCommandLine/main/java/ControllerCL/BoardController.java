@@ -7,9 +7,11 @@ import Model.GomokuGame.GomokuType;
 import Model.BlackPlayer;
 import Model.WhitePlayer;
 import ViewCL.Alert.AlertOpening;
+import ViewCL.Alert.AlertGameOver;
 import Model.Rules.Opening.OpeningType;
+import ViewCL.Alert.AlertSwap;
 import ViewCL.BoardView;
-import View.ControlSkin;
+import ViewCL.Alert.AlertInvalidMove;
 import main.java.ControllerCL.GameStatusController;
 
 import java.lang.reflect.InvocationTargetException;
@@ -19,9 +21,9 @@ public class BoardController {
     private BoardView boardView;
     private GamePlay gamePlay;
     private GameStatusController gameStatusController;
-    //private final StackPane mainLayout;
-    private int cellX = 0;
-    private int cellY = 0;
+    private boolean Over=false;
+    private int X = 0;
+    private int Y = 0;
 
     public  BoardController(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gomokuType, OpeningType openingType) {
         GomokuGame gomokuGame = new GomokuFactory().getGame(gomokuType);
@@ -35,7 +37,18 @@ public class BoardController {
         new AlertOpening().getAlertOpening(gamePlay.getGame().getOpeningRules().getOpeningType());
         this.boardView.createBoard();
         this.gameStatusController.start();
+        this.CarryOnGame();
     };
+
+    public void CarryOnGame(){
+        while (!Over) {
+            if(placePiece()) startGame();
+            this.boardView.createBoard();
+            this.gameStatusController.start();
+        }
+    };
+
+
    /* BoardView getBoardView(){
         return this.boardView;
     }
@@ -47,22 +60,22 @@ public class BoardController {
         this.setOnMouseClicked((event) -> {
             if(placePiece(event.getX(), event.getY())) startGame(event.getX(), event.getY());
         });
-    }
+    }*/
 
     private int numMovesDone(){
         return this.gamePlay.getGame().getOpeningRules().getBlackPlayer().listSize() + this.gamePlay.getGame().getOpeningRules().getWhitePlayer().listSize();
     }
 
-    private void coordinateSet(final double x, final double y ){
-        this.cellX = (int)((x - this.boardView.getGrid().getStartX() + (this.boardView.getGrid().getCellWidth() / 2.0)) / this.boardView.getGrid().getCellWidth());
-        this.cellY = (int)((y - this.boardView.getGrid().getStartY() + (this.boardView.getGrid().getCellHeight() / 2.0)) / this.boardView.getGrid().getCellHeight());
+    private void coordinateSet(){
+        this.X=this.boardView.Getx(this.gamePlay.getCurrentPlayer().getColorName());
+        this.Y=this.boardView.Gety(this.gamePlay.getCurrentPlayer().getColorName());
     }
 
-    private boolean placePiece(final double x, final double y) {
-        this.coordinateSet(x,y);
-        if(this.gamePlay.isValidMove(this.cellX,this.cellY) && !this.gamePlay.isOutOfBound(this.cellX, this.cellY) ){
-            this.boardView.setPiece(this.cellX, this.cellY, this.gamePlay.getCurrentPlayer().getColor());
-            this.gamePlay.placePiece(this.cellX, this.cellY);
+    private boolean placePiece() {
+        this.coordinateSet();
+        if(this.gamePlay.isValidMove(this.X,this.Y) && !this.gamePlay.isOutOfBound(this.X, this.Y) ){
+            this.boardView.setPiece(this.X, this.Y, this.gamePlay.getCurrentPlayer().getColor());
+            this.gamePlay.placePiece(this.X, this.Y);
 
             if(this.gamePlay.checkFullBoard())
                 this.gameOver();
@@ -75,45 +88,44 @@ public class BoardController {
         return false;
     }
 
-    private void displacePiece(final double x, final double y) {
-        this.coordinateSet(x,y);
-        this.gamePlay.displacePiece(this.cellX, this.cellY);
-        this.boardView.removePiece(this.cellX, this.cellY);
-        this.boardView.setPiece(this.cellX, this.cellY, PieceColor.EMPTY);
+    private void displacePiece() {
+        //this.coordinateSet(x,y);
+        this.gamePlay.displacePiece(this.X, this.Y);
+        this.boardView.removePiece(this.X, this.Y);
+        //this.boardView.setPiece(this.cellX, this.cellY, PieceColor.EMPTY);
     }
 
     private void startOpening(){
         if (this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() == 5) {
-            this.gamePlay.getGame().getOpeningRules().callOpening();
+            this.gamePlay.getGame().getOpeningRules().callOpening(new AlertSwap());
         }
     }
 
-    private void startGame(final double x, final double y){
+    private void startGame(){
         this.startOpening();
         try {
             this.gamePlay.getGame().checkInvalidMoves();
         }
         catch (Error | Exception e){
-            AlertInvalidMove alertinv=new AlertInvalidMove();
-            alertinv.invalidMoveAlert(e.toString().substring(17));
-            this.displacePiece(x,y);
+            new AlertInvalidMove().invalidMoveAlert(e.toString().substring(17));
+            this.displacePiece();
         }
     }
 
     private void gameOver(String ... winner){
-        Stage stage = (Stage) boardView.getScene().getWindow();
-        AlertGameOver alert=new AlertGameOver();
-        String result= alert.gameOverAlert(winner);
-        if("OK".equals(result))
-            stage.close();
+        //Stage stage = (Stage) boardView.getScene().getWindow();
+        new AlertGameOver().gameOverAlert(winner);
+        this.Over=true;
+      //  if("OK".equals(result))
+      //      stage.close();
     }
 
-    void start(Stage primaryStage) {
+  /*  void start(Stage primaryStage) {
         primaryStage.setTitle("GOMOKU GAME");
         primaryStage.setScene(new Scene(this.mainLayout, 600, 600));
         primaryStage.show();
     }
+*/
 
- */
 }
 

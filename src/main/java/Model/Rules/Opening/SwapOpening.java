@@ -2,6 +2,7 @@ package Model.Rules.Opening;
 
 import Controller.GameStatusController;
 import View.Alert.*;
+import ViewCL.Alert.*;
 
 public class SwapOpening extends Opening {
 
@@ -9,6 +10,7 @@ public class SwapOpening extends Opening {
         this.openingType = OpeningType.Swap;
         this.numMoves = 3;
     }
+
 
     public void utilitySwap() {
         String tmpName = blackPlayer.getName();
@@ -23,9 +25,8 @@ public class SwapOpening extends Opening {
     }
 
     private void swapQuestion(){
-        AlertSwap alerts=new AlertSwap();
-        if ("YES".equals(alerts.swapAlert())){
-            GameStatusController.swapLabels();
+        if (super.AnswerQuestionAlert("YES","swapAlert")){
+            super.SwapLabel();
             this.utilitySwap();
         }
     }
