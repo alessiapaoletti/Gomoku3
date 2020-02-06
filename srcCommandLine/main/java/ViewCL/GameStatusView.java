@@ -1,4 +1,4 @@
-package main.java.ViewCL;
+package ViewCL;
 
 import Model.BlackPlayer;
 import Model.GomokuGame.GomokuType;
@@ -20,7 +20,6 @@ public class GameStatusView {
 
     public GameStatusView(BlackPlayer p1, WhitePlayer p2, GomokuType gameName, OpeningType openingName){
         this.initLabels(p1, p2, gameName, openingName);
-        //this.initBackGround();
     }
 
     private void initLabels(BlackPlayer p1, WhitePlayer p2, GomokuType gameName, OpeningType openingName){

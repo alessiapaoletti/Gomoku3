@@ -1,10 +1,10 @@
 package Controller;
 
+import ControllerCL.GameStatusControllerInterface;
 import Model.*;
 import Model.GomokuGame.GomokuFactory;
 import Model.GomokuGame.GomokuGame;
 import Model.GomokuGame.GomokuType;
-import View.Alert.*;
 import Model.Rules.Opening.OpeningType;
 import View.BoardView;
 import View.ControlSkin;
@@ -13,13 +13,13 @@ import javafx.scene.control.Control;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import java.lang.reflect.InvocationTargetException;
-
 public class BoardController extends Control {
 
     private BoardView boardView;
     private GamePlay gamePlay;
+    private GameStatusControllerInterface gameStatusController;
     private final StackPane mainLayout;
+    private AlertController alertController;
     private int cellX = 0;
     private int cellY = 0;
 
@@ -28,19 +28,21 @@ public class BoardController extends Control {
         gomokuGame.setPlayers(blackPlayer, whitePlayer);
         this.boardView = new BoardView(gomokuGame.getGridSize());
         this.gamePlay = new GamePlay(gomokuGame, openingType);
+         alertController= new AlertController();
         this.setSkin(new ControlSkin(this));
         this.getChildren().add(this.boardView);
         this.mainLayout = new StackPane();
         this.mainLayout.getChildren().add(this);
     }
 
+    void setGameStatusController(GameStatusControllerInterface g) { this.gameStatusController = g; }
     BoardView getBoardView(){
         return this.boardView;
     }
 
-    void clickEventHandler() throws InvocationTargetException, IllegalAccessException {
-        AlertOpening alertOp=new AlertOpening();
-        alertOp.getAlertOpening(gamePlay.getGame().getOpeningRules().getOpeningType());
+    void clickEventHandler() {
+        //AlertOpening alertOp=new AlertOpening();
+        alertController.callGetAlertOpening(gamePlay.getGame().getOpeningRules().getOpeningType());
         this.setOnMouseClicked((event) -> {
             if(placePiece(event.getX(), event.getY())) startGame(event.getX(), event.getY());
         });
@@ -81,7 +83,8 @@ public class BoardController extends Control {
 
     private void startOpening(){
         if (this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() == 5) {
-            this.gamePlay.getGame().getOpeningRules().callOpening(new View.Alert.AlertSwap());
+            this.gamePlay.getGame().getOpeningRules().callOpening(this.alertController,this.gameStatusController);
+            //this.gamePlay.getGame().getOpeningRules().callOpening(alertController.istantiateAlertSwap());
         }
     }
 
@@ -91,17 +94,18 @@ public class BoardController extends Control {
             this.gamePlay.getGame().checkInvalidMoves();
         }
         catch (Error | Exception e){
-            AlertInvalidMove alertinv=new AlertInvalidMove();
-            alertinv.invalidMoveAlert(e.toString().substring(17));
+            alertController.callInvalidMoveError(e.toString().substring(17));
+//            AlertInvalidMove alertInvalidMove = new AlertInvalidMove();
+//            alertInvalidMove.invalidMoveAlert(e.toString().substring(17));
             this.displacePiece(x,y);
         }
     }
 
     private void gameOver(String ... winner){
         Stage stage = (Stage) boardView.getScene().getWindow();
-        AlertGameOver alert=new AlertGameOver();
-        String result= alert.gameOverAlert(winner);
-        if("OK".equals(result))
+        //AlertGameOver alertGameOver = new AlertGameOver();
+        //String result =  alertGameOver.gameOverAlert(winner);
+        if("OK".equals(alertController.callGameOverAlert(winner)))
             stage.close();
     }
 

@@ -13,9 +13,20 @@ repositories {
 }
 
 dependencies {
+    compile 'junit:junit:4.12'
     testImplementation 'junit:junit:4.12'
 
 }
+
+sourceSets {
+    main{
+        java {
+            srcDir 'src/'
+            srcDir 'srcCommandLine'
+        }
+    }
+}
+
 
 javafx {
     version = "12"

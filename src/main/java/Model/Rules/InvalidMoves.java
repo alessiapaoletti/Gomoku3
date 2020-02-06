@@ -36,7 +36,8 @@ public class InvalidMoves {
     private int countDuplicates(Piece lastMove, final List<Piece> pieceList){
         long count = pieceList
                 .stream()
-                .filter(p -> p.getX() == lastMove.getX() &&  p.getY() == lastMove.getY() )
+                //.filter(p -> p.getX() == lastMove.getX() &&  p.getY() == lastMove.getY() )
+                .filter(p -> p.samePosition(lastMove) )
                 .count();
         return (int) count;
 
@@ -49,15 +50,15 @@ public class InvalidMoves {
 
     private void checkError(final Piece lastMove, final List<Piece> pieceList) throws Error{
         if(pieceList.size()>=6 && this.countDuplicates(lastMove,pieceList)>=2)
-            throw new Error("three and three error ");
+            throw new Error("Invalid move: you have violated the THREE and THREE rule. \n \n" +
+                    "BLACK player, place another stone in a valid position ");
     }
 
     public void threeAndThree() throws Error{
         List<Directions.Dir> directions = Arrays.asList(Directions.Dir.HORIZONTAL, Directions.Dir.VERTICAL,
                 Directions.Dir.DIAGONAL1, Directions.Dir.DIAGONAL2);
         List<Three.ThreeTypes> three = Arrays.asList(Three.ThreeTypes.THREE, Three.ThreeTypes.GAPTHREE);
-        int sizeList = blackPlayer.getMoves().size();
-        Piece lastMove = blackPlayer.getMoves().get(sizeList - 1);
+        Piece lastMove = blackPlayer.getMoves().get(blackPlayer.listSize() - 1);
         List<Piece> pieceList= new ArrayList<>();
         for (Directions.Dir dir : directions){
             for(Three.ThreeTypes t: three){

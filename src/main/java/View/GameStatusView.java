@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -117,4 +118,9 @@ public class GameStatusView extends Pane {
         color2.setText(tmp);
     }
 
+    public void fillColorPlayer(){
+        Paint tmp = player1.getTextFill();
+        player1.setTextFill(player2.getTextFill());
+        player2.setTextFill(tmp);
+    }
 }

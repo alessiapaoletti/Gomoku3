@@ -1,5 +1,6 @@
 package Controller;
 
+import ControllerCL.GameStatusControllerInterface;
 import Model.GomokuGame.GomokuType;
 import Model.BlackPlayer;
 import Model.WhitePlayer;
@@ -11,19 +12,19 @@ import javafx.scene.control.Control;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class GameStatusController extends Control {
+public class GameStatusController extends Control implements GameStatusControllerInterface {
 
-    private static GameStatusView gameStatusView;
+    private GameStatusView gameStatusView;
     private BoardView boardView;
 
-    GameStatusController(BlackPlayer p1, WhitePlayer p2, GomokuType gomokuType, OpeningType openingType, BoardView boardView){
+    GameStatusController(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gomokuType, OpeningType openingType, BoardView boardView){
         this.boardView = boardView;
-        gameStatusView = new GameStatusView(p1, p2, gomokuType, openingType);
+        this.gameStatusView = new GameStatusView(blackPlayer, whitePlayer, gomokuType, openingType);
     }
 
     void start(){
         StackPane stackPane = new StackPane();
-        stackPane.getChildren().add(gameStatusView);
+        stackPane.getChildren().add(this.gameStatusView);
         Stage primaryStage = new Stage();
         primaryStage.setX(1080);
         primaryStage.setResizable(false);
@@ -35,11 +36,11 @@ public class GameStatusController extends Control {
     }
 
     private void initClose(){
-        gameStatusView.getCloseButton().setOnAction(actionEvent -> this.closeScoreView());
+        this.gameStatusView.getCloseButton().setOnAction(actionEvent -> this.closeScoreView());
     }
 
     private void initNewGameButton(){
-        gameStatusView.getNewGameButton().setOnAction(actionEvent ->  {
+        this.gameStatusView.getNewGameButton().setOnAction(actionEvent ->  {
             this.closeScoreView();
             try {
                 Main.startLogin(new Stage());
@@ -51,15 +52,18 @@ public class GameStatusController extends Control {
     }
 
     private void closeScoreView(){
-        Stage stage = (Stage) gameStatusView.getCloseButton().getScene().getWindow();
+        Stage stage = (Stage) this.gameStatusView.getCloseButton().getScene().getWindow();
         stage.close();
 
         Stage stageBoard = (Stage) this.boardView.getScene().getWindow();
         stageBoard.close();
     }
 
-    public static void swapLabels(){
-        gameStatusView.swapColors();
+    public  void swapLabel(){
+        this.gameStatusView.swapColors();
+    }
+
+    public static void swapColorTurn(){ //this.gameStatusView.fillColorPlayer();
     }
 
 }
