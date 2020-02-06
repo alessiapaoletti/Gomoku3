@@ -22,7 +22,7 @@ sourceSets {
     main{
         java {
             srcDir 'src/'
-            srcDir 'srcCommandLine'
+            srcDir 'srcGraphics/'
         }
     }
 }
