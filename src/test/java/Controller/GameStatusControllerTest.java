@@ -15,7 +15,7 @@ import test.java.View.GameStatusViewTest;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-public class GameStatusControllerTest extends GameStatusViewTest{
+public class GameStatusControllerTest{
 
     private final String ANSI_PURPLE = "\u001B[35m";
     private final String ANSI_RESET = "\u001B[0m";
@@ -53,8 +53,4 @@ public class GameStatusControllerTest extends GameStatusViewTest{
         assertEquals(res,outContent.toString());
     };
 
-    @Test
-    public void swapLabelTest(){
-        super.swapColorsTest();
-    };
 }
