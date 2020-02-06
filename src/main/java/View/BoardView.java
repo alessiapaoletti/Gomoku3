@@ -1,6 +1,7 @@
 package View;
 
 import Model.PieceColor;
+import View.GridStructure;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -10,7 +11,7 @@ public class BoardView{
     private final String ANSI_RED = "\u001B[31m";
     private final String STAR = "*****************";
 
-    private GridStructure gridStructure;
+    public GridStructure gridStructure;
     private int boardSize;
 
     public BoardView(int inputSize,String type){

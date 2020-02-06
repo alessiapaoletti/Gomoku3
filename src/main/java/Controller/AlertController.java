@@ -42,7 +42,7 @@ public class AlertController implements AlertControllerInterface{
          new AlertGameOver().gameOverAlert(winner);
     }
 
-    public void callLoginWelcome(){
+  /*  public void callLoginWelcome(){
         new AlertLogin().welcomePrint();
     }
 
@@ -65,7 +65,7 @@ public class AlertController implements AlertControllerInterface{
     public void callLoginAlert(){
         new AlertLogin().loginAlert();
     }
-
+*/
     void callGetAlertOpening(OpeningType opening){
         new AlertOpening().getAlertOpening(opening);
     }
