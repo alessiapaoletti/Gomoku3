@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?language JavaScript?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="454.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControllerJF.LoginController">
+    <children>
+      <Label layoutX="172.0" layoutY="264.0" prefHeight="18.0" prefWidth="110.0" text="Game selection" textAlignment="CENTER" />
+        <Button fx:id="okButton" layoutX="132.0" layoutY="356.0" mnemonicParsing="false" onAction="#startGame" prefHeight="43.0" prefWidth="74.0" text="OK" />
+        <Button fx:id="exitButton" layoutX="258.0" layoutY="356.0" mnemonicParsing="false" onAction="#close" prefHeight="43.0" prefWidth="74.0" text="Exit" />
+        <Separator layoutX="-444.0" layoutY="337.0" prefHeight="2.0" prefWidth="1017.0" />
+        <TextField fx:id="playerBlack" layoutX="36.0" layoutY="137.0" />
+        <TextField fx:id="playerWhite" layoutX="278.0" layoutY="138.0" />
+        <Label layoutX="36.0" layoutY="120.0" text="Name" textAlignment="CENTER" />
+        <Label layoutX="279.0" layoutY="121.0" text="Name" textAlignment="CENTER" />
+        <Label layoutX="106.0" layoutY="20.0" prefHeight="34.0" prefWidth="241.0" text="Welcome in Gomoku">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font></Label>
+      <Label layoutX="169.0" layoutY="194.0" prefHeight="18.0" prefWidth="131.0" text="Opening method" textAlignment="CENTER" />
+      <ChoiceBox fx:id="choiceOpening" layoutX="154.0" layoutY="217.0" prefHeight="27.0" prefWidth="146.0" />
+        <Separator layoutX="-403.0" layoutY="66.0" prefHeight="18.0" prefWidth="965.0" />
+        <fx:script>
+            function startGame()
+            {
+            System.out.println("start game!");
+
+            }
+        </fx:script>
+      <ChoiceBox fx:id="choiceGomokuType" layoutX="154.0" layoutY="282.0" prefHeight="26.0" prefWidth="146.0" />
+      <Label layoutX="39.0" layoutY="98.0" text="First Player - Black" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="275.0" layoutY="98.0" text="Second Player - White" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>
