@@ -6,8 +6,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -15,8 +13,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.NoSuchElementException;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.Assert.*;
 public class BoardViewTest {
     private final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
     private final String ANSI_WHITE = "\033[0;30m";
@@ -29,7 +26,6 @@ public class BoardViewTest {
 
     private  ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private  PrintStream originalOut = System.out;
-
     @Before
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));

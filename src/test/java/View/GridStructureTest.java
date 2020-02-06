@@ -8,8 +8,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.Assert.*;
 public class GridStructureTest {
 
     private final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";

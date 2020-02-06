@@ -1,7 +1,6 @@
 package test.java.View;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.Assert.*;
 import Model.GomokuGame.GomokuType;
 import View.LoginView;
 import org.junit.After;
