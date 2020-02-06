@@ -1,4 +1,4 @@
-package View;
+package ViewJF;
 
 import Model.PieceColor;
 import javafx.scene.Group;

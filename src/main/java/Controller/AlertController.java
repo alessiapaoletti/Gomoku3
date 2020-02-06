@@ -1,80 +1,72 @@
 package Controller;
 
-import ControllerCL.AlertControllerInterface;
 import Model.Rules.Opening.OpeningType;
 import View.Alert.*;
 
-public class AlertController implements AlertControllerInterface {
+public class AlertController implements AlertControllerInterface{
 
     private AlertSwap alertSwap = new AlertSwap();
 
-//    public boolean AnswerQuestionAlert(String Answ, String m ){
+//    @Override
+//    public boolean AnswerQuestionAlert(String Answ, String m) {
 //        try {
-//            Method met = View.Alert.AlertSwap.class.getDeclaredMethod(m);
+//            Method met = ViewCL.Alert.AlertSwap.class.getDeclaredMethod(m);
 //            return Answ.equals(met.invoke(this.alertSwap));
 //        }catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored){}
 //        return false;
 //    }
 
-    void callInvalidMoveError(String error){
-        AlertInvalidMove alertInvalidMove = new AlertInvalidMove();
-        alertInvalidMove.invalidMoveAlert(error);
-
-    }
-
-    String callGameOverAlert(String ... winner){
-        AlertGameOver alertGameOver = new AlertGameOver();
-        return alertGameOver.gameOverAlert(winner);
-    }
-
-    public void callLoginAlert(){
-        AlertLogin alertLogin = new AlertLogin();
-        alertLogin.loginAlert();
-    }
-
-    void callGetAlertOpening(OpeningType opening){
-        AlertOpening alertOpening = new AlertOpening();
-        alertOpening.getAlertOpening(opening);
-    }
-
-//    public String callSwapAlert(){
-//        return alertSwap.swapAlert();
-//    }
-//
-//    public String callSwap2Alert(){
-//        return alertSwap.swap2Alert();
-//    }
-
-//    public void callSwap2Alert2(){
-//        alertSwap.swap2Alert();
+//    @Override
+//    public void callSwap2Alert2() {
+//        this.alertSwap.swap2Alert2();
 //    }
 
     @Override
-    public String swap2Alert(){
-        return alertSwap.swap2Alert();
-    }
-
-    @Override
-    public String swapBlack(){
-        return alertSwap.swapBlack();
+    public String swap2Alert() {
+         return this.alertSwap.swap2Alert();
     }
 
     @Override
     public String swapAlert() {
-        return alertSwap.swapAlert();
+           return this.alertSwap.swapAlert();
     }
 
-//    public String callSwap2_1Alert(){
-//        return alertSwap.swapBlack();
-//    }
+    @Override
+    public String swapBlack(){ return this.alertSwap.swapBlack();  }
 
-//    public AlertSwap istantiateAlertSwap(){
-//        return new AlertSwap();
-//    }
+    void callInvalidMoveError(String error){
+        new AlertInvalidMove().invalidMoveAlert(error);
+    }
 
+    void callGameOverAlert(String ... winner){
+         new AlertGameOver().gameOverAlert(winner);
+    }
 
+    public void callLoginWelcome(){
+        new AlertLogin().welcomePrint();
+    }
 
+    public void callLoginBlack(){
+        new AlertLogin().setBlackPlayer();
+    }
 
+    public void callLoginWhite(){
+        new AlertLogin().setWhitePlayer();
+    }
 
+    public void callLoginOpening(){
+        new AlertLogin().setOpening();
+    }
 
+    public void callLoginGame(){
+        new AlertLogin().setGame();
+    }
+
+    public void callLoginAlert(){
+        new AlertLogin().loginAlert();
+    }
+
+    void callGetAlertOpening(OpeningType opening){
+        new AlertOpening().getAlertOpening(opening);
+    }
 }

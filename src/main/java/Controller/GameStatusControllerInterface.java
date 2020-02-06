@@ -1,4 +1,4 @@
-package ControllerCL;
+package Controller;
 
 public interface GameStatusControllerInterface {
     void swapLabel();

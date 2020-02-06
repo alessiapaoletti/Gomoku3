@@ -1,6 +1,6 @@
-package ViewCL;
+package View;
 
-import ViewCL.Alert.AlertLogin;
+import View.Alert.AlertLogin;
 import Model.Rules.Opening.OpeningType;
 import java.util.Scanner;
 import Model.GomokuGame.GomokuType;

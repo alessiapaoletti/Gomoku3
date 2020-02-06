@@ -1,6 +1,6 @@
-package View;
+package ViewJF;
 
-import Controller.BoardController;
+import ControllerJF.BoardController;
 import javafx.scene.control.SkinBase;
 
 public class ControlSkin extends SkinBase<BoardController> {

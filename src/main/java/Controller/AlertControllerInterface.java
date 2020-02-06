@@ -1,4 +1,4 @@
-package ControllerCL;
+package Controller;
 
 public interface AlertControllerInterface {
 

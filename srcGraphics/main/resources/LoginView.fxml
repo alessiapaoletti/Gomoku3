@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?language JavaScript?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="454.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="454.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControllerJF.LoginController">
     <children>
       <Label layoutX="172.0" layoutY="264.0" prefHeight="18.0" prefWidth="110.0" text="Game selection" textAlignment="CENTER" />
         <Button fx:id="okButton" layoutX="132.0" layoutY="356.0" mnemonicParsing="false" onAction="#startGame" prefHeight="43.0" prefWidth="74.0" text="OK" />

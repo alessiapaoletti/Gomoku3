@@ -1,6 +1,6 @@
 package Model;
 
-import Controller.GameStatusController;
+import ControllerJF.GameStatusController;
 import Model.Rules.Opening.OpeningType;
 
 

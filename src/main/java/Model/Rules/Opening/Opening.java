@@ -1,7 +1,7 @@
 package Model.Rules.Opening;
 
-import ControllerCL.AlertControllerInterface;
-import ControllerCL.GameStatusControllerInterface;
+import Controller.AlertControllerInterface;
+import Controller.GameStatusControllerInterface;
 import Model.BlackPlayer;
 import Model.WhitePlayer;
 
