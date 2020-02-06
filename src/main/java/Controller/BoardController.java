@@ -86,7 +86,7 @@ class BoardController {
             this.gamePlay.getGame().checkInvalidMoves();
         }
         catch (Error | Exception e){
-           this.alertController.callInvalidMoveError(e.toString().substring(17));
+           this.alertController.callInvalidMoveError();
             this.displacePiece();
         }
     }
