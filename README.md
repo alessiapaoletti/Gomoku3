@@ -9,4 +9,23 @@ Here the Java implementation of this game can be found. We provide the user 3 di
 
 The structure of the project follows the pattern Model View Controller. Both the Command Line version and the version with the Grapich Interface have been implemented. 
 
+The structure of the project follows the pattern Model View Controller. Both the [Command Line version](https://github.com/michelaventurini96/Gomoku3/tree/master/src/main/java) and the version with the [Grapich Interface](https://github.com/michelaventurini96/Gomoku3/tree/master/srcGraphics/main/java) have been implemented. They share the same Model implementation while they obviously have different Controller and View. 
+
 ## How to run it
+
+#### Open the project with IntelliJ 
+
+Requirements: 
+* [IntelliJ IDE](https://www.jetbrains.com/idea/)
+* JavaFX Library (for the project the 11.0.2 has been used)
+* JDK
+
+Steps: 
+* Open IntelliJ
+* Create a new project from Version Control and clone this repository
+* Load the JavaFX library 
+
+Run the project: 
+* to run the Command Line version of the game the run the class Main inside the Controller package (src package) 
+* to run the version with the Grapich Interface run the class Main inside the ControllerJF package (srcGrapichs) 
+
