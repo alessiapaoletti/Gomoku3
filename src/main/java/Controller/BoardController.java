@@ -20,7 +20,7 @@ public class BoardController {
     private int X = 0;
     private int Y = 0;
 
-    BoardController(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gomokuType, OpeningType openingType) {
+    public BoardController(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gomokuType, OpeningType openingType) {
         GomokuGame gomokuGame = new GomokuFactory().getGame(gomokuType);
         gomokuGame.setPlayers(blackPlayer, whitePlayer);
         this.boardView = new BoardView(gomokuGame.getGridSize(),gomokuType.toString().toUpperCase());
@@ -80,7 +80,7 @@ public class BoardController {
         this.boardView.removePiece(this.X, this.Y);
     }
 
-    private void startOpening(){
+    public void startOpening(){
         if (this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() <= 5) {
             this.gamePlay.getGame().getOpeningRules().callOpening(this.alertController,this.gameStatusController);
         }
