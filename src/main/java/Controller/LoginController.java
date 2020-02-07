@@ -6,18 +6,18 @@ import Model.WhitePlayer;
 import View.LoginView;
 import Model.Rules.Opening.OpeningType;
 
-class LoginController {
+public class LoginController {
 
     private LoginView loginView = new LoginView();
 
-    LoginController() {}
+    public LoginController() {};
 
-    void startGame() {
+    public void startGame() {
         BlackPlayer blackPlayer = new BlackPlayer(loginView.setBlackPlayer());
         WhitePlayer whitePlayer = new WhitePlayer(loginView.setWhitePlayer());
         GomokuType gomokuType = loginView.setGame();
         OpeningType openingType = loginView.setOpening();
         BoardController boardController = new BoardController(blackPlayer, whitePlayer, gomokuType, openingType);
-        boardController.StartGame();
+        boardController.callGame();
     }
 }

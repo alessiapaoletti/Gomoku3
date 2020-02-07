@@ -8,7 +8,9 @@ public class GridStructure {
     private final String ANSI_BLACK = "\033[1;90m";
     private final String ANSI_PURPLE = "\u001B[35m";
     private final String ANSI_RESET = "\u001B[0m";
-    private final String ANSI_WHITE = "\033[0;30m";
+    private final String ANSI_WHITE =  "\033[0;30m";
+    // FOR THE CORRECT DISPLAY ON WHITE BACKGROUND TERMINAL
+    //private final String ANSI_WHITE = "\u001b[37;1m";
     private final char blackPiece = '\u25CB';
     private static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
     private int size;

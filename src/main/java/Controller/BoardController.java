@@ -6,20 +6,22 @@ import Model.GomokuGame.GomokuGame;
 import Model.GomokuGame.GomokuType;
 import Model.BlackPlayer;
 import Model.WhitePlayer;
+import Controller.GameStatusController;
+import Controller.AlertController;
 import Model.Rules.Opening.OpeningType;
 import View.BoardView;
 
-class BoardController {
+public class BoardController {
 
-    private BoardView boardView;
-    private GamePlay gamePlay;
-    private GameStatusController gameStatusController;
-    private AlertController alertController = new AlertController();
+    public BoardView boardView;
+    public GamePlay gamePlay;
+    public GameStatusController gameStatusController;
+    public AlertController alertController = new AlertController();
     private boolean gameOver = false;
     private int X = 0;
     private int Y = 0;
 
-    BoardController(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gomokuType, OpeningType openingType) {
+    public BoardController(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gomokuType, OpeningType openingType) {
         GomokuGame gomokuGame = new GomokuFactory().getGame(gomokuType);
         gomokuGame.setPlayers(blackPlayer, whitePlayer);
         this.boardView = new BoardView(gomokuGame.getGridSize(),gomokuType.toString().toUpperCase());
@@ -27,15 +29,14 @@ class BoardController {
         this.gameStatusController = new GameStatusController(blackPlayer, whitePlayer,gomokuType, openingType);
     }
 
-    /**change the name */
-    void StartGame(){
+    public void callGame(){
         this.alertController.callGetAlertOpening(gamePlay.getGame().getOpeningRules().getOpeningType());
         this.boardView.createBoard();
         this.gameStatusController.start();
         this.carryOnGame();
     }
 
-    private void carryOnGame(){
+    public void carryOnGame(){
         while (!gameOver) {
             if(placePiece()) startGame();
             this.boardView.createBoard();
@@ -43,16 +44,16 @@ class BoardController {
         }
     }
 
-    private int numMovesDone(){
+    public int numMovesDone(){
         return this.gamePlay.getGame().getOpeningRules().getBlackPlayer().listSize() + this.gamePlay.getGame().getOpeningRules().getWhitePlayer().listSize();
     }
 
-    private void coordinateSet(){
+    public void coordinateSet(){
         this.X=this.boardView.getX(this.gamePlay.getCurrentPlayer().getColorName());
         this.Y=this.boardView.getY(this.gamePlay.getCurrentPlayer().getColorName());
     }
 
-    private boolean placePiece() {
+    public boolean placePiece() {
         this.coordinateSet();
         if(this.gamePlay.isValidMove(this.X,this.Y) && !this.gamePlay.isOutOfBound(this.X, this.Y) ){
             this.boardView.setPiece(this.X, this.Y, this.gamePlay.getCurrentPlayer().getColor());
@@ -69,18 +70,18 @@ class BoardController {
         return false;
     }
 
-    private void displacePiece() {
+    public void displacePiece() {
         this.gamePlay.displacePiece(this.X, this.Y);
         this.boardView.removePiece(this.X, this.Y);
     }
 
-    private void startOpening(){
+    public void startOpening(){
         if (this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() == 5) {
             this.gamePlay.getGame().getOpeningRules().callOpening(this.alertController,this.gameStatusController);
         }
     }
 
-    private void startGame(){
+    public void startGame(){
         this.startOpening();
         try {
             this.gamePlay.getGame().checkInvalidMoves();
@@ -91,7 +92,7 @@ class BoardController {
         }
     }
 
-    private void gameOver(String ... winner){
+    public void gameOver(String ... winner){
         this.alertController.callGameOverAlert(winner);
         this.gameOver =true;
     }

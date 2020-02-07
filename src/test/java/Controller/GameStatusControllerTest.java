@@ -15,7 +15,7 @@ import test.java.View.GameStatusViewTest;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-public class GameStatusControllerTest{
+public class GameStatusControllerTest {
 
     private final String ANSI_PURPLE = "\u001B[35m";
     private final String ANSI_RESET = "\u001B[0m";
@@ -52,5 +52,6 @@ public class GameStatusControllerTest{
                 ANSI_PURPLE+"Opening rules:  Standard"+ANSI_RESET+"\n";
         assertEquals(res,outContent.toString());
     };
+
 
 }
