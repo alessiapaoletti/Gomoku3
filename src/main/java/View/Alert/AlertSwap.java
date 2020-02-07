@@ -4,16 +4,16 @@ import java.util.Scanner;
 
 public class AlertSwap extends AlertGenerator {
 
-    private boolean checkYesNoAnswer(String answ){
-        return (answ.equals("YES") || answ.equals("NO"));
+    boolean checkYesNoAnswer(String answer){
+        return (answer.equals("YES") || answer.equals("NO"));
     }
 
-    private boolean checkSwap2Answer(String answ){
-        return (answ.equals("1") || answ.equals("2") || answ.equals("3")) ;
+    boolean checkSwap2Answer(String answer){
+        return (answer.equals("1") || answer.equals("2") || answer.equals("3")) ;
     }
 
 
-    private  String generateYesNoAlert(String textContent){
+    String generateYesNoAlert(String textContent){
         Scanner scanner = new Scanner(System.in);
         String answer;
         do{
@@ -24,7 +24,7 @@ public class AlertSwap extends AlertGenerator {
         return answer;
     }
 
-    private  String generateSwapAlert(String textContent){
+    String generateSwapAlert(String textContent){
         Scanner scanner = new Scanner(System.in);
         String answer;
         do{

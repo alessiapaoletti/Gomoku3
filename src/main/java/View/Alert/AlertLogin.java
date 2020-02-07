@@ -7,6 +7,7 @@ import java.util.List;
 
 public class AlertLogin extends AlertGenerator {
 
+
     private List<GomokuType> gomokuTypes = new ArrayList<>();
     private List <OpeningType> openingTypes = new ArrayList<>();
 
@@ -53,5 +54,17 @@ public class AlertLogin extends AlertGenerator {
         System.out.println("Choose your favorite version of Gomoku between: ");
         gomokuTypes.forEach(System.out::println);
     }
+
+    public List<GomokuType> getGomokuTypes() {
+        return gomokuTypes;
+    }
+
+
+    public List<OpeningType> getOpeningTypes() {
+        return openingTypes;
+    }
+
+
+
 
 }
