@@ -29,7 +29,7 @@ public class AlertLogin extends AlertGenerator {
     }
 
     public  void loginAlert(){
-        System.out.println(ANSI_RED + "invalid selected type!" + ANSI_RESET);
+        System.out.println(ANSI_RED + "invalid selected type! " + ANSI_RESET+new String(Character.toChars(0x1F6AB)));
     }
 
     public void welcomePrint(){

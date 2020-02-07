@@ -38,7 +38,7 @@ public class AlertLoginTest {
 
         this.alertLogin.loginAlert();
 
-        String expected = ANSI_RED + "invalid selected type!" + ANSI_RESET +"\n";
+        String expected = ANSI_RED + "invalid selected type! " + ANSI_RESET +new String(Character.toChars(0x1F6AB))+"\n";
 
         assertThat(outContent.toString(), is(expected));
     }

@@ -23,7 +23,7 @@ public class AlertInvalidMoveTest {
 
         alertInvalidMove.invalidMoveAlert();
 
-        String expected = ANSI_RED+"ERROR -Invalid Move"+ANSI_RESET + "\n";
+        String expected = ANSI_RED+"ERROR -Invalid Move "+ANSI_RESET + new String(Character.toChars(0x1F6AB))+"\n";
 
         assertThat(outContent.toString(), is(expected));
 

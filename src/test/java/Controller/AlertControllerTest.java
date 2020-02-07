@@ -78,19 +78,20 @@ public class AlertControllerTest {
     @Test
     public void callInvalidMoveErrorTest(){
         new AlertController().callInvalidMoveError();
-        assertEquals(ANSI_RED+"ERROR -Invalid Move"+ANSI_RESET+"\n",outContent.toString());
+        assertEquals(ANSI_RED+"ERROR -Invalid Move "+ANSI_RESET+new String(Character.toChars(0x1F6AB))+"\n",outContent.toString());
     };
 
     @Test
     public void callGameOverAlertTest(){
         new AlertController().callGameOverAlert();
-        assertEquals(ANSI_RED+"Game Over" + ANSI_RESET+"\n"+ANSI_RED+"The board is full: game ended with no winner"+ ANSI_RESET+"\n",outContent.toString());
+        assertEquals(new String(Character.toChars(0x1F389))+ANSI_RED + " Game Over  "+ ANSI_RESET+new String(Character.toChars(0x1F389))+"\n"+ANSI_RED+"The board is full: game ended with no winner"+ ANSI_RESET+"\n",outContent.toString());
     };
 
     @Test
     public void callGameOverAlertTest1() {
         new AlertController().callGameOverAlert("giorgio");
-        assertEquals(ANSI_RED + "Game Over" + ANSI_RESET + "\n" + ANSI_RED + "The winner is giorgio" + ANSI_RESET + "\n", outContent.toString());
+        assertEquals(new String(Character.toChars(0x1F389))+ANSI_RED + " Game Over  "+ ANSI_RESET+new String(Character.toChars(0x1F389))
+                + "\n" + ANSI_RED + "The winner is giorgio" + ANSI_RESET + "\n", outContent.toString());
     };
 
     @Test

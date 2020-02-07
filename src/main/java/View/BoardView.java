@@ -26,7 +26,7 @@ public class BoardView{
         try {
            return new Scanner(System.in).nextInt();
         }catch (InputMismatchException e){
-            System.out.println(ANSI_RED+"Invalid coordinate"+ANSI_RESET);
+            System.out.println(ANSI_RED+"Invalid coordinate "+ANSI_RESET+new String(Character.toChars(0x1F6AB)));
            return this.getX(PlayerColor);
         }
     }
@@ -36,7 +36,7 @@ public class BoardView{
         try {
             return new Scanner(System.in).nextInt();
         }catch (InputMismatchException e){
-            System.out.println(ANSI_RED+"Invalid coordinate"+ANSI_RESET);
+            System.out.println(ANSI_RED+"Invalid coordinate "+ANSI_RESET+new String(Character.toChars(0x1F6AB)));
             return this.getY(PlayerColor);
         }
     }

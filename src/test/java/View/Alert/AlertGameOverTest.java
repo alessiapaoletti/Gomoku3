@@ -20,7 +20,7 @@ public class AlertGameOverTest {
 
         alertGameOver.gameOverAlert();
 
-        String expected = ANSI_RED + "Game Over" + ANSI_RESET +
+        String expected = new String(Character.toChars(0x1F389))+ANSI_RED + " Game Over  "+ ANSI_RESET+new String(Character.toChars(0x1F389))+
                 "\n"+ANSI_RED+ "The board is full: game ended with no winner" +  ANSI_RESET + "\n";
         assertThat(outContent.toString(), is(expected));
 
@@ -32,7 +32,7 @@ public class AlertGameOverTest {
         String winner  =  "Player1";
         alertGameOver.gameOverAlert(winner);
 
-        String expected = ANSI_RED + "Game Over" + ANSI_RESET +
+        String expected = new String(Character.toChars(0x1F389))+ANSI_RED + " Game Over  "+ ANSI_RESET+new String(Character.toChars(0x1F389))+
                 "\n"+ANSI_RED+ "The winner is "+ winner +  ANSI_RESET + "\n";
 
         assertThat(outContent.toString(), is(expected));
