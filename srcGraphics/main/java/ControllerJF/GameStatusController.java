@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 public class GameStatusController extends Control implements GameStatusControllerInterface {
 
-    private GameStatusView gameStatusView;
+    private static GameStatusView gameStatusView;
     private BoardView boardView;
 
     GameStatusController(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gomokuType, OpeningType openingType, BoardView boardView){
@@ -63,7 +63,6 @@ public class GameStatusController extends Control implements GameStatusControlle
         this.gameStatusView.swapColors();
     }
 
-    public static void swapColorTurn(){ //this.gameStatusView.fillColorPlayer();
-    }
+    public void swapColorTurn(){ gameStatusView.fillColorPlayer(); }
 
 }

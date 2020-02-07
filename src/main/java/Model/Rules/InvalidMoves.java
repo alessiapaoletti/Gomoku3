@@ -1,5 +1,7 @@
 package Model.Rules;
 
+import Controller.GameStatusController;
+import Controller.GameStatusControllerInterface;
 import Model.BlackPlayer;
 import Model.Directions.DirectionFactory;
 import Model.Directions.Directions;
@@ -11,6 +13,7 @@ import java.util.*;
 
 public class InvalidMoves {
 
+    GameStatusControllerInterface gameStatusControllerInterface;
     private int dimBoard;
     private BlackPlayer blackPlayer;
     private WhitePlayer whitePlayer;
@@ -20,6 +23,10 @@ public class InvalidMoves {
     public void setPlayers(BlackPlayer blackPlayer, WhitePlayer whitePlayer){
         this.blackPlayer = blackPlayer;
         this.whitePlayer = whitePlayer;
+    }
+
+    public void setGameStatusControllerInterface(GameStatusControllerInterface gameStatusControllerInterface){
+        this.gameStatusControllerInterface = gameStatusControllerInterface;
     }
 
     public void setDimBoard(int dim){this.dimBoard =dim;}
@@ -40,18 +47,15 @@ public class InvalidMoves {
                 .filter(p -> p.samePosition(lastMove) )
                 .count();
         return (int) count;
-
-        /* int count=0;
-        for(Piece piece : pieceList) {
-            if (piece.getX() == lastMove.getX() && piece.getY() == lastMove.getY()) count += 1;
-        }
-        return count; */
     }
 
     private void checkError(final Piece lastMove, final List<Piece> pieceList) throws Error{
-        if(pieceList.size()>=6 && this.countDuplicates(lastMove,pieceList)>=2)
+        if(pieceList.size()>=6 && this.countDuplicates(lastMove,pieceList)>=2) {
+
+            //gameStatusControllerInterface.swapColorTurn();
             throw new Error("Invalid move: you have violated the THREE and THREE rule. \n \n" +
                     "BLACK player, place another stone in a valid position ");
+        }
     }
 
     public void threeAndThree() throws Error{

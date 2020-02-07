@@ -39,6 +39,7 @@ public class GameStatusView extends Pane {
 
         this.player1 = new Label(p1.getName());
         this.player1.setFont(Font.font("Arial" , FontWeight.BOLD, 13));
+        this.player1.setTextFill(Color.RED);
 
         this.player2 = new Label(p2.getName());
         this.player2.setFont(Font.font("Arial" , FontWeight.BOLD, 13));

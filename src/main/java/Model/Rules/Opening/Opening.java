@@ -12,9 +12,13 @@ public abstract class Opening {
     OpeningType openingType;
     int numMoves;
     AlertControllerInterface alertControllerInterface;
-    private  GameStatusControllerInterface gameStatusControllerInterface;
+    GameStatusControllerInterface gameStatusControllerInterface;
 
     public Opening(){ }
+
+    public void setGameStatusControllerInterface(GameStatusControllerInterface gameStatusControllerInterface) {
+        this.gameStatusControllerInterface = gameStatusControllerInterface;
+    }
 
     protected void SwapLabel(){
         this.gameStatusControllerInterface.swapLabel();

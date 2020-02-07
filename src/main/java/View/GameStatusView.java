@@ -2,13 +2,14 @@ package View;
 
 import Model.BlackPlayer;
 import Model.GomokuGame.GomokuType;
+import Model.Player;
 import Model.Rules.Opening.OpeningType;
 import Model.WhitePlayer;
 
 public class GameStatusView {
     private final String ANSI_PURPLE = "\u001B[35m";
     private final String ANSI_RESET = "\u001B[0m";
-    private final String STAR = "***********************";
+    private final String STAR = "***************************************";
     private final String SPACE= "      ";
 
     private String player1;
@@ -46,6 +47,13 @@ public class GameStatusView {
         String tmp = color1;
         color1=color2;
         color2=tmp;
+    }
+
+    public void printTurn(String playerName){
+        System.out.println("\n");
+        System.out.println(ANSI_PURPLE + STAR + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + "Player " + playerName + " it is your turn!" + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + STAR + ANSI_RESET);
     }
 
 

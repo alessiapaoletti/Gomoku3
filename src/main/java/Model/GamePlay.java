@@ -2,19 +2,20 @@ package Model;
 
 import Model.GomokuGame.GomokuGame;
 import Model.Rules.Opening.OpeningType;
+import Model.Piece.*;
 
 public class GamePlay {
-    private PieceColor currentColor;
+    private Model.PieceColor currentColor;
     private GomokuGame game;
 
     public GamePlay(GomokuGame game, OpeningType openingType) {
         this.game = game;
         this.game.setGameEnvironment(openingType);
-        this.currentColor = PieceColor.BLACK;
+        this.currentColor = Model.PieceColor.BLACK;
     }
 
-    public Player getCurrentPlayer(){
-        if(this.currentColor==PieceColor.BLACK)
+    public Model.Player getCurrentPlayer(){
+        if(this.currentColor== Model.PieceColor.BLACK)
             return game.getBlackPlayer();
         else
             return game.getWhitePlayer();
@@ -35,33 +36,33 @@ public class GamePlay {
     }
 
     public void placePiece(final int x, final int y) {
-        Piece newPiece = new Piece(x,y, getCurrentPlayer().getColor());
+        Model.Piece newPiece = new Model.Piece(x,y, getCurrentPlayer().getColor());
         this.insertMove(newPiece);
     }
 
     public void displacePiece(final int x, final int y) {
         this.changeTurn();
-        Piece bannedPiece = new Piece(x,y, PieceColor.EMPTY);
+        Model.Piece bannedPiece = new Model.Piece(x,y, Model.PieceColor.EMPTY);
         this.removeMove(bannedPiece);
     }
 
-    private void insertMove(Piece newPiece){
+    private void insertMove(Model.Piece newPiece){
         this.getCurrentPlayer().addMove(newPiece);
     }
 
-    private void removeMove(Piece bannedPiece){
+    private void removeMove(Model.Piece bannedPiece){
         if(this.getCurrentPlayer().isPlayerMove(bannedPiece)) this.getCurrentPlayer().removeMove(this.getCurrentPlayer().getMoves().size()-1);
     }
 
     public void changeTurn() {
-        if (this.currentColor == PieceColor.WHITE)
-            this.currentColor = PieceColor.BLACK;
+        if (this.currentColor == Model.PieceColor.WHITE)
+            this.currentColor = Model.PieceColor.BLACK;
         else
-            this.currentColor = PieceColor.WHITE;
+            this.currentColor = Model.PieceColor.WHITE;
     }
 
     public boolean isValidMove(final int x, final int y) {
-        Piece newPiece = new Piece(x,y, PieceColor.EMPTY);
+        Model.Piece newPiece = new Model.Piece(x,y, Model.PieceColor.EMPTY);
         return !game.getBlackPlayer().isPlayerMove(newPiece) && !game.getWhitePlayer().isPlayerMove(newPiece);
     }
 

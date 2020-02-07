@@ -6,27 +6,28 @@ import Model.GomokuGame.GomokuGame;
 import Model.GomokuGame.GomokuType;
 import Model.BlackPlayer;
 import Model.WhitePlayer;
-import Controller.GameStatusController;
-import Controller.AlertController;
 import Model.Rules.Opening.OpeningType;
 import View.BoardView;
 
-public class BoardController {
+class BoardController {
 
-    public BoardView boardView;
-    public GamePlay gamePlay;
-    public GameStatusController gameStatusController;
-    public AlertController alertController = new AlertController();
+    private BoardView boardView;
+    private GamePlay gamePlay;
+    private GameStatusController gameStatusController;
+    private TurnManager turnManager;
+    private AlertController alertController = new AlertController();
     private boolean gameOver = false;
     private int X = 0;
     private int Y = 0;
 
-    public BoardController(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gomokuType, OpeningType openingType) {
+    BoardController(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gomokuType, OpeningType openingType) {
         GomokuGame gomokuGame = new GomokuFactory().getGame(gomokuType);
         gomokuGame.setPlayers(blackPlayer, whitePlayer);
         this.boardView = new BoardView(gomokuGame.getGridSize(),gomokuType.toString().toUpperCase());
         this.gamePlay = new GamePlay(gomokuGame, openingType);
         this.gameStatusController = new GameStatusController(blackPlayer, whitePlayer,gomokuType, openingType);
+        this.gamePlay.getGame().getOpeningRules().setGameStatusControllerInterface(gameStatusController);
+        this.turnManager = new TurnManager(this.gameStatusController);
     }
 
     public void callGame(){
@@ -38,7 +39,11 @@ public class BoardController {
 
     public void carryOnGame(){
         while (!gameOver) {
-            if(placePiece()) startGame();
+            this.gameStatusController.maintainTurn();
+            if(placePiece()) {
+                startGame();
+                turnManager.getTurnManager(gamePlay.getGame().getOpeningRules().getOpeningType(), numMovesDone());
+            }
             this.boardView.createBoard();
             this.gameStatusController.start();
         }
@@ -75,8 +80,8 @@ public class BoardController {
         this.boardView.removePiece(this.X, this.Y);
     }
 
-    public void startOpening(){
-        if (this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() == 5) {
+    private void startOpening(){
+        if (this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() <= 5) {
             this.gamePlay.getGame().getOpeningRules().callOpening(this.alertController,this.gameStatusController);
         }
     }
@@ -88,13 +93,15 @@ public class BoardController {
         }
         catch (Error | Exception e){
            this.alertController.callInvalidMoveError();
+            this.gameStatusController.swapColorTurn();
             this.displacePiece();
         }
     }
 
     public void gameOver(String ... winner){
         this.alertController.callGameOverAlert(winner);
-        this.gameOver =true;
+        this.gameOver = true;
+        this.gameStatusController.swapColorTurn();
     }
 
 

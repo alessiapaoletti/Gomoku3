@@ -1,5 +1,6 @@
 package Model.Rules.Opening;
 
+
 public class SwapOpening extends Opening {
 
     SwapOpening(){
@@ -20,8 +21,13 @@ public class SwapOpening extends Opening {
     }
 
     private void swapQuestion(){
-        if ("YES".equals(super.alertControllerInterface.swapAlert()))
+        if ("YES".equals(super.alertControllerInterface.swapAlert())){
             super.SwapLabel();
             this.utilitySwap();
+            super.gameStatusControllerInterface.swapColorTurn();
+        } else {
+            //super.gameStatusControllerInterface.swapColorTurn();
         }
+    }
+
 }
