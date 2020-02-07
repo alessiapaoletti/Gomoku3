@@ -11,11 +11,11 @@ import View.BoardView;
 
 public class BoardController {
 
-    private BoardView boardView;
-    private GamePlay gamePlay;
-    private GameStatusController gameStatusController;
-    private TurnManager turnManager;
-    private AlertController alertController = new AlertController();
+    public BoardView boardView;
+    public GamePlay gamePlay;
+    public GameStatusController gameStatusController;
+    public TurnManager turnManager;
+    public AlertController alertController = new AlertController();
     private boolean gameOver = false;
     private int X = 0;
     private int Y = 0;
