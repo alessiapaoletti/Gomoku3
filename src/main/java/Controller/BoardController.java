@@ -9,7 +9,7 @@ import Model.WhitePlayer;
 import Model.Rules.Opening.OpeningType;
 import View.BoardView;
 
-class BoardController {
+public class BoardController {
 
     private BoardView boardView;
     private GamePlay gamePlay;
