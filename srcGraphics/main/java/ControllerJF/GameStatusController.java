@@ -14,15 +14,15 @@ import javafx.stage.Stage;
 
 public class GameStatusController extends Control implements GameStatusControllerInterface {
 
-    private static GameStatusView gameStatusView;
+    private GameStatusView gameStatusView;
     private BoardView boardView;
 
-    GameStatusController(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gomokuType, OpeningType openingType, BoardView boardView){
+    public GameStatusController(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gomokuType, OpeningType openingType, BoardView boardView){
         this.boardView = boardView;
         this.gameStatusView = new GameStatusView(blackPlayer, whitePlayer, gomokuType, openingType);
     }
 
-    void start(){
+    public void start(){
         StackPane stackPane = new StackPane();
         stackPane.getChildren().add(this.gameStatusView);
         Stage primaryStage = new Stage();
