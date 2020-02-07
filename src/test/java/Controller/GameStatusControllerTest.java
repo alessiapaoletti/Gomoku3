@@ -20,7 +20,7 @@ public class GameStatusControllerTest {
     private final String ANSI_PURPLE = "\u001B[35m";
     private final String ANSI_RESET = "\u001B[0m";
 
-    private final String STAR = "***********************";
+    private final String STAR = "***************************************";
     private final String SPACE= "      ";
 
     private GameStatusControllerInterface mygamestatusint=new GameStatusController(new BlackPlayer("mario"),new WhitePlayer("giulia"), GomokuType.Standard, OpeningType.Standard);
