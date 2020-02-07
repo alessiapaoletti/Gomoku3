@@ -13,8 +13,8 @@ public class GameStatusView {
 
     private String player1;
     private String player2;
-    private String color1;
-    private String color2;
+    public String color1;
+    public String color2;
     private String gameType;
     private String openingType;
 
@@ -41,7 +41,6 @@ public class GameStatusView {
         System.out.println(ANSI_PURPLE+this.openingType+ANSI_RESET);
 
     }
-
 
     public void swapColors(){
         String tmp = color1;

@@ -34,15 +34,15 @@ public class AlertController implements AlertControllerInterface{
     @Override
     public String swapBlack(){ return this.alertSwap.swapBlack();  }
 
-    void callInvalidMoveError(String error){
-        new AlertInvalidMove().invalidMoveAlert(error);
+    public void callInvalidMoveError(){
+        new AlertInvalidMove().invalidMoveAlert();
     }
 
-    void callGameOverAlert(String ... winner){
+    public void callGameOverAlert(String ... winner){
          new AlertGameOver().gameOverAlert(winner);
     }
 
-    public void callLoginWelcome(){
+  /*  public void callLoginWelcome(){
         new AlertLogin().welcomePrint();
     }
 
@@ -65,8 +65,8 @@ public class AlertController implements AlertControllerInterface{
     public void callLoginAlert(){
         new AlertLogin().loginAlert();
     }
-
-    void callGetAlertOpening(OpeningType opening){
+*/
+    public void callGetAlertOpening(OpeningType opening){
         new AlertOpening().getAlertOpening(opening);
     }
 }
