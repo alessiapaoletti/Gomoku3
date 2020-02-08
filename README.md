@@ -27,4 +27,8 @@ Steps:
 
 Run the project: 
 * to run the Command Line version of the game the run the class Main inside the Controller package (src package) 
-* to run the version with the Grapich Interface run the class Main inside the ControllerJF package (srcGrapichs) 
+* to run the version with the Grapich Interface run the class Main inside the ControllerJF package (srcGrapichs)
+
+Terminal background color (Command Line version) :
+* Black background: the command line graphics code is already meant to be executed on black terminal.
+* White background: in order to visualize the players' stones it's necessary to open the [GridStruture](https://github.com/michelaventurini96/Gomoku3/blob/master/src/main/java/View/GridStructure.java) file, comment line 8 and line 11, uncomment line 14 and line 15.  
