@@ -24,6 +24,10 @@ public class AlertController implements AlertControllerInterface{
         new AlertInvalidMove().invalidMoveAlert();
     }
 
+    public void callinvalidCoordinateError(String dim){
+        new AlertInvalidMove().invalidCoordinateAlert(dim);
+    }
+
     public void callGameOverAlert(String ... winner){
          new AlertGameOver().gameOverAlert(winner);
     }

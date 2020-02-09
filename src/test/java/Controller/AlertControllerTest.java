@@ -84,6 +84,14 @@ public class AlertControllerTest {
     };
 
     @Test
+    public void callinvalidCoordinateErrorTest(){
+        new AlertController().callinvalidCoordinateError("14");
+        String space="";
+        if(PlatformUtil.isWindows()){space+="\r";};
+        assertEquals(ANSI_RED+"ERROR -Invalid Coordinate (number in range [0,14])"+ANSI_RESET+new String(Character.toChars(0x1F6AB))+space+"\n",outContent.toString());
+    };
+
+    @Test
     public void callGameOverAlertTest(){
         new AlertController().callGameOverAlert();
         String space="";

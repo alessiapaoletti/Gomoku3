@@ -71,7 +71,10 @@ public class BoardController {
             this.gamePlay.changeTurn();
             return true;
         }
-        return false;
+        else {
+            this.alertController.callinvalidCoordinateError(Integer.toString(this.gamePlay.getGame().getGridSize()));
+            return false;
+        }
     }
 
     public void displacePiece() {
