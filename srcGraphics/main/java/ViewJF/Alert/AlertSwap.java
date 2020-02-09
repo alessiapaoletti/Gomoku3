@@ -1,6 +1,7 @@
 package ViewJF.Alert;
 
 import javafx.scene.control.Alert;
+import javafx.stage.StageStyle;
 
 public class AlertSwap extends AlertGenerator {
 
@@ -14,6 +15,7 @@ public class AlertSwap extends AlertGenerator {
 
     private  Alert generateConfirmationAlert(String textContent){
         Alert alert = super.createConfirmationAlert(textContent);
+        //alert.initStyle(StageStyle.UNDECORATED);
         alert.showAndWait();
         return alert;
     }
@@ -29,6 +31,11 @@ public class AlertSwap extends AlertGenerator {
         return this.generateConfirmationAlert(
                 "WHITE player, do you want to swap and control the black stones?").getResult().getText();
     }
+
+//    public  void swap2Alert2(){
+//        Alert alert = super.createInformationAlert("Swap2 - Opening", "white player insert 2 more stones (1 black and 1 white)");
+//        alert.showAndWait();
+//    }
 
     public String swapBlack(){
         return this.generateConfirmationAlert("BLACK player, do you want to swap and control white stones?").getResult().getText();

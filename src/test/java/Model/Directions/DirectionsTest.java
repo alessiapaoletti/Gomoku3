@@ -1,6 +1,7 @@
 package Model.Directions;
 
 import Model.Piece.*;
+import Model.Directions.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

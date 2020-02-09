@@ -4,6 +4,7 @@ import Model.Directions.DirectionFactory;
 import Model.Directions.Directions;
 import Model.Piece.*;
 import org.junit.Test;
+import Model.HotFormations.ThreeFactory;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;

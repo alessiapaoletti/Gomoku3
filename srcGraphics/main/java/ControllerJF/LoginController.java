@@ -1,8 +1,8 @@
 package ControllerJF;
 
-import Model.Player.BlackPlayer;
-import Model.Player.WhitePlayer;
+import Model.Player.*;
 import Model.GomokuGame.GomokuType;
+import ControllerJF.AlertController;
 import Model.Rules.Opening.OpeningType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
 import java.lang.reflect.InvocationTargetException;
 
 public class LoginController {

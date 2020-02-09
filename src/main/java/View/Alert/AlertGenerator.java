@@ -7,5 +7,6 @@ public abstract class AlertGenerator {
     final String ANSI_PURPLE1 = "\u001B[95m";
     final String ANSI_RED = "\u001B[31m";
     final String STAR = "*****************";
-
+    //protected  final String ANSI_RED_BACKGROUND = "\u001B[41m";
+    //protected final String SPACE = "             ";
 }

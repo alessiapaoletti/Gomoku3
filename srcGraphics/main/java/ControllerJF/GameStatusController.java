@@ -2,8 +2,7 @@ package ControllerJF;
 
 import Controller.GameStatusControllerInterface;
 import Model.GomokuGame.GomokuType;
-import Model.Player.BlackPlayer;
-import Model.Player.WhitePlayer;
+import Model.Player.*;
 import Model.Rules.Opening.OpeningType;
 import ViewJF.BoardView;
 import ViewJF.GameStatusView;

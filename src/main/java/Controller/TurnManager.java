@@ -5,17 +5,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-class TurnManager {
+public class TurnManager {
 
-    private GameStatusController gameStatusController;
+    GameStatusController gameStatusController;
 
-    TurnManager(GameStatusController gameStatusController){
-        this.gameStatusController = gameStatusController;
+    TurnManager(GameStatusController gameStatusController){ this.gameStatusController = gameStatusController; }
+
+    public void turnManagerSwap2(int totalMoves) {
+        if(totalMoves >= 3) gameStatusController.swapColorTurn();
     }
 
-    private void turnManagerStd(final int totalMoves) { gameStatusController.swapColorTurn(); }
+    public void turnManagerStd(final int totalMoves) { gameStatusController.swapColorTurn(); }
 
-    private void turnManagerSwap(final int totalMoves){
+    void turnManagerSwap(final int totalMoves){
         if (totalMoves >= 3) gameStatusController.swapColorTurn();
     }
 
@@ -24,10 +26,10 @@ class TurnManager {
     {
         turnManagerMap.put(OpeningType.Standard, this::turnManagerStd);
         turnManagerMap.put(OpeningType.Swap, this::turnManagerSwap);
-        turnManagerMap.put(OpeningType.Swap2, this::turnManagerSwap);
+        turnManagerMap.put(OpeningType.Swap2, this::turnManagerSwap2);
     }
 
-    static void getTurnManager(OpeningType openingType, final int totalMoves){
+    public static void getTurnManager(OpeningType openingType, final int totalMoves){
         turnManagerMap.get(openingType).accept(totalMoves);
     }
 }

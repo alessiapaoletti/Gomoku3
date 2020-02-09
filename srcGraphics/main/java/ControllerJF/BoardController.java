@@ -1,13 +1,12 @@
 package ControllerJF;
 
 import Controller.GameStatusControllerInterface;
-import Model.*;
-import Model.Player.BlackPlayer;
-import Model.Player.WhitePlayer;
+import Model.Player.*;
+import Model.Piece.*;
+import Model.GamePlay;
 import Model.GomokuGame.GomokuFactory;
 import Model.GomokuGame.GomokuGame;
 import Model.GomokuGame.GomokuType;
-import Model.Piece.PieceColor;
 import Model.Rules.Opening.OpeningType;
 import ViewJF.BoardView;
 import ViewJF.ControlSkin;

@@ -1,12 +1,10 @@
 package ViewJF.Alert;
 
 import javafx.scene.control.Alert;
-
 public class AlertGameOver extends AlertGenerator {
 
     public  String gameOverAlert( String ... winner){
-
-        Alert alert = super.createInformationAlert("Game Over", "");
+         Alert alert = super.createInformationAlert("Game Over", "");
 
         if (winner.length > 0)
             alert.setHeaderText("The winner is " + winner[0]);
@@ -14,7 +12,6 @@ public class AlertGameOver extends AlertGenerator {
             alert.setHeaderText("The board is full: game ended with no winner" );
 
         alert.showAndWait();
-
         return alert.getResult().getText();
     }
 }
