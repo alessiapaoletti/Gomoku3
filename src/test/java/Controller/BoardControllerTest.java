@@ -44,7 +44,7 @@ public class BoardControllerTest {
     @Test
     public void gameOverTest(){
         this.myboardcontroller.gameOver("giorgio");
-       assertEquals(new String(Character.toChars(0x1F389))+ANSI_RED + " Game Over  "+ ANSI_RESET+new String(Character.toChars(0x1F389)) + "\r\n" + ANSI_RED + "The winner is giorgio" + ANSI_RESET + "\r\n",outContent.toString());
+       assertEquals(new String(Character.toChars(0x1F389))+ANSI_RED + " Game Over  "+ ANSI_RESET+new String(Character.toChars(0x1F389)) + "\n" + ANSI_RED + "The winner is giorgio" + ANSI_RESET + "\n",outContent.toString());
     };
 
     @Test

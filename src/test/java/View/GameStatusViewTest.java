@@ -39,10 +39,10 @@ public class GameStatusViewTest {
     @Test
     public void initLabel_and_Background_Test(){
         this.mygamestatus.initBackGround();
-        String res="\r\n"+ANSI_PURPLE+STAR+ANSI_RESET+"\r\n"+ANSI_PURPLE+"mario"+SPACE+"BLACK"+ANSI_RESET+"\r\n"+
-                ANSI_PURPLE+"giulia"+SPACE+"WHITE"+ANSI_RESET+"\r\n"+
-                ANSI_PURPLE+"Game:  Standard"+ANSI_RESET+"\r\n"+
-                ANSI_PURPLE+"Opening rules:  Standard"+ANSI_RESET+"\r\n";
+        String res="\n"+ANSI_PURPLE+STAR+ANSI_RESET+"\n"+ANSI_PURPLE+"mario"+SPACE+"BLACK"+ANSI_RESET+"\n"+
+                ANSI_PURPLE+"giulia"+SPACE+"WHITE"+ANSI_RESET+"\n"+
+                ANSI_PURPLE+"Game:  Standard"+ANSI_RESET+"\n"+
+                ANSI_PURPLE+"Opening rules:  Standard"+ANSI_RESET+"\n";
         assertEquals(res,outContent.toString());
     };
 

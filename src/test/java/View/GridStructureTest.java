@@ -38,18 +38,18 @@ public class GridStructureTest {
     @Test
     public void createHorizontalNumbersTest(){
         this.mygrid.createHorizontalNumbers();
-        assertEquals(ANSI_PURPLE+"   0    1    2    3    4    5    6    7    8    9  "+ANSI_RESET+"\r\n",outContent.toString());
+        assertEquals(ANSI_PURPLE+"   0    1    2    3    4    5    6    7    8    9  "+ANSI_RESET+"\n",outContent.toString());
     };
 
     @Test
     public void createHorizontalLinesTest(){
         this.mygrid.createHorizontalLines(1);
-        assertEquals(ANSI_PURPLE+"1"+"  " +ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+"-----"+ANSI_RESET+ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+"-"+ANSI_RESET+"\r\n",outContent.toString());
+        assertEquals(ANSI_PURPLE+"1"+"  " +ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+"-----"+ANSI_RESET+ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+"-"+ANSI_RESET+"\n",outContent.toString());
     };
 
     @Test
     public void createVerticalLinesTest(){
         this.mygrid.createVerticalLines();
-        assertEquals("   "+ANSI_PURPLE+ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+"|    |"+ANSI_RESET+"\r\n",outContent.toString());
+        assertEquals("   "+ANSI_PURPLE+ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+"|    |"+ANSI_RESET+"\n",outContent.toString());
     };
 }

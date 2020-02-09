@@ -34,11 +34,11 @@ public class GameStatusView {
 
 
     public void initBackGround(){
-        System.out.println("\r\n"+ANSI_PURPLE+STAR+ANSI_RESET+"\r");
-        System.out.println(ANSI_PURPLE+this.player1+SPACE+this.color1+ANSI_RESET+"\r");
-        System.out.println(ANSI_PURPLE+this.player2+SPACE+this.color2+ANSI_RESET+"\r");
-        System.out.println(ANSI_PURPLE+this.gameType+ANSI_RESET+"\r");
-        System.out.println(ANSI_PURPLE+this.openingType+ANSI_RESET+"\r");
+        System.out.println("\n"+ANSI_PURPLE+STAR+ANSI_RESET);
+        System.out.println(ANSI_PURPLE+this.player1+SPACE+this.color1+ANSI_RESET);
+        System.out.println(ANSI_PURPLE+this.player2+SPACE+this.color2+ANSI_RESET);
+        System.out.println(ANSI_PURPLE+this.gameType+ANSI_RESET);
+        System.out.println(ANSI_PURPLE+this.openingType+ANSI_RESET);
 
     }
 
@@ -49,10 +49,10 @@ public class GameStatusView {
     }
 
     public void printTurn(String playerName){
-        System.out.println("\r\n");
-        System.out.println(ANSI_PURPLE + STAR + ANSI_RESET+"\r");
-        System.out.println(ANSI_PURPLE + "Player " + playerName + " it is your turn!" + ANSI_RESET+"\r");
-        System.out.println(ANSI_PURPLE + STAR + ANSI_RESET+"\r");
+        System.out.println("\n");
+        System.out.println(ANSI_PURPLE + STAR + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + "Player " + playerName + " it is your turn!" + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + STAR + ANSI_RESET);
     }
 
 

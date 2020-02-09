@@ -2,6 +2,7 @@ package test.java.Controller;
 import Controller.AlertControllerInterface;
 import Controller.AlertController;
 import Model.Rules.Opening.OpeningType;
+import com.sun.javafx.PlatformUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +18,6 @@ import static org.junit.Assert.*;
 public class AlertControllerTest {
     final String ANSI_RESET = "\u001B[0m";
     final String ANSI_RED = "\u001B[31m";
-
     final String ANSI_PURPLE = "\u001B[35m";
     final String ANSI_PURPLE1 = "\u001B[95m";
     AlertControllerInterface alertinterface= new AlertController();
@@ -78,28 +78,36 @@ public class AlertControllerTest {
     @Test
     public void callInvalidMoveErrorTest(){
         new AlertController().callInvalidMoveError();
-        assertEquals(ANSI_RED+"ERROR -Invalid Move "+ANSI_RESET+new String(Character.toChars(0x1F6AB))+"\r\n",outContent.toString());
+        String space="";
+        if(PlatformUtil.isWindows()){space+="\r";};
+        assertEquals(ANSI_RED+"ERROR -Invalid Move "+ANSI_RESET+new String(Character.toChars(0x1F6AB))+space+"\n",outContent.toString());
     };
 
     @Test
     public void callGameOverAlertTest(){
         new AlertController().callGameOverAlert();
-        assertEquals(new String(Character.toChars(0x1F389))+ANSI_RED + " Game Over  "+ ANSI_RESET+new String(Character.toChars(0x1F389))+"\r\n"+ANSI_RED+"The board is full: game ended with no winner"+ ANSI_RESET+"\r\n",outContent.toString());
+        String space="";
+        if(PlatformUtil.isWindows()){space+="\r";};
+        assertEquals(new String(Character.toChars(0x1F389))+ANSI_RED + " Game Over  "+ ANSI_RESET+new String(Character.toChars(0x1F389))+space+"\n"+ANSI_RED+"The board is full: game ended with no winner"+ ANSI_RESET+space+"\n",outContent.toString());
     };
 
     @Test
     public void callGameOverAlertTest1() {
         new AlertController().callGameOverAlert("giorgio");
+        String space="";
+        if(PlatformUtil.isWindows()){space+="\r";};
         assertEquals(new String(Character.toChars(0x1F389))+ANSI_RED + " Game Over  "+ ANSI_RESET+new String(Character.toChars(0x1F389))
-                + "\r\n" + ANSI_RED + "The winner is giorgio" + ANSI_RESET + "\r\n", outContent.toString());
+                + space+"\n" + ANSI_RED + "The winner is giorgio" + ANSI_RESET + space+"\n", outContent.toString());
     };
 
     @Test
     public void callGetAlertOpeningTest(){
+        String space="";
+        if(PlatformUtil.isWindows()){space+="\r";};
         new AlertController().callGetAlertOpening(OpeningType.Swap);
-        assertEquals(ANSI_PURPLE + "* SWAP opening - Rules *\r\n" +
-                ANSI_PURPLE1 + "BLACK player places 3 stones: 2 black and 1 white.\r\n" +
+        assertEquals(ANSI_PURPLE + "* SWAP opening - Rules *"+space+"\n" +
+                ANSI_PURPLE1 + "BLACK player places 3 stones: 2 black and 1 white."+space+"\n" +
                 "then WHITE player can decide to swap color or stay white" +
-                ANSI_RESET+"\r\n",outContent.toString());
+                ANSI_RESET+space+"\n",outContent.toString());
     };
 }

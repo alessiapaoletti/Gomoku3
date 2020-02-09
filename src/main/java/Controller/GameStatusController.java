@@ -34,11 +34,6 @@ public class GameStatusController implements GameStatusControllerInterface {
         } else {
             this.currentPlayerName = this.blackPlayer.getName();
         }
-/*
-        System.out.println("black " + blackPlayer.getName());
-        System.out.println("white " + whitePlayer.getName());
-        System.out.println("curr " + currentPlayerName);
-*/
         this.maintainTurn();
     }
 

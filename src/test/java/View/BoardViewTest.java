@@ -2,6 +2,7 @@ package test.java.View;
 
 import Model.Piece.PieceColor;
 import View.BoardView;
+import com.sun.javafx.PlatformUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -39,7 +40,9 @@ public class BoardViewTest {
     @Test
     public void ConstructorTest(){
         this.myBoardView=new BoardView(1,"STANDARD");
-        String expeted=ANSI_PURPLE+"**********************************  STANDARD  **********************************"+ANSI_RESET+"\r\n";
+        String space="";
+        if(PlatformUtil.isWindows()){space+="\r";};
+        String expeted=ANSI_PURPLE+"**********************************  STANDARD  **********************************"+ANSI_RESET+space+"\n";
         assertEquals(expeted, outContent.toString());
 
     };
@@ -95,11 +98,14 @@ public class BoardViewTest {
       this.ConstructorTest();
       this.myBoardView.setPiece(0,0,PieceColor.WHITE);
       this.myBoardView.createBoard();
-      String res=ANSI_PURPLE+"**********************************  STANDARD  **********************************"+ANSI_RESET+"\r\n"+"\r\n"+
-              ANSI_PURPLE+"   0    1    2    3    4    5    6    7    8    9  "+ANSI_RESET+"\r\n"+
-              ANSI_PURPLE+"0  "+ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+ANSI_WHITE+ANSI_PURPLE_BACKGROUND+"X"+ANSI_PURPLE1+"----"+ANSI_RESET+ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+"-"+ANSI_RESET+"\r\n"+
-              "   "+ANSI_PURPLE+ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+"|    |"+ANSI_RESET+"\r\n"+
-              ANSI_PURPLE+"1  "+ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+"-----"+ANSI_RESET+ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+"-"+ANSI_RESET+"\r\n";
+      String space="";
+      if(PlatformUtil.isWindows()){space+="\r";};
+
+        String res=ANSI_PURPLE+"**********************************  STANDARD  **********************************"+ANSI_RESET+space+"\n"+space+"\n"+space+"\n"+
+              ANSI_PURPLE+"   0    1    2    3    4    5    6    7    8    9  "+ANSI_RESET+space+"\n"+
+              ANSI_PURPLE+"0  "+ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+ANSI_WHITE+ANSI_PURPLE_BACKGROUND+"X"+ANSI_PURPLE1+"----"+ANSI_RESET+ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+"-"+ANSI_RESET+space+"\n"+
+              "   "+ANSI_PURPLE+ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+"|    |"+ANSI_RESET+space+"\n"+
+              ANSI_PURPLE+"1  "+ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+"-----"+ANSI_RESET+ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+"-"+ANSI_RESET+space+"\n";
       assertEquals(res,outContent.toString());
     };
 

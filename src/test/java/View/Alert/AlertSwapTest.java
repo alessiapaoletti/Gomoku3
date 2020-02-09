@@ -30,7 +30,7 @@ public class AlertSwapTest {
         InputStream sysInBackup = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("YES".getBytes());
         System.setIn(in);
-        assertThat(alertSwap.generateYesNoAlert("Answer YES/NO"+"\r"),is("YES"));
+        assertThat(alertSwap.generateYesNoAlert("Answer YES/NO"),is("YES"));
         System.setIn(sysInBackup);
     }
 
@@ -39,7 +39,7 @@ public class AlertSwapTest {
         InputStream sysInBackup = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("2".getBytes());
         System.setIn(in);
-        assertThat(alertSwap.generateSwapAlert("choose the option 1, 2 or 3\r"), is("2"));
+        assertThat(alertSwap.generateSwapAlert("choose the option 1, 2 or 3"), is("2"));
         System.setIn(sysInBackup);
 
     }

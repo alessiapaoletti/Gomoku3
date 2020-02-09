@@ -43,12 +43,7 @@ public class GridStructure {
         String  enumeration = " ";
         for(int i=0;i<10;i++){enumeration+= "  "+ i +"  ";}
         for(int i=10;i<this.size;i++){enumeration+= "  "+ i +" ";}
-
-//        StringBuilder numbers = new StringBuilder();
-//        for(int i=0;i<this.size;i++){
-//            numbers.append("  ").append(i).append("  ");
-//        }
-        System.out.println(ANSI_PURPLE+enumeration+ANSI_RESET+"\r");
+        System.out.println(ANSI_PURPLE+enumeration+ANSI_RESET);
     }
 
 
@@ -59,14 +54,11 @@ public class GridStructure {
         System.out.print(ANSI_PURPLE+num);
         IntStream.range(0, this.size-1)
                 .forEach(index -> { System.out.print(ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+this.placePiece(index,i)+"----"+ANSI_RESET); });
-        /*for(int j=0;j<this.size-1;j++){
-            System.out.print(ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+this.placePiece(j,i)+"----"+ANSI_RESET);
-        }*/
-        System.out.println(ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+this.placePiece(this.size-1,i)+ANSI_RESET+"\r");
+        System.out.println(ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+this.placePiece(this.size-1,i)+ANSI_RESET);
     }
 
     public void createVerticalLines(){
-        System.out.println("   "+ANSI_PURPLE+ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+"|    ".repeat(this.size-1)+"|"+ANSI_RESET+"\r");
+        System.out.println("   "+ANSI_PURPLE+ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+"|    ".repeat(this.size-1)+"|"+ANSI_RESET);
     }
 
 }

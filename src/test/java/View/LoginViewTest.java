@@ -3,6 +3,7 @@ package test.java.View;
 import static org.junit.Assert.*;
 import Model.GomokuGame.GomokuType;
 import View.LoginView;
+import com.sun.javafx.PlatformUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,6 +25,7 @@ public class LoginViewTest {
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private PrintStream originalOut = System.out;
 
+
     @Before
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
@@ -37,7 +39,7 @@ public class LoginViewTest {
     @Test
     public void LoginViewConstructorTest(){
         this.mylogin=new LoginView();
-        assertEquals(ANSI_PURPLE + STAR +" WELCOME IN GOMOKU "+ STAR + ANSI_RESET+"\r\n"+ANSI_PURPLE+STAR +"   Game Setting  "+ STAR + ANSI_RESET+"\r\n",outContent.toString());
+        assertEquals(ANSI_PURPLE + STAR +" WELCOME IN GOMOKU "+ STAR + ANSI_RESET+"\n"+ANSI_PURPLE+STAR +"   Game Setting  "+ STAR + ANSI_RESET+"\n",outContent.toString());
     };
 
     @Test

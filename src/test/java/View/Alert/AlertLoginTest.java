@@ -38,7 +38,7 @@ public class AlertLoginTest {
 
         this.alertLogin.loginAlert();
 
-        String expected = ANSI_RED + "invalid selected type! " + ANSI_RESET +new String(Character.toChars(0x1F6AB))+"\r\n";
+        String expected = ANSI_RED + "invalid selected type! " + ANSI_RESET +new String(Character.toChars(0x1F6AB))+"\n";
 
         assertThat(outContent.toString(), is(expected));
     }
@@ -50,7 +50,7 @@ public class AlertLoginTest {
         this.alertLogin.welcomePrint();
 
         String expected = ANSI_PURPLE + STAR +" WELCOME IN GOMOKU "+ STAR + ANSI_RESET +
-                "\r\n" + ANSI_PURPLE+STAR +"   Game Setting  "+ STAR + ANSI_RESET +"\r\n";
+                "\n" + ANSI_PURPLE+STAR +"   Game Setting  "+ STAR + ANSI_RESET +"\n";
 
         assertThat(outContent.toString(), is(expected));
     }
@@ -61,7 +61,7 @@ public class AlertLoginTest {
 
         this.alertLogin.setBlackPlayer();
 
-        String expected = "Black Player Name: \r\n";
+        String expected = "Black Player Name: \n";
 
         assertThat(outContent.toString(), is(expected));
     }
@@ -72,7 +72,7 @@ public class AlertLoginTest {
 
         this.alertLogin.setWhitePlayer();
 
-        String expected = "White Player Name: \r\n" ;
+        String expected = "White Player Name: \n" ;
 
         assertThat(outContent.toString(), is(expected));
     }
@@ -82,7 +82,7 @@ public class AlertLoginTest {
         System.setOut(new PrintStream(outContent));
 
         this.alertLogin.setOpening();
-        String expected = "Choose your favorite Opening Rule between: \r\nStandard\r\nSwap\r\nSwap2\r\n";
+        String expected = "Choose your favorite Opening Rule between: \nStandard\nSwap\nSwap2\n";
 
         assertThat(outContent.toString(), is(expected));
     }
@@ -92,7 +92,7 @@ public class AlertLoginTest {
         System.setOut(new PrintStream(outContent));
         this.alertLogin.setGame();
 
-        String expected = "Choose your favorite version of Gomoku between: \r\nStandard\r\nOmok\r\nFreestyle\r\n";
+        String expected = "Choose your favorite version of Gomoku between: \nStandard\nOmok\nFreestyle\n";
 
         assertThat(outContent.toString() , is(expected));
     }

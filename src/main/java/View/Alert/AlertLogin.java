@@ -29,30 +29,30 @@ public class AlertLogin extends AlertGenerator {
     }
 
     public  void loginAlert(){
-        System.out.println(ANSI_RED + "invalid selected type! " + ANSI_RESET+new String(Character.toChars(0x1F6AB))+"\r");
+        System.out.println(ANSI_RED + "invalid selected type! " + ANSI_RESET+new String(Character.toChars(0x1F6AB)));
     }
 
     public void welcomePrint(){
-        System.out.println(ANSI_PURPLE + STAR +" WELCOME IN GOMOKU "+ STAR + ANSI_RESET+"\r");
-        System.out.println(ANSI_PURPLE+STAR +"   Game Setting  "+ STAR + ANSI_RESET+"\r");
+        System.out.println(ANSI_PURPLE + STAR +" WELCOME IN GOMOKU "+ STAR + ANSI_RESET);
+        System.out.println(ANSI_PURPLE+STAR +"   Game Setting  "+ STAR + ANSI_RESET);
     }
 
     public void setBlackPlayer(){
-        System.out.println("Black Player Name: "+"\r");
+        System.out.println("Black Player Name: ");
     }
 
     public void setWhitePlayer(){
-        System.out.println("White Player Name: "+"\r");
+        System.out.println("White Player Name: ");
     }
 
     public void setOpening(){
-        System.out.println("Choose your favorite Opening Rule between: "+"\r");
-        openingTypes.forEach(i->System.out.println(i+"\r"));
+        System.out.println("Choose your favorite Opening Rule between: ");
+        openingTypes.forEach(i->System.out.println(i));
     }
 
     public void setGame(){
-        System.out.println("Choose your favorite version of Gomoku between: "+"\r");
-        gomokuTypes.forEach(i->System.out.println(i+"\r"));
+        System.out.println("Choose your favorite version of Gomoku between: ");
+        gomokuTypes.forEach(i->System.out.println(i));
     }
 
     public List<GomokuType> getGomokuTypes() {
