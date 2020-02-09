@@ -31,4 +31,4 @@ Run the project:
 
 Terminal background color (Command Line version) :
 * Black background: the command line graphics code is already meant to be executed on black terminal.
-* White background: in order to visualize the players' stones it's necessary to open the [GridStruture](https://github.com/michelaventurini96/Gomoku3/blob/master/src/main/java/View/GridStructure.java) file, comment line 8 and line 11, uncomment line 14 and line 15.  
+* White background: in order to visualize the players' stones it's necessary to open the [GridStructure](https://github.com/michelaventurini96/Gomoku3/blob/master/src/main/java/View/GridStructure.java) file, comment line 8 and line 11, uncomment line 14 and line 15.  
