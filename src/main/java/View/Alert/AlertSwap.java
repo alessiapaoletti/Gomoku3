@@ -12,7 +12,6 @@ public class AlertSwap extends AlertGenerator {
         return (answer.equals("1") || answer.equals("2") || answer.equals("3")) ;
     }
 
-
     String generateYesNoAlert(String textContent){
         Scanner scanner = new Scanner(System.in);
         String answer;
@@ -43,8 +42,9 @@ public class AlertSwap extends AlertGenerator {
         return this.generateYesNoAlert("Black player, do you want to Swap ?" + "\n" + "(answer YES/NO)" );
     }
 
+
     public  String swap2Alert(){
-        return this.generateSwapAlert("WHITE player, what do you want to do?\n \n " +
+        return this.generateSwapAlert("WHITE player, what do you want to do? \n \n " +
                 "Option One: \n  Stay white and put the 4th stone \n \n" +
                 "Option Two: \n  Swap and control the black stones \n \n" +
                 "Option Three: \n  Put two more stones (one black and one white) and pass the opportunity to choose color to the opponent\n\n" +

@@ -2,8 +2,8 @@ package Model.HotFormations;
 
 import Model.Directions.DirectionFactory;
 import Model.Directions.Directions;
-import Model.Piece.*;
 import Model.Player.*;
+import Model.Piece.*;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

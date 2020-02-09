@@ -47,12 +47,12 @@ public class AlertLogin extends AlertGenerator {
 
     public void setOpening(){
         System.out.println("Choose your favorite Opening Rule between: ");
-        openingTypes.forEach(i->System.out.println(i));
+        openingTypes.forEach(System.out::println);
     }
 
     public void setGame(){
         System.out.println("Choose your favorite version of Gomoku between: ");
-        gomokuTypes.forEach(i->System.out.println(i));
+        gomokuTypes.forEach(System.out::println);
     }
 
     public List<GomokuType> getGomokuTypes() {

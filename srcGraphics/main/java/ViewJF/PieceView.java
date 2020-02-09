@@ -1,6 +1,6 @@
 package ViewJF;
 
-import Model.Piece.*;
+import Model.Piece.PieceColor;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
@@ -46,6 +46,5 @@ public class PieceView extends Group {
     void removePiece() {
         this.ellipse.setFill(Color.TRANSPARENT);
     }
-
 
 }

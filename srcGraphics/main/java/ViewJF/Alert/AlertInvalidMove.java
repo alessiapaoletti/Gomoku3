@@ -1,6 +1,7 @@
 package ViewJF.Alert;
 
 import javafx.scene.control.Alert;
+
 public class AlertInvalidMove extends AlertGenerator {
 
     public  void invalidMoveAlert(String error){

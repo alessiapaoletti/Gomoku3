@@ -1,12 +1,11 @@
 package View.Alert;
 
+import Model.Rules.Opening.OpeningType;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 import org.junit.Test;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import Model.Rules.Opening.OpeningType;
 
 public class AlertOpeningTest {
 

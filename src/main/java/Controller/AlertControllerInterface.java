@@ -2,11 +2,9 @@ package Controller;
 
 public interface AlertControllerInterface {
 
-    //boolean AnswerQuestionAlert(String Answ, String m);
+    String swap2Alert();
 
-    public String swap2Alert();
+    String swapAlert();
 
-    public String swapAlert();
-
-    public String swapBlack();
+    String swapBlack();
 }

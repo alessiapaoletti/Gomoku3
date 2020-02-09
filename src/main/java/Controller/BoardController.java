@@ -4,7 +4,8 @@ import Model.GamePlay;
 import Model.GomokuGame.GomokuFactory;
 import Model.GomokuGame.GomokuGame;
 import Model.GomokuGame.GomokuType;
-import Model.Player.*;
+import Model.Player.BlackPlayer;
+import Model.Player.WhitePlayer;
 import Model.Rules.Opening.OpeningType;
 import View.BoardView;
 

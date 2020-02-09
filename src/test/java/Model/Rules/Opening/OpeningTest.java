@@ -3,9 +3,9 @@ package Model.Rules.Opening;
 import Model.GomokuGame.GomokuFactory;
 import Model.GomokuGame.GomokuGame;
 import Model.GomokuGame.GomokuType;
-import Model.Rules.Opening.*;
 import Model.Piece.*;
-import Model.Player.*;
+import Model.Player.BlackPlayer;
+import Model.Player.WhitePlayer;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -26,22 +26,8 @@ public class OpeningTest {
         assertEquals(openingSwap2.numMoves, 3);
     }
 
-    BlackPlayer p1 = new BlackPlayer("A");
-    WhitePlayer p2 = new WhitePlayer("B");
-
-    /*@Test(expected = Error.class)
-    public void checkErrorTest(){
-        p1.addMove(new Piece(1,1, PieceColor.BLACK));
-        p1.addMove(new Piece(1,2, PieceColor.BLACK));
-
-        p2.addMove(new Piece(2,2, PieceColor.WHITE));
-        p2.addMove(new Piece(1,2, PieceColor.BLACK)); // -->attenzione errore nella funzione checkError
-
-        GomokuGame gomokuGame = GomokuFactory.getGame(GomokuType.Standard);
-        gomokuGame.setPlayers(p1, p2);
-        gomokuGame.setGameEnvironment(OpeningType.Standard);
-        gomokuGame.getOpeningRules().openingBehaviour(2);
-    }*/
+    private BlackPlayer p1 = new BlackPlayer("A");
+    private WhitePlayer p2 = new WhitePlayer("B");
 
     @Test
     public void utilitySwapTest(){
