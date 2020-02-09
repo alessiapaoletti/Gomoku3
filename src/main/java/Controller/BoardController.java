@@ -57,6 +57,7 @@ public class BoardController {
         this.Y=this.boardView.getY(this.gamePlay.getCurrentPlayer().getColorName());
     }
 
+
     public boolean placePiece() {
         this.coordinateSet();
         if(this.gamePlay.isValidMove(this.X,this.Y) && !this.gamePlay.isOutOfBound(this.X, this.Y) ){

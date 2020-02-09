@@ -88,7 +88,7 @@ public class AlertControllerTest {
         new AlertController().callinvalidCoordinateError("14");
         String space="";
         if(PlatformUtil.isWindows()){space+="\r";};
-        assertEquals(ANSI_RED+"ERROR -Invalid Coordinate (number in range [0,14])"+ANSI_RESET+new String(Character.toChars(0x1F6AB))+space+"\n",outContent.toString());
+        assertEquals(ANSI_RED+"ERROR -Invalid Coordinate "+"\n"+"(Insert a couple of numbers in range [0,14],not already on the board)"+ANSI_RESET+new String(Character.toChars(0x1F6AB))+space+"\n",outContent.toString());
     };
 
     @Test
