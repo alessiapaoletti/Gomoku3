@@ -1,12 +1,9 @@
 package View;
-
 import Model.Piece.*;
-
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class GridStructure {
-
     public PieceColor[][] pieces;
     private final String ANSI_BLACK = "\033[1;90m";
     private final String ANSI_PURPLE = "\u001B[35m";
