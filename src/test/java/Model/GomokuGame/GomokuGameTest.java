@@ -1,9 +1,7 @@
 package Model.GomokuGame;
 
-import Model.GomokuGame.*;
-import Model.PieceColor;
-import Model.BlackPlayer;
-import Model.WhitePlayer;
+import Model.Player.BlackPlayer;
+import Model.Player.WhitePlayer;
 import Model.Rules.Opening.OpeningType;
 import org.junit.Test;
 import static org.junit.Assert.*;

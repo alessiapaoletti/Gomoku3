@@ -1,18 +1,19 @@
 package Controller;
 
-import Model.BlackPlayer;
 import Model.GomokuGame.GomokuType;
-import Model.WhitePlayer;
-import View.LoginView;
+import Model.Player.WhitePlayer;
+import Model.Player.BlackPlayer;
 import Model.Rules.Opening.OpeningType;
+import View.LoginView;
 
-public class LoginController {
+
+class LoginController {
 
     private LoginView loginView = new LoginView();
 
-    public LoginController() {};
+    LoginController() {}
 
-    public void startGame() {
+    void startGame() {
         BlackPlayer blackPlayer = new BlackPlayer(loginView.setBlackPlayer());
         WhitePlayer whitePlayer = new WhitePlayer(loginView.setWhitePlayer());
         GomokuType gomokuType = loginView.setGame();

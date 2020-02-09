@@ -1,4 +1,6 @@
-package Model;
+package Model.Player;
+
+import Model.Piece.PieceColor;
 
 public class BlackPlayer extends  Player {
 

@@ -1,10 +1,10 @@
 package Controller;
 
-import Model.BlackPlayer;
 import Model.GomokuGame.GomokuType;
-import Model.Player;
 import Model.Rules.Opening.OpeningType;
-import Model.WhitePlayer;
+import Model.Player.WhitePlayer;
+import Model.Player.BlackPlayer;
+
 import View.GameStatusView;
 
 public class GameStatusController implements GameStatusControllerInterface {
@@ -36,15 +36,10 @@ public class GameStatusController implements GameStatusControllerInterface {
         } else {
             this.currentPlayerName = this.blackPlayer.getName();
         }
-/*
-        System.out.println("black " + blackPlayer.getName());
-        System.out.println("white " + whitePlayer.getName());
-        System.out.println("curr " + currentPlayerName);
-*/
         this.maintainTurn();
     }
 
-    public void maintainTurn(){
+    void maintainTurn(){
         this.gameStatusView.printTurn(this.currentPlayerName);
     }
 

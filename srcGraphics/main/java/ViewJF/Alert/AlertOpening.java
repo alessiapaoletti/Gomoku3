@@ -10,17 +10,14 @@ public class AlertOpening extends AlertGenerator{
     public AlertOpening() { this.add(); }
 
     private  Alert stdOpeningRulesAlert(){
-        //Alert alert =
         return super.createInformationAlert("STANDARD opening - Rules",
                 "Black player starts and insert 1 stones followed by white player. Stones can be placed anywhere.");
-        //return alert;
     }
 
     private  Alert swapOpeningRulesAlert(){
         return super.createInformationAlert("SWAP opening - Rules",
                 "BLACK player places 3 stones: 2 black and 1 white. \n \n" +
                         "then WHITE player can decide to swap color or stay white");
-        //return alert;
     }
 
     private  Alert swap2OpeningRulesAlert(){

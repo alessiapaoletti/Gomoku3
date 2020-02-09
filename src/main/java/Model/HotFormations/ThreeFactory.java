@@ -2,7 +2,6 @@ package Model.HotFormations;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 public class ThreeFactory {
 

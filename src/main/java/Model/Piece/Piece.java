@@ -1,4 +1,5 @@
-package Model;
+package Model.Piece;
+
 import java.util.Objects;
 
 public class Piece  {

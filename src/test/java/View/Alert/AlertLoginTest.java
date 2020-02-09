@@ -13,11 +13,7 @@ public class AlertLoginTest {
 
     private AlertLogin alertLogin = new AlertLogin();
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-
-    private final String ANSI_RED = "\u001B[31m";
     private final String ANSI_RESET = "\u001B[0m";
-    private final String ANSI_PURPLE = "\u001B[35m";
-    private final String STAR = "*****************";
 
 
     @Test
@@ -38,7 +34,8 @@ public class AlertLoginTest {
 
         this.alertLogin.loginAlert();
 
-        String expected = ANSI_RED + "invalid selected type! " + ANSI_RESET +new String(Character.toChars(0x1F6AB))+"\n";
+        String ANSI_RED = "\u001B[31m";
+        String expected = ANSI_RED + "invalid selected type! " + ANSI_RESET +new String(Character.toChars(0x1F6AB))+"\r\n";
 
         assertThat(outContent.toString(), is(expected));
     }
@@ -49,8 +46,10 @@ public class AlertLoginTest {
 
         this.alertLogin.welcomePrint();
 
+        String ANSI_PURPLE = "\u001B[35m";
+        String STAR = "*****************";
         String expected = ANSI_PURPLE + STAR +" WELCOME IN GOMOKU "+ STAR + ANSI_RESET +
-                "\n" + ANSI_PURPLE+STAR +"   Game Setting  "+ STAR + ANSI_RESET +"\n";
+                "\r\n" + ANSI_PURPLE + STAR +"   Game Setting  "+ STAR + ANSI_RESET +"\r\n";
 
         assertThat(outContent.toString(), is(expected));
     }
@@ -61,7 +60,7 @@ public class AlertLoginTest {
 
         this.alertLogin.setBlackPlayer();
 
-        String expected = "Black Player Name: \n";
+        String expected = "Black Player Name: \r\n";
 
         assertThat(outContent.toString(), is(expected));
     }
@@ -72,7 +71,7 @@ public class AlertLoginTest {
 
         this.alertLogin.setWhitePlayer();
 
-        String expected = "White Player Name: \n" ;
+        String expected = "White Player Name: \r\n" ;
 
         assertThat(outContent.toString(), is(expected));
     }
@@ -82,7 +81,7 @@ public class AlertLoginTest {
         System.setOut(new PrintStream(outContent));
 
         this.alertLogin.setOpening();
-        String expected = "Choose your favorite Opening Rule between: \nStandard\nSwap\nSwap2\n";
+        String expected = "Choose your favorite Opening Rule between: \r\nStandard\r\nSwap\r\nSwap2\r\n";
 
         assertThat(outContent.toString(), is(expected));
     }
@@ -92,7 +91,7 @@ public class AlertLoginTest {
         System.setOut(new PrintStream(outContent));
         this.alertLogin.setGame();
 
-        String expected = "Choose your favorite version of Gomoku between: \nStandard\nOmok\nFreestyle\n";
+        String expected = "Choose your favorite version of Gomoku between: \r\nStandard\r\nOmok\r\nFreestyle\r\n";
 
         assertThat(outContent.toString() , is(expected));
     }

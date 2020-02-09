@@ -1,8 +1,6 @@
 package Model.Directions;
 
-import Model.Piece;
-import Model.Directions.*;
-import Model.PieceColor;
+import Model.Piece.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

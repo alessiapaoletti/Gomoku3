@@ -1,11 +1,11 @@
 package Model.Rules.Closing;
 
-import Model.BlackPlayer;
 import Model.Directions.DirectionFactory;
 import Model.Directions.Directions;
 import Model.HotFormations.Five;
-import Model.Piece;
-import Model.WhitePlayer;
+import Model.Piece.Piece;
+import Model.Player.WhitePlayer;
+import Model.Player.BlackPlayer;
 
 
 import java.util.*;

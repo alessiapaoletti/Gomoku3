@@ -1,19 +1,18 @@
 package Model.Rules;
 
-import Controller.GameStatusController;
 import Controller.GameStatusControllerInterface;
-import Model.BlackPlayer;
 import Model.Directions.DirectionFactory;
 import Model.Directions.Directions;
 import Model.HotFormations.Three;
 import Model.HotFormations.ThreeFactory;
-import Model.Piece;
-import Model.WhitePlayer;
+import Model.Piece.Piece;
+import Model.Player.BlackPlayer;
+import Model.Player.WhitePlayer;
 import java.util.*;
 
 public class InvalidMoves {
 
-    GameStatusControllerInterface gameStatusControllerInterface;
+    private GameStatusControllerInterface gameStatusControllerInterface;
     private int dimBoard;
     private BlackPlayer blackPlayer;
     private WhitePlayer whitePlayer;

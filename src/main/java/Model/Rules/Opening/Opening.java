@@ -2,8 +2,8 @@ package Model.Rules.Opening;
 
 import Controller.AlertControllerInterface;
 import Controller.GameStatusControllerInterface;
-import Model.BlackPlayer;
-import Model.WhitePlayer;
+import Model.Player.BlackPlayer;
+import Model.Player.WhitePlayer;
 
 public abstract class Opening {
 
@@ -18,10 +18,6 @@ public abstract class Opening {
 
     public void setGameStatusControllerInterface(GameStatusControllerInterface gameStatusControllerInterface) {
         this.gameStatusControllerInterface = gameStatusControllerInterface;
-    }
-
-    protected void SwapLabel(){
-        this.gameStatusControllerInterface.swapLabel();
     }
 
     public void setPlayers(BlackPlayer blackPlayer, WhitePlayer whitePlayer){

@@ -1,4 +1,4 @@
-package Model;
+package Model.Piece;
 
 public enum PieceColor {
         EMPTY,

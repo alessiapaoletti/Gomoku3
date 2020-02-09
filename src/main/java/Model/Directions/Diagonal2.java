@@ -1,6 +1,6 @@
 package Model.Directions;
 
-import Model.Piece;
+import Model.Piece.Piece;
 
 public class Diagonal2 extends Directions {
 

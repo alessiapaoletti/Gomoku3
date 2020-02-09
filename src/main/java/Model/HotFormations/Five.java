@@ -1,8 +1,7 @@
 package Model.HotFormations;
 
 import Model.Directions.Directions;
-import Model.Piece;
-import Model.PieceColor;
+import Model.Piece.*;
 
 public class Five extends HotFormations{
 

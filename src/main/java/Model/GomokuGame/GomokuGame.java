@@ -1,11 +1,12 @@
 package Model.GomokuGame;
 
-import Model.BlackPlayer;
 import Model.Rules.Closing.Closing;
 import Model.Rules.Opening.Opening;
 import Model.Rules.Opening.OpeningFactory;
 import Model.Rules.Opening.OpeningType;
-import Model.WhitePlayer;
+import Model.Player.WhitePlayer;
+import Model.Player.BlackPlayer;
+
 
 public abstract class GomokuGame {
 

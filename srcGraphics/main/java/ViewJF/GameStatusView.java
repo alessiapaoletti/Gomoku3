@@ -1,8 +1,8 @@
 package ViewJF;
 
 import Model.GomokuGame.GomokuType;
-import Model.BlackPlayer;
-import Model.WhitePlayer;
+import Model.Player.WhitePlayer;
+import Model.Player.BlackPlayer;
 import Model.Rules.Opening.OpeningType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

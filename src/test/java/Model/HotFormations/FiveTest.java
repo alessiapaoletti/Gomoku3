@@ -2,12 +2,8 @@ package Model.HotFormations;
 
 import Model.Directions.DirectionFactory;
 import Model.Directions.Directions;
-import Model.Piece;
-import Model.PieceColor;
-import Model.BlackPlayer;
-import Model.WhitePlayer;
-import Model.Player;
-import Model.PieceColor;
+import Model.Player.*;
+import Model.Piece.*;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

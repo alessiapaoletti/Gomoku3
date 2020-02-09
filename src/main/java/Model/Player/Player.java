@@ -1,6 +1,7 @@
-package Model;
+package Model.Player;
 
 import java.util.ArrayList;
+import Model.Piece.*;
 import java.util.List;
 
 public abstract class Player {

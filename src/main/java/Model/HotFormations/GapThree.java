@@ -1,8 +1,7 @@
 package Model.HotFormations;
 
-import Model.Piece;
 import Model.Directions.Directions;
-import Model.PieceColor;
+import Model.Piece.*;
 
 import java.util.Set;
 

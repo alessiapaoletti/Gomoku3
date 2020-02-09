@@ -1,9 +1,8 @@
 package Model.HotFormations;
 
-import Model.Piece;
-import Model.PieceColor;
-import Model.BlackPlayer;
-import Model.WhitePlayer;
+import Model.Piece.*;
+import Model.Player.BlackPlayer;
+import Model.Player.WhitePlayer;
 
 abstract class HotFormations {
 

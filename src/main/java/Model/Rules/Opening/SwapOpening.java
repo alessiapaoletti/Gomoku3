@@ -20,14 +20,11 @@ public class SwapOpening extends Opening {
             swapQuestion();
     }
 
-    private void swapQuestion(){
-        if ("YES".equals(super.alertControllerInterface.swapAlert())){
-            super.SwapLabel();
+    private void swapQuestion() {
+        if ("YES".equals(super.alertControllerInterface.swapAlert())) {
+            super.gameStatusControllerInterface.swapLabel();
             this.utilitySwap();
             super.gameStatusControllerInterface.swapColorTurn();
-        } else {
-            //super.gameStatusControllerInterface.swapColorTurn();
         }
     }
-
 }

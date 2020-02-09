@@ -2,7 +2,7 @@ package Model.Rules.Closing;
 
 import Model.Directions.Directions;
 import Model.HotFormations.Five;
-import Model.Piece;
+import Model.Piece.Piece;
 
 public class NoOverlines extends Closing {
 

@@ -3,7 +3,6 @@ package View.Alert;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -21,7 +20,7 @@ public class AlertGameOverTest {
         alertGameOver.gameOverAlert();
 
         String expected = new String(Character.toChars(0x1F389))+ANSI_RED + " Game Over  "+ ANSI_RESET+new String(Character.toChars(0x1F389))+
-                "\n"+ANSI_RED+ "The board is full: game ended with no winner" +  ANSI_RESET + "\n";
+                "\r\n"+ANSI_RED+ "The board is full: game ended with no winner" +  ANSI_RESET + "\r\n";
         assertThat(outContent.toString(), is(expected));
 
     }
@@ -33,7 +32,7 @@ public class AlertGameOverTest {
         alertGameOver.gameOverAlert(winner);
 
         String expected = new String(Character.toChars(0x1F389))+ANSI_RED + " Game Over  "+ ANSI_RESET+new String(Character.toChars(0x1F389))+
-                "\n"+ANSI_RED+ "The winner is "+ winner +  ANSI_RESET + "\n";
+                "\r\n"+ANSI_RED+ "The winner is "+ winner +  ANSI_RESET + "\r\n";
 
         assertThat(outContent.toString(), is(expected));
     }

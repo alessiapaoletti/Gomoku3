@@ -1,12 +1,11 @@
 package View.Alert;
 
+import Model.Rules.Opening.OpeningType;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 import org.junit.Test;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import Model.Rules.Opening.OpeningType;
 
 public class AlertOpeningTest {
 
@@ -65,7 +64,7 @@ public class AlertOpeningTest {
 
         alertOpening.getAlertOpening(OpeningType.Standard);
 
-        String expected = alertOpening.stdOpeningRulesAlert() + "\n";
+        String expected = alertOpening.stdOpeningRulesAlert() + "\r\n";
         assertThat(outContent.toString(), is(expected));
 
     }

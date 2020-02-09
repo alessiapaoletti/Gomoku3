@@ -28,7 +28,7 @@ public class Swap2Opening extends SwapOpening {
             return true;
         } else if ("2".equals(answer)) {
             /*white player swap color and control black stones*/
-            super.SwapLabel();
+            super.gameStatusControllerInterface.swapLabel();
             super.gameStatusControllerInterface.swapColorTurn();
             super.utilitySwap();
             return true;
@@ -38,7 +38,7 @@ public class Swap2Opening extends SwapOpening {
 
     private void swap2SwapBlack() {
         if ("YES".equals(super.alertControllerInterface.swapBlack())) {
-            super.SwapLabel();
+            super.gameStatusControllerInterface.swapLabel();
             super.utilitySwap();
         } else super.gameStatusControllerInterface.swapColorTurn();
     }

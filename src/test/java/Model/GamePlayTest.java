@@ -3,24 +3,21 @@ package Model;
 import Model.GomokuGame.GomokuFactory;
 import Model.GomokuGame.GomokuGame;
 import Model.GomokuGame.GomokuType;
-import Model.BlackPlayer;
-import Model.WhitePlayer;
+import Model.Player.BlackPlayer;
+import Model.Player.WhitePlayer;
 import Model.Rules.Opening.OpeningType;
+import Model.Piece.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-
-//import static org.junit.Assert.assertFalse;
-//import static org.junit.Assert.assertTrue;
-
 public class GamePlayTest {
 
-    private BlackPlayer black=new BlackPlayer("b");
-    private WhitePlayer white=new WhitePlayer("w");
+    private BlackPlayer black = new BlackPlayer("b");
+    private WhitePlayer white = new WhitePlayer("w");
 
     private GomokuGame gomokuGame = new GomokuFactory().getGame(GomokuType.Standard);
     private GamePlay Pgame;
-    private int gridSize = 14;
+
     private void SetConditions(){
         for(int i=0;i<5;i++){ this.black.addMove(new Piece(i,0,PieceColor.BLACK));}
         gomokuGame.setPlayers(this.black,this.white);
@@ -28,8 +25,9 @@ public class GamePlayTest {
     }
 
     private void SetFullBoard(){
-        for(int i=0;i<=this.gridSize;i++){
-            for(int j=0;j<=gridSize;j++){ this.black.addMove(new Piece(i,j,PieceColor.BLACK));}
+        int gridSize = 14;
+        for(int i = 0; i<= gridSize; i++){
+            for(int j = 0; j<= gridSize; j++){ this.black.addMove(new Piece(i,j,PieceColor.BLACK));}
         }
         gomokuGame.setPlayers(this.black,this.white);
         Pgame=new GamePlay(gomokuGame, OpeningType.Standard);

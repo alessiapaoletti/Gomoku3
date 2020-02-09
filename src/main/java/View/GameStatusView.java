@@ -1,21 +1,19 @@
 package View;
 
-import Model.BlackPlayer;
+import Model.Player.*;
 import Model.GomokuGame.GomokuType;
-import Model.Player;
 import Model.Rules.Opening.OpeningType;
-import Model.WhitePlayer;
 
 public class GameStatusView {
+
     private final String ANSI_PURPLE = "\u001B[35m";
     private final String ANSI_RESET = "\u001B[0m";
     private final String STAR = "***************************************";
-    private final String SPACE= "      ";
 
     private String player1;
     private String player2;
-    public String color1;
-    public String color2;
+    String color1;
+    String color2;
     private String gameType;
     private String openingType;
 
@@ -33,11 +31,11 @@ public class GameStatusView {
         this.gameType = "Game:  " + gameName;
     }
 
-
     public void initBackGround(){
         System.out.println("\n"+ANSI_PURPLE+STAR+ANSI_RESET);
-        System.out.println(ANSI_PURPLE+this.player1+SPACE+this.color1+ANSI_RESET);
-        System.out.println(ANSI_PURPLE+this.player2+SPACE+this.color2+ANSI_RESET);
+        String SPACE = "      ";
+        System.out.println(ANSI_PURPLE+this.player1+ SPACE +this.color1+ANSI_RESET);
+        System.out.println(ANSI_PURPLE+this.player2+ SPACE +this.color2+ANSI_RESET);
         System.out.println(ANSI_PURPLE+this.gameType+ANSI_RESET);
         System.out.println(ANSI_PURPLE+this.openingType+ANSI_RESET);
 
@@ -45,8 +43,8 @@ public class GameStatusView {
 
     public void swapColors(){
         String tmp = color1;
-        color1=color2;
-        color2=tmp;
+        color1 = color2;
+        color2 = tmp;
     }
 
     public void printTurn(String playerName){
