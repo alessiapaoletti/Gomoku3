@@ -45,7 +45,8 @@ public class AlertOpeningTest {
     public void swapOpeningRulesAlertTest() {
         String expected = ANSI_PURPLE + "* SWAP opening - Rules *\n" +
                 ANSI_PURPLE1 + "BLACK player places 3 stones: 2 black and 1 white.\n" +
-                "then WHITE player can decide to swap color or stay white" +
+                "then WHITE player can decide to swap color or stay white\n" +
+                "The player will then proceed placing 1 stone each."+
                 ANSI_RESET;
 
         assertThat(alertOpening.swapOpeningRulesAlert(), is(expected));

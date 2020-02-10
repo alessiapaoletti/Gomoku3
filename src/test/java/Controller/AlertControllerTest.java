@@ -106,7 +106,7 @@ public class AlertControllerTest {
         String ANSI_PURPLE1 = "\u001B[95m";
         assertEquals(ANSI_PURPLE + "* SWAP opening - Rules *\n" +
                 ANSI_PURPLE1 + "BLACK player places 3 stones: 2 black and 1 white.\n" +
-                "then WHITE player can decide to swap color or stay white" +
+                "Then WHITE player can decide to swap color or stay white.\n" +"The player will then proceed placing 1 stone each."+
                 ANSI_RESET + specialCharacter + "\n", outContent.toString());
     }
 

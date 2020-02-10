@@ -27,10 +27,12 @@ public class AlertSwap extends AlertGenerator {
 
     public  String swapAlert(){
         return this.generateConfirmationAlert(
-                "WHITE player, do you want to swap and control the black stones?").getResult().getText();
+                "WHITE player, do you want to swap and control the black stones?\n"+
+                "The player will then proceed placing 1 stone each.").getResult().getText();
     }
 
     public String swapBlack(){
-        return this.generateConfirmationAlert("BLACK player, do you want to swap and control white stones?").getResult().getText();
+        return this.generateConfirmationAlert("BLACK player, do you want to swap and control white stones?\n"+
+                "The player will then proceed placing 1 stone each.").getResult().getText();
     }
 }

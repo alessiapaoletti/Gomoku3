@@ -33,11 +33,11 @@ public class AlertSwap extends AlertGenerator {
     }
 
     public  String swapAlert(){
-        return this.generateYesNoAlert("White player, do you want to Swap ?" + "\n" + "(answer YES/NO)" );
+        return this.generateYesNoAlert("White player, do you want to Swap ?" + "\nThe player will then proceed placing 1 stone each." + "\n(answer YES/NO)" );
     }
 
     public  String swapBlack(){
-        return this.generateYesNoAlert("Black player, do you want to Swap ?" + "\n" + "(answer YES/NO)" );
+        return this.generateYesNoAlert("Black player, do you want to Swap ?" + "\nThe player will then proceed placing 1 stone each." + "\n(answer YES/NO)" );
     }
 
     public  String swap2Alert(){
