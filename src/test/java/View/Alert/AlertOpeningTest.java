@@ -3,6 +3,8 @@ package View.Alert;
 import Model.Rules.Opening.OpeningType;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
+
+import com.sun.javafx.PlatformUtil;
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -16,10 +18,12 @@ public class AlertOpeningTest {
     private final String ANSI_PURPLE = "\u001B[35m";
     private final String ANSI_PURPLE1 = "\u001B[95m";
 
+    /*needed to run the test according to the OS*/
+    private boolean isWindows = PlatformUtil.isWindows();
+    private String specialCharacter = this.isWindows ? "\r" : "";
 
     @Test
     public void alertOpeningConstructorTest() {
-
         AlertOpening alertOpeningTest = new AlertOpening();
         String expected = alertOpeningTest.stdOpeningRulesAlert();
         assertThat(alertOpeningTest.getAlertOpeningMap().get(OpeningType.Standard) , is(expected));
@@ -64,7 +68,7 @@ public class AlertOpeningTest {
 
         alertOpening.getAlertOpening(OpeningType.Standard);
 
-        String expected = alertOpening.stdOpeningRulesAlert() + "\n";
+        String expected = alertOpening.stdOpeningRulesAlert() + specialCharacter +"\n";
         assertThat(outContent.toString(), is(expected));
 
     }

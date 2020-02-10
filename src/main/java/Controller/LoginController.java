@@ -18,6 +18,7 @@ class LoginController {
         WhitePlayer whitePlayer = new WhitePlayer(loginView.setWhitePlayer());
         GomokuType gomokuType = loginView.setGame();
         OpeningType openingType = loginView.setOpening();
+
         BoardController boardController = new BoardController(blackPlayer, whitePlayer, gomokuType, openingType);
         boardController.callGame();
     }

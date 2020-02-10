@@ -6,7 +6,6 @@ import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-
 public class AlertSwapTest {
 
     private AlertSwap alertSwap = new AlertSwap();
@@ -25,7 +24,6 @@ public class AlertSwapTest {
 
     @Test
     public void generateYesNoAlertTest() {
-
         InputStream sysInBackup = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("YES".getBytes());
         System.setIn(in);
@@ -40,30 +38,24 @@ public class AlertSwapTest {
         System.setIn(in);
         assertThat(alertSwap.generateSwapAlert("choose the option 1, 2 or 3"), is("2"));
         System.setIn(sysInBackup);
-
     }
 
     @Test
     public void swapAlertTest() {
-
         InputStream sysInBackup = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("YES".getBytes());
         System.setIn(in);
         assertThat(alertSwap.swapAlert(),is("YES"));
         System.setIn(sysInBackup);
-
-
     }
 
     @Test
     public void swapBlackTest() {
-
         InputStream sysInBackup = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("YES".getBytes());
         System.setIn(in);
         assertThat(alertSwap.swapBlack(),is("YES"));
         System.setIn(sysInBackup);
-
     }
 
     @Test

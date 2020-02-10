@@ -8,7 +8,7 @@ public class GameStatusView {
 
     private final String ANSI_PURPLE = "\u001B[35m";
     private final String ANSI_RESET = "\u001B[0m";
-    private final String STAR = "***************************************";
+    private final String STAR = "*";
 
     private String player1;
     private String player2;
@@ -22,7 +22,6 @@ public class GameStatusView {
     }
 
     private void initLabels(BlackPlayer p1, WhitePlayer p2, GomokuType gameName, OpeningType openingName){
-
         this.player1 = p1.getName();
         this.player2 = p2.getName();
         this.color1 = p1.getColorName();
@@ -32,13 +31,12 @@ public class GameStatusView {
     }
 
     public void initBackGround(){
-        System.out.println("\n"+ANSI_PURPLE+STAR+ANSI_RESET);
-        String SPACE = "      ";
-        System.out.println(ANSI_PURPLE+this.player1+ SPACE +this.color1+ANSI_RESET);
-        System.out.println(ANSI_PURPLE+this.player2+ SPACE +this.color2+ANSI_RESET);
-        System.out.println(ANSI_PURPLE+this.gameType+ANSI_RESET);
-        System.out.println(ANSI_PURPLE+this.openingType+ANSI_RESET);
-
+        System.out.println("\n" + ANSI_PURPLE + STAR.repeat(40) + ANSI_RESET);
+        String SPACE = " ";
+        System.out.println(ANSI_PURPLE + this.player1 + SPACE.repeat(6) + this.color1 + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + this.player2 + SPACE.repeat(6) + this.color2 + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + this.gameType + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + this.openingType + ANSI_RESET);
     }
 
     public void swapColors(){
@@ -49,10 +47,8 @@ public class GameStatusView {
 
     public void printTurn(String playerName){
         System.out.println("\n");
-        System.out.println(ANSI_PURPLE + STAR + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + STAR.repeat(40) + ANSI_RESET);
         System.out.println(ANSI_PURPLE + "Player " + playerName + " it is your turn!" + ANSI_RESET);
-        System.out.println(ANSI_PURPLE + STAR + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + STAR.repeat(40) + ANSI_RESET);
     }
-
-
 }

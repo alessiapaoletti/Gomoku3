@@ -30,7 +30,6 @@ public class AlertOpening extends AlertGenerator{
                         "- place 2 more stones (1 black and 1 white) and let the black player decide the wanted color";
     }
 
-
     private  Map<OpeningType, String> alertOpeningMap = new HashMap<>();
 
     private void add(){
@@ -42,14 +41,12 @@ public class AlertOpening extends AlertGenerator{
     public void getAlertOpening(OpeningType opening) {
         try {
             System.out.println(this.alertOpeningMap.get(opening));
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             System.out.println(e.getCause());
         }
     }
 
-     Map<OpeningType, String> getAlertOpeningMap() {
+    Map<OpeningType, String> getAlertOpeningMap() {
         return alertOpeningMap;
     }
-
-
 }

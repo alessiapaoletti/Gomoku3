@@ -31,4 +31,8 @@ public class AlertController implements AlertControllerInterface{
     public void callGetAlertOpening(OpeningType opening){
         new AlertOpening().getAlertOpening(opening);
     }
+
+    public void callinvalidCoordinateError(String dim){
+        new AlertInvalidMove().invalidCoordinateAlert(dim);
+    }
 }

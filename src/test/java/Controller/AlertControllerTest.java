@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Rules.Opening.OpeningType;
+import com.sun.javafx.PlatformUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +20,10 @@ public class AlertControllerTest {
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private PrintStream originalOut = System.out;
 
+    /*needed to run the test according to the OS*/
+    private boolean isWindows = PlatformUtil.isWindows();
+    private String specialCharacter = this.isWindows ? "\r" : "";
+
     @Before
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
@@ -30,8 +35,8 @@ public class AlertControllerTest {
     }
 
     @Test
-    public void ConstructorTest(){
-        assertEquals("class Controller.AlertController",this.alertinterface.getClass().toString());
+    public void constructorTest(){
+        assertEquals("class Controller.AlertController", this.alertinterface.getClass().toString());
     }
 
     @Test
@@ -48,7 +53,7 @@ public class AlertControllerTest {
         InputStream sysInBackup = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("NO".getBytes());
         System.setIn(in);
-        assertEquals("NO",this.alertinterface.swapBlack());
+        assertEquals("NO", this.alertinterface.swapBlack());
         System.setIn(sysInBackup);
     }
 
@@ -57,7 +62,7 @@ public class AlertControllerTest {
         InputStream sysInBackup = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("2".getBytes());
         System.setIn(in);
-        assertEquals("2",this.alertinterface.swap2Alert());
+        assertEquals("2", this.alertinterface.swap2Alert());
         System.setIn(sysInBackup);
     }
 
@@ -73,20 +78,24 @@ public class AlertControllerTest {
     @Test
     public void callInvalidMoveErrorTest(){
         new AlertController().callInvalidMoveError();
-        assertEquals(ANSI_RED+"ERROR -Invalid Move "+ANSI_RESET+new String(Character.toChars(0x1F6AB))+"\r\n",outContent.toString());
+        assertEquals(ANSI_RED +"ERROR -Invalid Move "+ ANSI_RESET + new String(Character.toChars(0x1F6AB)) + specialCharacter + "\n",
+                outContent.toString());
     }
 
     @Test
     public void callGameOverAlertTest(){
         new AlertController().callGameOverAlert();
-        assertEquals(new String(Character.toChars(0x1F389))+ANSI_RED + " Game Over  "+ ANSI_RESET+new String(Character.toChars(0x1F389))+"\r\n"+ANSI_RED+"The board is full: game ended with no winner"+ ANSI_RESET+"\r\n",outContent.toString());
+        assertEquals(new String(Character.toChars(0x1F389))+ANSI_RED + " Game Over  "+ ANSI_RESET +
+                new String(Character.toChars(0x1F389)) + specialCharacter + "\n" + ANSI_RED +
+                "The board is full: game ended with no winner" + ANSI_RESET + specialCharacter + "\n", outContent.toString());
     }
 
     @Test
     public void callGameOverAlertTest1() {
         new AlertController().callGameOverAlert("giorgio");
-        assertEquals(new String(Character.toChars(0x1F389))+ANSI_RED + " Game Over  "+ ANSI_RESET+new String(Character.toChars(0x1F389))
-                + "\r\n" + ANSI_RED + "The winner is giorgio" + ANSI_RESET + "\r\n", outContent.toString());
+        assertEquals(new String(Character.toChars(0x1F389)) + ANSI_RED + " Game Over  " + ANSI_RESET +
+                new String(Character.toChars(0x1F389)) + specialCharacter + "\n" + ANSI_RED +
+                "The winner is giorgio" + ANSI_RESET + specialCharacter + "\n", outContent.toString());
     }
 
     @Test
@@ -98,6 +107,14 @@ public class AlertControllerTest {
         assertEquals(ANSI_PURPLE + "* SWAP opening - Rules *\n" +
                 ANSI_PURPLE1 + "BLACK player places 3 stones: 2 black and 1 white.\n" +
                 "then WHITE player can decide to swap color or stay white" +
-                ANSI_RESET+"\r\n", outContent.toString());
+                ANSI_RESET + specialCharacter + "\n", outContent.toString());
     }
+
+    @Test
+    public void callinvalidCoordinateErrorTest(){
+        new AlertController().callinvalidCoordinateError("14");
+        assertEquals(ANSI_RED + "ERROR -Invalid Coordinate (number in range [0,14])" + ANSI_RESET +
+                new String(Character.toChars(0x1F6AB)) + specialCharacter + "\n", outContent.toString());
+    }
+
 }

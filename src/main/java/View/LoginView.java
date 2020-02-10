@@ -7,40 +7,39 @@ import Model.GomokuGame.GomokuType;
 
 public class LoginView {
 
-    private AlertLogin login=new AlertLogin();
+    private AlertLogin alertLogin = new AlertLogin();
 
     public LoginView(){
-        login.welcomePrint();
+        alertLogin.welcomePrint();
     }
 
     public String setBlackPlayer(){
-        login.setBlackPlayer();
+        alertLogin.setBlackPlayer();
         return new Scanner(System.in).next();
     }
 
     public String setWhitePlayer(){
-        login.setWhitePlayer();
+        alertLogin.setWhitePlayer();
         return new Scanner(System.in).next();
     }
 
     public GomokuType setGame(){
-        login.setGame();
+        alertLogin.setGame();
         try {
             return GomokuType.valueOf(new Scanner(System.in).next());
-        }catch (IllegalArgumentException e){
-          login.loginAlert();
+        } catch (IllegalArgumentException e){
+          alertLogin.loginAlert();
           return this.setGame();
         }
     }
 
     public OpeningType setOpening(){
-        login.setOpening();
+        alertLogin.setOpening();
         try {
             return OpeningType.valueOf(new Scanner(System.in).next());
-        }catch (IllegalArgumentException e){
-            login.loginAlert();
+        } catch (IllegalArgumentException e) {
+            alertLogin.loginAlert();
             return this.setOpening();
         }
     }
-
 }

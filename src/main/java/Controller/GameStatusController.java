@@ -14,14 +14,14 @@ public class GameStatusController implements GameStatusControllerInterface {
     private WhitePlayer whitePlayer;
     private String currentPlayerName;
 
-    public GameStatusController(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gomokuType, OpeningType openingType){
+    GameStatusController(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gomokuType, OpeningType openingType){
         this.gameStatusView = new GameStatusView(blackPlayer, whitePlayer, gomokuType, openingType);
         this.blackPlayer = blackPlayer;
         this.whitePlayer = whitePlayer;
         this.currentPlayerName = blackPlayer.getName();
     }
 
-    public void start(){
+    void start(){
         this.gameStatusView.initBackGround();
     }
 

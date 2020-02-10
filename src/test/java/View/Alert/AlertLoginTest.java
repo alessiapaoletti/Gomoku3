@@ -2,6 +2,7 @@ package View.Alert;
 
 import Model.GomokuGame.GomokuType;
 import Model.Rules.Opening.OpeningType;
+import com.sun.javafx.PlatformUtil;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -15,6 +16,9 @@ public class AlertLoginTest {
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final String ANSI_RESET = "\u001B[0m";
 
+    /*needed to run the test according to the OS*/
+    private boolean isWindows = PlatformUtil.isWindows();
+    private String specialCharacter = this.isWindows ? "\r" : "";
 
     @Test
     public void alertLoginTest() {
@@ -35,7 +39,8 @@ public class AlertLoginTest {
         this.alertLogin.loginAlert();
 
         String ANSI_RED = "\u001B[31m";
-        String expected = ANSI_RED + "invalid selected type! " + ANSI_RESET +new String(Character.toChars(0x1F6AB))+"\r\n";
+        String expected = ANSI_RED + "invalid selected type! " + ANSI_RESET +
+                new String(Character.toChars(0x1F6AB)) + specialCharacter + "\n";
 
         assertThat(outContent.toString(), is(expected));
     }
@@ -47,9 +52,9 @@ public class AlertLoginTest {
         this.alertLogin.welcomePrint();
 
         String ANSI_PURPLE = "\u001B[35m";
-        String STAR = "*****************";
-        String expected = ANSI_PURPLE + STAR +" WELCOME IN GOMOKU "+ STAR + ANSI_RESET +
-                "\r\n" + ANSI_PURPLE + STAR +"   Game Setting  "+ STAR + ANSI_RESET +"\r\n";
+        String STAR = "*".repeat(17);
+        String expected = ANSI_PURPLE + STAR +" WELCOME IN GOMOKU "+ STAR + ANSI_RESET + specialCharacter +
+                "\n" + ANSI_PURPLE + STAR +"   Game Setting  "+ STAR + ANSI_RESET + specialCharacter + "\n";
 
         assertThat(outContent.toString(), is(expected));
     }
@@ -60,7 +65,7 @@ public class AlertLoginTest {
 
         this.alertLogin.setBlackPlayer();
 
-        String expected = "Black Player Name: \r\n";
+        String expected = "Black Player Name: " + specialCharacter + "\n";
 
         assertThat(outContent.toString(), is(expected));
     }
@@ -71,7 +76,7 @@ public class AlertLoginTest {
 
         this.alertLogin.setWhitePlayer();
 
-        String expected = "White Player Name: \r\n" ;
+        String expected = "White Player Name: " + specialCharacter + "\n" ;
 
         assertThat(outContent.toString(), is(expected));
     }
@@ -81,7 +86,8 @@ public class AlertLoginTest {
         System.setOut(new PrintStream(outContent));
 
         this.alertLogin.setOpening();
-        String expected = "Choose your favorite Opening Rule between: \r\nStandard\r\nSwap\r\nSwap2\r\n";
+        String expected = "Choose your favorite Opening Rule between: " + specialCharacter + "\nStandard"  + specialCharacter +
+                "\nSwap"  + specialCharacter + "\nSwap2" + specialCharacter + "\n";
 
         assertThat(outContent.toString(), is(expected));
     }
@@ -91,7 +97,8 @@ public class AlertLoginTest {
         System.setOut(new PrintStream(outContent));
         this.alertLogin.setGame();
 
-        String expected = "Choose your favorite version of Gomoku between: \r\nStandard\r\nOmok\r\nFreestyle\r\n";
+        String expected = "Choose your favorite version of Gomoku between: " + specialCharacter +"\nStandard" +
+        specialCharacter +"\nOmok" + specialCharacter + "\nFreestyle"+specialCharacter + "\n";
 
         assertThat(outContent.toString() , is(expected));
     }

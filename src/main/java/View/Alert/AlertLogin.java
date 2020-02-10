@@ -7,7 +7,6 @@ import java.util.List;
 
 public class AlertLogin extends AlertGenerator {
 
-
     private List<GomokuType> gomokuTypes = new ArrayList<>();
     private List <OpeningType> openingTypes = new ArrayList<>();
 
@@ -29,12 +28,12 @@ public class AlertLogin extends AlertGenerator {
     }
 
     public  void loginAlert(){
-        System.out.println(ANSI_RED + "invalid selected type! " + ANSI_RESET+new String(Character.toChars(0x1F6AB)));
+        System.out.println(ANSI_RED + "invalid selected type! " + ANSI_RESET + new String(Character.toChars(0x1F6AB)));
     }
 
     public void welcomePrint(){
-        System.out.println(ANSI_PURPLE + STAR +" WELCOME IN GOMOKU "+ STAR + ANSI_RESET);
-        System.out.println(ANSI_PURPLE+STAR +"   Game Setting  "+ STAR + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + STAR + " WELCOME IN GOMOKU " + STAR + ANSI_RESET);
+        System.out.println(ANSI_PURPLE+STAR + "   Game Setting  " + STAR + ANSI_RESET);
     }
 
     public void setBlackPlayer(){
@@ -55,12 +54,11 @@ public class AlertLogin extends AlertGenerator {
         gomokuTypes.forEach(System.out::println);
     }
 
-    public List<GomokuType> getGomokuTypes() {
+    List<GomokuType> getGomokuTypes() {
         return gomokuTypes;
     }
 
-
-    public List<OpeningType> getOpeningTypes() {
+    List<OpeningType> getOpeningTypes() {
         return openingTypes;
     }
 

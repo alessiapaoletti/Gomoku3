@@ -52,7 +52,7 @@ public class BoardController extends Control {
         alertController.callGetAlertOpening(gamePlay.getGame().getOpeningRules().getOpeningType());
         this.setOnMouseClicked((event) -> {
             if(placePiece(event.getX(), event.getY())) {
-                TurnManager.getTurnManager(gamePlay.getGame().getOpeningRules().getOpeningType(), numMovesDone());
+                turnManager.getTurnManager(gamePlay.getGame().getOpeningRules().getOpeningType(), numMovesDone());
                 startGame(event.getX(), event.getY());
             }
         });

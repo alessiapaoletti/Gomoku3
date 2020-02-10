@@ -27,7 +27,7 @@ class TurnManager {
         turnManagerMap.put(OpeningType.Swap2, this::turnManagerSwap);
     }
 
-    static void getTurnManager(OpeningType openingType, final int totalMoves){
+    void getTurnManager(OpeningType openingType, final int totalMoves){
         turnManagerMap.get(openingType).accept(totalMoves);
     }
 }

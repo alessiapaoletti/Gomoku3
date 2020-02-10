@@ -2,6 +2,7 @@ package View;
 
 import static org.junit.Assert.*;
 import Model.GomokuGame.GomokuType;
+import com.sun.javafx.PlatformUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +17,10 @@ public class LoginViewTest {
     private LoginView loginView;
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private PrintStream originalOut = System.out;
+
+    /*needed to run the test according to the OS*/
+    private boolean isWindows = PlatformUtil.isWindows();
+    private String specialCharacter = this.isWindows ? "\r" : "";
 
     @Before
     public void setUpStreams() {
@@ -33,7 +38,9 @@ public class LoginViewTest {
         String ANSI_RESET = "\u001B[0m";
         String ANSI_PURPLE = "\u001B[35m";
         String STAR = "*****************";
-        assertEquals(ANSI_PURPLE + STAR +" WELCOME IN GOMOKU "+ STAR + ANSI_RESET +"\r\n"+ ANSI_PURPLE + STAR +"   Game Setting  "+ STAR + ANSI_RESET +"\r\n",outContent.toString());
+        assertEquals(ANSI_PURPLE + STAR + " WELCOME IN GOMOKU " + STAR + ANSI_RESET +
+                specialCharacter + "\n" + ANSI_PURPLE + STAR + "   Game Setting  " + STAR + ANSI_RESET +
+                specialCharacter + "\n",outContent.toString());
     }
 
     @Test

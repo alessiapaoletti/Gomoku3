@@ -1,8 +1,6 @@
 package View;
 
-import Model.Piece.Piece;
 import Model.Piece.PieceColor;
-
 import java.util.stream.IntStream;
 
 class GridStructure {
@@ -12,15 +10,20 @@ class GridStructure {
     private final String ANSI_RESET = "\u001B[0m";
     private final String ANSI_PURPLE1 = "\u001B[95m";
     private final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
+    private final String SINGLE_SPACE = " ";
+    private final String SINGLE_DASH = "-";
     private int size;
 
     GridStructure(int size){
         this.size = size;
+        //this.pieces = new PieceColor[this.size+1][this.size+1];
         /* first we have to create the matrix and the assing the empty color */
-        /*this.pieces = IntStream
-                .range(0, this.size+1)
+        /**non se abbia senso.... */
+        /*this.pieces=new PieceColor[this.size+1][this.size+1];
+
+        this.pieces = IntStream.range(0, this.size+1)
                 .mapToObj(i -> IntStream.range(0, this.size+1)
-                        .mapToObj(PieceColor[][]::new)
+                        .mapToObj(j -> this.pieces[i][j] = PieceColor.EMPTY)
                         .toArray(PieceColor[]::new))
                 .toArray(PieceColor[][]::new);*/
 
@@ -30,11 +33,9 @@ class GridStructure {
         }
     }
 
-    void setPiece(int x, int y,final PieceColor color){
-        this.pieces[x][y]=color;
-    }
+    void setPiece(int x, int y,final PieceColor color){ this.pieces[x][y] = color;  }
 
-    void removePiece(int x ,int y){ this.pieces[x][y]=PieceColor.EMPTY;}
+    void removePiece(int x ,int y){ this.pieces[x][y] = PieceColor.EMPTY;}
 
     private String placePiece(int x,int y){
 
@@ -47,37 +48,53 @@ class GridStructure {
 
         if(this.pieces[x][y].equals(PieceColor.BLACK)) return ANSI_PURPLE_BACKGROUND + ANSI_BLACK + "X" + ANSI_PURPLE1;
         else if(this.pieces[x][y].equals(PieceColor.WHITE)) return ANSI_WHITE + ANSI_PURPLE_BACKGROUND + "X" + ANSI_PURPLE1;
-        else return "-";
+        else return SINGLE_DASH;
     }
 
     void createHorizontalNumbers(){
-        String singleSpace = " ";
-        String doubleSpace = "  ";
+        StringBuilder numbers = new StringBuilder(SINGLE_SPACE.repeat(2));
+        IntStream.range(0, this.size)
+                .forEach(i -> numbers.append(String.format("%5s", i)));
 
-        StringBuilder enumeration = new StringBuilder(singleSpace);
+        System.out.println(ANSI_PURPLE+numbers+ANSI_RESET);
 
-        for(int i=0;i<10;i++){
-            enumeration.append(doubleSpace).append(i).append(doubleSpace);}
 
-        for(int i=10;i<this.size;i++){
-            enumeration.append(doubleSpace).append(i).append(singleSpace);}
+//        for(int i=0;i<this.size;i++) {
+//            enumeration.append(String.format("%5s", i));
+//        }
 
-        System.out.println(ANSI_PURPLE+enumeration+ANSI_RESET);
+
+
+//        for(int i=0;i<10;i++){
+//            enumeration.append(doubleSpace).append(i).append(doubleSpace);}
+//
+//        for(int i=10;i<this.size;i++){
+//            enumeration.append(doubleSpace).append(i).append(singleSpace);}
+
     }
 
     void createHorizontalLines(Integer i){
-        String num;
-        if(i<10) num=i.toString()+"  ";
-        else num=i.toString()+" ";
-        System.out.print(ANSI_PURPLE+num);
-        for(int j=0;j<this.size-1;j++){
+
+        String num = String.format("%3s", i.toString());
+
+//        if(i<10) num=i.toString()+"  ";
+//        else num=i.toString()+" ";
+        System.out.print(ANSI_PURPLE + num + SINGLE_SPACE );
+
+        IntStream.range(0, this.size-1)
+                .forEach(index -> System.out.print(ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 +
+                        SINGLE_DASH.repeat(2) + this.placePiece(index,i) + SINGLE_DASH.repeat(2) + ANSI_RESET));
+        /*for(int j=0;j<this.size-1;j++){
             System.out.print(ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+this.placePiece(j,i)+"----"+ANSI_RESET);
-        }
-        System.out.println(ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+this.placePiece(this.size-1,i)+ANSI_RESET);
+        }*/
+
+        System.out.println(ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 + SINGLE_DASH +  this.placePiece(this.size-1,i) +
+                SINGLE_DASH.repeat(2) + ANSI_RESET);
     }
 
     void createVerticalLines(){
-        System.out.println("   "+ANSI_PURPLE+ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+"|    ".repeat(this.size-1)+"|"+ANSI_RESET);
-    }
-
+        String SINGLE_VERT_BAR = "|";
+        System.out.println(SINGLE_SPACE.repeat(4) + ANSI_PURPLE + ANSI_PURPLE_BACKGROUND + SINGLE_SPACE + ANSI_PURPLE1 +
+                (SINGLE_SPACE + SINGLE_VERT_BAR + SINGLE_SPACE.repeat(3)).repeat(this.size-1)
+                + SINGLE_VERT_BAR + SINGLE_SPACE.repeat(2) + ANSI_RESET); }
 }
