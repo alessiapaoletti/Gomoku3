@@ -88,7 +88,6 @@ public class BoardViewTest {
         assertEquals(this.boardView.gridStructure.pieces[1][2], PieceColor.EMPTY);
     }
 
-    /**bisogna vedere come è adesso la board*/
     @Test
     public void createboardTest(){
       this.constructorTest();
@@ -97,15 +96,24 @@ public class BoardViewTest {
         String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
         String ANSI_WHITE = "\033[0;30m";
         String ANSI_PURPLE1 = "\u001B[95m";
-        String res = ANSI_PURPLE + "*".repeat(36) +"  STANDARD  " + "*".repeat(36) + ANSI_RESET + "\n" + "\n" + specialCharacter + "\n" +
-                ANSI_PURPLE + "   0    1    2    3    4    5    6    7    8    9  " + ANSI_RESET + specialCharacter + "\n" +
-              ANSI_PURPLE + "0  "+ ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 + ANSI_WHITE + ANSI_PURPLE_BACKGROUND + "X" + ANSI_PURPLE1 + "----" +
-                ANSI_RESET + ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 + "-" + ANSI_RESET + specialCharacter + "\n"+ "   " + ANSI_PURPLE +
-                ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 +"|    |" + ANSI_RESET + specialCharacter + "\n"+ ANSI_PURPLE + "1  " +
-                ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 + "-----" + ANSI_RESET + ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 + "-" + ANSI_RESET +
+        String res = ANSI_PURPLE + "*".repeat(36) +"  STANDARD  " + "*".repeat(36) + ANSI_RESET +
+                specialCharacter + "\n" + "\n"  +specialCharacter+ "\n" +
+                ANSI_PURPLE + "      0    1" + ANSI_RESET  + specialCharacter + "\n" +
+              ANSI_PURPLE +  "  0 "+ ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 + "--" + ANSI_WHITE + ANSI_PURPLE_BACKGROUND + "X" + ANSI_PURPLE1 + "--" +
+                ANSI_RESET + ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 + "----" + ANSI_RESET   + specialCharacter + "\n" +
+                "    " + ANSI_PURPLE +  ANSI_PURPLE_BACKGROUND + " " + ANSI_PURPLE1 + " |   |  " + ANSI_RESET  + specialCharacter +  "\n" +
+                ANSI_PURPLE + "  1 " +  ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 + "-----" + ANSI_RESET + ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 + "----" + ANSI_RESET +
                 specialCharacter + "\n";
-      //assertEquals(res,outContent.toString());
+      assertEquals(res,outContent.toString());
     }
 
+
+    /*String res = ANSI_PURPLE + "*".repeat(36) +"  STANDARD  " + "*".repeat(36) + ANSI_RESET + "\n" + "\n" + specialCharacter + "\n" +
+            ANSI_PURPLE + "   0    1    2    3    4    5    6    7    8    9  " + ANSI_RESET + specialCharacter + "\n" +
+            ANSI_PURPLE + "0  "+ ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 + ANSI_WHITE + ANSI_PURPLE_BACKGROUND + "X" + ANSI_PURPLE1 + "----" +
+            ANSI_RESET + ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 + "-" + ANSI_RESET + specialCharacter + "\n"+ "   " + ANSI_PURPLE +
+            ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 +"|    |" + ANSI_RESET + specialCharacter + "\n"+ ANSI_PURPLE + "1  " +
+            ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 + "-----" + ANSI_RESET + ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 + "-" + ANSI_RESET +
+            specialCharacter + "\n"; */
 
 }
