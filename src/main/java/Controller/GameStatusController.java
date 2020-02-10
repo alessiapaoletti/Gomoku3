@@ -4,7 +4,6 @@ import Model.GomokuGame.GomokuType;
 import Model.Rules.Opening.OpeningType;
 import Model.Player.WhitePlayer;
 import Model.Player.BlackPlayer;
-
 import View.GameStatusView;
 
 public class GameStatusController implements GameStatusControllerInterface {
@@ -43,4 +42,8 @@ public class GameStatusController implements GameStatusControllerInterface {
         this.gameStatusView.printTurn(this.currentPlayerName);
     }
 
+
+    String getCurrentPlayerName() {
+        return currentPlayerName;
+    }
 }

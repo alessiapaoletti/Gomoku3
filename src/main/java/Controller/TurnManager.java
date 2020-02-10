@@ -13,9 +13,9 @@ class TurnManager {
         this.gameStatusController = gameStatusController;
     }
 
-    private void turnManagerStd(final int totalMoves) { gameStatusController.swapColorTurn(); }
+    void turnManagerStd(final int totalMoves) { gameStatusController.swapColorTurn(); }
 
-    private void turnManagerSwap(final int totalMoves){
+    void turnManagerSwap(final int totalMoves){
         if (totalMoves >= 3) gameStatusController.swapColorTurn();
     }
 
