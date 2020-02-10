@@ -2,7 +2,7 @@ package View.Alert;
 
 import java.util.Scanner;
 
-public class AlertSwap extends AlertGenerator {
+public class AlertSwap implements AlertGenerator {
 
     boolean checkYesNoAnswer(String answer){
         return (answer.equals("YES") || answer.equals("NO"));
@@ -33,11 +33,13 @@ public class AlertSwap extends AlertGenerator {
     }
 
     public  String swapAlert(String whitePlayer){
-        return this.generateYesNoAlert( whitePlayer+ ", do you want to Swap ?" + "\nThe player will then proceed placing 1 stone each." + "\n(answer YES/NO)" );
+        return this.generateYesNoAlert( whitePlayer+ ", do you want to Swap ?" +
+                "\nThe player will then proceed placing 1 stone each." + "\n(answer YES/NO)" );
     }
 
     public  String swapBlack(String blackPlayer){
-        return this.generateYesNoAlert(blackPlayer + ", do you want to Swap ?" + "\nThe player will then proceed placing 1 stone each." + "\n(answer YES/NO)" );
+        return this.generateYesNoAlert(blackPlayer + ", do you want to Swap ?" +
+                "\nThe player will then proceed placing 1 stone each." + "\n(answer YES/NO)" );
     }
 
     public  String swap2Alert(String whitePlayer){

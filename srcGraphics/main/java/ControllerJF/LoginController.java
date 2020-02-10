@@ -10,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import java.lang.reflect.InvocationTargetException;
 
 public class LoginController {
 
@@ -31,7 +30,7 @@ public class LoginController {
     }
 
     @FXML
-    public void startGame() throws InvocationTargetException, IllegalAccessException{
+    public void startGame() {
 
         if (checkPlayersName() && checkGameSetUp()) {
 

@@ -28,7 +28,7 @@ class GridStructure {
 
     private String placePiece(int x,int y){
 
-        String ANSI_BLACK = "\033[1;90m";
+       String ANSI_BLACK = "\033[1;90m";
         String ANSI_WHITE = "\033[0;30m";
 
         // FOR THE CORRECT DISPLAY ON WHITE BACKGROUND TERMINAL

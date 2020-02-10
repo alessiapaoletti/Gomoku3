@@ -4,7 +4,7 @@ import Model.Rules.Opening.OpeningType;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AlertOpening extends AlertGenerator{
+public class AlertOpening implements AlertGenerator{
 
     public AlertOpening() {this.add();}
 

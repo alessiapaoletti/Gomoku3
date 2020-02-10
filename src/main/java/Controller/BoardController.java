@@ -104,7 +104,6 @@ class BoardController {
     void gameOver(String ... winner){
         this.alertController.callGameOverAlert(winner);
         this.gameOver = true;
-      //  this.gameStatusController.swapColorTurn();
     }
 }
 

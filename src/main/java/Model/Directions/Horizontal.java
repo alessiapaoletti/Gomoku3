@@ -2,7 +2,7 @@ package Model.Directions;
 
 import Model.Piece.Piece;
 
-public class Horizontal extends Directions {
+public class Horizontal implements Directions {
 
     @Override
     public Piece updatePiece(Piece piece, int increment, int sign) {

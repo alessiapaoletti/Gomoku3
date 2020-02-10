@@ -24,16 +24,14 @@ public class Swap2Opening extends SwapOpening {
     private boolean swap2WhiteOptions() {
         String answer = super.alertControllerInterface.swap2Alert(super.whitePlayer.getName());
         if ("1".equals(answer)) {
-            /*white player stay white and put 4th stone*/
             return true;
         } else if ("2".equals(answer)) {
-            /*white player swap color and control black stones*/
             super.gameStatusControllerInterface.swapLabel();
             super.gameStatusControllerInterface.swapColorTurn();
             super.utilitySwap();
             return true;
         } else
-            return false;  /*white player insert two more stones, then Black player decides if swap*/
+            return false;
     }
 
     private void swap2SwapBlack() {

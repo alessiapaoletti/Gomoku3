@@ -1,10 +1,10 @@
 package View.Alert;
 
-public abstract class AlertGenerator {
+public interface AlertGenerator {
 
-    final String ANSI_RESET = "\u001B[0m";
-    final String ANSI_PURPLE = "\u001B[35m";
-    final String ANSI_PURPLE1 = "\u001B[95m";
-    final String ANSI_RED = "\u001B[31m";
-    final String STAR = "*".repeat(17);
+    String ANSI_RESET = "\u001B[0m";
+    String ANSI_PURPLE = "\u001B[35m";
+    String ANSI_PURPLE1 = "\u001B[95m";
+    String ANSI_RED = "\u001B[31m";
+    String STAR = "*".repeat(17);
 }

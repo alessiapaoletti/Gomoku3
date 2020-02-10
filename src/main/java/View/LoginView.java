@@ -7,7 +7,7 @@ import Model.GomokuGame.GomokuType;
 
 public class LoginView {
 
-    private AlertLogin alertLogin = new AlertLogin();
+    public AlertLogin alertLogin = new AlertLogin();
 
     public LoginView(){
         alertLogin.welcomePrint();

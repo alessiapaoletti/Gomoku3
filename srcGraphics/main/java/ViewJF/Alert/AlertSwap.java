@@ -6,7 +6,6 @@ public class AlertSwap extends AlertGenerator {
 
     private  Alert generateSwap2Alert(String textContent){
         Alert alert = super.createSwap2Alert(textContent);
-        //alert.initStyle(StageStyle.UNDECORATED); //if we want to remove title bar
         alert.setHeight(350);
         alert.showAndWait();
         return alert;

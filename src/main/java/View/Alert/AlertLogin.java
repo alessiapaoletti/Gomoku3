@@ -5,7 +5,7 @@ import Model.Rules.Opening.OpeningType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlertLogin extends AlertGenerator {
+public class AlertLogin implements AlertGenerator {
 
     private List<GomokuType> gomokuTypes = new ArrayList<>();
     private List <OpeningType> openingTypes = new ArrayList<>();

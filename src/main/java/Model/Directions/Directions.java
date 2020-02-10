@@ -2,15 +2,15 @@ package Model.Directions;
 
 import Model.Piece.Piece;
 
-public abstract class Directions {
+public interface Directions {
 
-    public enum Dir{
+    enum Dir{
         HORIZONTAL,
         VERTICAL,
         DIAGONAL1,
         DIAGONAL2
     }
 
-    public abstract Piece updatePiece(Piece piece, int increment, int sign);
+    Piece updatePiece(Piece piece, int increment, int sign);
 
 }

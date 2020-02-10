@@ -9,7 +9,7 @@ import View.GameStatusView;
 
 public class GameStatusController implements GameStatusControllerInterface {
 
-    private GameStatusView gameStatusView;
+    GameStatusView gameStatusView;
     private BlackPlayer blackPlayer;
     private WhitePlayer whitePlayer;
     private String currentPlayerName;

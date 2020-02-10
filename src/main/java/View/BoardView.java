@@ -16,7 +16,8 @@ public class BoardView{
     public BoardView(int inputSize, String gomokuType){
         String SINGLE_STAR = "*";
         this.boardSize = inputSize + 1;
-        System.out.println(ANSI_PURPLE + SINGLE_STAR.repeat(36) + "  " + gomokuType.toUpperCase() + "  " + SINGLE_STAR.repeat(36) + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + SINGLE_STAR.repeat(36) + "  " + gomokuType.toUpperCase() + "  " +
+                SINGLE_STAR.repeat(36) + ANSI_RESET);
         this.gridStructure = new GridStructure(this.boardSize);
     }
 
@@ -56,11 +57,6 @@ public class BoardView{
                     this.gridStructure.createHorizontalLines(index);
                     this.gridStructure.createVerticalLines();
                 });
-
-        /*for(int i=0;i<this.boardSize-1;i++) {
-            this.gridStructure.createHorizontalLines(i);
-            this.gridStructure.createVerticalLines();
-        }*/
 
         this.gridStructure.createHorizontalLines(this.boardSize-1);
     }

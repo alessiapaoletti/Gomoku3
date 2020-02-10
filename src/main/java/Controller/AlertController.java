@@ -20,19 +20,19 @@ public class AlertController implements AlertControllerInterface{
     @Override
     public String swapBlack(String blackPlayer){ return this.alertSwap.swapBlack(blackPlayer);  }
 
-    public void callInvalidMoveError(){
+    void callInvalidMoveError(){
         new AlertInvalidMove().invalidMoveAlert();
     }
 
-    public void callGameOverAlert(String... winner){
+    void callGameOverAlert(String... winner){
          new AlertGameOver().gameOverAlert(winner);
     }
 
-    public void callGetAlertOpening(OpeningType opening){
+    void callGetAlertOpening(OpeningType opening){
         new AlertOpening().getAlertOpening(opening);
     }
 
-    public void callinvalidCoordinateError(String dim){
+    void callinvalidCoordinateError(String dim){
         new AlertInvalidMove().invalidCoordinateAlert(dim);
     }
 }

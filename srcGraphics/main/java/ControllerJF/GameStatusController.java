@@ -17,12 +17,12 @@ public class GameStatusController extends Control implements GameStatusControlle
     private GameStatusView gameStatusView;
     private BoardView boardView;
 
-    public GameStatusController(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gomokuType, OpeningType openingType, BoardView boardView){
+    GameStatusController(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gomokuType, OpeningType openingType, BoardView boardView){
         this.boardView = boardView;
         this.gameStatusView = new GameStatusView(blackPlayer, whitePlayer, gomokuType, openingType);
     }
 
-    public void start(){
+    void start(){
         StackPane stackPane = new StackPane();
         stackPane.getChildren().add(this.gameStatusView);
         Stage primaryStage = new Stage();

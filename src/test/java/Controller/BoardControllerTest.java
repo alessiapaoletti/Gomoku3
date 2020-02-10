@@ -17,8 +17,6 @@ public class BoardControllerTest {
     private BoardController myboardcontroller = new BoardController(new BlackPlayer("mario"), new WhitePlayer("giulia"),
             GomokuType.Standard, OpeningType.Standard);
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-
-    /**perchè serve? perchè poi quando runniamo i test vengono fatte delle print a schermo? */
     private PrintStream originalOut = System.out;
 
     /*needed to run the test according to the OS*/

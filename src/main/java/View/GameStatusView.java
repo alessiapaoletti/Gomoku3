@@ -21,7 +21,7 @@ public class GameStatusView {
         this.initLabels(p1, p2, gameName, openingName);
     }
 
-    public void initLabels(BlackPlayer p1, WhitePlayer p2, GomokuType gameName, OpeningType openingName){
+    private void initLabels(BlackPlayer p1, WhitePlayer p2, GomokuType gameName, OpeningType openingName){
         this.player1 = p1.getName();
         this.player2 = p2.getName();
         this.color1 = p1.getColorName();

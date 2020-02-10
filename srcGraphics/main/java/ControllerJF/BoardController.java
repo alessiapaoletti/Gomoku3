@@ -39,16 +39,16 @@ public class BoardController extends Control {
         this.mainLayout.getChildren().add(this);
     }
 
-    public void setGameStatusController(GameStatusControllerInterface g) {
+    void setGameStatusController(GameStatusControllerInterface g) {
         this.gameStatusController = g;
         this.turnManager = new TurnManager((GameStatusController) this.gameStatusController);
     }
 
-    public BoardView getBoardView(){
+    BoardView getBoardView(){
         return this.boardView;
     }
 
-    public void clickEventHandler() {
+    void clickEventHandler() {
         alertController.callGetAlertOpening(gamePlay.getGame().getOpeningRules().getOpeningType());
         this.setOnMouseClicked((event) -> {
             if(placePiece(event.getX(), event.getY())) {
@@ -58,16 +58,16 @@ public class BoardController extends Control {
         });
     }
 
-    public int numMovesDone(){
+    private int numMovesDone(){
         return this.gamePlay.getGame().getOpeningRules().getBlackPlayer().listSize() + this.gamePlay.getGame().getOpeningRules().getWhitePlayer().listSize();
     }
 
-    public void coordinateSet(final double x, final double y ){
+    private void coordinateSet(final double x, final double y ){
         this.cellX = (int)((x - this.boardView.getGrid().getStartX() + (this.boardView.getGrid().getCellWidth() / 2.0)) / this.boardView.getGrid().getCellWidth());
         this.cellY = (int)((y - this.boardView.getGrid().getStartY() + (this.boardView.getGrid().getCellHeight() / 2.0)) / this.boardView.getGrid().getCellHeight());
     }
 
-    public boolean placePiece(final double x, final double y) {
+    private boolean placePiece(final double x, final double y) {
         this.coordinateSet(x,y);
         if(this.gamePlay.isValidMove(this.cellX,this.cellY) && !this.gamePlay.isOutOfBound(this.cellX, this.cellY) ){
             this.boardView.setPiece(this.cellX, this.cellY, this.gamePlay.getCurrentPlayer().getColor());
@@ -84,20 +84,20 @@ public class BoardController extends Control {
         return false;
     }
 
-    public void displacePiece(final double x, final double y) {
+    private void displacePiece(final double x, final double y) {
         this.coordinateSet(x,y);
         this.gamePlay.displacePiece(this.cellX, this.cellY);
         this.boardView.removePiece(this.cellX, this.cellY);
         this.boardView.setPiece(this.cellX, this.cellY, PieceColor.EMPTY);
     }
 
-    public void startOpening(){
+    private void startOpening(){
         if (this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() <= 5) {
             this.gamePlay.getGame().getOpeningRules().callOpening(this.alertController,this.gameStatusController);
         }
     }
 
-    public void startGame(final double x, final double y){
+    private void startGame(final double x, final double y){
         this.startOpening();
         try {
             this.gamePlay.getGame().checkInvalidMoves();
@@ -109,16 +109,14 @@ public class BoardController extends Control {
         }
     }
 
-    public void gameOver(String ... winner){
+    private void gameOver(String ... winner){
         Stage stage = (Stage) boardView.getScene().getWindow();
-        //AlertGameOver alertGameOver = new AlertGameOver();
-        //String result =  alertGameOver.gameOverAlert(winner);
         if("OK".equals(alertController.callGameOverAlert(winner)))
             stage.close();
         this.gameStatusController.swapColorTurn();
     }
 
-    public void start(Stage primaryStage) {
+    void start(Stage primaryStage) {
         primaryStage.setTitle("GOMOKU GAME");
         primaryStage.setScene(new Scene(this.mainLayout, 600, 600));
         primaryStage.show();

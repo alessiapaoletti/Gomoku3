@@ -6,7 +6,6 @@ import Model.Player.BlackPlayer;
 import Model.Rules.Opening.OpeningType;
 import View.LoginView;
 
-
 class LoginController {
 
     private LoginView loginView = new LoginView();
