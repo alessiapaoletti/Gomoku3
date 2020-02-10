@@ -44,7 +44,7 @@ public class AlertControllerTest {
         InputStream sysInBackup = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("YES".getBytes());
         System.setIn(in);
-        assertEquals("YES",this.alertinterface.swapAlert());
+        assertEquals("YES",this.alertinterface.swapAlert("white player"));
         System.setIn(sysInBackup);
     }
 
@@ -53,7 +53,7 @@ public class AlertControllerTest {
         InputStream sysInBackup = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("NO".getBytes());
         System.setIn(in);
-        assertEquals("NO", this.alertinterface.swapBlack());
+        assertEquals("NO", this.alertinterface.swapBlack("black player"));
         System.setIn(sysInBackup);
     }
 
@@ -62,7 +62,7 @@ public class AlertControllerTest {
         InputStream sysInBackup = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("2".getBytes());
         System.setIn(in);
-        assertEquals("2", this.alertinterface.swap2Alert());
+        assertEquals("2", this.alertinterface.swap2Alert("white Player"));
         System.setIn(sysInBackup);
     }
 
@@ -71,7 +71,7 @@ public class AlertControllerTest {
         InputStream sysInBackup = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("g".getBytes());
         System.setIn(in);
-        this.alertinterface.swap2Alert();
+        this.alertinterface.swap2Alert("white player");
         System.setIn(sysInBackup);
     }
 
@@ -106,7 +106,7 @@ public class AlertControllerTest {
         String ANSI_PURPLE1 = "\u001B[95m";
         assertEquals(ANSI_PURPLE + "* SWAP opening - Rules *\n" +
                 ANSI_PURPLE1 + "BLACK player places 3 stones: 2 black and 1 white.\n" +
-                "then WHITE player can decide to swap color or stay white" +
+                "Then WHITE player can decide to swap color or stay white.\n" +"The player will then proceed placing 1 stone each."+
                 ANSI_RESET + specialCharacter + "\n", outContent.toString());
     }
 

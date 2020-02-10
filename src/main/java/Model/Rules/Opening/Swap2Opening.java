@@ -22,7 +22,7 @@ public class Swap2Opening extends SwapOpening {
     }
 
     private boolean swap2WhiteOptions() {
-        String answer = super.alertControllerInterface.swap2Alert();
+        String answer = super.alertControllerInterface.swap2Alert(super.whitePlayer.getName());
         if ("1".equals(answer)) {
             /*white player stay white and put 4th stone*/
             return true;
@@ -37,7 +37,7 @@ public class Swap2Opening extends SwapOpening {
     }
 
     private void swap2SwapBlack() {
-        if ("YES".equals(super.alertControllerInterface.swapBlack())) {
+        if ("YES".equals(super.alertControllerInterface.swapBlack(super.blackPlayer.getName()))) {
             super.gameStatusControllerInterface.swapLabel();
             super.utilitySwap();
         } else super.gameStatusControllerInterface.swapColorTurn();

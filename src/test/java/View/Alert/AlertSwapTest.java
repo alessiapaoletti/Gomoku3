@@ -45,7 +45,7 @@ public class AlertSwapTest {
         InputStream sysInBackup = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("YES".getBytes());
         System.setIn(in);
-        assertThat(alertSwap.swapAlert(),is("YES"));
+        assertThat(alertSwap.swapAlert("white player"),is("YES"));
         System.setIn(sysInBackup);
     }
 
@@ -54,7 +54,7 @@ public class AlertSwapTest {
         InputStream sysInBackup = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("YES".getBytes());
         System.setIn(in);
-        assertThat(alertSwap.swapBlack(),is("YES"));
+        assertThat(alertSwap.swapBlack("black player"),is("YES"));
         System.setIn(sysInBackup);
     }
 
@@ -63,7 +63,7 @@ public class AlertSwapTest {
         InputStream sysInBackup = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("2".getBytes());
         System.setIn(in);
-        assertThat(alertSwap.swap2Alert(), is("2"));
+        assertThat(alertSwap.swap2Alert("white player"), is("2"));
         System.setIn(sysInBackup);
     }
 }

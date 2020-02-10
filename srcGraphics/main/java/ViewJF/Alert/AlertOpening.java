@@ -17,7 +17,7 @@ public class AlertOpening extends AlertGenerator{
     private  Alert swapOpeningRulesAlert(){
         return super.createInformationAlert("SWAP opening - Rules",
                 "BLACK player places 3 stones: 2 black and 1 white. \n \n" +
-                        "then WHITE player can decide to swap color or stay white");
+                        "then WHITE player can decide to swap color or stay white.\n The player will then proceed placing 1 stone each.");
     }
 
     private  Alert swap2OpeningRulesAlert(){
@@ -26,7 +26,7 @@ public class AlertOpening extends AlertGenerator{
                         "then WHITE player can decide to: \n" +
                         "- stay white,\n" +
                         "- swap color,\n" +
-                        "- place 2 more stones (1 black and 1 white) and let the black player decide the wanted color");
+                        "- place 2 more stones (1 black and 1 white) and let the black player decide the wanted color.");
         alert.setHeight(350);
         return alert;
     }
