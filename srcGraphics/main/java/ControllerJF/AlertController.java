@@ -30,18 +30,18 @@ public class AlertController implements AlertControllerInterface {
     }
 
     @Override
-    public String swap2Alert(){
-        return alertSwap.swap2Alert();
+    public String swap2Alert(String whitePlayer){
+        return alertSwap.swap2Alert(whitePlayer);
     }
 
     @Override
-    public String swapBlack(){
-        return alertSwap.swapBlack();
+    public String swapBlack(String blackPlayer){
+        return alertSwap.swapBlack(blackPlayer);
     }
 
     @Override
-    public String swapAlert() {
-        return alertSwap.swapAlert();
+    public String swapAlert(String whitePlayer) {
+        return alertSwap.swapAlert(whitePlayer);
     }
 
 }

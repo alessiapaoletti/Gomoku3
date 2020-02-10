@@ -2,9 +2,9 @@ package Controller;
 
 public interface AlertControllerInterface {
 
-    String swap2Alert();
+    String swap2Alert(String whitePlayer);
 
-    String swapAlert();
+    String swapAlert(String whitePlayer);
 
-    String swapBlack();
+    String swapBlack(String blackPlayer);
 }

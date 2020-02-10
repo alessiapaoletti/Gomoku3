@@ -8,17 +8,17 @@ public class AlertController implements AlertControllerInterface{
     private AlertSwap alertSwap = new AlertSwap();
 
     @Override
-    public String swap2Alert() {
-         return this.alertSwap.swap2Alert();
+    public String swap2Alert(String whitePlayer) {
+         return this.alertSwap.swap2Alert(whitePlayer );
     }
 
     @Override
-    public String swapAlert() {
-           return this.alertSwap.swapAlert();
+    public String swapAlert(String whitePlayer) {
+           return this.alertSwap.swapAlert(whitePlayer);
     }
 
     @Override
-    public String swapBlack(){ return this.alertSwap.swapBlack();  }
+    public String swapBlack(String blackPlayer){ return this.alertSwap.swapBlack(blackPlayer);  }
 
     public void callInvalidMoveError(){
         new AlertInvalidMove().invalidMoveAlert();

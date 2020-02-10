@@ -44,7 +44,7 @@ public class AlertControllerTest {
         InputStream sysInBackup = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("YES".getBytes());
         System.setIn(in);
-        assertEquals("YES",this.alertinterface.swapAlert());
+        assertEquals("YES",this.alertinterface.swapAlert("white player"));
         System.setIn(sysInBackup);
     }
 
@@ -53,7 +53,7 @@ public class AlertControllerTest {
         InputStream sysInBackup = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("NO".getBytes());
         System.setIn(in);
-        assertEquals("NO", this.alertinterface.swapBlack());
+        assertEquals("NO", this.alertinterface.swapBlack("black player"));
         System.setIn(sysInBackup);
     }
 
@@ -62,7 +62,7 @@ public class AlertControllerTest {
         InputStream sysInBackup = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("2".getBytes());
         System.setIn(in);
-        assertEquals("2", this.alertinterface.swap2Alert());
+        assertEquals("2", this.alertinterface.swap2Alert("white Player"));
         System.setIn(sysInBackup);
     }
 
@@ -71,7 +71,7 @@ public class AlertControllerTest {
         InputStream sysInBackup = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("g".getBytes());
         System.setIn(in);
-        this.alertinterface.swap2Alert();
+        this.alertinterface.swap2Alert("white player");
         System.setIn(sysInBackup);
     }
 

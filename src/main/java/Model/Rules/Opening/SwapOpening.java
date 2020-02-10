@@ -21,7 +21,7 @@ public class SwapOpening extends Opening {
     }
 
     private void swapQuestion() {
-        if ("YES".equals(super.alertControllerInterface.swapAlert())) {
+        if ("YES".equals(super.alertControllerInterface.swapAlert(this.whitePlayer.getName()))) {
             super.gameStatusControllerInterface.swapLabel();
             this.utilitySwap();
             super.gameStatusControllerInterface.swapColorTurn();
