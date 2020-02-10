@@ -113,7 +113,8 @@ public class AlertControllerTest {
     @Test
     public void callinvalidCoordinateErrorTest(){
         new AlertController().callinvalidCoordinateError("14");
-        assertEquals(ANSI_RED + "ERROR -Invalid Coordinate (number in range [0,14])" + ANSI_RESET +
+        assertEquals(ANSI_RED + "ERROR -Invalid Coordinate " + "\n" +
+                "(Insert a couple of numbers in range [0,14],not already on the board)" +  ANSI_RESET +
                 new String(Character.toChars(0x1F6AB)) + specialCharacter + "\n", outContent.toString());
     }
 

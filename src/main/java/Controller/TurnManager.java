@@ -19,15 +19,15 @@ class TurnManager {
         if (totalMoves >= 3) gameStatusController.swapColorTurn();
     }
 
-    private static Map<OpeningType, Consumer<Integer>> turnManagerMap = new HashMap();
+    private Map<OpeningType, Consumer<Integer>> turnManagerMap = new HashMap();
 
     {
-        turnManagerMap.put(OpeningType.Standard, this::turnManagerStd);
-        turnManagerMap.put(OpeningType.Swap, this::turnManagerSwap);
-        turnManagerMap.put(OpeningType.Swap2, this::turnManagerSwap);
+        this.turnManagerMap.put(OpeningType.Standard, this::turnManagerStd);
+        this.turnManagerMap.put(OpeningType.Swap, this::turnManagerSwap);
+        this.turnManagerMap.put(OpeningType.Swap2, this::turnManagerSwap);
     }
 
     void getTurnManager(OpeningType openingType, final int totalMoves){
-        turnManagerMap.get(openingType).accept(totalMoves);
+        this.turnManagerMap.get(openingType).accept(totalMoves);
     }
 }

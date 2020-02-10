@@ -16,17 +16,6 @@ class GridStructure {
 
     GridStructure(int size){
         this.size = size;
-        //this.pieces = new PieceColor[this.size+1][this.size+1];
-        /* first we have to create the matrix and the assing the empty color */
-        /**non se abbia senso.... */
-        /*this.pieces=new PieceColor[this.size+1][this.size+1];
-
-        this.pieces = IntStream.range(0, this.size+1)
-                .mapToObj(i -> IntStream.range(0, this.size+1)
-                        .mapToObj(j -> this.pieces[i][j] = PieceColor.EMPTY)
-                        .toArray(PieceColor[]::new))
-                .toArray(PieceColor[][]::new);*/
-
         this.pieces=new PieceColor[this.size+1][this.size+1];
         for(int j=0;j<this.size+1;j++){
             for(int i=0;i<this.size+1;i++){ this.pieces[i][j]=PieceColor.EMPTY;}
@@ -57,36 +46,15 @@ class GridStructure {
                 .forEach(i -> numbers.append(String.format("%5s", i)));
 
         System.out.println(ANSI_PURPLE+numbers+ANSI_RESET);
-
-
-//        for(int i=0;i<this.size;i++) {
-//            enumeration.append(String.format("%5s", i));
-//        }
-
-
-
-//        for(int i=0;i<10;i++){
-//            enumeration.append(doubleSpace).append(i).append(doubleSpace);}
-//
-//        for(int i=10;i<this.size;i++){
-//            enumeration.append(doubleSpace).append(i).append(singleSpace);}
-
     }
 
     void createHorizontalLines(Integer i){
-
         String num = String.format("%3s", i.toString());
-
-//        if(i<10) num=i.toString()+"  ";
-//        else num=i.toString()+" ";
         System.out.print(ANSI_PURPLE + num + SINGLE_SPACE );
 
         IntStream.range(0, this.size-1)
                 .forEach(index -> System.out.print(ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 +
                         SINGLE_DASH.repeat(2) + this.placePiece(index,i) + SINGLE_DASH.repeat(2) + ANSI_RESET));
-        /*for(int j=0;j<this.size-1;j++){
-            System.out.print(ANSI_PURPLE_BACKGROUND+ANSI_PURPLE1+this.placePiece(j,i)+"----"+ANSI_RESET);
-        }*/
 
         System.out.println(ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 + SINGLE_DASH +  this.placePiece(this.size-1,i) +
                 SINGLE_DASH.repeat(2) + ANSI_RESET);
