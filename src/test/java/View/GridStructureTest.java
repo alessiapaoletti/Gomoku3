@@ -58,7 +58,7 @@ public class GridStructureTest {
     public void createVerticalLinesTest(){
         this.gridStructure.createVerticalLines();
         assertEquals("    "+ ANSI_PURPLE + ANSI_PURPLE_BACKGROUND + " " +
-                ANSI_PURPLE1 + " |   |  " + ANSI_RESET + specialCharacter + "\n",
+                ANSI_PURPLE1 + " |    | " + ANSI_RESET + specialCharacter + "\n",
                 outContent.toString());
     }
 }

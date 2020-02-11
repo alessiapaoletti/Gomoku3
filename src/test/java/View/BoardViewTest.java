@@ -101,7 +101,7 @@ public class BoardViewTest {
                 ANSI_PURPLE + "      0    1" + ANSI_RESET  + specialCharacter + "\n" +
               ANSI_PURPLE +  "  0 "+ ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 + "--" + ANSI_WHITE + ANSI_PURPLE_BACKGROUND + "X" + ANSI_PURPLE1 + "--" +
                 ANSI_RESET + ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 + "----" + ANSI_RESET   + specialCharacter + "\n" +
-                "    " + ANSI_PURPLE +  ANSI_PURPLE_BACKGROUND + " " + ANSI_PURPLE1 + " |   |  " + ANSI_RESET  + specialCharacter +  "\n" +
+                "    " + ANSI_PURPLE +  ANSI_PURPLE_BACKGROUND + " " + ANSI_PURPLE1 + " |    | "+ ANSI_RESET + specialCharacter +  "\n" +
                 ANSI_PURPLE + "  1 " +  ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 + "-----" + ANSI_RESET + ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 + "----" + ANSI_RESET +
                 specialCharacter + "\n";
       assertEquals(res,outContent.toString());

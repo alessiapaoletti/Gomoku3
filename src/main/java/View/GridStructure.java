@@ -56,13 +56,13 @@ class GridStructure {
                 .forEach(index -> System.out.print(ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 +
                         SINGLE_DASH.repeat(2) + this.placePiece(index,i) + SINGLE_DASH.repeat(2) + ANSI_RESET));
 
-        System.out.println(ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 + SINGLE_DASH +  this.placePiece(this.size-1,i) +
-                SINGLE_DASH.repeat(2) + ANSI_RESET);
+        System.out.println(ANSI_PURPLE_BACKGROUND + ANSI_PURPLE1 + SINGLE_DASH.repeat(2) +  this.placePiece(this.size-1,i) +
+                SINGLE_DASH + ANSI_RESET);
     }
 
     void createVerticalLines(){
         String SINGLE_VERT_BAR = "|";
         System.out.println(SINGLE_SPACE.repeat(4) + ANSI_PURPLE + ANSI_PURPLE_BACKGROUND + SINGLE_SPACE + ANSI_PURPLE1 +
                 (SINGLE_SPACE + SINGLE_VERT_BAR + SINGLE_SPACE.repeat(3)).repeat(this.size-1)
-                + SINGLE_VERT_BAR + SINGLE_SPACE.repeat(2) + ANSI_RESET); }
+                + SINGLE_SPACE+SINGLE_VERT_BAR + SINGLE_SPACE+ ANSI_RESET); }
 }

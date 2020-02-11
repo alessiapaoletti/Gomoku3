@@ -8,5 +8,7 @@ public class StandardOpening extends Opening {
     }
 
     @Override
+    public boolean userInteraction(){return false;};
+    @Override
     public void openingBehaviour(){}
 }

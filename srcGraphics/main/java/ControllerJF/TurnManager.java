@@ -18,7 +18,7 @@ class TurnManager{
     private void turnManagerSwap(final int totalMoves){ if (totalMoves >= 3) gameStatusController.swapColorTurn(); }
 
 
-    private Map<OpeningType, Consumer<Integer>> turnManagerMap = new HashMap();
+    private Map<OpeningType, Consumer<Integer>> turnManagerMap = new HashMap<>();
 
     {
         this.turnManagerMap.put(OpeningType.Standard, this::turnManagerStd);

@@ -33,6 +33,8 @@ public abstract class Opening {
         this.openingBehaviour();
     }
 
+    public abstract boolean userInteraction();
+
     public abstract void openingBehaviour();
 
     public OpeningType getOpeningType(){ return this.openingType;}

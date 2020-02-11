@@ -8,6 +8,9 @@ public class SwapOpening extends Opening {
         this.numMoves = 3;
     }
 
+    @Override
+    public boolean userInteraction(){return true;};
+
     void utilitySwap() {
         String tmpName = blackPlayer.getName();
         blackPlayer.setName(whitePlayer.getName());

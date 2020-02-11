@@ -47,6 +47,7 @@ class BoardController {
             this.boardView.createBoard();
             this.gameStatusController.start();
         }
+
     }
 
     int numMovesDone(){
@@ -86,9 +87,18 @@ class BoardController {
 
     void startOpening(){
         if (this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() <= 5) {
+            this.printBoardOpening();
             this.gamePlay.getGame().getOpeningRules().callOpening(this.alertController, this.gameStatusController);
         }
     }
+
+    private void printBoardOpening(){
+        if(this.gamePlay.getGame().getOpeningRules().userInteraction() &&
+                (this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() == 5)){
+            this.boardView.createBoard();
+            System.out.println("\n");
+        };
+    };
 
     private void startGame(){
         this.startOpening();

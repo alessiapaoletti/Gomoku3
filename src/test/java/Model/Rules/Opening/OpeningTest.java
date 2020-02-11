@@ -16,14 +16,17 @@ public class OpeningTest {
         Opening openingStd = new OpeningFactory().getOpening(OpeningType.Standard);
         assertEquals(openingStd.getOpeningType(), OpeningType.Standard);
         assertEquals(openingStd.numMoves, 2);
+        assertFalse(openingStd.userInteraction());
 
         Opening openingSwap = new OpeningFactory().getOpening(OpeningType.Swap);
         assertEquals(openingSwap.getOpeningType(), OpeningType.Swap);
         assertEquals(openingSwap.numMoves, 3);
+        assertTrue(openingSwap.userInteraction());
 
         Opening openingSwap2 = new OpeningFactory().getOpening(OpeningType.Swap2);
         assertEquals(openingSwap2.getOpeningType(), OpeningType.Swap2);
         assertEquals(openingSwap2.numMoves, 3);
+        assertTrue(openingSwap2.userInteraction());
     }
 
     private BlackPlayer p1 = new BlackPlayer("A");

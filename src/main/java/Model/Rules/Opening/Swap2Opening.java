@@ -9,6 +9,9 @@ public class Swap2Opening extends SwapOpening {
     }
 
     @Override
+    public boolean userInteraction(){return super.userInteraction();};
+
+    @Override
     public void openingBehaviour() {
         if ((this.whitePlayer.listSize() + this.blackPlayer.listSize()) == 3)
             this.answerInitQuestions = swap2WhiteOptions();
