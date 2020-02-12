@@ -2,6 +2,7 @@ package ViewJF.Alert;
 
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert;
+import javafx.stage.StageStyle;
 
 public abstract class AlertGenerator {
 
@@ -13,6 +14,7 @@ public abstract class AlertGenerator {
 
     Alert createInformationAlert(String title, String contentText){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initStyle(StageStyle.UNDECORATED);
         setAlertContent(alert, title, contentText);
         ButtonType buttonTypeOK = new ButtonType("OK");
         alert.getButtonTypes().setAll( buttonTypeOK);

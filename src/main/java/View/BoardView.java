@@ -4,6 +4,7 @@ import Controller.GameScanner;
 import Model.Piece.PieceColor;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 public class BoardView{
@@ -22,24 +23,29 @@ public class BoardView{
         this.gridStructure = new GridStructure(this.boardSize);
     }
 
+    private int askInteger(String PlayerColor,String coord){
+        boolean validInput=false;
+        int coordinate=0;
+        while (!validInput) {
+            try {
+                coordinate = Integer.parseInt(GameScanner.scanner.nextLine());
+                validInput = true;
+            } catch (NumberFormatException e) {
+                System.out.println(ANSI_RED + "Invalid coordinate " + ANSI_RESET + new String(Character.toChars(0x1F6AB)));
+                System.out.println("\n" + ANSI_PURPLE + "Insert new " + PlayerColor + " piece ("+coord+" coordinate): " + ANSI_RESET);
+            }
+        }
+        return coordinate;
+    };
+
     public int getX(String PlayerColor){
         System.out.println("\n" + ANSI_PURPLE + "Insert new " + PlayerColor + " piece (x coordinate): " + ANSI_RESET);
-        while (!GameScanner.scanner.hasNextInt()) {
-            System.out.println(ANSI_RED + "Invalid coordinate " + ANSI_RESET + new String(Character.toChars(0x1F6AB)));
-            System.out.println("\n" + ANSI_PURPLE + "Insert new " + PlayerColor + " piece (x coordinate): " + ANSI_RESET);
-            GameScanner.scanner.next();
-        }
-        return  GameScanner.scanner.nextInt();
+        return this.askInteger(PlayerColor,"x");
     }
 
     public int getY(String PlayerColor){
         System.out.println("\n" + ANSI_PURPLE + "Insert new " + PlayerColor + " piece (y coordinate): " + ANSI_RESET);
-        while (!GameScanner.scanner.hasNextInt()) {
-            System.out.println(ANSI_RED + "Invalid coordinate " + ANSI_RESET + new String(Character.toChars(0x1F6AB)));
-            System.out.println("\n" + ANSI_PURPLE + "Insert new " + PlayerColor + " piece (y coordinate): " + ANSI_RESET);
-            GameScanner.scanner.next();
-        }
-        return  GameScanner.scanner.nextInt();
+        return this.askInteger(PlayerColor,"y");
     }
 
     public void setPiece(int x, int y,final PieceColor color){
