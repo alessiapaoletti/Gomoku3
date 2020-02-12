@@ -32,3 +32,15 @@ Run the project:
 Terminal background color (Command Line version) :
 * Black background ("Darcula" option in IntelliJ): the command line graphics code is already meant to be executed on black terminal.
 * White background ("Default" option in IntelliJ): in order to visualize the players' stones it's necessary to open the [GridStructure](https://github.com/michelaventurini96/Gomoku3/blob/master/src/main/java/View/GridStructure.java) file, comment line 31 and line 32, uncomment line 35 and line 36.  
+
+#### Run Comman Line version using terminal
+
+
+Steps:
+* in order to visualize the players' stones it's necessary to open the [GridStructure](https://github.com/michelaventurini96/Gomoku3/blob/master/src/main/java/View/GridStructure.java) file, comment line 31 and line 32, uncomment line 35 and line 36. This will work both on white and black background terminal.
+* Clone the project on your Desktop.
+* Open the terminal (in Desktop) and type : cd Gomoku3/src/main/java
+* Compile with: javac Controller/*.java Model/*.java View/*.java
+* Run with: java Controller/Main
+* Enjoy the game!
+
