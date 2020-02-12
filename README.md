@@ -29,18 +29,19 @@ Run the project:
 * to run the Command Line version of the game the run the class Main inside the Controller package (src package) 
 * to run the version with the Grapich Interface run the class Main inside the ControllerJF package (srcGrapichs)
 
-Terminal background color (Command Line version) :
+Terminal background color (Command Line version using IntelliJ) :
 * Black background ("Darcula" option in IntelliJ): the command line graphics code is already meant to be executed on black terminal.
-* White background ("Default" option in IntelliJ): in order to visualize the players' stones it's necessary to open the [GridStructure](https://github.com/michelaventurini96/Gomoku3/blob/master/src/main/java/View/GridStructure.java) file, comment line 31 and line 32, uncomment line 35 and line 36.  
+* White background ("Default" option in IntelliJ): in order to visualize the players' stones on white background it's necessary to open the [GridStructure](https://github.com/michelaventurini96/Gomoku3/blob/master/src/main/java/View/GridStructure.java) file, comment line 31 and line 32, uncomment line 35 and line 36.  
 
 #### Run Comman Line version using terminal
 
 
 Steps:
-* in order to visualize the players' stones it's necessary to open the [GridStructure](https://github.com/michelaventurini96/Gomoku3/blob/master/src/main/java/View/GridStructure.java) file, comment line 31 and line 32, uncomment line 35 and line 36. This will work both on white and black background terminal.
+
 * Clone the project on your Desktop.
+* In order to visualize the players' stones it's necessary to open the [GridStructure](https://github.com/michelaventurini96/Gomoku3/blob/master/src/main/java/View/GridStructure.java) file, comment line 31 and line 32, uncomment line 35 and line 36. This will work both on white and black background terminal.
 * Open the terminal (in Desktop) and type : cd Gomoku3/src/main/java
 * Compile with: javac Controller/*.java Model/*.java View/*.java
-* Run with: java Controller/Main
+* Run with: java Controller.Main
 * Enjoy the game!
 
