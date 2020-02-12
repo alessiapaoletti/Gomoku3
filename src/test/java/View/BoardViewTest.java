@@ -65,6 +65,12 @@ public class BoardViewTest {
         this.boardView.getX("BLACK");
     }
 
+    @Test(expected = NoSuchElementException.class)
+    public void askIntegerTest(){
+        GameScanner.scanner = new Scanner(new ByteArrayInputStream("Pippo".getBytes()));
+        this.constructorTest();
+        this.boardView.askInteger("BLACK","x");
+    }
 
     @Test
     public void setPieceTest(){

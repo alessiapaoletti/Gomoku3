@@ -23,7 +23,7 @@ public class BoardView{
         this.gridStructure = new GridStructure(this.boardSize);
     }
 
-    private int askInteger(String PlayerColor,String coord){
+    public int askInteger(String PlayerColor,String coord){
         boolean validInput=false;
         int coordinate=0;
         while (!validInput) {
