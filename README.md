@@ -41,7 +41,7 @@ Steps:
 * Clone the project on your Desktop.
 * In order to visualize the players' stones it's necessary to open the [GridStructure](https://github.com/michelaventurini96/Gomoku3/blob/master/src/main/java/View/GridStructure.java) file, comment line 31 and line 32, uncomment line 35 and line 36. This will work both on white and black background terminal.
 * Open the terminal (in Desktop) and type : cd Gomoku3/src/main/java
-* Compile with: javac Controller/&asterisk.java Model/*.java View/*.java
+* Compile with: javac Controller/&*.java Model/*.java View/*.java
 * Run with: java Controller.Main
 * Enjoy the game!
 
