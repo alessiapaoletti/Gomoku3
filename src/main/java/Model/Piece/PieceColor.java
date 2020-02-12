@@ -1,7 +1,10 @@
 package Model.Piece;
 
 public enum PieceColor {
-        EMPTY,
-        BLACK,
-        WHITE
+        EMPTY { @Override public PieceColor oppositeColor() { return EMPTY; }},
+        BLACK { @Override public PieceColor oppositeColor() { return WHITE; }},
+        WHITE { @Override public PieceColor oppositeColor() { return BLACK; }};
+
+
+        abstract public PieceColor oppositeColor();
 }

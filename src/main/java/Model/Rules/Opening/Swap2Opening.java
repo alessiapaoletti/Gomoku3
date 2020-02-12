@@ -9,9 +9,6 @@ public class Swap2Opening extends SwapOpening {
     }
 
     @Override
-    public boolean userInteraction(){return super.userInteraction();};
-
-    @Override
     public void openingBehaviour() {
         if ((this.whitePlayer.listSize() + this.blackPlayer.listSize()) == 3)
             this.answerInitQuestions = swap2WhiteOptions();
@@ -33,12 +30,14 @@ public class Swap2Opening extends SwapOpening {
             super.gameStatusControllerInterface.swapColorTurn();
             super.utilitySwap();
             return true;
-        } else
+        } else{
+            this.numUserInteraction+=1;
             return false;
+        }
     }
 
     private void swap2SwapBlack() {
-        if ("YES".equals(super.alertControllerInterface.swapBlack(super.blackPlayer.getName()))) {
+        if ("YES".equals(super.alertControllerInterface.swapAlert(super.blackPlayer.getName()))) {
             super.gameStatusControllerInterface.swapLabel();
             super.utilitySwap();
         } else super.gameStatusControllerInterface.swapColorTurn();

@@ -1,6 +1,7 @@
 package Model;
 
 import Model.GomokuGame.GomokuGame;
+import Model.Piece.PieceColor;
 import Model.Player.Player;
 import Model.Rules.Opening.OpeningType;
 import Model.Piece.*;
@@ -16,10 +17,7 @@ public class GamePlay {
     }
 
     public Player getCurrentPlayer(){
-        if(this.currentColor== PieceColor.BLACK)
-            return game.getBlackPlayer();
-        else
-            return game.getWhitePlayer();
+        return this.currentColor.equals(PieceColor.BLACK) ? game.getBlackPlayer() : game.getWhitePlayer();
     }
 
     public String checkWinningMove(){
@@ -55,10 +53,7 @@ public class GamePlay {
     }
 
     public void changeTurn() {
-        if (this.currentColor == PieceColor.WHITE)
-            this.currentColor = PieceColor.BLACK;
-        else
-            this.currentColor = PieceColor.WHITE;
+        this.currentColor = this.currentColor.oppositeColor();
     }
 
     public boolean isValidMove(final int x, final int y) {

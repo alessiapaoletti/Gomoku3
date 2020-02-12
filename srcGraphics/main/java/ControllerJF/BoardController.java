@@ -73,11 +73,14 @@ public class BoardController extends Control {
             this.boardView.setPiece(this.cellX, this.cellY, this.gamePlay.getCurrentPlayer().getColor());
             this.gamePlay.placePiece(this.cellX, this.cellY);
 
-            if(this.gamePlay.checkFullBoard())
-                this.gameOver();
             if(!this.gamePlay.checkWinningMove().isEmpty() ){
                 this.gameOver(this.gamePlay.checkWinningMove());
+            }else {
+                if (this.gamePlay.checkFullBoard()) {
+                    this.gameOver();
+                }
             }
+
             this.gamePlay.changeTurn();
             return true;
         }

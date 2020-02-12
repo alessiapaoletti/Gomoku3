@@ -8,7 +8,6 @@ public class GomokuOm extends GomokuGame {
     private InvalidMoves invalidMoves;
 
     GomokuOm(){
-        this.gameType = GomokuType.Omok;
         this.gridSize = 18;
         this.invalidMoves = new InvalidMoves();
         invalidMoves.setDimBoard(this.getGridSize());

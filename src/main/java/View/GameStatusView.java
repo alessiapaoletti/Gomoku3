@@ -17,15 +17,15 @@ public class GameStatusView {
     private String gameType;
     private String openingType;
 
-    public GameStatusView(BlackPlayer p1, WhitePlayer p2, GomokuType gameName, OpeningType openingName){
-        this.initLabels(p1, p2, gameName, openingName);
+    public GameStatusView(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gameName, OpeningType openingName){
+        this.initLabels(blackPlayer, whitePlayer, gameName, openingName);
     }
 
-    private void initLabels(BlackPlayer p1, WhitePlayer p2, GomokuType gameName, OpeningType openingName){
-        this.player1 = p1.getName();
-        this.player2 = p2.getName();
-        this.color1 = p1.getColorName();
-        this.color2 = p2.getColorName();
+    private void initLabels(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gameName, OpeningType openingName){
+        this.player1 = blackPlayer.getName();
+        this.player2 = whitePlayer.getName();
+        this.color1 = blackPlayer.getColorName();
+        this.color2 = whitePlayer.getColorName();
         this.openingType = "Opening rules:  " + openingName;
         this.gameType = "Game:  " + gameName;
     }

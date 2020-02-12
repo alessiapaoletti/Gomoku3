@@ -1,5 +1,7 @@
 package View.Alert;
 
+import Controller.GameScanner;
+
 import java.util.Scanner;
 
 public class AlertSwap implements AlertGenerator {
@@ -13,32 +15,25 @@ public class AlertSwap implements AlertGenerator {
     }
 
     String generateYesNoAlert(String textContent){
-        Scanner scanner = new Scanner(System.in);
         String answer;
         do {
             System.out.println(ANSI_RED + textContent+ ANSI_RESET);
-            answer = scanner.next();
+            answer = GameScanner.scanner.next();
         } while(!this.checkYesNoAnswer(answer));
         return answer;
     }
 
     String generateSwapAlert(String textContent){
-        Scanner scanner = new Scanner(System.in);
         String answer;
         do{
             System.out.println(ANSI_RED + textContent+ ANSI_RESET);
-            answer = scanner.next();
+            answer = GameScanner.scanner.next();
         } while(!this.checkSwap2Answer(answer));
         return answer;
     }
 
-    public  String swapAlert(String whitePlayer){
-        return this.generateYesNoAlert( whitePlayer+ ", do you want to Swap ?" +
-                "\nThe player will then proceed placing 1 stone each." + "\n(answer YES/NO)" );
-    }
-
-    public  String swapBlack(String blackPlayer){
-        return this.generateYesNoAlert(blackPlayer + ", do you want to Swap ?" +
+    public  String swapAlert(String playerName){
+        return this.generateYesNoAlert( playerName+ ", do you want to Swap ?" +
                 "\nThe player will then proceed placing 1 stone each." + "\n(answer YES/NO)" );
     }
 

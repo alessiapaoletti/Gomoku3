@@ -30,9 +30,4 @@ public class AlertSwap extends AlertGenerator {
                 "The player will then proceed placing 1 stone each.").getResult().getText();
     }
 
-    public String swapBlack(String blackPlayer){
-        return this.generateConfirmationAlert(blackPlayer + ", do you want to swap and control white stones?\n"+
-                "The player will then proceed placing 1 stone each.").getResult().getText();
-    }
-
 }

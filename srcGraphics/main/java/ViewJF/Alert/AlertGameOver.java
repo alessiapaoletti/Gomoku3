@@ -11,7 +11,7 @@ public class AlertGameOver extends AlertGenerator {
         if (winner.length > 0)
             alert.setHeaderText("The winner is " + winner[0]);
         else
-            alert.setHeaderText("The board is full: game ended with no winner" );
+            alert.setHeaderText("The board is full: game ending with no winner." );
 
         alert.showAndWait();
 

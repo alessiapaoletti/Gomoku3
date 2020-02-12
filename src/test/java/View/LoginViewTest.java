@@ -1,6 +1,8 @@
 package View;
 
 import static org.junit.Assert.*;
+
+import Controller.GameScanner;
 import Model.GomokuGame.GomokuType;
 import com.sun.javafx.PlatformUtil;
 import org.junit.After;
@@ -11,12 +13,15 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 public class LoginViewTest {
 
     private LoginView loginView;
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+
     private PrintStream originalOut = System.out;
+    private InputStream originalIn = System.in;
 
     /*needed to run the test according to the OS*/
     private boolean isWindows = PlatformUtil.isWindows();
@@ -30,6 +35,7 @@ public class LoginViewTest {
     @After
     public void restoreStreams() {
         System.setOut(originalOut);
+        System.setIn(originalIn);
     }
 
     @Test
@@ -45,31 +51,22 @@ public class LoginViewTest {
 
     @Test
     public void setBlackPlayer(){
-        InputStream sysInBackup = System.in;
-        ByteArrayInputStream in = new ByteArrayInputStream("Giulia".getBytes());
-        System.setIn(in);
+        GameScanner.scanner = new Scanner(new ByteArrayInputStream("Giulia".getBytes()));
         this.loginViewConstructorTest();
-        assertEquals("Giulia",this.loginView.setBlackPlayer());
-        System.setIn(sysInBackup);
+        assertEquals("Giulia", this.loginView.setBlackPlayer());
     }
 
     @Test
     public void setGameTest(){
-        InputStream sysInBackup = System.in;
-        ByteArrayInputStream in = new ByteArrayInputStream("Omok".getBytes());
-        System.setIn(in);
+        GameScanner.scanner = new Scanner(new ByteArrayInputStream("Omok".getBytes()));
         this.loginViewConstructorTest();
         assertEquals(GomokuType.Omok,this.loginView.setGame());
-        System.setIn(sysInBackup);
     }
 
     @Test(expected = NoSuchElementException.class)
         public void setGameErrorTest() {
-            InputStream sysInBackup = System.in;
-            ByteArrayInputStream in = new ByteArrayInputStream("g".getBytes());
-            System.setIn(in);
-            this.loginViewConstructorTest();
-            this.loginView.setGame();
-            System.setIn(sysInBackup);
+        GameScanner.scanner = new Scanner(new ByteArrayInputStream("Pippo".getBytes()));
+        this.loginViewConstructorTest();
+        this.loginView.setGame();
     }
 }

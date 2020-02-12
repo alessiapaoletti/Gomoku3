@@ -1,5 +1,6 @@
 package View;
 
+import Controller.GameScanner;
 import Model.Piece.PieceColor;
 import com.sun.javafx.PlatformUtil;
 import org.junit.After;
@@ -7,9 +8,10 @@ import org.junit.Before;
 import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.NoSuchElementException;
+import java.util.Scanner;
+
 import static org.junit.Assert.*;
 
 public class BoardViewTest {
@@ -44,32 +46,23 @@ public class BoardViewTest {
 
     @Test
     public void setXTest(){
-        InputStream sysInBackup = System.in;
-        ByteArrayInputStream in = new ByteArrayInputStream("2".getBytes());
-        System.setIn(in);
+        GameScanner.scanner = new Scanner(new ByteArrayInputStream("2".getBytes()));
         this.constructorTest();
         assertEquals(2,this.boardView.getX("BLACK"));
-        System.setIn(sysInBackup);
     }
 
     @Test
     public void setYTest(){
-        InputStream sysInBackup = System.in;
-        ByteArrayInputStream in = new ByteArrayInputStream("3".getBytes());
-        System.setIn(in);
+        GameScanner.scanner = new Scanner(new ByteArrayInputStream("3".getBytes()));
         this.constructorTest();
         assertEquals(3,this.boardView.getY("WHITE"));
-        System.setIn(sysInBackup);
     }
 
     @Test(expected = NoSuchElementException.class)
     public void setXErrorTest() {
-        InputStream sysInBackup = System.in;
-        ByteArrayInputStream in = new ByteArrayInputStream("g".getBytes());
-        System.setIn(in);
+        GameScanner.scanner = new Scanner(new ByteArrayInputStream("Pippo".getBytes()));
         this.constructorTest();
         this.boardView.getX("BLACK");
-        System.setIn(sysInBackup);
     }
 
 

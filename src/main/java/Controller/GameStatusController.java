@@ -35,7 +35,6 @@ public class GameStatusController implements GameStatusControllerInterface {
         } else {
             this.currentPlayerName = this.blackPlayer.getName();
         }
-        //this.maintainTurn();
     }
 
     void maintainTurn(){

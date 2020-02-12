@@ -12,7 +12,6 @@ import java.util.*;
 
 public class InvalidMoves {
 
-    private GameStatusControllerInterface gameStatusControllerInterface;
     private int dimBoard;
     private BlackPlayer blackPlayer;
     private WhitePlayer whitePlayer;
@@ -22,10 +21,6 @@ public class InvalidMoves {
     public void setPlayers(BlackPlayer blackPlayer, WhitePlayer whitePlayer){
         this.blackPlayer = blackPlayer;
         this.whitePlayer = whitePlayer;
-    }
-
-    public void setGameStatusControllerInterface(GameStatusControllerInterface gameStatusControllerInterface){
-        this.gameStatusControllerInterface = gameStatusControllerInterface;
     }
 
     public void setDimBoard(int dim){this.dimBoard =dim;}

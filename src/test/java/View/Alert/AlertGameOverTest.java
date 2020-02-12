@@ -26,7 +26,7 @@ public class AlertGameOverTest {
 
         String expected = new String(Character.toChars(0x1F389)) + ANSI_RED + " Game Over  " + ANSI_RESET +
                 new String(Character.toChars(0x1F389)) + specialCharacter + "\n" + ANSI_RED +
-                "The board is full: game ended with no winner" +  ANSI_RESET + specialCharacter + "\n";
+                "The board is full: game ending with no winner." +  ANSI_RESET + specialCharacter + "\n";
         assertThat(outContent.toString(), is(expected));
     }
 

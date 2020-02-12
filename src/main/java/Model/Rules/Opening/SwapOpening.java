@@ -6,10 +6,8 @@ public class SwapOpening extends Opening {
     SwapOpening(){
         this.openingType = OpeningType.Swap;
         this.numMoves = 3;
+        this.numUserInteraction=1;
     }
-
-    @Override
-    public boolean userInteraction(){return true;};
 
     void utilitySwap() {
         String tmpName = blackPlayer.getName();

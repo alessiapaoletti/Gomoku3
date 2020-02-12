@@ -13,12 +13,9 @@ public class AlertController implements AlertControllerInterface{
     }
 
     @Override
-    public String swapAlert(String whitePlayer) {
-           return this.alertSwap.swapAlert(whitePlayer);
+    public String swapAlert(String playerName) {
+           return this.alertSwap.swapAlert(playerName);
     }
-
-    @Override
-    public String swapBlack(String blackPlayer){ return this.alertSwap.swapBlack(blackPlayer);  }
 
     void callInvalidMoveError(){
         new AlertInvalidMove().invalidMoveAlert();
@@ -32,7 +29,7 @@ public class AlertController implements AlertControllerInterface{
         new AlertOpening().getAlertOpening(opening);
     }
 
-    void callinvalidCoordinateError(String dim){
+    void callInvalidCoordinateError(String dim){
         new AlertInvalidMove().invalidCoordinateAlert(dim);
     }
 }

@@ -8,6 +8,6 @@ public class AlertGameOver implements AlertGenerator {
         if (winner.length > 0)
             System.out.println(ANSI_RED + "The winner is " + winner[0] + ANSI_RESET);
         else
-            System.out.println(ANSI_RED + "The board is full: game ended with no winner" + ANSI_RESET);
+            System.out.println(ANSI_RED + "The board is full: game ending with no winner." + ANSI_RESET);
     }
 }

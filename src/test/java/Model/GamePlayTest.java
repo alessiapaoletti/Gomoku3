@@ -16,83 +16,83 @@ public class GamePlayTest {
     private WhitePlayer white = new WhitePlayer("w");
 
     private GomokuGame gomokuGame = new GomokuFactory().getGame(GomokuType.Standard);
-    private GamePlay Pgame;
+    private GamePlay gamePlay;
 
-    private void SetConditions(){
+    private void setConditions(){
         for(int i=0;i<5;i++){ this.black.addMove(new Piece(i,0,PieceColor.BLACK));}
         gomokuGame.setPlayers(this.black,this.white);
-        Pgame=new GamePlay(gomokuGame, OpeningType.Standard);
+        gamePlay =new GamePlay(gomokuGame, OpeningType.Standard);
     }
 
-    private void SetFullBoard(){
+    private void setFullBoard(){
         int gridSize = 14;
         for(int i = 0; i<= gridSize; i++){
             for(int j = 0; j<= gridSize; j++){ this.black.addMove(new Piece(i,j,PieceColor.BLACK));}
         }
         gomokuGame.setPlayers(this.black,this.white);
-        Pgame=new GamePlay(gomokuGame, OpeningType.Standard);
+        gamePlay =new GamePlay(gomokuGame, OpeningType.Standard);
     }
     
     @Test
-     public void TestCurrentPlayer(){
-        this.SetConditions();
-        assertEquals(Pgame.getCurrentPlayer().getName(),this.black.getName());
+     public void currentPlayerTest(){
+        this.setConditions();
+        assertEquals(gamePlay.getCurrentPlayer().getName(),this.black.getName());
     }
 
     @Test
-    public void TestWinningPlayer(){
-        this.SetConditions();
-        assertEquals(Pgame.checkWinningMove(),this.black.getName());
+    public void winningPlayerTest(){
+        this.setConditions();
+        assertEquals(gamePlay.checkWinningMove(),this.black.getName());
     }
 
     @Test
-    public void TestInsertion(){
-        this.SetConditions();
-        Pgame.placePiece(9,2);
-        assertTrue(Pgame.getCurrentPlayer().isPlayerMove(new Piece(9,2,Pgame.getCurrentPlayer().getColor())));
+    public void placePieceTest(){
+        this.setConditions();
+        gamePlay.placePiece(9,2);
+        assertTrue(gamePlay.getCurrentPlayer().isPlayerMove(new Piece(9,2, gamePlay.getCurrentPlayer().getColor())));
     }
 
     @Test
-    public void TestDeletion(){
-        this.SetConditions();
-        Pgame.placePiece(9,2);
-        Pgame.displacePiece(9,2);
-        assertFalse(Pgame.getCurrentPlayer().isPlayerMove(new Piece(9,2,Pgame.getCurrentPlayer().getColor())));
+    public void displacePieceTest(){
+        this.setConditions();
+        gamePlay.placePiece(9,2);
+        gamePlay.displacePiece(9,2);
+        assertFalse(gamePlay.getCurrentPlayer().isPlayerMove(new Piece(9,2, gamePlay.getCurrentPlayer().getColor())));
     }
     @Test
-    public void TestSwap(){
-        this.SetConditions();
-        assertEquals(Pgame.getCurrentPlayer().getName(),this.black.getName());
-        Pgame.changeTurn();
-        assertEquals(Pgame.getCurrentPlayer().getName(),this.white.getName());
+    public void swapTest(){
+        this.setConditions();
+        assertEquals(gamePlay.getCurrentPlayer().getName(),this.black.getName());
+        gamePlay.changeTurn();
+        assertEquals(gamePlay.getCurrentPlayer().getName(),this.white.getName());
     }
     @Test
-    public void CheckFullBoard(){
-        this.SetFullBoard();
-        assertTrue(Pgame.checkFullBoard());
-    }
-
-    @Test
-    public void TestValidPiece(){
-        this.SetConditions();
-        assertTrue(Pgame.isValidMove(10,2));
+    public void checkFullBoard(){
+        this.setFullBoard();
+        assertTrue(gamePlay.checkFullBoard());
     }
 
     @Test
-    public void TestOutofBound(){
-        this.SetConditions();
-        assertTrue(Pgame.isOutOfBound(20,2));
+    public void isValidMoveTest(){
+        this.setConditions();
+        assertTrue(gamePlay.isValidMove(10,2));
     }
 
     @Test
-    public void TestgetNumOpenings(){
-        this.SetConditions();
-        assertEquals(Pgame.getNumMovesOpening(),2);
+    public void isOutOfBoundTest(){
+        this.setConditions();
+        assertTrue(gamePlay.isOutOfBound(20,2));
     }
 
     @Test
-    public void TestgetGame(){
-        this.SetConditions();
-        assertEquals(Pgame.getGame().getOpeningRules().getOpeningType(),OpeningType.Standard);
+    public void getNumMovesOpening(){
+        this.setConditions();
+        assertEquals(gamePlay.getNumMovesOpening(),2);
+    }
+
+    @Test
+    public void getGameTest(){
+        this.setConditions();
+        assertEquals(gamePlay.getGame().getOpeningRules().getOpeningType(),OpeningType.Standard);
     }
 }

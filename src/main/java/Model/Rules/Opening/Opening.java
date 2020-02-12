@@ -11,6 +11,7 @@ public abstract class Opening {
     WhitePlayer whitePlayer;
     OpeningType openingType;
     int numMoves;
+    int numUserInteraction;
     AlertControllerInterface alertControllerInterface;
     GameStatusControllerInterface gameStatusControllerInterface;
 
@@ -27,13 +28,13 @@ public abstract class Opening {
 
     public int getNumMoves(){ return this.numMoves; }
 
+    public int getNumUserInteraction(){ return this.numUserInteraction; }
+
     public void callOpening(AlertControllerInterface alertControllerInterface, GameStatusControllerInterface g){
         this.alertControllerInterface = alertControllerInterface;
         this.gameStatusControllerInterface = g;
         this.openingBehaviour();
     }
-
-    public abstract boolean userInteraction();
 
     public abstract void openingBehaviour();
 

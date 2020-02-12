@@ -1,5 +1,6 @@
 package View;
 
+import Controller.GameScanner;
 import View.Alert.AlertLogin;
 import Model.Rules.Opening.OpeningType;
 import java.util.Scanner;
@@ -15,18 +16,18 @@ public class LoginView {
 
     public String setBlackPlayer(){
         alertLogin.setBlackPlayer();
-        return new Scanner(System.in).next();
+        return GameScanner.scanner.next();
     }
 
     public String setWhitePlayer(){
         alertLogin.setWhitePlayer();
-        return new Scanner(System.in).next();
+        return GameScanner.scanner.next();
     }
 
     public GomokuType setGame(){
         alertLogin.setGame();
         try {
-            return GomokuType.valueOf(new Scanner(System.in).next());
+            return GomokuType.valueOf(GameScanner.scanner.next());
         } catch (IllegalArgumentException e){
           alertLogin.loginAlert();
           return this.setGame();
@@ -36,7 +37,7 @@ public class LoginView {
     public OpeningType setOpening(){
         alertLogin.setOpening();
         try {
-            return OpeningType.valueOf(new Scanner(System.in).next());
+            return OpeningType.valueOf(GameScanner.scanner.next());
         } catch (IllegalArgumentException e) {
             alertLogin.loginAlert();
             return this.setOpening();

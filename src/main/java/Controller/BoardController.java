@@ -11,13 +11,13 @@ import View.BoardView;
 
 class BoardController {
 
-    private BoardView boardView;
+    BoardView boardView;
     private GamePlay gamePlay;
     GameStatusController gameStatusController;
     private TurnManager turnManager;
     private AlertController alertController = new AlertController();
     private boolean gameOver = false;
-    private int X = 0;
+    private  int X = 0;
     private int Y = 0;
 
     BoardController(BlackPlayer blackPlayer, WhitePlayer whitePlayer, GomokuType gomokuType, OpeningType openingType) {
@@ -66,15 +66,18 @@ class BoardController {
             this.boardView.setPiece(this.X, this.Y, this.gamePlay.getCurrentPlayer().getColor());
             this.gamePlay.placePiece(this.X, this.Y);
 
-            if(this.gamePlay.checkFullBoard())
-                this.gameOver();
+
             if(!this.gamePlay.checkWinningMove().isEmpty() ){
                 this.gameOver(this.gamePlay.checkWinningMove());
+            }else {
+                if (this.gamePlay.checkFullBoard()) {
+                    this.gameOver();
+                }
             }
             this.gamePlay.changeTurn();
             return true;
         } else {
-            this.alertController.callinvalidCoordinateError(Integer.toString(this.gamePlay.getGame().getGridSize()));
+            this.alertController.callInvalidCoordinateError(Integer.toString(this.gamePlay.getGame().getGridSize()));
             return false;
 
         }
@@ -93,12 +96,13 @@ class BoardController {
     }
 
     private void printBoardOpening(){
-        if(this.gamePlay.getGame().getOpeningRules().userInteraction() &&
-                (this.numMovesDone() == gamePlay.getNumMovesOpening() || this.numMovesDone() == 5)){
+        if((this.gamePlay.getGame().getOpeningRules().getNumUserInteraction()==1 &&
+                this.numMovesDone() == gamePlay.getNumMovesOpening()) ||
+                (this.gamePlay.getGame().getOpeningRules().getNumUserInteraction()==2 && this.numMovesDone() == 5)){
             this.boardView.createBoard();
             System.out.println("\n");
-        };
-    };
+        }
+    }
 
     private void startGame(){
         this.startOpening();

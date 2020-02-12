@@ -1,5 +1,6 @@
 package View;
 
+import Controller.GameScanner;
 import Model.Piece.PieceColor;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -23,22 +24,22 @@ public class BoardView{
 
     public int getX(String PlayerColor){
         System.out.println("\n" + ANSI_PURPLE + "Insert new " + PlayerColor + " piece (x coordinate): " + ANSI_RESET);
-        try {
-           return new Scanner(System.in).nextInt();
-        } catch (InputMismatchException e){
+        while (!GameScanner.scanner.hasNextInt()) {
             System.out.println(ANSI_RED + "Invalid coordinate " + ANSI_RESET + new String(Character.toChars(0x1F6AB)));
-           return this.getX(PlayerColor);
+            System.out.println("\n" + ANSI_PURPLE + "Insert new " + PlayerColor + " piece (x coordinate): " + ANSI_RESET);
+            GameScanner.scanner.next();
         }
+        return  GameScanner.scanner.nextInt();
     }
 
     public int getY(String PlayerColor){
         System.out.println("\n" + ANSI_PURPLE + "Insert new " + PlayerColor + " piece (y coordinate): " + ANSI_RESET);
-        try {
-            return new Scanner(System.in).nextInt();
-        } catch (InputMismatchException e){
-            System.out.println(ANSI_RED+"Invalid coordinate " + ANSI_RESET + new String(Character.toChars(0x1F6AB)));
-            return this.getY(PlayerColor);
+        while (!GameScanner.scanner.hasNextInt()) {
+            System.out.println(ANSI_RED + "Invalid coordinate " + ANSI_RESET + new String(Character.toChars(0x1F6AB)));
+            System.out.println("\n" + ANSI_PURPLE + "Insert new " + PlayerColor + " piece (y coordinate): " + ANSI_RESET);
+            GameScanner.scanner.next();
         }
+        return  GameScanner.scanner.nextInt();
     }
 
     public void setPiece(int x, int y,final PieceColor color){

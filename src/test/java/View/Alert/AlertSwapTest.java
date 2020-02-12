@@ -2,13 +2,21 @@ package View.Alert;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
+
+import Controller.GameScanner;
+import org.junit.After;
 import org.junit.Test;
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import java.util.Scanner;
 
 public class AlertSwapTest {
 
     private AlertSwap alertSwap = new AlertSwap();
+
+    @After
+    public void restoreStreams() {
+        System.setIn(System.in);
+    }
 
     @Test
     public void checkYesNoAnswerTest() {
@@ -24,46 +32,31 @@ public class AlertSwapTest {
 
     @Test
     public void generateYesNoAlertTest() {
-        InputStream sysInBackup = System.in;
-        ByteArrayInputStream in = new ByteArrayInputStream("YES".getBytes());
-        System.setIn(in);
+        GameScanner.scanner = new Scanner(new ByteArrayInputStream("YES".getBytes()));
         assertThat(alertSwap.generateYesNoAlert("Answer YES/NO"),is("YES"));
-        System.setIn(sysInBackup);
     }
 
     @Test
     public void generateSwapAlertTest() {
-        InputStream sysInBackup = System.in;
-        ByteArrayInputStream in = new ByteArrayInputStream("2".getBytes());
-        System.setIn(in);
+        GameScanner.scanner = new Scanner(new ByteArrayInputStream("2".getBytes()));
         assertThat(alertSwap.generateSwapAlert("choose the option 1, 2 or 3"), is("2"));
-        System.setIn(sysInBackup);
     }
 
     @Test
     public void swapAlertTest() {
-        InputStream sysInBackup = System.in;
-        ByteArrayInputStream in = new ByteArrayInputStream("YES".getBytes());
-        System.setIn(in);
+        GameScanner.scanner = new Scanner(new ByteArrayInputStream("YES".getBytes()));
         assertThat(alertSwap.swapAlert("white player"),is("YES"));
-        System.setIn(sysInBackup);
     }
 
     @Test
     public void swapBlackTest() {
-        InputStream sysInBackup = System.in;
-        ByteArrayInputStream in = new ByteArrayInputStream("YES".getBytes());
-        System.setIn(in);
-        assertThat(alertSwap.swapBlack("black player"),is("YES"));
-        System.setIn(sysInBackup);
+        GameScanner.scanner = new Scanner(new ByteArrayInputStream("YES".getBytes()));
+        assertThat(alertSwap.swapAlert("black player"),is("YES"));
     }
 
     @Test
     public void swap2AlertTest() {
-        InputStream sysInBackup = System.in;
-        ByteArrayInputStream in = new ByteArrayInputStream("2".getBytes());
-        System.setIn(in);
+        GameScanner.scanner = new Scanner(new ByteArrayInputStream("2".getBytes()));
         assertThat(alertSwap.swap2Alert("white player"), is("2"));
-        System.setIn(sysInBackup);
     }
 }

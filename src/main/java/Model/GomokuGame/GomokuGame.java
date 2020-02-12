@@ -7,13 +7,11 @@ import Model.Rules.Opening.OpeningType;
 import Model.Player.WhitePlayer;
 import Model.Player.BlackPlayer;
 
-
 public abstract class GomokuGame {
 
     private BlackPlayer blackPlayer;
     private WhitePlayer whitePlayer;
     int gridSize;
-    GomokuType gameType;
     Closing closing;
     private Opening openingRules;
 
@@ -28,9 +26,9 @@ public abstract class GomokuGame {
         this.setRules();
     }
 
-    public void setPlayers(BlackPlayer p1, WhitePlayer p2){
-        this.blackPlayer = p1;
-        this.whitePlayer = p2;
+    public void setPlayers(BlackPlayer blackPlayer, WhitePlayer whitePlayer){
+        this.blackPlayer = blackPlayer;
+        this.whitePlayer = whitePlayer;
     }
 
     public BlackPlayer getBlackPlayer() { return this.blackPlayer; }

@@ -10,6 +10,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.NoSuchElementException;
+import java.util.Scanner;
+
 import static org.junit.Assert.*;
 
 public class AlertControllerTest {
@@ -19,6 +21,7 @@ public class AlertControllerTest {
     private AlertControllerInterface alertinterface= new AlertController();
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private PrintStream originalOut = System.out;
+    private  InputStream originalIn = System.in;
 
     /*needed to run the test according to the OS*/
     private boolean isWindows = PlatformUtil.isWindows();
@@ -32,6 +35,8 @@ public class AlertControllerTest {
     @After
     public void restoreStreams() {
         System.setOut(originalOut);
+        System.setIn(originalIn);
+
     }
 
     @Test
@@ -41,38 +46,26 @@ public class AlertControllerTest {
 
     @Test
     public void swapAlertTest(){
-        InputStream sysInBackup = System.in;
-        ByteArrayInputStream in = new ByteArrayInputStream("YES".getBytes());
-        System.setIn(in);
+        GameScanner.scanner = new Scanner(new ByteArrayInputStream("YES".getBytes()));
         assertEquals("YES",this.alertinterface.swapAlert("white player"));
-        System.setIn(sysInBackup);
     }
 
     @Test
     public void swapBlackTest(){
-        InputStream sysInBackup = System.in;
-        ByteArrayInputStream in = new ByteArrayInputStream("NO".getBytes());
-        System.setIn(in);
-        assertEquals("NO", this.alertinterface.swapBlack("black player"));
-        System.setIn(sysInBackup);
+        GameScanner.scanner = new Scanner(new ByteArrayInputStream("NO".getBytes()));
+        assertEquals("NO", this.alertinterface.swapAlert("black player"));
     }
 
     @Test
     public void swap2AlertTest(){
-        InputStream sysInBackup = System.in;
-        ByteArrayInputStream in = new ByteArrayInputStream("2".getBytes());
-        System.setIn(in);
+        GameScanner.scanner = new Scanner(new ByteArrayInputStream("2".getBytes()));
         assertEquals("2", this.alertinterface.swap2Alert("white Player"));
-        System.setIn(sysInBackup);
     }
 
     @Test(expected = NoSuchElementException.class)
     public void swapAlertErrorTest() {
-        InputStream sysInBackup = System.in;
-        ByteArrayInputStream in = new ByteArrayInputStream("g".getBytes());
-        System.setIn(in);
+        GameScanner.scanner = new Scanner(new ByteArrayInputStream("Pippo".getBytes()));
         this.alertinterface.swap2Alert("white player");
-        System.setIn(sysInBackup);
     }
 
     @Test
@@ -87,7 +80,7 @@ public class AlertControllerTest {
         new AlertController().callGameOverAlert();
         assertEquals(new String(Character.toChars(0x1F389))+ANSI_RED + " Game Over  "+ ANSI_RESET +
                 new String(Character.toChars(0x1F389)) + specialCharacter + "\n" + ANSI_RED +
-                "The board is full: game ended with no winner" + ANSI_RESET + specialCharacter + "\n", outContent.toString());
+                "The board is full: game ending with no winner." + ANSI_RESET + specialCharacter + "\n", outContent.toString());
     }
 
     @Test
@@ -111,8 +104,8 @@ public class AlertControllerTest {
     }
 
     @Test
-    public void callinvalidCoordinateErrorTest(){
-        new AlertController().callinvalidCoordinateError("14");
+    public void callInvalidCoordinateErrorTest(){
+        new AlertController().callInvalidCoordinateError("14");
         assertEquals(ANSI_RED + "ERROR -Invalid Coordinate " + "\n" +
                 "(Insert a couple of numbers in range [0,14],not already on the board)" +  ANSI_RESET +
                 new String(Character.toChars(0x1F6AB)) + specialCharacter + "\n", outContent.toString());
