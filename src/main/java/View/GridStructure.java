@@ -31,7 +31,7 @@ class GridStructure {
        String ANSI_BLACK = "\033[1;90m";
         String ANSI_WHITE = "\033[0;30m";
 
-        // FOR THE CORRECT DISPLAY ON WHITE BACKGROUND TERMINAL
+        // FOR THE CORRECT DISPLAY ON WHITE BACKGROUND INTELLIJ TERMINAL & ON ORDINARY TERMINAL.
         //String ANSI_WHITE = "\u001b[37m";
         //String ANSI_BLACK= "\u001b[30m";
 
