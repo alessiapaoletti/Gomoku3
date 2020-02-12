@@ -19,13 +19,6 @@ public class PieceTest {
     }
 
     @Test
-    public void equalsTest() {
-        this.piece1 = new Piece(2,4, PieceColor.WHITE);
-        this.piece2 = new Piece(2, 4 , PieceColor.WHITE);
-        assertEquals(piece1, piece2);
-    }
-
-    @Test
     public void getPieceTypeTest() {
         this.piece1 = new Piece(2,3,PieceColor.WHITE);
         assertThat(piece1.getPieceType(), is(PieceColor.WHITE));

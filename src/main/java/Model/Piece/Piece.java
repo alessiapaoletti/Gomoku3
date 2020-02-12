@@ -20,23 +20,4 @@ public class Piece  {
     public int getX() {return this.x; }
     public int getY() {return this.y;  }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Piece piece = (Piece) o;
-        return x == piece.x &&
-                y == piece.y &&
-                pieceColor.equals(piece.pieceColor);
-    }
-
-    @Override
-    public int hashCode(){
-        return Objects.hash(x,y,pieceColor);
-    }
 }

@@ -39,11 +39,7 @@ public class AlertOpening implements AlertGenerator{
     }
 
     public void getAlertOpening(OpeningType opening) {
-        try {
-            System.out.println(this.alertOpeningMap.get(opening));
-        } catch (NullPointerException e) {
-            System.out.println(e.getCause());
-        }
+        System.out.println(this.alertOpeningMap.get(opening));
     }
 
     Map<OpeningType, String> getAlertOpeningMap() {
