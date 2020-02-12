@@ -57,14 +57,21 @@ public class MainTest {
 
     @Test
     public void fullGame7Test() throws IOException {
-        /*Standard  - Swap2 (option3) */
+        /*Standard  - Swap2 (option3,YES) */
         GameScanner.scanner = new Scanner(new FileInputStream(new File("src/test/GameConfigurations/game7.txt")));
         Main.main(null);
     }
 
     @Test
+    public void fullGame11Test() throws IOException {
+        /*Standard  - Swap2 (option3,NO) */
+        GameScanner.scanner = new Scanner(new FileInputStream(new File("src/test/GameConfigurations/game9.txt")));
+        Main.main(null);
+    }
+
+    @Test
     public void fullGame8Test() throws IOException {
-        /*Standard  - Swap2 (option3) */
+        /*Omok  - Standard Invalid Moves */
         GameScanner.scanner = new Scanner(new FileInputStream(new File("src/test/GameConfigurations/game8.txt")));
         Main.main(null);
     }
